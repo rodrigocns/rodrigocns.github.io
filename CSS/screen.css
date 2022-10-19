@@ -27,7 +27,7 @@ header{
 
 .tab{ /*class="tab"*/
   text-align: center;
-  background-color: red;
+/*  background-color: red; */
 }
 
 nav li{
