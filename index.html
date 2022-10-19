@@ -2,14 +2,19 @@
 <html>
 
 <head>
-<meta charset="utf-8">
-<script type="text/javascript" src="jsmol/JSmol.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--define largura da pagina apropriada (pc/mobile)-->
+    <meta http-equiv="X-UA-Compatible" content="ie-edge"> <!--não sei o que faz direito-->
+    <title>Testes do iRoT</title>
+    <link rel="stylesheet" href="css/screen.css" /> <!--aponta arquivo .css -->
+    <script type="text/javascript" src="jsmol/JSmol.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
 </head>
 
 <body>
 <h1>iRoT - interactive Rotations Test</h1>
 <p>I'm hosted with GitHub Pages and added jsmol files.</p>
+<a href="page1.html">Page 1</a>
 <script>
     var Info = {
         color: "#000000",
@@ -21,7 +26,7 @@
         j2sPath: "jsmol/j2s",
         serverURL: "jsmol/php/jsmol.php",
     };
-    Jmol.getApplet("Jmol_A", Info);
+    Jmol.getApplet("Jmol_A", Info); //Jmol_A é o nome do objeto, Info a variavel de configs
 </script>
 <!-- embed do google forms 
     <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf4BOVUttcRYnGGDdJDsQh9DfnrNwff_PiIBQb1i8xMkP-rRw/viewform?embedded=true" width="640" height="1730" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
