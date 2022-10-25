@@ -9,25 +9,44 @@
     <link rel="stylesheet" href="css/screen.css" /> <!--aponta arquivo .css -->
     <script type="text/javascript" src="jsmol/JSmol.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
+    <script>
+        var Info = {
+            color: "#000000",
+            height: 400,
+            width: 400,
+            src: "models/C2OCl.xyz",  //carrega um modelo no local definido
+    //        script: "load $caffeine", //executa um script quando termina de carregar. Atropela o src.
+            use: "HTML5",
+            j2sPath: "jsmol/j2s",
+            serverURL: "jsmol/php/jsmol.php",
+        };
+    </script>
+   
 </head>
 
 <body>
-<h1>iRoT - interactive Rotations Test</h1>
-<p>I'm hosted with GitHub Pages and added jsmol files.</p>
-<a href="page1.html">Page 1</a>
-<script>
-    var Info = {
-        color: "#000000",
-        height: 400,
-        width: 400,
-        src: "models/C2OCl.xyz",  //carrega um modelo no local definido
-//        script: "load $caffeine", //executa um script quando termina de carregar. Atropela o src.
-        use: "HTML5",
-        j2sPath: "jsmol/j2s",
-        serverURL: "jsmol/php/jsmol.php",
-    };
-    Jmol.getApplet("Jmol_A", Info); //Jmol_A é o nome do objeto, Info a variavel de configs
-</script>
+    <h1>iRoT - interactive Rotations Test</h1>
+    <p>Estou hospedado @ GitHub Pages :)</p>
+    <a href="page1.html">Page 1</a>
+    <script>Jmol.getApplet("Jmol_A", Info)</script>
+    
+    <div id="demo", style="background-color: Navy">Div Teste</div>
+    <button type="button" onclick="button1()">Button1</button>
+    <button type="button" onclick="button2()">Button2</button>
+
+
+
+    <script>
+        function button1() {
+            var teste = Jmol.getPropertyAsString(Jmol_A, 'orientationInfo.quaternion');
+            document.getElementById('demo').innerHTML = teste;
+        }
+        function button2() {
+            var teste = Jmol.getPropertyAsString(Jmol_A, 'orientationInfo.quaternion');
+            alert(teste);
+        }
+    </script>
+
 <!-- embed do google forms 
     <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSf4BOVUttcRYnGGDdJDsQh9DfnrNwff_PiIBQb1i8xMkP-rRw/viewform?embedded=true" width="640" height="1730" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
 -->
