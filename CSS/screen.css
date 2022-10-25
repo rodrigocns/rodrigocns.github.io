@@ -1,5 +1,21 @@
 html,body{margin:2;padding:1;}
 
+a {
+  background-color:lightgray
+}
+/*
+a:link {
+  color:lightcyan;
+}
+a:hover {
+  color:palegreen;
+  font-weight:bold;
+}
+a:visited {
+  color:palegoldenrod;
+}
+/* https://coolors.co/contrast-checker/112a46-acc8e5 */
+
 body{
 	font:12px sans-serif;
 	line-height:1.5em;
