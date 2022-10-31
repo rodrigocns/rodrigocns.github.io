@@ -20,7 +20,8 @@
   <form name="submit-to-google-sheet">
     <input name="email" type="email" placeholder="Email" required>
     <input name="fname" type="text" value="Testando">
-    <input name="x" type="hidden" id="custId" value="3487">
+    <input name="x" type="text" id="x" value="3487">
+    <input name="y" type="hidden" value="3487">
     <button type="submit">Send</button>
   </form>
   <!--alterar valor de um form item: -->
@@ -38,9 +39,10 @@
     })
   </script>
   <script>
-    var valor = "Testando"
-    function func1() {
+    function func1() { //mudar valor do form
       var valor = "Outra coisa";
+      document.getElementById('x').value = valor;
+      alert ("Func1 executou e alterou valor x para: "+valor);
     }
   </script>
 </body>
