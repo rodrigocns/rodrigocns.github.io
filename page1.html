@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie-edge">
-  <title>iRoT (backup do teste offline)</title>
+  <title>iRoT</title>
   <link rel="stylesheet" href="css/screen.css" type="text/css" />
   <script type="text/javascript" src="jsmol/JSmol.min.js"></script>
   <script type="text/javascript" id="jmol_info">
@@ -33,6 +33,12 @@
 
 
 <body>
+  <a href="https://script.google.com/home/projects/1L21yINxKMX5ngrT7JYiIOuATQeicxtVxDmKmXGD_rSoaXtIG8n0nrACp/deployments/AKfycbxtKza8SDt27Ik39cktDyv66dD2Lt77vERuHWOVEnraLH91kQwBl1r2bPQoD8Gi1BZW">
+    AppScript
+  </a><br>
+  <a href="https://docs.google.com/spreadsheets/d/1LSDoA22scyWVJUDlwudKqX0o86w5b-Ds-lGOhRBGYis/edit#gid=0">
+    Gsheets
+  </a>
   <nav>
     <ul>
       <li><a href="#tab2">Teste</a></li>
@@ -40,25 +46,55 @@
       <li><a href="#tab4">Tabela</a></li>
     </ul>
   </nav>
-
   <br><br>
-  <section class="tab" id="tab2" width:100%>                 <!-- O TESTE -->
+  <form name="submit-to-google-sheet" id="gsForm">
+    <input name="email" type="email" placeholder="Email" required>
+    <input name="fname" type="text" placeholder="Nome">
+    <input name="ft" type="hidden" id="test_id" >
+    <input name="ft" type="hidden" id="ft" >
+    <input name="fx" type="hidden" id="fx" >
+    <input name="fy" type="hidden" id="fy" >
+    <input name="fz" type="hidden" id="fz" >
+    <input name="fw" type="hidden" id="fw" >
+<!--    <button type="submit" form="submit-to-google-sheet">Send</button>-->
+  </form>
+  <br>
+  <div id="testDiv" style="background-color:gray">Test</div>
+  <br>
+
+  <section class="tab" id="tab2" width:100%>  <!-- O TESTE -->
     <br>
       <table>
         <tr>
-          <td><div id="divMoleculaPNG" style="width:40%; visibility:hidden"><img src="imgs/pseudobatracotoxinaBlack_400px.png"/></div></td> <!--  -675 -389 -627 93.16  -->   
-          <td><div style="height:150px; width:20%; background-color:grey">
-            <button onclick="botaoInicio()">INÍCIO!</button>
-            <button onclick="tamanhoJanela()">TESTE</button>
-            <button onclick="timerStop()">FIM!</button><br>
+          <td>
+            <div id="divMoleculaPNG" style="width:40%; visibility:hidden">
+              <img src="imgs/pseudobatracotoxinaBlack_400px.png"/>
             </div>
-              <div style="display:none"> Tempo: <output id="tempoGasto" ></output> s
-              </div> <!-- display: none some com o tempo -->
+          </td>
+          <td>
+            <div style="display:table-cell; height:400px; vertical-align:bottom; background-color:gray">
+              <button id="startButton" onclick="botaoInicio()">INÍCIO!</button>
+              <button hidden onclick="tamanhoJanela()">scrSize</button><!--debug-->
+              <button hidden onclick="debug()">debug()</button> <!--debug-->
+              <!--alterar timerStop para botaoFim() e juntar Fim com submit-->
+              <button style="visibility:hidden" onclick="timerStop()" 
+                id="stopButton">FIM!</button>
+              <button style="visibility:hidden" onclick="arrayToForm()" 
+                form="gsForm" id="submitButton">POST</button>
+              <br>
+            </div>
+            <div style="display:none"> <!--criar func debug() para mostrar coisas -->
+              Tempo: <output id="tempoGasto" ></output> s
+            </div> <!-- display: none some com o tempo -->
             </td>
-          <td><div id="divMoleculaTeste" style="width:40%;visibility:hidden"><script>
-            Info.width=Info.height=400; Info.src="models/pseudobatracotoxin_molecule.xyz";     // start at: moveto {-666 39 745 139.54} 
-            Jmol.getApplet("jsmol_molecula", Info);
-          </script></div></td>
+          <td>
+            <div id="divMoleculaTeste" style="width:40%;visibility:hidden">
+              <script>
+                Info.width=Info.height=400; Info.src="models/pseudobatracotoxin_molecule.xyz";     // start at: moveto {-666 39 745 139.54} 
+                Jmol.getApplet("jsmol_molecula", Info);
+              </script>
+            </div>
+          </td>
         </tr>
       </table>
   </section>
@@ -104,13 +140,6 @@
   </section>
 
   <section class="tab" id="tab4">
-    <!--<input type='hidden' id='nomeField' name='Nome' value='' />-->
-    <input type='hidden' id='tempoField' name='Tempo' value='' />
-    <input type='hidden' id='paramFField' name='ParametroFinal' value='' />
-    <input type='hidden' id='param1Field' name='Parametro1' value='' />
-    <input type='hidden' id='param2Field' name='Parametro2' value='' />
-    <input type='hidden' id='param3Field' name='Parametro3' value='' />
-    <input type='hidden' id='param4Field' name='ParametroAng' value='' />
 
     </br><p>Tabela de Orientações</p>
       <div>
@@ -129,7 +158,36 @@
   </section>
 
   <script>
-    function tamanhoJanela () {
+    //Todas as Funcoes aqui
+    
+    function debug() { //debug func
+      var stringue = JSON.stringify(resultados.parametro3);
+      //alert(typeof(resultados.parametro3));
+      alert(stringue);
+    }
+    
+    //funcao que muda valor do form
+    function arrayToForm() { 
+      document.getElementById('test_id').value = "ball_stick-cor";
+      document.getElementById('ft').value = resultados.tempo;
+      document.getElementById('fx').value = resultados.parametro1;
+      document.getElementById('fy').value = resultados.parametro2;
+      document.getElementById('fz').value = resultados.parametro3;
+      document.getElementById('fw').value = resultados.parametro4;
+      //alert ("Func1 executou e alterou valor fy");
+    }
+
+    //snip traduz form em linha no gsheets
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxtKza8SDt27Ik39cktDyv66dD2Lt77vERuHWOVEnraLH91kQwBl1r2bPQoD8Gi1BZW/exec'
+    const form = document.forms['submit-to-google-sheet']
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => console.log('Success!', response))
+        .catch(error => console.error('Error!', error.message))
+    })
+
+    function tamanhoJanela () { //pega o tamanho/resolução da janela do browser
       var win = window,
       doc = document,
       docElem = doc.documentElement,
@@ -140,24 +198,19 @@
       //https://stackoverflow.com/questions/3437786/get-the-size-of-the-screen-current-web-page-and-browser-window
     }
 
-    function meuSubmit() {      //função para setar os dados do formulário e ao final, enviá-los
-        //document.getElementById('nomeField').value = NomeCompleto;
-        document.getElementById('tempoField').value = resultados.tempo;
-        document.getElementById('paramFField').value = resultados.parametroF;
-        document.getElementById('param1Field').value = resultados.parametro1;
-        document.getElementById('param2Field').value = resultados.parametro2;
-        document.getElementById('param3Field').value = resultados.parametro3;
-        document.getElementById('param4Field').value = resultados.parametro4;
-        document.getElementById("meuForm").submit();    //linha final da função, para o envio dos dados
-        
-    }
-
     function botaoInicio() {
       javascript:Jmol.script(jsmol_molecula,'moveto 0.0 {-666 39 745 139.54}');
       document.getElementById("divMoleculaPNG").style.visibility="visible";
       document.getElementById("divMoleculaTeste").style.visibility="visible";
+      document.getElementById("submitButton").style.visibility="visible";
+      document.getElementById("stopButton").style.visibility="visible";
+      document.getElementById("startButton").style.visibility="hidden";
       timerStart ();
       //javascript:Jmol.script(jsmol_molecula,'color structure');
+    }
+
+    function botaoFim() { 
+      //chamar timerStop e passar dados para forms
     }
 
     var duracao = 0;
@@ -241,23 +294,21 @@
     resultados.parametro3 = [];
     resultados.parametro4 = [];
     function getTheNumbers() {      //Função que captura as coordenadas de orientação da molécula a cada chamada e cria uma nova linha de uma tabela com as informações obtidas
-        var orientacaoRawStr = Jmol.getPropertyAsString(jsmol_molecula, 'orientationInfo.moveTo');      // (bendita) Função que grava as propriedades moveTo de orientação em uma string 
-        
-        var axisAngle = orientacaoRawStr.slice( (orientacaoRawStr.search("{") +1 ) , orientacaoRawStr.search("}") );        //valor de "axisAngle" recebe fatia de dados da string "orientacaoStr" com 4 parametros de orientação AxisAngle. Data entre '{' e '}' é a "fatia" que interessa)
-        
-        var eulerAngles = axisAngle.split(" "); // eulerAngles[0] é o índice da string, [1], [2] e [3] são os parametros do eixo de rotação, [4] é o ângulo de rotação 
-        resultados.parametro1[resultados.parametro1.length] = eulerAngles[1];   // grava os parâmetros do eixo de rotação de euler e o ângulo de rotação 
-        resultados.parametro2[resultados.parametro2.length] = eulerAngles[2];
-        resultados.parametro3[resultados.parametro3.length] = eulerAngles[3];
-        //eulerAngles[4] = eulerAngles[4].replace(".", ",");
-        resultados.parametro4[resultados.parametro4.length] = eulerAngles[4];
-        
-        var valorTempResult =  Math.sqrt( Math.pow((eulerAngles[1]-Ori1),2) + Math.pow((eulerAngles[2]-Ori2),2) + Math.pow((eulerAngles[3]-Ori3),2) + Math.pow((eulerAngles[4]-Ori4),2) );  // calculo para obtenção de fator de proximidade da resposta 
-        resultados.parametroF[resultados.parametroF.length] = Math.floor(valorTempResult) + "," + Math.round((valorTempResult%1)*1000);     // transformando o extenso float em uma string que representa um numero na forma "abcd,efg"
-        resultados.tempo[resultados.tempo.length] = tempo.innerHTML;       // adicionando valores aos arrays
+      var orientacaoQuat = Jmol.getPropertyAsArray(jsmol_molecula, 'orientationInfo.quaternion'); 
+      document.getElementById("testDiv").innerHTML = orientacaoQuat;// debug
+      
+      resultados.parametro1.push(orientacaoQuat[0]);
+      resultados.parametro2.push(orientacaoQuat[1]);
+      resultados.parametro3.push(orientacaoQuat[2]);
+      resultados.parametro4.push(orientacaoQuat[3]);
+      resultados.tempo.push(tempo.innerHTML);       // adicionando valores aos arrays
+      
+      // calculo da distancia à resposta (CORRIGIR PRO QUATERNION!)
+      var valorTempResult =  Math.sqrt( Math.pow((orientacaoQuat[1]-Ori1),2) + Math.pow((orientacaoQuat[2]-Ori2),2) + Math.pow((orientacaoQuat[3]-Ori3),2) + Math.pow((orientacaoQuat[4]-Ori4),2) );  
+      resultados.parametroF.push(Math.floor(valorTempResult) + "," + Math.round((valorTempResult%1)*1000));     // transformando float em string "abcd,efg"
 
-        ctx.lineTo( (30+(tempo.innerHTML*10)) , (250-(valorTempResult/10)) );
-        ctx.stroke();
+      ctx.lineTo( (30+(tempo.innerHTML*10)) , (250-(valorTempResult/10)) );
+      ctx.stroke();
     }
 
     function writeParamTable(tableID) { // Função para imprimir tabela de parametros de orientação
@@ -279,7 +330,6 @@
           cellParam4.innerHTML = resultados.parametro4[i];
           
         }
-        //meuSubmit();  //chamada para a função que passa os dados do formulário
     }
 
     tabs = function(options) {  //funções para a estrutura da página em abas 

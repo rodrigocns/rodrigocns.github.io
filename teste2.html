@@ -17,16 +17,19 @@
   <!-- https://github.com/jamiewilson/form-to-google-sheets-->
   <!-- webApp url: https://script.google.com/macros/s/AKfycbxtKza8SDt27Ik39cktDyv66dD2Lt77vERuHWOVEnraLH91kQwBl1r2bPQoD8Gi1BZW/exec-->
   
-  <form name="submit-to-google-sheet">
+  <!--Form de envio para o google sheet-->
+  <form name="submit-to-google-sheet" id="gsForm">
     <input name="email" type="email" placeholder="Email" required>
     <input name="fname" type="text" value="Testando">
-    <input name="x" type="text" id="x" value="3487">
-    <input name="y" type="hidden" value="3487">
-    <button type="submit">Send</button>
+    <input name="fx" type="text" id="fx" value="3487">
+    <input name="fy" type="hidden" value="3487">
+    <button onclick="func1()" type="submit">Send</button>
   </form>
+
   <!--alterar valor de um form item: -->
   <!--https://www.w3schools.com/html/tryit.asp?filename=tryhtml_elem_output-->
-  <button type="button" onclick="func1()">Change</button>
+  <button type="submit" onclick="func1()" form="gsForm">Change</button>
+  
   <script>
     const scriptURL = 'https://script.google.com/macros/s/AKfycbxtKza8SDt27Ik39cktDyv66dD2Lt77vERuHWOVEnraLH91kQwBl1r2bPQoD8Gi1BZW/exec'
     const form = document.forms['submit-to-google-sheet']
@@ -38,11 +41,13 @@
         .catch(error => console.error('Error!', error.message))
     })
   </script>
+  
   <script>
-    function func1() { //mudar valor do form
+    //funcao que muda valor do form
+    function func1() { 
       var valor = "Outra coisa";
-      document.getElementById('x').value = valor;
-      alert ("Func1 executou e alterou valor x para: "+valor);
+      document.getElementById('fx').value = valor;
+      //alert ("Func1 executou e alterou valor x para: "+valor);
     }
   </script>
 </body>
