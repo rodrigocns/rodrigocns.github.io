@@ -33,35 +33,35 @@
 
 
 <body>
-  <a href="https://script.google.com/home/projects/1L21yINxKMX5ngrT7JYiIOuATQeicxtVxDmKmXGD_rSoaXtIG8n0nrACp/deployments/AKfycbxtKza8SDt27Ik39cktDyv66dD2Lt77vERuHWOVEnraLH91kQwBl1r2bPQoD8Gi1BZW">
-    AppScript
-  </a><br>
-  <a href="https://docs.google.com/spreadsheets/d/1LSDoA22scyWVJUDlwudKqX0o86w5b-Ds-lGOhRBGYis/edit#gid=0">
-    Gsheets
-  </a>
-  <nav>
-    <ul>
-      <li><a href="#tab2">Teste</a></li>
-      <li><a href="#tab3">Gráfico</a></li>
-      <li><a href="#tab4">Tabela</a></li>
-    </ul>
-  </nav>
-  <br><br>
-  <form name="submit-to-google-sheet" id="gsForm">
-    <input name="email" type="email" placeholder="Email" required>
-    <input name="fname" type="text" placeholder="Nome">
-    <input name="ft" type="hidden" id="test_id" >
-    <input name="ft" type="hidden" id="ft" >
-    <input name="fx" type="hidden" id="fx" >
-    <input name="fy" type="hidden" id="fy" >
-    <input name="fz" type="hidden" id="fz" >
-    <input name="fw" type="hidden" id="fw" >
-<!--    <button type="submit" form="submit-to-google-sheet">Send</button>-->
-  </form>
-  <br>
-  <div id="testDiv" style="background-color:gray">Test</div>
-  <br>
-
+  <section >  
+    <nav>
+      <a href="https://script.google.com/home/projects/1L21yINxKMX5ngrT7JYiIOuATQeicxtVxDmKmXGD_rSoaXtIG8n0nrACp/deployments/AKfycbxtKza8SDt27Ik39cktDyv66dD2Lt77vERuHWOVEnraLH91kQwBl1r2bPQoD8Gi1BZW">
+        AppScript
+      </a><br>
+      <a href="https://docs.google.com/spreadsheets/d/1LSDoA22scyWVJUDlwudKqX0o86w5b-Ds-lGOhRBGYis/edit#gid=0">
+        Gsheets
+      </a>
+      <ul>
+        <li><a href="#tab2">Teste</a></li>
+        <li><a href="#tab3">Gráfico</a></li>
+        <li><a href="#tab4">Tabela</a></li>
+      </ul>
+    </nav>
+    <br><br>
+    <form name="submit-to-google-sheet" id="gsForm">
+      <input name="email" type="email" placeholder="Email" required>
+      <input name="fname" type="text" placeholder="Nome">
+      <input name="ft" type="hidden" id="test_id" >
+      <input name="ft" type="hidden" id="ft" >
+      <input name="fx" type="hidden" id="fx" >
+      <input name="fy" type="hidden" id="fy" >
+      <input name="fz" type="hidden" id="fz" >
+      <input name="fw" type="hidden" id="fw" >
+    </form>
+    <br>
+    <div class="debug" id="testDiv" style="background-color:gray">Test</div>
+    <br>
+  </section>
   <section class="tab" id="tab2" width:100%>  <!-- O TESTE -->
     <br>
       <table>
@@ -77,13 +77,13 @@
               <button hidden onclick="tamanhoJanela()">scrSize</button><!--debug-->
               <button hidden onclick="debug()">debug()</button> <!--debug-->
               <!--alterar timerStop para botaoFim() e juntar Fim com submit-->
-              <button style="visibility:hidden" onclick="timerStop()" 
+              <button style="visibility:hidden" onclick="botaoFim()" 
                 id="stopButton">FIM!</button>
-              <button style="visibility:hidden" onclick="arrayToForm()" 
+              <button style="visibility:hidden" onclick="botaoPost()" 
                 form="gsForm" id="submitButton">POST</button>
               <br>
             </div>
-            <div style="display:none"> <!--criar func debug() para mostrar coisas -->
+            <div class="debug" style="display:none"> <!--criar func debug() para mostrar coisas -->
               Tempo: <output id="tempoGasto" ></output> s
             </div> <!-- display: none some com o tempo -->
             </td>
@@ -160,7 +160,32 @@
   <script>
     //Todas as Funcoes aqui
     
+    function botaoInicio() {
+      javascript:Jmol.script(jsmol_molecula,'moveto 0.0 {-666 39 745 139.54}');
+      document.getElementById("divMoleculaPNG").style.visibility="visible";
+      document.getElementById("divMoleculaTeste").style.visibility="visible";
+      timerStart ();
+      document.getElementById("startButton").style.visibility="hidden";
+      document.getElementById("stopButton").style.visibility="visible";
+      //javascript:Jmol.script(jsmol_molecula,'color structure');
+    }
+
+    function botaoFim() { 
+      timerStop();
+      document.getElementById("stopButton").style.visibility="hidden";
+      document.getElementById("submitButton").style.visibility="visible";
+    }
+
+    function botaoPost(){
+      document.getElementById("divMoleculaPNG").style.visibility="hidden";
+      document.getElementById("divMoleculaTeste").style.visibility="hidden";
+      arrayToForm();
+      document.getElementById("submitButton").style.visibility="hidden";
+      document.getElementById("startButton").style.visibility="visible";
+    }
+
     function debug() { //debug func
+      document.getElementsByClass('debug').style.display = block;
       var stringue = JSON.stringify(resultados.parametro3);
       //alert(typeof(resultados.parametro3));
       alert(stringue);
@@ -177,16 +202,6 @@
       //alert ("Func1 executou e alterou valor fy");
     }
 
-    //snip traduz form em linha no gsheets
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxtKza8SDt27Ik39cktDyv66dD2Lt77vERuHWOVEnraLH91kQwBl1r2bPQoD8Gi1BZW/exec'
-    const form = document.forms['submit-to-google-sheet']
-    form.addEventListener('submit', e => {
-      e.preventDefault()
-      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-        .then(response => console.log('Success!', response))
-        .catch(error => console.error('Error!', error.message))
-    })
-
     function tamanhoJanela () { //pega o tamanho/resolução da janela do browser
       var win = window,
       doc = document,
@@ -196,21 +211,6 @@
       y = win.innerHeight|| docElem.clientHeight|| body.clientHeight;
       alert(x + ' × ' + y);    
       //https://stackoverflow.com/questions/3437786/get-the-size-of-the-screen-current-web-page-and-browser-window
-    }
-
-    function botaoInicio() {
-      javascript:Jmol.script(jsmol_molecula,'moveto 0.0 {-666 39 745 139.54}');
-      document.getElementById("divMoleculaPNG").style.visibility="visible";
-      document.getElementById("divMoleculaTeste").style.visibility="visible";
-      document.getElementById("submitButton").style.visibility="visible";
-      document.getElementById("stopButton").style.visibility="visible";
-      document.getElementById("startButton").style.visibility="hidden";
-      timerStart ();
-      //javascript:Jmol.script(jsmol_molecula,'color structure');
-    }
-
-    function botaoFim() { 
-      //chamar timerStop e passar dados para forms
     }
 
     var duracao = 0;
@@ -235,7 +235,6 @@
     }
 
     //função de tempo nova https://stackoverflow.com/questions/29971898/how-to-create-an-accurate-timer-in-javascript 
-
     var interval = 100; // ms
     var expected = Date.now() + interval;
     var drift_history = [];
@@ -284,7 +283,6 @@
       }
     }
     //fim da nova funcao de timer
-
         
     var resultados = new Object();
     resultados.tempo = [];  // declarando os arrays 
@@ -331,6 +329,16 @@
           
         }
     }
+
+        //snip traduz form em linha no gsheets
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxtKza8SDt27Ik39cktDyv66dD2Lt77vERuHWOVEnraLH91kQwBl1r2bPQoD8Gi1BZW/exec'
+    const form = document.forms['submit-to-google-sheet']
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => console.log('Success!', response))
+        .catch(error => console.error('Error!', error.message))
+    })
 
     tabs = function(options) {  //funções para a estrutura da página em abas 
 

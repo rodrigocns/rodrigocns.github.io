@@ -1,5 +1,11 @@
 html,body{margin:2;padding:1;}
 
+/* .coisa é para classes, #coisa é para id's */
+
+* {
+  text-align: center;
+}
+
 a {
   background-color:lightgray
 }
@@ -39,6 +45,10 @@ header{
 	color:#EEEEEE;
   background-color: #404040;
   text-align: center;
+}
+
+.debug{
+  display:"none";
 }
 
 .tab{ /*class="tab"*/
