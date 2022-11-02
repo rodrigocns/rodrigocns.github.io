@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-
+<!-- <span style="color:#404040">Teste</span> -->
+<p style="color:#404040; text-align:right"><span id="debug_switch" onclick="debug()">Debug</span></p>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,72 +35,67 @@
 
 <body>
   <section >  
-    <nav>
+    <nav class="debug">
       <a href="https://script.google.com/home/projects/1L21yINxKMX5ngrT7JYiIOuATQeicxtVxDmKmXGD_rSoaXtIG8n0nrACp/deployments/AKfycbxtKza8SDt27Ik39cktDyv66dD2Lt77vERuHWOVEnraLH91kQwBl1r2bPQoD8Gi1BZW">
         AppScript
-      </a><br>
+      </a>  
+      &nbsp <!--espaço em branco-->
       <a href="https://docs.google.com/spreadsheets/d/1LSDoA22scyWVJUDlwudKqX0o86w5b-Ds-lGOhRBGYis/edit#gid=0">
         Gsheets
       </a>
-      <ul>
+      <ul class="debug">
         <li><a href="#tab2">Teste</a></li>
         <li><a href="#tab3">Gráfico</a></li>
         <li><a href="#tab4">Tabela</a></li>
       </ul>
     </nav>
-    <br><br>
+    <br><hr><br>
     <form name="submit-to-google-sheet" id="gsForm">
-      <input name="email" type="email" placeholder="Email" required>
+      <input name="email" type="email" placeholder="Email" >
       <input name="fname" type="text" placeholder="Nome">
-      <input name="ft" type="hidden" id="test_id" >
+      <input name="test_id" type="hidden" id="test_id" >
       <input name="ft" type="hidden" id="ft" >
       <input name="fx" type="hidden" id="fx" >
       <input name="fy" type="hidden" id="fy" >
       <input name="fz" type="hidden" id="fz" >
       <input name="fw" type="hidden" id="fw" >
     </form>
-    <br>
     <div class="debug" id="testDiv" style="background-color:gray">Test</div>
-    <br>
   </section>
   <section class="tab" id="tab2" width:100%>  <!-- O TESTE -->
     <br>
-      <table>
-        <tr>
-          <td>
-            <div id="divMoleculaPNG" style="width:40%; visibility:hidden">
-              <img src="imgs/pseudobatracotoxinaBlack_400px.png"/>
-            </div>
-          </td>
-          <td>
-            <div style="display:table-cell; height:400px; vertical-align:bottom; background-color:gray">
-              <button id="startButton" onclick="botaoInicio()">INÍCIO!</button>
-              <button hidden onclick="tamanhoJanela()">scrSize</button><!--debug-->
-              <button hidden onclick="debug()">debug()</button> <!--debug-->
-              <!--alterar timerStop para botaoFim() e juntar Fim com submit-->
-              <button style="visibility:hidden" onclick="botaoFim()" 
-                id="stopButton">FIM!</button>
-              <button style="visibility:hidden" onclick="botaoPost()" 
-                form="gsForm" id="submitButton">POST</button>
-              <br>
-            </div>
-            <div class="debug" style="display:none"> <!--criar func debug() para mostrar coisas -->
-              Tempo: <output id="tempoGasto" ></output> s
-            </div> <!-- display: none some com o tempo -->
-            </td>
-          <td>
-            <div id="divMoleculaTeste" style="width:40%;visibility:hidden">
-              <script>
-                Info.width=Info.height=400; Info.src="models/pseudobatracotoxin_molecule.xyz";     // start at: moveto {-666 39 745 139.54} 
-                Jmol.getApplet("jsmol_molecula", Info);
-              </script>
-            </div>
-          </td>
-        </tr>
-      </table>
+    <div style="background-color: #606060" width="100%"><br><br><br></div>
+    <table id="iRot_screen_table">
+      <tr>
+        <td class="iRot_window" id="divMoleculaPNG">
+          <img src="imgs/pseudobatracotoxinaBlack_400px.png"/>
+        </td>
+        <td id="iRot_center">
+          <div class="debug" style="display:none">
+            Tempo: <output id="tempoGasto" ></output> s
+          </div>
+          <button class="debug" onclick="tamanhoJanela()">scrSize</button><br>
+          <button id="startButton" onclick="botaoInicio()">INÍCIO!</button><br>
+          <button style="visibility:hidden" onclick="botaoFim()" 
+            id="stopButton">FIM!</button><br>
+          <button style="visibility:hidden" onclick="botaoPost()" 
+            form="gsForm" id="submitButton">POST</button><br>
+        </td>
+        <td class="iRot_window" id="divMoleculaTeste" width="40%">
+          <div>
+            <script>
+              // Info.width=Info.height=400; 
+              Info.src="models/pseudobatracotoxin_molecule.xyz";     // start at: moveto {-666 39 745 139.54} 
+              Jmol.getApplet("jsmol_molecula", Info);
+            </script>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <div style="background-color: #606060" width="100%"><br><br><br></div>
   </section>
     
-  <section class="tab" id="tab3">
+  <section class="tab debug" id="tab3"> <!--graph-->
     <br><br>
       <table><tr><td style="width:400px">Gráfico do progresso no teste pelo tempo</td><td style="width:400px"><span id="xycoordenadas"></span></td></tr></table>
       <canvas id="grafico" width="2000" height="280" style="border:1px solid lightgrey" onmousemove="cnvs_getCoordenadas(event)" onmouseout="cnvs_clearCoordenadas()"></canvas>
@@ -139,7 +135,7 @@
           <!--<br><button onclick="cnvs_strokeGrafico()">STROKE!</button>-->
   </section>
 
-  <section class="tab" id="tab4">
+  <section class="tab" id="tab4"> <!--tabela-->
 
     </br><p>Tabela de Orientações</p>
       <div>
@@ -184,11 +180,21 @@
       document.getElementById("startButton").style.visibility="visible";
     }
 
+    var debug_state = 0;
     function debug() { //debug func
-      document.getElementsByClass('debug').style.display = block;
-      var stringue = JSON.stringify(resultados.parametro3);
-      //alert(typeof(resultados.parametro3));
-      alert(stringue);
+      const debug_elements = document.getElementsByClassName('debug');
+      if (debug_state == 0){
+        debug_state = 1;
+        for (let i = 0; i < debug_elements.length; i++) {
+          debug_elements[i].style.display = "block";
+        }
+      } else {
+        debug_state = 0;
+        for (let i = 0; i < debug_elements.length; i++) {
+          debug_elements[i].style.display = "none";
+        }
+      }
+      // alert(debug_elements.length);
     }
     
     //funcao que muda valor do form
@@ -291,7 +297,7 @@
     resultados.parametro2 = [];
     resultados.parametro3 = [];
     resultados.parametro4 = [];
-    function getTheNumbers() {      //Função que captura as coordenadas de orientação da molécula a cada chamada e cria uma nova linha de uma tabela com as informações obtidas
+    function getTheNumbers() { //armazena os dados de orientação em quat. para os arrays a cada chamada
       var orientacaoQuat = Jmol.getPropertyAsArray(jsmol_molecula, 'orientationInfo.quaternion'); 
       document.getElementById("testDiv").innerHTML = orientacaoQuat;// debug
       
@@ -299,7 +305,7 @@
       resultados.parametro2.push(orientacaoQuat[1]);
       resultados.parametro3.push(orientacaoQuat[2]);
       resultados.parametro4.push(orientacaoQuat[3]);
-      resultados.tempo.push(tempo.innerHTML);       // adicionando valores aos arrays
+      resultados.tempo.push(tempo.innerHTML);
       
       // calculo da distancia à resposta (CORRIGIR PRO QUATERNION!)
       var valorTempResult =  Math.sqrt( Math.pow((orientacaoQuat[1]-Ori1),2) + Math.pow((orientacaoQuat[2]-Ori2),2) + Math.pow((orientacaoQuat[3]-Ori3),2) + Math.pow((orientacaoQuat[4]-Ori4),2) );  
@@ -309,29 +315,8 @@
       ctx.stroke();
     }
 
-    function writeParamTable(tableID) { // Função para imprimir tabela de parametros de orientação
-      for (var i=0; i<resultados.tempo.length; i++){
-        var table = document.getElementById(tableID).insertRow(1+i);
-        
-          var cellTempo = table.insertCell(0);
-          var cellParamF = table.insertCell(1);
-          var cellParam1 = table.insertCell(2);
-          var cellParam2 = table.insertCell(3);
-          var cellParam3 = table.insertCell(4);
-          var cellParam4 = table.insertCell(5);
-          
-          cellTempo.innerHTML = resultados.tempo[i];
-          cellParamF.innerHTML = resultados.parametroF[i];
-          cellParam1.innerHTML = resultados.parametro1[i];
-          cellParam2.innerHTML = resultados.parametro2[i];
-          cellParam3.innerHTML = resultados.parametro3[i];
-          cellParam4.innerHTML = resultados.parametro4[i];
-          
-        }
-    }
-
-        //snip traduz form em linha no gsheets
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbxtKza8SDt27Ik39cktDyv66dD2Lt77vERuHWOVEnraLH91kQwBl1r2bPQoD8Gi1BZW/exec'
+    //snip traduz form em linha no gsheets
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxtKza8SDt27Ik39cktDyv66dD2Lt77vERuHWOVEnraLH91kQwBl1r2bPQoD8Gi1BZW/exec'
     const form = document.forms['submit-to-google-sheet']
     form.addEventListener('submit', e => {
       e.preventDefault()
