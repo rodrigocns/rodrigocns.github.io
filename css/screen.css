@@ -48,12 +48,33 @@ header{
 }
 
 .debug{
-  display:"none";
+  display:none;
 }
 
 .tab{ /*class="tab"*/
   text-align: center;
 /*  background-color: red; */
+}
+
+table, th, td {/*para debug*/
+  border: 1px solid;
+}
+#iRot_screen_table{
+  width: 100%;
+}
+
+#iRot_center{
+  display:table-cell; 
+  height:400px; 
+  vertical-align:bottom; 
+  background-color:gray;
+  width:20%;
+}
+
+.iRot_window {
+  width:40%;
+  text-align: center;
+  visibility:hidden;
 }
 
 nav li{
