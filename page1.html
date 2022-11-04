@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <!-- <span style="color:#404040">Teste</span> -->
-<p style="color:#404040; text-align:right"><span id="debug_switch" onclick="debug()">Debug</span></p>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie-edge">
   <title>iRoT</title>
-  <link rel="stylesheet" href="css/screen.css" type="text/css" />
+  <link rel="stylesheet" href="css/screen.css" type="text/css" >
+  <link rel="stylesheet" href="css/w3.css">
   <script type="text/javascript" src="jsmol/JSmol.min.js"></script>
   <script type="text/javascript" id="jmol_info">
     var Info = {
@@ -34,7 +34,9 @@
 
 
 <body>
-  <section >  
+  <div style="color:#404040; text-align:right"><span id="debug_switch" onclick="debug()">Debug</span></div>
+  <!-- <section class="w3-container w3-center w3-animate-opacity"> -->
+  <section>
     <nav class="debug">
       <a href="https://script.google.com/home/projects/1L21yINxKMX5ngrT7JYiIOuATQeicxtVxDmKmXGD_rSoaXtIG8n0nrACp/deployments/AKfycbxtKza8SDt27Ik39cktDyv66dD2Lt77vERuHWOVEnraLH91kQwBl1r2bPQoD8Gi1BZW">
         AppScript
@@ -48,8 +50,8 @@
         <li><a href="#tab3">Gráfico</a></li>
         <li><a href="#tab4">Tabela</a></li>
       </ul>
-    </nav>
     <br><hr><br>
+    </nav>
     <form name="submit-to-google-sheet" id="gsForm">
       <input name="email" type="email" placeholder="Email" >
       <input name="fname" type="text" placeholder="Nome">
