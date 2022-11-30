@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie-edge">
-  <title>iRoT</title>
+  <title>iRoT (ou iRT?)</title>
   <link rel="stylesheet" href="css/screen.css" type="text/css" >
   <link rel="stylesheet" href="css/w3.css">
   <script type="text/javascript" src="jsmol/JSmol.min.js"></script>
@@ -22,15 +22,22 @@
       
       defaultModel: "",
       script: null,
-      readyFunction: null,    
-      debug: false,
-      // frank: OFF //marca dagua "Jmol"
+      readyFunction: jmolIsReady, //ou null. chama função qndo jmol carregou e está pronto
+      // readyFunction: null,    
+      debug: false //deixar true se tiver problemas
     }
+    function jmolIsReady() { //mudanças pós-carregamento. PRECISA estar aqui, se não diz function undefined
+      Jmol.script(jsmol_molecula,'zoom off; frank off');
+      prepMolecula(test_n);
+      // alert('feito!');//debug
+    }
+
     var Ori1 = -675;        
     var Ori2 = -389;
     var Ori3 = -627;
     var Ori4 = 93.16;
-        //moveto 0.0 {-675 -389 -627 93.16}
+        //moveto 0.0 {-675 -389 -627 93.16} 
+
   </script>
 </head>
 
@@ -68,16 +75,17 @@
     <br>
     <div style="background-color: #606060" width="100%">
       <br>
-      <div class="debug">
-        <button onclick="prepMolecula(0)">1</button>
-        <button onclick="prepMolecula(1)">2</button>
-        <button onclick="prepMolecula(2)">3</button>
-        <button onclick="prepMolecula(3)">4</button>
-        <button onclick="prepMolecula(4)">5</button>
-        <button onclick="prepMolecula(5)">6</button>
+      <div class="debug"> <!-- iniciar as diferentes etapas do teste interativo-->
+        <button onclick="test_n=0;prepMolecula(test_n)">1</button>
+        <button onclick="test_n=1;prepMolecula(test_n)">2</button>
+        <button onclick="test_n=2;prepMolecula(test_n)">3</button>
+        <button onclick="test_n=3;prepMolecula(test_n)">4</button>
+        <button onclick="test_n=4;prepMolecula(test_n)">5</button>
+        <button onclick="test_n=5;prepMolecula(test_n)">6</button>
       </div>
       <br><br>
     </div>
+    <div class="debug" id="testDiv" style="background-color:gray">Test</div> <!--coordenadas de orientacao-->
     <table id="iRot_screen_table"> <!--as bordas ajudam na formatacao, posso tirar no final-->
       <tr>
         <td class="iRot_window" id="divMoleculaPNG">
@@ -87,12 +95,16 @@
           <div class="debug" style="display:none">
             Tempo: <output id="timer_onscreen" ></output> s
           </div>
-          <button class="debug" onclick="tamanhoJanela()">scrSize</button><br>
-          <button id="startButton" onclick="botaoInicio(test_n)">INÍCIO!</button><br>
+          <button class="debug" onclick="tamanhoJanela()">scrSize</button>
+          <button class="debug" onclick="botaoPost(test_n)">!POST</button>
+          <br>
+          <button id="startButton" onclick="botaoInicio()">INÍCIO!</button>
+          <br>
           <button style="visibility:hidden" onclick="botaoFim()" 
-            id="stopButton">FIM!</button><br>
-          <button style="visibility:hidden" onclick="botaoPost()" 
-            form="gsForm" id="submitButton">POST</button><br>
+            id="stopButton">FIM!</button>
+          <br>
+          <button style="visibility:hidden" onclick="botaoPost(test_n)" 
+            id="submitButton" form="gsForm">POST</button><br>
         </td>
         <td class="iRot_window" id="divMoleculaTeste" width="40%">
           <div>
@@ -105,7 +117,7 @@
         </td>
       </tr>
     </table>
-    <div class="debug" id="testDiv" style="background-color:gray">Test</div>
+    <div class="debug" id=JmolApplet0_console>Console</div>
     <div style="background-color: #606060" width="100%"><br><br><br></div>
   </section>
     
@@ -126,38 +138,39 @@
       </div>
     <button onclick="writeParamTable('parameterTable')">Preencher Tabela (pressionar somente 1 vez no fim do teste)</button></br>
   </section>
-
+  
   <script>
     //Todas as Funcoes aqui
-    const test_array = ["bastao_c","bastao_g","bolaBastao_c","bolaBastao_g","bola_c","bola_g"];
+    const lista_dos_testes = ["bastao_c","bastao_g","bolaBastao_c","bolaBastao_g","bola_c","bola_g"];
     var test_n = 0;
 
     function prepMolecula(num) { //mapper de qual teste está acontecendo
-      javascript:Jmol.script(jsmol_molecula,'moveto 0.0 {-666 39 745 139.54}');
+      Jmol.script(jsmol_molecula,'moveto 0.0 {-666 39 745 139.54}');
       switch (num){
         case 0:
-          javascript:Jmol.script(jsmol_molecula,'color cpk');
+          Jmol.script(jsmol_molecula,'color cpk; spacefill off; wireframe 0.15');
           break;
         case 1:
-          javascript:Jmol.script(jsmol_molecula,'color structure');
+          Jmol.script(jsmol_molecula,'color structure; spacefill off; wireframe 0.15');
           break;
         case 2:
-          javascript:Jmol.script(jsmol_molecula,'color cpk');
+          Jmol.script(jsmol_molecula,'color cpk; spacefill 23%; wireframe 0.15');
           break;
         case 3:
-          javascript:Jmol.script(jsmol_molecula,'color structure');
+          Jmol.script(jsmol_molecula,'color structure; spacefill 23%; wireframe 0.15');
           break;
         case 4:
-          javascript:Jmol.script(jsmol_molecula,'color cpk');
+        Jmol.script(jsmol_molecula,'color cpk; spacefill 23%; wireframe OFF');
           break;
         case 5:
-          javascript:Jmol.script(jsmol_molecula,'color structure');
+        Jmol.script(jsmol_molecula,'color structure; spacefill 23%; wireframe OFF');
           break;
+        
+        //https://chemapps.stolaf.edu/jmol/docs/examples/bonds.htm
       }
     }
 
-    function botaoInicio(num) {
-      prepMolecula(num);
+    function botaoInicio() {
       zerar_contagem(); //devo zerar prestes a iniciar ou logo após o termino? Ao término eu perco dados de debug.
       document.getElementById("divMoleculaPNG").style.visibility="visible";
       document.getElementById("divMoleculaTeste").style.visibility="visible";
@@ -173,12 +186,15 @@
       test_n +=1;
     }
 
-    function botaoPost(){
+    function botaoPost(test_n){
       document.getElementById("divMoleculaPNG").style.visibility="hidden";
       document.getElementById("divMoleculaTeste").style.visibility="hidden";
-      arrayToForm();
+      inserir_valores_form();
       document.getElementById("submitButton").style.visibility="hidden";
+      // if (test_n == 6){ /*volta ao primeiro*/ test_n = 0;}
+      if (test_n == 6){/*finaliza os testes*/ return;}
       document.getElementById("startButton").style.visibility="visible";
+      prepMolecula(test_n);
     }
 
     var debug_state = 0;
@@ -198,9 +214,9 @@
       // alert(debug_elements.length);
     }
     
-    //funcao que muda valor do form
-    function arrayToForm() { 
-      document.getElementById('test_id').value = test_array[test_n];
+    //funcao que muda valores do form antes de submeter
+    function inserir_valores_form() { 
+      document.getElementById('test_id').value = lista_dos_testes[test_n];
       document.getElementById('ft').value = time_initial; //alterar parar uma contagem constante
       document.getElementById('fx').value = parametro1;
       document.getElementById('fy').value = parametro2;
@@ -209,7 +225,7 @@
       //alert ("Func1 executou e alterou valor fy");
     }
 
-    function tamanhoJanela () { //pega o tamanho/resolução da janela do browser
+    function tamanhoJanela() { //pega o tamanho/resolução da janela do browser
       var win = window,
       doc = document,
       docElem = doc.documentElement,
@@ -220,7 +236,7 @@
       //https://stackoverflow.com/questions/3437786/get-the-size-of-the-screen-current-web-page-and-browser-window
     }
 
-    function zerar_contagem () { //reseta os valores de time_elapsed(num) e parametros (arrays)
+    function zerar_contagem() { //reseta os valores de time_elapsed(num) e parametros (arrays)
       time_elapsed = 0;
       parametro1 = []; 
       parametro2 = [];
