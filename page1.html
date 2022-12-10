@@ -73,7 +73,7 @@
   </section>
   <section class="tab" id="tab2" width:100%>  <!-- O TESTE -->
     <br>
-    <div style="background-color: #606060" width="100%">
+    <div id="div_do_form" style="background-color: #606060" width="100%">
       <br>
       <div class="debug"> <!-- iniciar as diferentes etapas do teste interativo-->
         <button onclick="test_n=0;prepMolecula(test_n)">1</button>
@@ -85,26 +85,24 @@
       </div>
       <br><br>
     </div>
-    <div class="debug" id="testDiv" style="background-color:gray">Test</div> <!--coordenadas de orientacao-->
-    <table id="iRot_screen_table"> <!--as bordas ajudam na formatacao, posso tirar no final-->
+    <div class="debug" id="indicador_orientacao" style="background-color:gray">Test</div> <!--coordenadas de orientacao-->
+    <table id="iRot_screen_table"> <!--as bordas em css ajudam na formatacao, posso tirar no final-->
       <tr>
         <td class="iRot_window" id="divMoleculaPNG">
-          <img src="imgs/pseudobatracotoxinaBlack_400px.png"/>
+          <img id="modelo_estatico" src="imgs/batracoisa_0.png"/>
         </td>
         <td id="iRot_center">
           <div class="debug" style="display:none">
             Tempo: <output id="timer_onscreen" ></output> s
           </div>
           <button class="debug" onclick="tamanhoJanela()">scrSize</button>
-          <button class="debug" onclick="botaoPost(test_n)">!POST</button>
+          <button class="debug" onclick="botaoSubmit()">!POST</button>
+          <button class="debug" onclick="timerStop()">timerStop</button>
           <br>
           <button id="startButton" onclick="botaoInicio()">INÍCIO!</button>
           <br>
-          <button style="visibility:hidden" onclick="botaoFim()" 
-            id="stopButton">FIM!</button>
-          <br>
-          <button style="visibility:hidden" onclick="botaoPost(test_n)" 
-            id="submitButton" form="gsForm">POST</button><br>
+          <button style="visibility:hidden" onclick="botaoSubmit()" 
+            id="submitButton" form="gsForm">ENVIAR!</button><br> <!--fim ou enviar?-->
         </td>
         <td class="iRot_window" id="divMoleculaTeste" width="40%">
           <div>
@@ -142,57 +140,59 @@
   <script>
     //Todas as Funcoes aqui
     const lista_dos_testes = ["bastao_c","bastao_g","bolaBastao_c","bolaBastao_g","bola_c","bola_g"];
-    var test_n = 0;
+    let test_n = 0;
 
-    function prepMolecula(num) { //mapper de qual teste está acontecendo
+    function prepMolecula(num) { //mapper para o preparo do teste que está acontecendo
       Jmol.script(jsmol_molecula,'moveto 0.0 {-666 39 745 139.54}');
       switch (num){
         case 0:
           Jmol.script(jsmol_molecula,'color cpk; spacefill off; wireframe 0.15');
+          document.getElementById('modelo_estatico').src='imgs/batracoisa_0.png';
           break;
         case 1:
           Jmol.script(jsmol_molecula,'color structure; spacefill off; wireframe 0.15');
+          document.getElementById('modelo_estatico').src='imgs/batracoisa_1.png';
           break;
         case 2:
           Jmol.script(jsmol_molecula,'color cpk; spacefill 23%; wireframe 0.15');
+          document.getElementById('modelo_estatico').src='imgs/batracoisa_2.png';
           break;
         case 3:
           Jmol.script(jsmol_molecula,'color structure; spacefill 23%; wireframe 0.15');
+          document.getElementById('modelo_estatico').src='imgs/batracoisa_3.png';
           break;
         case 4:
-        Jmol.script(jsmol_molecula,'color cpk; spacefill 23%; wireframe OFF');
+          Jmol.script(jsmol_molecula,'color cpk; spacefill 23%; wireframe OFF');
+          document.getElementById('modelo_estatico').src='imgs/batracoisa_4.png';
           break;
         case 5:
-        Jmol.script(jsmol_molecula,'color structure; spacefill 23%; wireframe OFF');
+          Jmol.script(jsmol_molecula,'color structure; spacefill 23%; wireframe OFF');
+          document.getElementById('modelo_estatico').src='imgs/batracoisa_5.png';
           break;
         
-        //https://chemapps.stolaf.edu/jmol/docs/examples/bonds.htm
+        //https://chemapps.stolaf.edu/jmol/docs/examples/bonds.htm  altera visualisação dos dados
       }
     }
 
     function botaoInicio() {
-      zerar_contagem(); //devo zerar prestes a iniciar ou logo após o termino? Ao término eu perco dados de debug.
+      zerar_contagem();
       document.getElementById("divMoleculaPNG").style.visibility="visible";
       document.getElementById("divMoleculaTeste").style.visibility="visible";
       timerStart ();
       document.getElementById("startButton").style.visibility="hidden";
-      document.getElementById("stopButton").style.visibility="visible";
-    }
-
-    function botaoFim() { 
-      timerStop();
-      document.getElementById("stopButton").style.visibility="hidden";
       document.getElementById("submitButton").style.visibility="visible";
-      test_n +=1;
     }
 
-    function botaoPost(test_n){
+    function botaoSubmit(){
+      timerStop();
       document.getElementById("divMoleculaPNG").style.visibility="hidden";
       document.getElementById("divMoleculaTeste").style.visibility="hidden";
       inserir_valores_form();
       document.getElementById("submitButton").style.visibility="hidden";
-      // if (test_n == 6){ /*volta ao primeiro*/ test_n = 0;}
-      if (test_n == 6){/*finaliza os testes*/ return;}
+      test_n +=1; //progride para o proximo teste em lista_dos_testes e prepMolecula()
+      // if (test_n >= 6){ /*volta ao primeiro*/ test_n = 0;}
+      if (test_n >= 6){/*finaliza os testes*/ return;} 
+      //se falso, botão start aparece
       document.getElementById("startButton").style.visibility="visible";
       prepMolecula(test_n);
     }
@@ -328,7 +328,7 @@
     var orientacaoQuat;
     function getTheNumbers() { //armazena os dados de orientação em quat. para os arrays a cada chamada
       /*var*/ orientacaoQuat = Jmol.getPropertyAsArray(jsmol_molecula, 'orientationInfo.quaternion'); 
-      document.getElementById("testDiv").innerHTML = orientacaoQuat;// debug
+      document.getElementById("indicador_orientacao").innerHTML = orientacaoQuat;// debug
       
       parametro1.push(orientacaoQuat[0]);
       parametro2.push(orientacaoQuat[1]);
