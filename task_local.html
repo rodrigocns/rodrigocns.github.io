@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie-edge">
-  <title>iRoT (ou iRT?)</title>
+  <title>iRT - interactive Rotations Tasks</title>
   <link rel="stylesheet" href="css/screen.css" type="text/css" >
   <link rel="stylesheet" href="css/w3.css">
   <script type="text/javascript" src="jsmol/JSmol.min.js"></script>
@@ -43,9 +43,10 @@
 
 
 <body>
+  <!-- switch do modo debug -->
   <div style="color:#404040; text-align:right"><span id="debug_switch" onclick="debug()">Debug</span></div>
   <!-- <section class="w3-container w3-center w3-animate-opacity"> -->
-  <section>
+  <section id="navigation_tab">
     <nav class="debug">
       <a href="rodrigocns.github.io">
         Home</a>&nbsp 
@@ -73,7 +74,7 @@
   </section>
   <section class="tab" id="tab2" width:100%>  <!-- O TESTE -->
     <br>
-    <div id="div_do_form" style="background-color: #606060" width="100%">
+    <div class="canva_margin" width="100%">
       <br>
       <div class="debug"> <!-- iniciar as diferentes etapas do teste interativo-->
         <button onclick="test_n=0;prepMolecula(test_n)">1</button>
@@ -86,7 +87,7 @@
       <br><br>
     </div>
     <div class="debug" id="indicador_orientacao" style="background-color:gray">Test</div> <!--coordenadas de orientacao-->
-    <table id="iRot_screen_table"> <!--as bordas em css ajudam na formatacao, posso tirar no final-->
+    <table id="iRT_canvas_table"> <!--as bordas em css ajudam na formatacao, posso tirar no final-->
       <tr>
         <td class="iRot_window" id="divMoleculaPNG">
           <img id="modelo_estatico" src="imgs/batracoisa_0.png"/>
@@ -103,6 +104,8 @@
           <br>
           <button style="visibility:hidden" onclick="botaoSubmit()" 
             id="submitButton" form="gsForm">ENVIAR!</button><br> <!--fim ou enviar?-->
+          <button onclick="saveFile()" 
+            id="saveButton" form="gsForm">Salvar!</button><br> 
         </td>
         <td class="iRot_window" id="divMoleculaTeste" width="40%">
           <div>
@@ -115,8 +118,8 @@
         </td>
       </tr>
     </table>
-    <div class="debug" id=JmolApplet0_console>Console</div>
-    <div style="background-color: #606060" width="100%"><br><br><br></div>
+    <div class="debug" id=JmolApplet0_console>Console (wip)</div>
+    <div class="canva_margin" width="500px"><br><br><br></div>
   </section>
     
   <section class="tab" id="tab4"> <!--tabela-->
@@ -142,8 +145,11 @@
     const lista_dos_testes = ["bastao_c","bastao_g","bolaBastao_c","bolaBastao_g","bola_c","bola_g"];
     let test_n = 0;
 
-    function prepMolecula(num) { //mapper para o preparo do teste que está acontecendo
+    function prepMolecula(num) { 
+      //mapper para o preparo do teste que está acontecendo
+      //em "Jmol.script(...)" o comando em texto diz respeito à orientação de rotação que o objeto vai estar ao começar cada tarefa
       Jmol.script(jsmol_molecula,'moveto 0.0 {-666 39 745 139.54}');
+      //em cada case estão as configurações de renderização do objeto interativo em cada tarefa
       switch (num){
         case 0:
           Jmol.script(jsmol_molecula,'color cpk; spacefill off; wireframe 0.15');
@@ -354,6 +360,42 @@
         .then(response => console.log('Success!', response))
         .catch(error => console.error('Error!', error.message))
     })
+
+    let saveFile = () => {
+
+      // Get the data from each element on the form.
+      const name = document.getElementById('txtName');
+      const age = document.getElementById('txtAge');
+      const email = document.getElementById('txtEmail');
+      const country = document.getElementById('selCountry');
+      const msg = document.getElementById('msg');
+
+      // This variable stores all the data.
+      let data = 
+          '\r Name: ' + name.value + ' \r\n ' + 
+          'Age: ' +age.value + ' \r\n ' + 
+          'Email: ' + email.value + ' \r\n ' + 
+          'Country: ' + country.value + ' \r\n ' + 
+          'Message: ' + msg.value;
+
+      // Convert the text to BLOB.
+      const textToBLOB = new Blob([data], { type: 'text/plain' });
+      const sFileName = 'formData.txt';	   // The file to save the data.
+
+      let newLink = document.createElement("a");
+      newLink.download = sFileName;
+
+      if (window.webkitURL != null) {
+        newLink.href = window.webkitURL.createObjectURL(textToBLOB);
+      }
+      else {
+        newLink.href = window.URL.createObjectURL(textToBLOB);
+        newLink.style.display = "none";
+        document.body.appendChild(newLink);
+      }
+
+      newLink.click(); 
+    }
 
     tabs = function(options) {  //funções para a estrutura da página em abas 
       //ENTENDER MELHOR O QUE ESTA SENDO FEITO AQUI
