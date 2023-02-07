@@ -56,10 +56,14 @@ header{
 /*  background-color: red; */
 }
 
+.canva_margin {
+  background-color: #606060; 
+}
+
 table, th, td {/*para debug*/
   border: 1px solid;
 }
-#iRot_screen_table{
+#iRT_canvas_table{
   width: 100%;
 }
 
