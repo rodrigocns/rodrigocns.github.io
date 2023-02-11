@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-<!-- <span style="color:#404040">Teste</span> -->
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +9,8 @@
   <link rel="stylesheet" href="css/w3.css">
   <script type="text/javascript" src="jsmol/JSmol.min.js"></script>
   <script type="text/javascript" id="jmol_info">
-    var Info = { //https://wiki.jmol.org/index.php/Jmol_JavaScript_Object/Info
+    var Info = { 
+      //https://wiki.jmol.org/index.php/Jmol_JavaScript_Object/Info
       // https://wiki.jmol.org/index.php/Rendering
       color: "#000000",
       height: 400,
@@ -19,7 +19,8 @@
       src: "models/pseudobatracotoxin_molecule.xyz",
       j2sPath: "jsmol/j2s",
       serverURL: "jsmol/php/jsmol.php",
-      
+      disableMouse: true,
+
       defaultModel: "",
       script: null,
       readyFunction: jmolIsReady, //ou null. chama função qndo jmol carregou e está pronto
@@ -27,7 +28,11 @@
       debug: false //deixar true se tiver problemas
     }
     function jmolIsReady() { //mudanças pós-carregamento. PRECISA estar aqui, se não diz function undefined
-      Jmol.script(jsmol_molecula,'zoom off; frank off');
+      // Jmol.script(jsmol_molecula,'zoom off; frank off');
+      // Jmol.script(jsmol_molecula,'frank off');
+      Jmol.script(jsmol_molecula,'set perspectiveDepth OFF');
+      Jmol.script(jsmol_molecula,'unbind _popupMenu;unbind _rotateZ;unbind _rotateZorZoom;unbind _reset;unbind _translate;unbind _center;unbind _pickAtom;unbind _setMeasure;unbind _slideZoom;unbind _wheelZoom;frank off;');
+      
       prepMolecula(task_n);
       // alert('feito!');//debug
     }
@@ -53,11 +58,21 @@
         AppScript</a>&nbsp 
       <a href="https://docs.google.com/spreadsheets/d/1LSDoA22scyWVJUDlwudKqX0o86w5b-Ds-lGOhRBGYis/edit#gid=0">
         Gsheets</a>
+      <br>  
       <ul class="debug">
         <li><a href="#tab_teste">Teste</a></li>
         <li><a href="#tab3">Gráfico</a></li>
         <li><a href="#tab_tabela">Tabela</a></li>
       </ul>
+      <br>
+      <div class="debug"> <!-- iniciar as diferentes tarefas do teste interativo-->
+        <button onclick="task_n=0;prepMolecula(task_n)">1</button>
+        <button onclick="task_n=1;prepMolecula(task_n)">2</button>
+        <button onclick="task_n=2;prepMolecula(task_n)">3</button>
+        <button onclick="task_n=3;prepMolecula(task_n)">4</button>
+        <button onclick="task_n=4;prepMolecula(task_n)">5</button>
+        <button onclick="task_n=5;prepMolecula(task_n)">6</button>
+      </div>
     <br><hr>
     </nav>
     <form name="submit-to-google-sheet" id="gsForm">
@@ -76,14 +91,7 @@
     <br>
     <div class="canva_margin" width="100%">
       <br>
-      <div class="debug"> <!-- iniciar as diferentes etapas do teste interativo-->
-        <button onclick="task_n=0;prepMolecula(task_n)">1</button>
-        <button onclick="task_n=1;prepMolecula(task_n)">2</button>
-        <button onclick="task_n=2;prepMolecula(task_n)">3</button>
-        <button onclick="task_n=3;prepMolecula(task_n)">4</button>
-        <button onclick="task_n=4;prepMolecula(task_n)">5</button>
-        <button onclick="task_n=5;prepMolecula(task_n)">6</button>
-      </div>
+
       <br><br>
     </div>
     <div class="debug" id="indicador_orientacao" style="background-color:gray">Test</div> <!--coordenadas de orientacao-->
@@ -99,13 +107,14 @@
           <button class="debug" onclick="tamanhoJanela()">scrSize</button>
           <button class="debug" onclick="botaoSubmit()">!POST</button>
           <button class="debug" onclick="timerStop()">timerStop</button>
+          <button class="debug" onclick="Jmol.script(jsmol_molecula,'console')">console</button>
           <br>
           <button id="startButton" onclick="botaoInicio()">INÍCIO!</button>
           <br>
           <button onclick="botaoSubmit()" id="submitButton" style="visibility:hidden" form="gsForm">ENVIAR!</button><br> <!--fim ou enviar?-->
           <button onclick="saveFile()" id="saveButton" form="gsForm">Salvar!</button><br> 
         </td>
-        <td class="iRot_window" id="divMoleculaTeste" width="40%">
+        <td class="iRot_window" id="divMoleculaTeste"> <!--ajustar app para meio-->
           <div>
             <script>
               // Info.width=Info.height=400; 
@@ -116,7 +125,7 @@
         </td>
       </tr>
     </table>
-    <div class="debug" id=JmolApplet0_console>Console (wip)</div>
+    <div class="debug" id=jsmol_molecula_console>Console (wip)</div>
     <div class="canva_margin" width="500px"><br><br><br></div>
   </section>
     
@@ -367,7 +376,6 @@
       // This variable stores all the data.
       let data =
       // data= 
-        'LOCAL_OUTPUT\n' +
         parametroT + '\n' + 
         parametroD + '\n' + 
         parametro1 + '\n' + 
@@ -435,6 +443,6 @@
     // initialize the function
     tabs('nav ul');
   </script>
-  Updated 07/02/2023
+  Updated 11/02/2023
 </body>
 </html>

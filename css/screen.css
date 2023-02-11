@@ -82,18 +82,18 @@ table, th, td {/*para debug*/
 }
 
 nav li{
-    list-style:none;
-    float:left;
-    height:24px;
-    line-height:24px;
-    box-shadow:0 0 3px #888;
-    border-bottom-right-radius:3px;
-    border-bottom-left-radius:3px;
-    margin:0 2px;
-    width:200px;
-    overflow:hidden;
-    position:relative;
-    background:-moz-linear-gradient(top,  #ccc,  #aaa);
+  list-style:none; /*simbolo de itens da lista */
+  float:left; /*posicionamento dentro do container*/
+  height:24px; 
+  line-height:24px;
+  box-shadow:0 0 3px #888;
+  border-bottom-right-radius:3px;
+  border-bottom-left-radius:3px;
+  margin:0 2px;
+  width:200px;
+  overflow:hidden;
+  position:relative;
+  background:-moz-linear-gradient(top,  #ccc,  #aaa);
 }
 
 nav li.selected{
