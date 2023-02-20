@@ -297,7 +297,8 @@ let saveFile = () => {
   //créditos: https://www.encodedna.com/javascript/practice-ground/default.htm?pg=save_form_data_in_text_file_using_javascript
 }
 
-tabs = function(options) {  //funções para a estrutura da página em abas 
+//funções para a estrutura da página em abas 
+tabs = function(options) {  
   //ENTENDER MELHOR O QUE ESTA SENDO FEITO AQUI
   var defaults = {  
       selector: '.tabs',
