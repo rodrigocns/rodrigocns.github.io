@@ -1,8 +1,8 @@
-html,body{margin:2;padding:1;}
+/* html,body{margin:2px;padding:1px;} */
 
 /* .coisa é para classes, #coisa é para id's */
 
-* {
+* { /*aplica para tudo*/
   text-align: center;
 }
 
@@ -27,7 +27,6 @@ body{
 	line-height:1.5em;
 	color:#EEEEEE;
   background-color: #404040;
-  text-align: center;
 }
 
 h1, h2, h3, h4, h5, h6{
@@ -93,13 +92,11 @@ nav li{
   width:200px;
   overflow:hidden;
   position:relative;
-  background:-moz-linear-gradient(top,  #ccc,  #aaa);
+  background:linear-gradient(#ccc,  #aaa);
 }
 
 nav li.selected{
-	background:#e1e1e1;
-	background:-webkit-gradient(linear, left top, left bottom, from(#e1e1e1), to(#d1d1d1));
-	background:-moz-linear-gradient(top,  #e1e1e1,  #d1d1d1);
+	background:linear-gradient(#e1e1e1,  #d1d1d1);
 }
 
 nav li a, nav li a:visited, nav li a:hover{
@@ -119,8 +116,6 @@ nav li a, nav li a:visited, nav li a:hover{
 } 
 
 nav li.selected a{
-  -moz-box-shadow:none;
-  -webkit-box-shadow:none;
   box-shadow:none; 
 }
 
