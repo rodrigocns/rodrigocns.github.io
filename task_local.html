@@ -8,10 +8,11 @@
   <link rel="stylesheet" href="css/screen.css" type="text/css" >
   <link rel="stylesheet" href="css/w3.css">
   <script type="text/javascript" src="jsmol/JSmol.min.js"></script>
-  <script type="text/javascript" id="jmol_info">
+  <script type="text/javascript" src="object_configs.js"></script>
+  <!--
+  <script type="text/javascript" >
     var Info = { 
       //https://wiki.jmol.org/index.php/Jmol_JavaScript_Object/Info
-      // https://wiki.jmol.org/index.php/Rendering
       color: "#000000",
       height: 400,
       width: 400,
@@ -42,9 +43,11 @@
     var Ori2 = -389;
     var Ori3 = -627;
     var Ori4 = 93.16;
-        //moveto 0.0 {-675 -389 -627 93.16} 
+        //moveto 0 {-675 -389 -627 93.16} 
+        //or moveto 0 QUATERNION {-0.4902575975335792 -0.2825336376897219 -0.45539483504230244 0.6873410913449087}
 
   </script>
+-->
 </head>
 
 <body>
@@ -152,6 +155,7 @@
   <section>
     <button onclick="func_teste()">Teste</button>
   </section>
+  
   <script src="scripts.js"></script>
 
   Updated 20/02/2023
