@@ -55,7 +55,7 @@ header{
 /*  background-color: red; */
 }
 
-.canva_margin {
+.table_margin {
   background-color: #606060; 
 }
 
@@ -75,7 +75,6 @@ table, th, td {/*para debug*/
 }
 
 .JSmol_canvas {
-  width:40%;
   text-align: center;
   visibility:hidden;
 }
