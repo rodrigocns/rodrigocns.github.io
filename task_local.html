@@ -58,19 +58,17 @@
   </section>
   <section id="tab_teste" class="stage" style="display:none">  <!-- O TESTE -->
     <br>
-    <div class="canva_margin" width="100%">
+    <div class="canva_margin" width="100%"> <!--margem clara-->
       <br><br><br>
     </div>
     <div class="debug" id="indicador_orientacao" style="background-color:gray">Test</div> <!--coordenadas de orientacao-->
     <table id="iRT_canvas_table"> <!--as bordas em css ajudam na formatacao, posso tirar no final-->
       <tr>
-        <td class="iRot_window" id="divMoleculaPNG">
+        <td class="JSmol_canvas" id="cellLeft">
           <img id="modelo_estatico" src="imgs/batracoisa_0.png"/>
         </td>
-        <td id="iRot_center">
-          <div class="debug">
-            Tempo: <output id="timer_onscreen" ></output> s
-          </div>
+        <td id="tdCenter">
+          <div class="debug">Tempo: <output id="timer_onscreen" ></output> s</div>
           <button class="debug" onclick="tamanhoJanela()">scrSize</button>
           <button class="debug" onclick="botaoSubmit()">!POST</button>
           <button class="debug" onclick="timerStop()">timerStop</button>
@@ -81,7 +79,7 @@
           <button onclick="botaoSubmit()" id="submitButton" style="visibility:hidden" form="gsForm">ENVIAR!</button><br> <!--fim ou enviar?-->
           <button onclick="saveFile()" id="saveButton" form="gsForm">Salvar!</button><br> 
         </td>
-        <td class="iRot_window" id="divMoleculaTeste"> <!--ajustar app para meio-->
+        <td class="JSmol_canvas" id="cellRight"> <!--ajustar app para meio-->
           <div>
             <script>
               // Info.width=Info.height=400; 

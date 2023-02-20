@@ -58,8 +58,8 @@ function prepMolecula(num) {
 
 function botaoInicio() {
   zerar_contagem();
-  document.getElementById("divMoleculaPNG").style.visibility="visible";
-  document.getElementById("divMoleculaTeste").style.visibility="visible";
+  document.getElementById("cellLeft").style.visibility="visible";
+  document.getElementById("cellRight").style.visibility="visible";
   timerStart ();
   document.getElementById("startButton").style.visibility="hidden";
   document.getElementById("submitButton").style.visibility="visible";
@@ -67,8 +67,8 @@ function botaoInicio() {
 
 function botaoSubmit(){
   timerStop();
-  document.getElementById("divMoleculaPNG").style.visibility="hidden";
-  document.getElementById("divMoleculaTeste").style.visibility="hidden";
+  document.getElementById("cellLeft").style.visibility="hidden";
+  document.getElementById("cellRight").style.visibility="hidden";
   inserir_valores_form();
   document.getElementById("submitButton").style.visibility="hidden";
   task_n +=1; //progride para o proximo teste em task_list e prepMolecula()
