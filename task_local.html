@@ -58,9 +58,6 @@
   </section>
   <section id="tab_teste" class="stage" style="display:none">  <!-- O TESTE -->
     <br>
-    <div class="table_margin" width="100%"> <!--margem clara-->
-      <br><br><br>
-    </div>
     <div class="debug" id="indicador_orientacao" style="background-color:gray">Test</div> <!--coordenadas de orientacao-->
     <table id="iRT_canvas_table"> <!--as bordas em css ajudam na formatacao, posso tirar no final-->
       <tr>
@@ -80,18 +77,16 @@
           <button onclick="saveFile()" id="saveButton" form="gsForm">Salvar!</button><br> 
         </td>
         <td class="JSmol_canvas" id="cellRight"> <!--ajustar app para meio-->
-          <div>
-            <script>
-              // Info.width=Info.height=400; 
-              Info.src="models/pseudobatracotoxin_molecule.xyz";     // start at: moveto {-666 39 745 139.54} 
-              Jmol.getApplet("jsmol_molecula", Info);
-            </script>
-          </div>
+          <script>
+            // Info.width=Info.height=400; 
+            Info.src="models/pseudobatracotoxin_molecule.xyz";     // start at: moveto {-666 39 745 139.54} 
+            Jmol.getApplet("jsmol_molecula", Info);
+          </script>
         </td>
       </tr>
     </table>
     <div class="debug" id=jsmol_molecula_console>Console (wip)</div>
-    <div class="table_margin" width="500px"><br><br><br></div>
+    
   </section>
     
   <section id="tab_tabela" class="stage" style="display:none"> <!--tabela(WIP)-->

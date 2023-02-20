@@ -55,17 +55,25 @@ header{
 /*  background-color: red; */
 }
 
-.table_margin {
-  background-color: #606060; 
+table{
+  border: 60px solid;
+  border-color: #606060;
 }
-
-table, th, td {/*para debug*/
+th, td {
   border: 1px solid;
+  border-color: white;
 }
 #iRT_canvas_table{
-  width: 100%;
+  width: 80%;
+  margin: auto;
+  background-color: #404040; 
 }
-
+#cellLeft{
+  float: left;
+}
+#cellRight{
+  float: right;
+}
 #tdCenter{
   display:table-cell; 
   height:400px; 
@@ -77,6 +85,7 @@ table, th, td {/*para debug*/
 .JSmol_canvas {
   text-align: center;
   visibility:hidden;
+  width: auto;
 }
 
 nav li{
