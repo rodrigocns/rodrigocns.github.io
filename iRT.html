@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie-edge">
+  <title>iRT - interactive Rotation Tasks</title>
+  <link rel="stylesheet" href="css/screen.css" type="text/css" >
+  <link rel="stylesheet" href="css/w3.css">
+  <script type="text/javascript" src="jsmol/JSmol.min.js"></script>
+  <script type="text/javascript" src="object_configs.js"></script>
+  <script src="scripts.js"></script>
+
+</head>
+
+<body>
+  <!-- switch do modo debug -->
+  <div style="color:#404040; text-align:right"><span id="debug_switch" onclick="debug()">Debug</span></div>
+  <!-- <section class="w3-container w3-center w3-animate-opacity"> -->
+  <section id="tab_navigation" class="debug" style="background:#404070">
+    Você está no modo debug! Se foi engano, favor clicar novamente no canto da tela, ou recarregar a página!
+    <nav>
+      <!-- webpage Links -->
+      <a href="rodrigocns.github.io">
+        Home</a>&nbsp <!--espaço em branco-->
+      <a href="https://script.google.com/home/projects/1L21yINxKMX5ngrT7JYiIOuATQeicxtVxDmKmXGD_rSoaXtIG8n0nrACp/deployments/AKfycbxtKza8SDt27Ik39cktDyv66dD2Lt77vERuHWOVEnraLH91kQwBl1r2bPQoD8Gi1BZW">
+        AppScript</a>&nbsp 
+      <a href="https://docs.google.com/spreadsheets/d/1LSDoA22scyWVJUDlwudKqX0o86w5b-Ds-lGOhRBGYis/edit#gid=0">
+        Gsheets</a>
+      <!-- section navigation buttons -->
+      <ul>
+        <li><a href="#tab_form">Forms</a></li>
+        <li><a href="#tab_teste">Teste</a></li>
+        <!-- <li><a href="#tab3">Gráfico</a></li> WIP -->
+        <!-- <li><a href="#tab_tabela">Tabela</a></li> WIP -->
+      </ul>
+      <div> <!-- iniciar as diferentes tarefas do teste interativo-->
+        <button onclick="task_n=0;prepMolecula(task_n)">1</button>
+        <button onclick="task_n=1;prepMolecula(task_n)">2</button>
+        <button onclick="task_n=2;prepMolecula(task_n)">3</button>
+        <button onclick="task_n=3;prepMolecula(task_n)">4</button>
+        <button onclick="task_n=4;prepMolecula(task_n)">5</button>
+        <button onclick="task_n=5;prepMolecula(task_n)">6</button>
+      </div>
+      <hr>
+    </nav>
+  </section>
+  <section id="tab_form" class="stage current-stage" style="display:block"> <!-- Forms -->
+    <div id="div_form" style="height:400px" >
+      <br>
+      <form name="submit-to-google-sheet" id="gsForm">
+        <!-- Template: Texto no Html: <input name="header da coluna no gsheets" type="tipo do input"> -->
+        Nome: <input name="fname" type="text" placeholder="Ex: Rodrigo Alves" size="30" autofocus><br>
+        Email: <input name="email" type="email" placeholder="Ex: rodrigo@gmail.com" size="30"><br>
+        <input id="save_check" type="checkbox" onchange="localSaveSwitch(this)" > Salvar cópia local dos dados<br>
+        <!-- talvez adicionar opção auto, que tenta salvar local se online não deu certo -->
+        
+        <!-- valores internos a serem enviados pelo forms -->
+        <input name="task_id" type="hidden" id="test_id" >
+        <input name="ft" type="hidden" id="ft" >
+        <input name="fd" type="hidden" id="fd" >
+        <input name="fx" type="hidden" id="fx" >
+        <input name="fy" type="hidden" id="fy" >
+        <input name="fz" type="hidden" id="fz" >
+        <input name="fw" type="hidden" id="fw" >
+      </form>
+      <button >Next(WIP)</button>
+    </div>
+  </section>
+  <section id="tab_teste" class="stage" style="display:none">  <!-- Tarefas interativas JSmol -->
+    <div class="debug" id="indicador_orientacao" style="background-color:gray">Test</div> <!--coordenadas de orientacao-->
+    <table id="iRT_canvas_table"> <!--as bordas em css ajudam na formatacao, posso tirar no final-->
+      <tr>
+        <td class="JSmol_canvas" id="cellLeft">
+          <img id="modelo_estatico" src="imgs/batracoisa_0.png"/>
+        </td>
+        <td id="tdCenter">
+          <div class="debug">Tempo: <output id="timer_onscreen" ></output> s</div>
+          <button class="debug" onclick="tamanhoJanela()">scrSize</button>
+          <button class="debug" onclick="botaoSubmit()">!POST</button>
+          <button class="debug" onclick="timerStop()">timerStop</button>
+          <button class="debug" onclick="saveFile()" form="gsForm">Save Data Localy</button><br> 
+          <button class="debug" onclick="Jmol.script(jsmol_molecula,'console')">console</button>
+          <br>
+          <button id="startButton" onclick="botaoInicio()">INÍCIO!</button>
+          <br>
+          <button onclick="botaoSubmit()" id="submitButton" style="visibility:hidden" form="gsForm">ENVIAR!</button><br> 
+        </td>
+        <td class="JSmol_canvas" id="cellRight"> <!--ajustar app para meio-->
+          <script>
+            // Info.width=Info.height=400; 
+            Info.src="models/pseudobatracotoxin_molecule.xyz";     // start at: moveto {-666 39 745 139.54} 
+            Jmol.getApplet("jsmol_molecula", Info);
+          </script>
+        </td>
+      </tr>
+    </table>
+    <div class="debug" id=jsmol_molecula_console>Console (wip)</div>
+    
+  </section>
+    
+  <section id="tab_tabela" class="stage" style="display:none"> <!--tabela(WIP)-->
+
+    </br><p>Tabela de Orientações</p>
+      <div>
+      <table id="parameterTable" >
+        <tr>
+          <td>Tempo 1</td>
+          <td>Parâmetro Final</td>
+          <td>Parâmetro 1</td>
+          <td>Parâmetro 2</td>
+          <td>Parâmetro 3</td>
+          <td>Parâmetro 4(ângulo)</td>
+        </tr>
+      </table>
+      </div>
+    <button onclick="writeParamTable('parameterTable')">Preencher Tabela (pressionar somente 1 vez no fim do teste)</button></br>
+  </section>
+  
+  <section id="tab_fim" class="stage" style="display:none"> <!-- Texto de agradecimento e etc. -->
+    Texto final de agradecimento.
+    "Muito obrigado por realizar o teste! (WIP)"
+  </section>
+  <button id="next_stage_button" onclick="nextStage()">nextStage(WIP)</button>
+    
+  <br>
+  <div style="position:sticky; bottom:0; ">
+    Updated 24/02/2023
+  </div>
+</body>
+</html>

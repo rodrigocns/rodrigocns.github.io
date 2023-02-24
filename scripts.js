@@ -1,5 +1,160 @@
 
-function tamanhoJanela () {
+//Todas as Funcoes aqui
+const task_list = ["bastao_c","bastao_g","bolaBastao_c","bolaBastao_g","bola_c","bola_g"];
+let task_n = 0; //número da tarefa interativa atual
+let stage = 0;
+
+const stage_elements = document.getElementsByClassName('stage'); //pega a lista de stages
+function nextStage() {
+  //makes the present stage (section with tag stage) invisible and shows the next section 
+  // get the currently visible stage with the `current-stage` class
+  var currentSection = document.querySelector(".current-stage");
+  // get the next sequential section with the `stage` class
+  var nextSection = currentSection.nextElementSibling;
+  while (nextSection && !nextSection.classList.contains("stage")) {
+    nextSection = nextSection.nextElementSibling;
+  }
+  // if there is no next sequential section go back to the first one
+  if (!nextSection) {
+    nextSection = document.querySelector(".stage");
+    
+  }
+
+  // hide the current sequential section with the `stage` class
+  currentSection.style.display = "none";
+  currentSection.classList.remove("current-stage");
+
+  // show the next sequential section with the `stage` class
+  nextSection.style.display = "block";
+  nextSection.classList.add("current-stage");
+
+  if (stage_elements[stage_elements.length - 1]==nextSection) {
+    
+    document.getElementById("next_stage_button").style.visibility="hidden";
+  }
+}
+
+// function nextStage() {
+//   const stage_elements = document.getElementsByClassName('stage');
+//   stage_elements[0].style.display = "none"
+//   if (debug_state == 0){
+//     debug_state = 1;
+//     for (let i = 0; i < stage_elements.length; i++) {
+//       stage_elements[i].style.display = "block";
+//     }
+//   } else {
+//     debug_state = 0;
+//     for (let i = 0; i < stage_elements.length; i++) {
+//       stage_elements[i].style.display = "none";
+//     }
+//   }
+//   //  alert(stage_elements.length);
+// }
+
+function prepMolecula(num) { 
+  //mapper para o preparo do teste que está acontecendo
+  //em "Jmol.script(...)" o comando em texto diz respeito à orientação de rotação que o objeto vai estar ao começar cada tarefa
+  Jmol.script(jsmol_molecula,'moveto 0.0 {-666 39 745 139.54}');
+  //em cada case estão as configurações de renderização do objeto interativo em cada tarefa
+  switch (num){
+    case 0:
+      Jmol.script(jsmol_molecula,'color cpk; spacefill off; wireframe 0.15');
+      document.getElementById('modelo_estatico').src='imgs/batracoisa_0.png';
+      break;
+    case 1:
+      Jmol.script(jsmol_molecula,'color structure; spacefill off; wireframe 0.15');
+      document.getElementById('modelo_estatico').src='imgs/batracoisa_1.png';
+      break;
+    case 2:
+      Jmol.script(jsmol_molecula,'color cpk; spacefill 23%; wireframe 0.15');
+      document.getElementById('modelo_estatico').src='imgs/batracoisa_2.png';
+      break;
+    case 3:
+      Jmol.script(jsmol_molecula,'color structure; spacefill 23%; wireframe 0.15');
+      document.getElementById('modelo_estatico').src='imgs/batracoisa_3.png';
+      break;
+    case 4:
+      Jmol.script(jsmol_molecula,'color cpk; spacefill 23%; wireframe OFF');
+      document.getElementById('modelo_estatico').src='imgs/batracoisa_4.png';
+      break;
+    case 5:
+      Jmol.script(jsmol_molecula,'color structure; spacefill 23%; wireframe OFF');
+      document.getElementById('modelo_estatico').src='imgs/batracoisa_5.png';
+      break;
+    
+    //https://chemapps.stolaf.edu/jmol/docs/examples/bonds.htm  altera visualisação dos dados
+  }
+}
+
+var debug_state = 0;
+function debug() { //switch (on/off) de recursos de debug. 
+  //Alterna visibilidade de cada elemento de classe 'debug'
+  const debug_elements = document.getElementsByClassName('debug');
+  if (debug_state == 0){
+    debug_state = 1;
+    for (let i = 0; i < debug_elements.length; i++) {
+      debug_elements[i].style.display = "block";
+    }
+  } else {
+    debug_state = 0;
+    for (let i = 0; i < debug_elements.length; i++) {
+      debug_elements[i].style.display = "none";
+    }
+  }
+  // alert(debug_elements.length);
+}
+
+function botaoInicio() {
+  zerar_contagem();
+  document.getElementById("cellLeft").style.visibility="visible";
+  document.getElementById("cellRight").style.visibility="visible";
+  timerStart ();
+  document.getElementById("startButton").style.visibility="hidden";
+  document.getElementById("submitButton").style.visibility="visible";
+}
+
+function botaoSubmit(){
+  timerStop();
+  document.getElementById("cellLeft").style.visibility="hidden";
+  document.getElementById("cellRight").style.visibility="hidden";
+  inserir_valores_form();
+  document.getElementById("submitButton").style.visibility="hidden";
+  task_n +=1; //Progride para a próxima tarefa em task_list e prepMolecula()
+  // if (task_n >= 6) {task_n = 0;} /*volta ao primeiro*/
+  if (task_n >= 6) {return;} /*finaliza os testes*/
+  //se falso, botão start aparece
+  document.getElementById("startButton").style.visibility="visible";
+  prepMolecula(task_n);
+  if (is_local_save == true) {
+    saveFile();
+  }
+}
+
+var is_local_save = false;
+document.getElementById('save_check').checked = false //default é não salvar.
+function localSaveSwitch(checkbox) {
+  if (checkbox.checked) {
+    // document.body.style.backgroundColor = "red" //debug
+    is_local_save = true;
+  } else {
+    //document.body.style.backgroundColor = "" //debug
+    is_local_save = false;
+  }
+}
+
+//funcao que insere valores no form antes de submeter
+function inserir_valores_form() { 
+  document.getElementById('test_id').value = task_list[task_n]; //qual tarefa foi realizada
+  document.getElementById('ft').value = parametroT;
+  document.getElementById('fd').value = parametroD;
+  document.getElementById('fx').value = parametro1;
+  document.getElementById('fy').value = parametro2;
+  document.getElementById('fz').value = parametro3;
+  document.getElementById('fw').value = parametro4;
+  //alert ("Func1 executou e alterou valor fy"); //debug
+}
+
+function tamanhoJanela() { //pega o tamanho/resolução da janela do browser
   var win = window,
   doc = document,
   docElem = doc.documentElement,
@@ -10,40 +165,38 @@ function tamanhoJanela () {
   //https://stackoverflow.com/questions/3437786/get-the-size-of-the-screen-current-web-page-and-browser-window
 }
 
-function meuSubmit() {      //função para setar os dados do formulário e ao final, enviá-los
-    //document.getElementById('nomeField').value = NomeCompleto;
-    document.getElementById('tempoField').value = resultados.tempo;
-    document.getElementById('paramFField').value = resultados.parametroF;
-    document.getElementById('param1Field').value = resultados.parametro1;
-    document.getElementById('param2Field').value = resultados.parametro2;
-    document.getElementById('param3Field').value = resultados.parametro3;
-    document.getElementById('param4Field').value = resultados.parametro4;
-    document.getElementById("meuForm").submit();    //linha final da função, para o envio dos dados
-    
+function zerar_contagem() { //reseta os valores de time_elapsed(num) e parametros (arrays)
+  time_elapsed = 0;
+  parametroT = [];
+  parametroD = [];
+  parametro1 = []; 
+  parametro2 = [];
+  parametro3 = [];
+  parametro4 = [];
+  // parametroF = []; 
+  
 }
 
-function botaoInicio() {
-  javascript:Jmol.script(jsmol_molecula,'moveto 0.0 {-666 39 745 139.54}');
-  document.getElementById("divMoleculaPNG").style.visibility="visible";
-  document.getElementById("divMoleculaTeste").style.visibility="visible";
-  timerStart ();
-  //javascript:Jmol.script(jsmol_molecula,'color structure');
-}
-
-var duracao = 0;
-var tempo = document.getElementById("tempoGasto");
-tempo.innerHTML = duracao;
-var tempoInicial = 0;
+let parametroT = [];  //tempo do sistema (Date.now())
+let parametroD = [];  //Duração em segundos
+let parametro1 = [];
+let parametro2 = [];
+let parametro3 = [];
+let parametro4 = [];
+// let parametroF = [];  //paramtetroF era para a distância à referencia
+var time_elapsed = 0;
+var tempo = document.getElementById("timer_onscreen"); //muda o valor do tempo na tela
+tempo.innerHTML = time_elapsed;
+var time_initial = Date.now();
 var timerIsOn = false;
-var timerVar; // variavel para a contagem de tempo  
 
-function timerStart () {    //função iniciar a contagem
-  if (timerIsOn == false) {           //se timer estiver parado,
-    timerIsOn = true;                 //liga "led" do timer
-    expected = Date.now() + interval; //define o próximo ciclo
-    tempoInicial = Date.now();        // ancora da contagem de tempo com os ciclos do pc
-    setTimeout(step, interval);       //começa a execuçao em loop da funcao "step" depois de "interval" tempo
-    getTheNumbers();                  // e registra os dados no instante inicial (t=0)
+function timerStart () {    //inicia contagem de tempo e registro de dados (getTheNumbers())
+  if (timerIsOn == false) {           // se timer estiver parado,
+    timerIsOn = true;                 // liga "led" do timer
+    time_expected = Date.now() + interval; //define o próximo ciclo esperado
+    time_initial = Date.now();        // âncora da contagem de tempo com os ciclos do pc
+    setTimeout(step, interval);       // começa a execuçao em loop da funcao "step" depois de "interval" milissegundos
+    getTheNumbers();                  // e registra os dados SÓ no instante inicial (t=0)
   }
 }
 
@@ -51,10 +204,9 @@ function timerStop() { //função que para contagem
   timerIsOn = false;
 }
 
-//função de tempo nova https://stackoverflow.com/questions/29971898/how-to-create-an-accurate-timer-in-javascript 
-
-var interval = 100; // ms
-var expected = Date.now() + interval;
+//contagem de tempo precisa com correção de drift https://stackoverflow.com/questions/29971898/how-to-create-an-accurate-timer-in-javascript 
+var interval = 100; // milissegundos. Período de cada registro
+var time_expected = Date.now() + interval; 
 var drift_history = [];
 var drift_history_samples = 10;
 var drift_correction = 0;
@@ -72,21 +224,22 @@ function calc_drift(arr){ //calcula mediana do drift para correcao com base do a
   return median;
 }
 
-function step() {
-  var dt = Date.now() - expected; // the drift (positive for overshooting)
+function step() { //função executada a cada "interval" milissegundos
+  
+  var dt = Date.now() - time_expected; // the drift (positive for overshooting)
   if (dt > interval) {  //demorou mais do que devia
 
   }
   // do what is to be done
-  duracao += interval/1000; // contagem sobe em 0.1
-  duracao = Math.round(duracao*10)/10;
-  tempo.innerHTML = duracao;
-  getTheNumbers();                  // e registra os dados no instante inicial (t=0)
-
+  time_elapsed += interval/1000; // contagem sobe em "interval" segundos
+  time_elapsed = Math.round(time_elapsed*10)/10; //arredonda pra ter só uma casa decimal
+  tempo.innerHTML = time_elapsed;
+  getTheNumbers();      //registro periódico da orientação
+  
   if (dt <= interval) {
     // sample drift amount to history after removing current correction
     // (add to remove because the correction is applied by subtraction)
-      drift_history.push(dt + drift_correction); //adiciona um ponto no array de drifts
+    drift_history.push(dt + drift_correction); //adiciona um ponto no array de drifts
     // predict new drift correction
     drift_correction = calc_drift(drift_history);
     // cap and refresh samples
@@ -94,66 +247,80 @@ function step() {
       drift_history.shift();  //remove um ponto no array de drifts se estiver com mais de 10
     }    
   }
-  expected += interval;
+  time_expected += interval;
   // take into account drift with prediction
   if (timerIsOn == true) {  //se o timer estiver on, segue em frente
     setTimeout(step, Math.max(0, interval - dt - drift_correction)); //terminando a primeira chamada, vai executar essa mesma funcao com um tempo corrigido
   }
 }
-//fim da nova funcao de timer
+    
+var orientacaoQuat;
+function getTheNumbers() { //armazena os dados de orientação em quat. para os arrays a cada chamada
+  /*var*/ orientacaoQuat = Jmol.getPropertyAsArray(jsmol_molecula, 'orientationInfo.quaternion'); 
+  document.getElementById("indicador_orientacao").innerHTML = orientacaoQuat;// debug
+  
+  parametroT.push(Date.now());
+  parametroD.push(tempo.innerHTML);
+  parametro1.push(orientacaoQuat[0]);
+  parametro2.push(orientacaoQuat[1]);
+  parametro3.push(orientacaoQuat[2]);
+  parametro4.push(orientacaoQuat[3]);
+  
+  // calc. da distancia à resposta (CORRIGIR PRO QUATERNION!)
+  // var valorTempResult =  Math.sqrt( Math.pow((orientacaoQuat[1]-Ori1),2) + Math.pow((orientacaoQuat[2]-Ori2),2) + Math.pow((orientacaoQuat[3]-Ori3),2) + Math.pow((orientacaoQuat[4]-Ori4),2) );  
+  // parametroF.push(Math.floor(valorTempResult) + "," + Math.round((valorTempResult%1)*1000));     // transformando float em string "abcd,efg"
 
-    
-var resultados = new Object();
-resultados.tempo = [];  // declarando os arrays 
-resultados.parametroF = [];
-resultados.parametro1 = [];
-resultados.parametro2 = [];
-resultados.parametro3 = [];
-resultados.parametro4 = [];
-function getTheNumbers() {      //Função que captura as coordenadas de orientação da molécula a cada chamada e cria uma nova linha de uma tabela com as informações obtidas
-    var orientacaoRawStr = Jmol.getPropertyAsString(jsmol_molecula, 'orientationInfo.moveTo');      // (bendita) Função que grava as propriedades moveTo de orientação em uma string 
-    
-    var axisAngle = orientacaoRawStr.slice( (orientacaoRawStr.search("{") +1 ) , orientacaoRawStr.search("}") );        //valor de "axisAngle" recebe fatia de dados da string "orientacaoStr" com 4 parametros de orientação AxisAngle. Data entre '{' e '}' é a "fatia" que interessa)
-    
-    var eulerAngles = axisAngle.split(" "); // eulerAngles[0] é o índice da string, [1], [2] e [3] são os parametros do eixo de rotação, [4] é o ângulo de rotação 
-    resultados.parametro1[resultados.parametro1.length] = eulerAngles[1];   // grava os parâmetros do eixo de rotação de euler e o ângulo de rotação 
-    resultados.parametro2[resultados.parametro2.length] = eulerAngles[2];
-    resultados.parametro3[resultados.parametro3.length] = eulerAngles[3];
-    //eulerAngles[4] = eulerAngles[4].replace(".", ",");
-    resultados.parametro4[resultados.parametro4.length] = eulerAngles[4];
-    
-    var valorTempResult =  Math.sqrt( Math.pow((eulerAngles[1]-Ori1),2) + Math.pow((eulerAngles[2]-Ori2),2) + Math.pow((eulerAngles[3]-Ori3),2) + Math.pow((eulerAngles[4]-Ori4),2) );  // calculo para obtenção de fator de proximidade da resposta 
-    resultados.parametroF[resultados.parametroF.length] = Math.floor(valorTempResult) + "," + Math.round((valorTempResult%1)*1000);     // transformando o extenso float em uma string que representa um numero na forma "abcd,efg"
-    resultados.tempo[resultados.tempo.length] = tempo.innerHTML;       // adicionando valores aos arrays
-
-    ctx.lineTo( (30+(tempo.innerHTML*10)) , (250-(valorTempResult/10)) );
-    ctx.stroke();
+  //cortei o grafico fora, depois eu reativo
+  // ctx.lineTo( (30+(tempo.innerHTML*10)) , (250-(valorTempResult/10)) );
+  // ctx.stroke();
 }
 
-function writeParamTable(tableID) { // Função para imprimir tabela de parametros de orientação
-  for (var i=0; i<resultados.tempo.length; i++){
-    var table = document.getElementById(tableID).insertRow(1+i);
-    
-      var cellTempo = table.insertCell(0);
-      var cellParamF = table.insertCell(1);
-      var cellParam1 = table.insertCell(2);
-      var cellParam2 = table.insertCell(3);
-      var cellParam3 = table.insertCell(4);
-      var cellParam4 = table.insertCell(5);
-      
-      cellTempo.innerHTML = resultados.tempo[i];
-      cellParamF.innerHTML = resultados.parametroF[i];
-      cellParam1.innerHTML = resultados.parametro1[i];
-      cellParam2.innerHTML = resultados.parametro2[i];
-      cellParam3.innerHTML = resultados.parametro3[i];
-      cellParam4.innerHTML = resultados.parametro4[i];
-      
-    }
-    //meuSubmit();  //chamada para a função que passa os dados do formulário
+//snip traduz form em linha no gsheets
+const scriptURL = 'https://script.google.com/macros/s/AKfycbxtKza8SDt27Ik39cktDyv66dD2Lt77vERuHWOVEnraLH91kQwBl1r2bPQoD8Gi1BZW/exec'
+const form = document.forms['submit-to-google-sheet']
+form.addEventListener('submit', e => {
+  e.preventDefault()
+  fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+    .then(response => console.log('Success!', response))
+    .catch(error => console.error('Error!', error.message))
+})
+// let data = ''
+
+let saveFile = () => {
+
+  // This variable stores all the data.
+  let data =
+  // data= 
+    parametroT + '\n' + 
+    parametroD + '\n' + 
+    parametro1 + '\n' + 
+    parametro2 + '\n' + 
+    parametro3 + '\n' + 
+    parametro4 + '\n';
+
+  // Convert the text to BLOB.
+  const textToBLOB = new Blob([data], { type: 'text/plain' });
+  const sFileName = 'IRT_OUTPUT_'+task_list[task_n]+'.csv';	// Local file name.
+
+  let newLink = document.createElement("a");
+  newLink.download = sFileName;
+
+  if (window.webkitURL != null) {
+    newLink.href = window.webkitURL.createObjectURL(textToBLOB);
+  }
+  else {
+    newLink.href = window.URL.createObjectURL(textToBLOB);
+    newLink.style.display = "none";
+    document.body.appendChild(newLink);
+  }
+
+  newLink.click(); 
+  //créditos: https://www.encodedna.com/javascript/practice-ground/default.htm?pg=save_form_data_in_text_file_using_javascript
 }
 
-tabs = function(options) {  //funções para a estrutura da página em abas 
-
+//funções para a estrutura da página em abas 
+tabs = function(options) {  
+  //ENTENDER MELHOR O QUE ESTA SENDO FEITO AQUI
   var defaults = {  
       selector: '.tabs',
       selectedClass: 'selected'
@@ -191,4 +358,3 @@ tabs = function(options) {  //funções para a estrutura da página em abas
 }
 // initialize the function
 tabs('nav ul');
-    
