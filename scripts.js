@@ -4,23 +4,52 @@ const task_list = ["bastao_c","bastao_g","bolaBastao_c","bolaBastao_g","bola_c",
 let task_n = 0; //número da tarefa interativa atual
 let stage = 0;
 
-/*
-function func_teste() {
-  const stage_elements = document.getElementsByClassName('stage');
-  stage_elements[0].style.display = "none"
-  if (debug_state == 0){
-    debug_state = 1;
-    for (let i = 0; i < debug_elements.length; i++) {
-      debug_elements[i].style.display = "block";
-    }
-  } else {
-    debug_state = 0;
-    for (let i = 0; i < debug_elements.length; i++) {
-      debug_elements[i].style.display = "none";
-    }
+const stage_elements = document.getElementsByClassName('stage'); //pega a lista de stages
+function nextStage() {
+  //makes the present stage (section with tag stage) invisible and shows the next section 
+  // get the currently visible stage with the `current-stage` class
+  var currentSection = document.querySelector(".current-stage");
+  // get the next sequential section with the `stage` class
+  var nextSection = currentSection.nextElementSibling;
+  while (nextSection && !nextSection.classList.contains("stage")) {
+    nextSection = nextSection.nextElementSibling;
   }
-  // alert(debug_elements.length);
-}*/
+  // if there is no next sequential section go back to the first one
+  if (!nextSection) {
+    nextSection = document.querySelector(".stage");
+    
+  }
+
+  // hide the current sequential section with the `stage` class
+  currentSection.style.display = "none";
+  currentSection.classList.remove("current-stage");
+
+  // show the next sequential section with the `stage` class
+  nextSection.style.display = "block";
+  nextSection.classList.add("current-stage");
+
+  if (stage_elements[stage_elements.length - 1]==nextSection) {
+    
+    document.getElementById("next_stage_button").style.visibility="hidden";
+  }
+}
+
+// function nextStage() {
+//   const stage_elements = document.getElementsByClassName('stage');
+//   stage_elements[0].style.display = "none"
+//   if (debug_state == 0){
+//     debug_state = 1;
+//     for (let i = 0; i < stage_elements.length; i++) {
+//       stage_elements[i].style.display = "block";
+//     }
+//   } else {
+//     debug_state = 0;
+//     for (let i = 0; i < stage_elements.length; i++) {
+//       stage_elements[i].style.display = "none";
+//     }
+//   }
+//   //  alert(stage_elements.length);
+// }
 
 function prepMolecula(num) { 
   //mapper para o preparo do teste que está acontecendo
@@ -105,36 +134,12 @@ var is_local_save = false;
 document.getElementById('save_check').checked = false //default é não salvar.
 function localSaveSwitch(checkbox) {
   if (checkbox.checked) {
-    document.body.style.backgroundColor = "red"
+    // document.body.style.backgroundColor = "red" //debug
     is_local_save = true;
   } else {
-    document.body.style.backgroundColor = ""
+    //document.body.style.backgroundColor = "" //debug
     is_local_save = false;
   }
-}
-
-function next_section() {
-  // get the currently visible section with the `visible-section` class
-  var currentSection = document.querySelector(".visible-section");
-
-  // get the next sequential section with the `stage` class
-  var nextSection = currentSection.nextElementSibling;
-  while (nextSection && !nextSection.classList.contains("stage")) {
-    nextSection = nextSection.nextElementSibling;
-  }
-
-  // if there is no next sequential section, go back to the first one
-  if (!nextSection) {
-    nextSection = document.querySelector(".stage:first-child");
-  }
-
-  // hide the current sequential section with the `stage` class
-  currentSection.style.display = "none";
-  currentSection.classList.remove("visible-section");
-
-  // show the next sequential section with the `stage` class
-  nextSection.style.display = "block";
-  nextSection.classList.add("visible-section");
 }
 
 //funcao que insere valores no form antes de submeter

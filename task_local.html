@@ -9,7 +9,8 @@
   <link rel="stylesheet" href="css/w3.css">
   <script type="text/javascript" src="jsmol/JSmol.min.js"></script>
   <script type="text/javascript" src="object_configs.js"></script>
-  
+  <script src="scripts.js"></script>
+
 </head>
 
 <body>
@@ -17,6 +18,7 @@
   <div style="color:#404040; text-align:right"><span id="debug_switch" onclick="debug()">Debug</span></div>
   <!-- <section class="w3-container w3-center w3-animate-opacity"> -->
   <section id="tab_navigation" class="debug" style="background:#404070">
+    Você está no modo debug! Se foi engano, favor clicar novamente no canto da tela, ou recarregar a página!
     <nav>
       <!-- webpage Links -->
       <a href="rodrigocns.github.io">
@@ -43,7 +45,7 @@
       <hr>
     </nav>
   </section>
-  <section id="tab_form" class="stage" style="display:block">
+  <section id="tab_form" class="stage current-stage" style="display:block"> <!-- Forms -->
     <div id="div_form" style="height:400px" >
       <br>
       <form name="submit-to-google-sheet" id="gsForm">
@@ -65,7 +67,7 @@
       <button >Next(WIP)</button>
     </div>
   </section>
-  <section id="tab_teste" class="stage" style="display:none">  <!-- O TESTE -->
+  <section id="tab_teste" class="stage" style="display:none">  <!-- Tarefas interativas JSmol -->
     <div class="debug" id="indicador_orientacao" style="background-color:gray">Test</div> <!--coordenadas de orientacao-->
     <table id="iRT_canvas_table"> <!--as bordas em css ajudam na formatacao, posso tirar no final-->
       <tr>
@@ -82,9 +84,7 @@
           <br>
           <button id="startButton" onclick="botaoInicio()">INÍCIO!</button>
           <br>
-          <button onclick="botaoSubmit()" id="submitButton" style="visibility:hidden" form="gsForm">ENVIAR!</button><br> fim ou enviar?
-          <!-- <button onclick="saveFile()" id="submitButton" style="visibility:hidden" form="gsForm">ENVIAR!</button><br> fim ou enviar? -->
-          <button onclick="">Teste</button>
+          <button onclick="botaoSubmit()" id="submitButton" style="visibility:hidden" form="gsForm">ENVIAR!</button><br> 
         </td>
         <td class="JSmol_canvas" id="cellRight"> <!--ajustar app para meio-->
           <script>
@@ -117,8 +117,13 @@
     <button onclick="writeParamTable('parameterTable')">Preencher Tabela (pressionar somente 1 vez no fim do teste)</button></br>
   </section>
   
-  <script src="scripts.js"></script>
+  <section id="tab_fim" class="stage" style="display:none"> <!-- Texto de agradecimento e etc. -->
+    Texto final de agradecimento.
+    "Muito obrigado por realizar o teste! (WIP)"
+  </section>
+  <button id="next_stage_button" onclick="nextStage()">nextStage(WIP)</button>
+    
 
-  Updated 20/02/2023
+  <br>Updated 20/02/2023
 </body>
 </html>
