@@ -18,19 +18,20 @@
   <!-- <section class="w3-container w3-center w3-animate-opacity"> -->
   <section id="tab_navigation" class="debug" style="background:#404070">
     <nav>
+      <!-- webpage Links -->
       <a href="rodrigocns.github.io">
         Home</a>&nbsp <!--espaço em branco-->
       <a href="https://script.google.com/home/projects/1L21yINxKMX5ngrT7JYiIOuATQeicxtVxDmKmXGD_rSoaXtIG8n0nrACp/deployments/AKfycbxtKza8SDt27Ik39cktDyv66dD2Lt77vERuHWOVEnraLH91kQwBl1r2bPQoD8Gi1BZW">
         AppScript</a>&nbsp 
       <a href="https://docs.google.com/spreadsheets/d/1LSDoA22scyWVJUDlwudKqX0o86w5b-Ds-lGOhRBGYis/edit#gid=0">
         Gsheets</a>
-      <br>  
+      <!-- section navigation buttons -->
       <ul>
+        <li><a href="#tab_form">Forms</a></li>
         <li><a href="#tab_teste">Teste</a></li>
-        <li><a href="#tab3">Gráfico</a></li>
-        <li><a href="#tab_tabela">Tabela</a></li>
+        <!-- <li><a href="#tab3">Gráfico</a></li> WIP -->
+        <!-- <li><a href="#tab_tabela">Tabela</a></li> WIP -->
       </ul>
-      <br>
       <div> <!-- iniciar as diferentes tarefas do teste interativo-->
         <button onclick="task_n=0;prepMolecula(task_n)">1</button>
         <button onclick="task_n=1;prepMolecula(task_n)">2</button>
@@ -43,21 +44,26 @@
     </nav>
   </section>
   <section id="tab_form" class="stage" style="display:block">
-    <form name="submit-to-google-sheet" id="gsForm">
-      <input name="email" type="email" placeholder="Email" class="initial_field">
-      <input name="fname" type="text" placeholder="Nome" class="initial_field">
-      <input name="test_id" type="hidden" id="test_id" >
-      <input name="ft" type="hidden" id="ft" >
-      <input name="fd" type="hidden" id="fd" >
-      <input name="fx" type="hidden" id="fx" >
-      <input name="fy" type="hidden" id="fy" >
-      <input name="fz" type="hidden" id="fz" >
-      <input name="fw" type="hidden" id="fw" >
-    </form>
-    
+    <div id="div_form" style="height:400px" >
+      <br>
+      <form name="submit-to-google-sheet" id="gsForm">
+        <!-- Template: Texto no Html: <input name="header da coluna no gsheets" type="tipo do input"> -->
+        Nome: <input name="fname" type="text" placeholder="Ex: Rodrigo Alves" size="30" autofocus><br>
+        Email: <input name="email" type="email" placeholder="Ex: rodrigo@gmail.com" size="30"><br>
+        <input name="is_local_save" type="checkbox" onchange="local_save_switch(this)"> Salvar cópia local dos dados<br>
+        <!-- talvez adicionar opção auto, que tenta salvar local se online não deu certo -->
+        <input name="task_id" type="hidden" id="test_id" >
+        <input name="ft" type="hidden" id="ft" >
+        <input name="fd" type="hidden" id="fd" >
+        <input name="fx" type="hidden" id="fx" >
+        <input name="fy" type="hidden" id="fy" >
+        <input name="fz" type="hidden" id="fz" >
+        <input name="fw" type="hidden" id="fw" >
+      </form>
+      <button>Next</button>
+    </div>
   </section>
   <section id="tab_teste" class="stage" style="display:none">  <!-- O TESTE -->
-    <br>
     <div class="debug" id="indicador_orientacao" style="background-color:gray">Test</div> <!--coordenadas de orientacao-->
     <table id="iRT_canvas_table"> <!--as bordas em css ajudam na formatacao, posso tirar no final-->
       <tr>
@@ -69,12 +75,13 @@
           <button class="debug" onclick="tamanhoJanela()">scrSize</button>
           <button class="debug" onclick="botaoSubmit()">!POST</button>
           <button class="debug" onclick="timerStop()">timerStop</button>
+          <button class="debug" id="saveButton" onclick="saveFile()" form="gsForm">Save Data Localy</button><br> 
           <button class="debug" onclick="Jmol.script(jsmol_molecula,'console')">console</button>
           <br>
           <button id="startButton" onclick="botaoInicio()">INÍCIO!</button>
           <br>
           <button onclick="botaoSubmit()" id="submitButton" style="visibility:hidden" form="gsForm">ENVIAR!</button><br> <!--fim ou enviar?-->
-          <button onclick="saveFile()" id="saveButton" form="gsForm">Salvar!</button><br> 
+          
         </td>
         <td class="JSmol_canvas" id="cellRight"> <!--ajustar app para meio-->
           <script>

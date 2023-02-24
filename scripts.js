@@ -97,6 +97,17 @@ function debug() { //switch (on/off) de recursos de debug.
   // alert(debug_elements.length);
 }
 
+var is_local_save = false;
+function local_save_switch(checkbox) {
+  if (checkbox.checked) {
+    //document.body.style.backgroundColor = "red"
+    var is_local_save = true;
+  } else {
+    //document.body.style.backgroundColor = ""
+    var is_local_save = false;
+  }
+}
+
 function next_section() {
   // get the currently visible section with the `visible-section` class
   var currentSection = document.querySelector(".visible-section");

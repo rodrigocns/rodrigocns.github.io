@@ -50,9 +50,12 @@ header{
   display:none;
 }
 
-.tab{ /*class="tab"*/
-  text-align: center;
-/*  background-color: red; */
+/* #div_form {
+  background-color: palevioletred;
+} */
+
+#gsForm {
+  padding: 100px 0;
 }
 
 table{
