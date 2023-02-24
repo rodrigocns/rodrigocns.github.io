@@ -50,8 +50,10 @@
         <!-- Template: Texto no Html: <input name="header da coluna no gsheets" type="tipo do input"> -->
         Nome: <input name="fname" type="text" placeholder="Ex: Rodrigo Alves" size="30" autofocus><br>
         Email: <input name="email" type="email" placeholder="Ex: rodrigo@gmail.com" size="30"><br>
-        <input name="is_local_save" type="checkbox" onchange="local_save_switch(this)"> Salvar cópia local dos dados<br>
+        <input id="save_check" type="checkbox" onchange="localSaveSwitch(this)" > Salvar cópia local dos dados<br>
         <!-- talvez adicionar opção auto, que tenta salvar local se online não deu certo -->
+        
+        <!-- valores internos a serem enviados pelo forms -->
         <input name="task_id" type="hidden" id="test_id" >
         <input name="ft" type="hidden" id="ft" >
         <input name="fd" type="hidden" id="fd" >
@@ -60,7 +62,7 @@
         <input name="fz" type="hidden" id="fz" >
         <input name="fw" type="hidden" id="fw" >
       </form>
-      <button>Next</button>
+      <button >Next(WIP)</button>
     </div>
   </section>
   <section id="tab_teste" class="stage" style="display:none">  <!-- O TESTE -->
@@ -75,13 +77,14 @@
           <button class="debug" onclick="tamanhoJanela()">scrSize</button>
           <button class="debug" onclick="botaoSubmit()">!POST</button>
           <button class="debug" onclick="timerStop()">timerStop</button>
-          <button class="debug" id="saveButton" onclick="saveFile()" form="gsForm">Save Data Localy</button><br> 
+          <button class="debug" onclick="saveFile()" form="gsForm">Save Data Localy</button><br> 
           <button class="debug" onclick="Jmol.script(jsmol_molecula,'console')">console</button>
           <br>
           <button id="startButton" onclick="botaoInicio()">INÍCIO!</button>
           <br>
-          <button onclick="botaoSubmit()" id="submitButton" style="visibility:hidden" form="gsForm">ENVIAR!</button><br> <!--fim ou enviar?-->
-          
+          <button onclick="botaoSubmit()" id="submitButton" style="visibility:hidden" form="gsForm">ENVIAR!</button><br> fim ou enviar?
+          <!-- <button onclick="saveFile()" id="submitButton" style="visibility:hidden" form="gsForm">ENVIAR!</button><br> fim ou enviar? -->
+          <button onclick="">Teste</button>
         </td>
         <td class="JSmol_canvas" id="cellRight"> <!--ajustar app para meio-->
           <script>
@@ -112,10 +115,6 @@
       </table>
       </div>
     <button onclick="writeParamTable('parameterTable')">Preencher Tabela (pressionar somente 1 vez no fim do teste)</button></br>
-  </section>
-  
-  <section>
-    <button onclick="func_teste()">Teste</button>
   </section>
   
   <script src="scripts.js"></script>

@@ -1,9 +1,10 @@
 
 //Todas as Funcoes aqui
 const task_list = ["bastao_c","bastao_g","bolaBastao_c","bolaBastao_g","bola_c","bola_g"];
-let task_n = 0;
+let task_n = 0; //número da tarefa interativa atual
 let stage = 0;
 
+/*
 function func_teste() {
   const stage_elements = document.getElementsByClassName('stage');
   stage_elements[0].style.display = "none"
@@ -19,7 +20,7 @@ function func_teste() {
     }
   }
   // alert(debug_elements.length);
-}
+}*/
 
 function prepMolecula(num) { 
   //mapper para o preparo do teste que está acontecendo
@@ -56,29 +57,6 @@ function prepMolecula(num) {
   }
 }
 
-function botaoInicio() {
-  zerar_contagem();
-  document.getElementById("cellLeft").style.visibility="visible";
-  document.getElementById("cellRight").style.visibility="visible";
-  timerStart ();
-  document.getElementById("startButton").style.visibility="hidden";
-  document.getElementById("submitButton").style.visibility="visible";
-}
-
-function botaoSubmit(){
-  timerStop();
-  document.getElementById("cellLeft").style.visibility="hidden";
-  document.getElementById("cellRight").style.visibility="hidden";
-  inserir_valores_form();
-  document.getElementById("submitButton").style.visibility="hidden";
-  task_n +=1; //progride para o proximo teste em task_list e prepMolecula()
-  // if (task_n >= 6){ /*volta ao primeiro*/ task_n = 0;}
-  if (task_n >= 6){/*finaliza os testes*/ return;} 
-  //se falso, botão start aparece
-  document.getElementById("startButton").style.visibility="visible";
-  prepMolecula(task_n);
-}
-
 var debug_state = 0;
 function debug() { //switch (on/off) de recursos de debug. 
   //Alterna visibilidade de cada elemento de classe 'debug'
@@ -97,14 +75,41 @@ function debug() { //switch (on/off) de recursos de debug.
   // alert(debug_elements.length);
 }
 
+function botaoInicio() {
+  zerar_contagem();
+  document.getElementById("cellLeft").style.visibility="visible";
+  document.getElementById("cellRight").style.visibility="visible";
+  timerStart ();
+  document.getElementById("startButton").style.visibility="hidden";
+  document.getElementById("submitButton").style.visibility="visible";
+}
+
+function botaoSubmit(){
+  timerStop();
+  document.getElementById("cellLeft").style.visibility="hidden";
+  document.getElementById("cellRight").style.visibility="hidden";
+  inserir_valores_form();
+  document.getElementById("submitButton").style.visibility="hidden";
+  task_n +=1; //Progride para a próxima tarefa em task_list e prepMolecula()
+  // if (task_n >= 6) {task_n = 0;} /*volta ao primeiro*/
+  if (task_n >= 6) {return;} /*finaliza os testes*/
+  //se falso, botão start aparece
+  document.getElementById("startButton").style.visibility="visible";
+  prepMolecula(task_n);
+  if (is_local_save == true) {
+    saveFile();
+  }
+}
+
 var is_local_save = false;
-function local_save_switch(checkbox) {
+document.getElementById('save_check').checked = false //default é não salvar.
+function localSaveSwitch(checkbox) {
   if (checkbox.checked) {
-    //document.body.style.backgroundColor = "red"
-    var is_local_save = true;
+    document.body.style.backgroundColor = "red"
+    is_local_save = true;
   } else {
-    //document.body.style.backgroundColor = ""
-    var is_local_save = false;
+    document.body.style.backgroundColor = ""
+    is_local_save = false;
   }
 }
 
