@@ -30,26 +30,9 @@ function nextStage() {
 
   if (stage_elements[stage_elements.length - 1]==nextSection) {
     
-    document.getElementById("next_stage_button").style.visibility="hidden";
+    document.getElementById("next_stage_button_debug").style.visibility="hidden";
   }
 }
-
-// function nextStage() {
-//   const stage_elements = document.getElementsByClassName('stage');
-//   stage_elements[0].style.display = "none"
-//   if (debug_state == 0){
-//     debug_state = 1;
-//     for (let i = 0; i < stage_elements.length; i++) {
-//       stage_elements[i].style.display = "block";
-//     }
-//   } else {
-//     debug_state = 0;
-//     for (let i = 0; i < stage_elements.length; i++) {
-//       stage_elements[i].style.display = "none";
-//     }
-//   }
-//   //  alert(stage_elements.length);
-// }
 
 function prepMolecula(num) { 
   //mapper para o preparo do teste que está acontecendo
@@ -93,7 +76,7 @@ function debug() { //switch (on/off) de recursos de debug.
   if (debug_state == 0){
     debug_state = 1;
     for (let i = 0; i < debug_elements.length; i++) {
-      debug_elements[i].style.display = "block";
+      debug_elements[i].style.display = "inline";
     }
   } else {
     debug_state = 0;
@@ -121,7 +104,10 @@ function botaoSubmit(){
   document.getElementById("submitButton").style.visibility="hidden";
   task_n +=1; //Progride para a próxima tarefa em task_list e prepMolecula()
   // if (task_n >= 6) {task_n = 0;} /*volta ao primeiro*/
-  if (task_n >= 6) {return;} /*finaliza os testes*/
+  if (task_n >= 6) {
+    document.getElementById("endTasksButton").style.visibility="visible";
+    return;
+  } /*finaliza os testes*/
   //se falso, botão start aparece
   document.getElementById("startButton").style.visibility="visible";
   prepMolecula(task_n);
