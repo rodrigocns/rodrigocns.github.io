@@ -130,18 +130,6 @@ function botaoSubmit(){
   }
 }
 
-var is_local_save = false;
-document.getElementById('save_check').checked = false //default é não salvar.
-function localSaveSwitch(checkbox) {
-  if (checkbox.checked) {
-    // document.body.style.backgroundColor = "red" //debug
-    is_local_save = true;
-  } else {
-    //document.body.style.backgroundColor = "" //debug
-    is_local_save = false;
-  }
-}
-
 //funcao que insere valores no form antes de submeter
 function inserir_valores_form() { 
   document.getElementById('test_id').value = task_list[task_n]; //qual tarefa foi realizada
@@ -358,3 +346,16 @@ tabs = function(options) {
 }
 // initialize the function
 tabs('nav ul');
+
+var is_local_save = false;
+document.getElementById('save_check').checked = false; //default é não salvar.
+function localSaveSwitch(checkbox) {
+  if (checkbox.checked) {
+    // document.body.style.backgroundColor = "red" //debug
+    is_local_save = true;
+  } else {
+    //document.body.style.backgroundColor = "" //debug
+    is_local_save = false;
+  }
+}
+
