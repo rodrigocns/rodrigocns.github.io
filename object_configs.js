@@ -1,4 +1,4 @@
-var Info = { 
+var Info_interactive = { 
   //https://wiki.jmol.org/index.php/Jmol_JavaScript_Object/Info
   color: "#000000",
   height: 400,
@@ -13,7 +13,7 @@ var Info = {
   script: null,
   //calls func. when jmol has loaded and is ready
   readyFunction: jmolRightIsReady, 
-  debug: false //deixar true se tiver problemas
+  debug: true //deixar true se tiver problemas
 }
 function jmolRightIsReady() { //changes post-loading. PRECISA estar aqui, se não diz function undefined
   //disable perspective (needed for better precision in calculations of screen xy projections)
@@ -26,7 +26,7 @@ function jmolRightIsReady() { //changes post-loading. PRECISA estar aqui, se nã
   //Jmol.script(jsmol_molecula,'unbind _rotate');
   //disable the jmol watermark
   Jmol.script(jsmol_molecula,'frank off');
-  prepMolecula(task_n);
+  prepMolecula(task_n,jsmol_molecula);
   //alert();//debug
 }
 function jmolLeftIsReady() {
@@ -35,7 +35,7 @@ function jmolLeftIsReady() {
   Jmol.script(jsmol_molecula,'unbind _popupMenu');
   Jmol.script(jsmol_molecula,'unbind _rotate');
   Jmol.script(jsmol_molecula,'frank off');
-  prepMolecula(task_n);
+  prepMolecula(task_n,jsmol_molecula);
 }
 //reference orientation
 var Ori1 = -675;        
