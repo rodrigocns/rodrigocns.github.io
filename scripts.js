@@ -5,8 +5,7 @@ let task_n = 0; //número da tarefa interativa atual
 let stage = 0;
 
 const stage_elements = document.getElementsByClassName('stage'); //pega a lista de stages
-function nextStage() {
-  //makes the present stage (section with tag stage) invisible and shows the next section 
+function nextStage() {  //makes the present stage (section with tag stage) invisible and shows the next section 
   // get the currently visible stage with the `current-stage` class
   var currentSection = document.querySelector(".current-stage");
   // get the next sequential section with the `stage` class
@@ -32,8 +31,7 @@ function nextStage() {
   nextSection.classList.add("current-stage");
 }
 
-function prepMolecula(num) { 
-  //mapper para o preparo do teste que está acontecendo
+function prepMolecula(num) {   //mapper para o preparo do teste que está acontecendo
   //em "Jmol.script(...)" o comando em texto diz respeito à orientação de rotação que o objeto vai estar ao começar cada tarefa
   Jmol.script(jsmol_molecula,'moveto 0.0 {-666 39 745 139.54}');
   //em cada case estão as configurações de renderização do objeto interativo em cada tarefa
@@ -105,7 +103,7 @@ function closeFullscreen() {/* Close fullscreen */
   }
 }
 
-function botaoInicio() {
+function botaoInicio() { //funções para executar com o botão de inicio do teste. 
   zerar_contagem();
   document.getElementById("cellLeft").style.visibility="visible";
   document.getElementById("cellRight").style.visibility="visible";
@@ -114,7 +112,7 @@ function botaoInicio() {
   document.getElementById("submitButton").style.visibility="visible";
 }
 
-function botaoSubmit(){
+function botaoSubmit(){ //funções para executar com o botão de fim do teste.
   timerStop();
   document.getElementById("cellLeft").style.visibility="hidden";
   document.getElementById("cellRight").style.visibility="hidden";
@@ -217,7 +215,6 @@ function calc_drift(arr){ //calcula mediana do drift para correcao com base do a
 }
 
 function step() { //função executada a cada "interval" milissegundos
-  
   var dt = Date.now() - time_expected; // the drift (positive for overshooting)
   if (dt > interval) {  //demorou mais do que devia
 
@@ -278,7 +275,7 @@ form.addEventListener('submit', e => {
 })
 // let data = ''
 
-let saveFile = () => {
+let saveFile = () => { //Salvar os dados localmente.
 
   // This variable stores all the data.
   let data =
