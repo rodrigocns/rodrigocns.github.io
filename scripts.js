@@ -17,21 +17,19 @@ function nextStage() {
   // if there is no next sequential section go back to the first one
   if (!nextSection) {
     nextSection = document.querySelector(".stage");
-    
   }
-
+  // hide button if element is the last one 
+  /*
+  if (stage_elements[stage_elements.length - 1]==nextSection) {
+    document.getElementById("next_stage_button_debug").style.visibility="hidden";
+  }
+  */
   // hide the current sequential section with the `stage` class
   currentSection.style.display = "none";
   currentSection.classList.remove("current-stage");
-
   // show the next sequential section with the `stage` class
   nextSection.style.display = "block";
   nextSection.classList.add("current-stage");
-
-  if (stage_elements[stage_elements.length - 1]==nextSection) {
-    
-    document.getElementById("next_stage_button_debug").style.visibility="hidden";
-  }
 }
 
 function prepMolecula(num) { 
@@ -85,6 +83,26 @@ function debug() { //switch (on/off) de recursos de debug.
     }
   }
   // alert(debug_elements.length);
+}
+
+function openFullscreen() { /* View in fullscreen */
+  if (document.documentElement.requestFullscreen) {
+    document.documentElement.requestFullscreen();
+  } else if (document.documentElement.webkitRequestFullscreen) { /* Safari */
+    document.documentElement.webkitRequestFullscreen();
+  } else if (document.documentElement.msRequestFullscreen) { /* IE11 */
+    document.documentElement.msRequestFullscreen();
+  }
+}
+
+function closeFullscreen() {/* Close fullscreen */
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.webkitExitFullscreen) { /* Safari */
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) { /* IE11 */
+    document.msExitFullscreen();
+  }
 }
 
 function botaoInicio() {
