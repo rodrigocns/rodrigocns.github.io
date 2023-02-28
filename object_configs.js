@@ -26,7 +26,6 @@ function jmolIsReady() { //changes post-loading. PRECISA estar aqui, se não diz
   //Jmol.script(jsmol_molecula,'unbind _rotate');
   //disable the jmol watermark
   Jmol.script(jsmol_molecula,'frank off');
-  prepMolecula(task_n,jsmol_molecula);
   //alert();//debug
 }
 //reference orientation
@@ -37,10 +36,11 @@ var Ori2 = -389;
 var Ori3 = -627;
 var Ori4 = 93.16;
 
-function prepMolecula(num,jsmol_obj) {   //mapper para o preparo do teste que está acontecendo
-  //em "Jmol.script(...)" o comando em texto é a orientação inicial do objeto
+function prepMolecula(num) {   //mapper para o preparo do teste que está acontecendo
+  //Rotaciona para a orientação inicial do objeto
+  jsmol_obj = jsmol_molecula; 
   Jmol.script(jsmol_obj,'moveto 0.0 {-666 39 745 139.54}');
-  //em cada case estão as configurações de renderização do objeto interativo em cada tarefa
+  //em cada case # estão as configurações de renderização do objeto interativo em cada tarefa
   switch (num){
     case 0:
       Jmol.script(jsmol_obj,'color cpk; spacefill off; wireframe 0.15');

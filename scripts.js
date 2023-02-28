@@ -92,7 +92,7 @@ function botaoSubmit(){ //funções para executar com o botão de fim do teste.
   } /*finaliza os testes*/
   //se falso, botão start aparece
   document.getElementById("startButton").style.visibility="visible";
-  prepMolecula(task_n,jsmol_molecula);
+  prepMolecula(task_n);
   if (is_local_save == true) {
     saveFile();
   }
