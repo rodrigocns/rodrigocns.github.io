@@ -31,40 +31,6 @@ function nextStage() {  //makes the present stage (section with tag stage) invis
   nextSection.classList.add("current-stage");
 }
 
-function prepMolecula(num,jsmol_obj) {   //mapper para o preparo do teste que está acontecendo
-  //em "Jmol.script(...)" o comando em texto é a orientação inicial do objeto
-  Jmol.script(jsmol_obj,'moveto 0.0 {-666 39 745 139.54}');
-  //em cada case estão as configurações de renderização do objeto interativo em cada tarefa
-  switch (num){
-    case 0:
-      Jmol.script(jsmol_obj,'color cpk; spacefill off; wireframe 0.15');
-      document.getElementById('modelo_estatico').src='imgs/batracoisa_0.png';
-      break;
-    case 1:
-      Jmol.script(jsmol_obj,'color structure; spacefill off; wireframe 0.15');
-      document.getElementById('modelo_estatico').src='imgs/batracoisa_1.png';
-      break;
-    case 2:
-      Jmol.script(jsmol_obj,'color cpk; spacefill 23%; wireframe 0.15');
-      document.getElementById('modelo_estatico').src='imgs/batracoisa_2.png';
-      break;
-    case 3:
-      Jmol.script(jsmol_obj,'color structure; spacefill 23%; wireframe 0.15');
-      document.getElementById('modelo_estatico').src='imgs/batracoisa_3.png';
-      break;
-    case 4:
-      Jmol.script(jsmol_obj,'color cpk; spacefill 23%; wireframe OFF');
-      document.getElementById('modelo_estatico').src='imgs/batracoisa_4.png';
-      break;
-    case 5:
-      Jmol.script(jsmol_obj,'color structure; spacefill 23%; wireframe OFF');
-      document.getElementById('modelo_estatico').src='imgs/batracoisa_5.png';
-      break;
-    
-    //https://chemapps.stolaf.edu/jmol/docs/examples/bonds.htm  altera visualisação dos dados
-  }
-}
-
 var debug_state = 0;
 function debug() { //switch (on/off) de recursos de debug. 
   //Alterna visibilidade de cada elemento de classe 'debug'
