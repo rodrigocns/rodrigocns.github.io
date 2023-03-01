@@ -1,6 +1,6 @@
 
-//Todas as Funcoes aqui
-const task_list = ["bastao_c","bastao_g","bolaBastao_c","bolaBastao_g","bola_c","bola_g"];
+//Todas as Funcoes da página aqui. Precisa das funcoes referentes aos objetos jmol
+const task_list = ["bastao_c","bastao_g","bolaBastao_c","bolaBastao_g","bola_c","bola_g","mrt"];
 let task_n = 0; //número da tarefa interativa atual
 let stage = 0;
 
@@ -86,7 +86,7 @@ function botaoSubmit(){ //funções para executar com o botão de fim do teste.
   document.getElementById("submitButton").style.visibility="hidden";
   task_n +=1; //Progride para a próxima tarefa em task_list e prepMolecula()
   // if (task_n >= 6) {task_n = 0;} /*volta ao primeiro*/
-  if (task_n >= 6) {
+  if (task_n >= task_list.length) {
     document.getElementById("endTasksButton").style.visibility="visible";
     return;
   } /*finaliza os testes*/
@@ -98,6 +98,19 @@ function botaoSubmit(){ //funções para executar com o botão de fim do teste.
   }
 }
 
+
+// Replace 5 with any positive integer you want
+const numButtons = task_list.length;
+const buttonContainer = document.getElementById("button-container");
+for (let i = 1; i <= numButtons; i++) {
+  const button = document.createElement("button");
+  button.innerText = `${i}`;
+  button.onclick = function() {
+    task_n=i-1;
+    prepMolecula(task_n);
+  };
+  buttonContainer.appendChild(button);
+}
 
 function inserir_valores_form() { //insert values in form before sumbission
   document.getElementById('task_id').value = task_list[task_n]; //solved task identifier
