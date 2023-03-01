@@ -99,6 +99,19 @@ function botaoSubmit(){ //funções para executar com o botão de fim do teste.
 }
 
 
+// Replace 5 with any positive integer you want
+const numButtons = task_list.length;
+const buttonContainer = document.getElementById("button-container");
+for (let i = 1; i <= numButtons; i++) {
+  const button = document.createElement("button");
+  button.innerText = `${i}`;
+  button.onclick = function() {
+    task_n=i-1;
+    prepMolecula(task_n);
+  };
+  buttonContainer.appendChild(button);
+}
+
 function inserir_valores_form() { //insert values in form before sumbission
   document.getElementById('task_id').value = task_list[task_n]; //solved task identifier
   document.getElementById('ft').value = parametroT;
