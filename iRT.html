@@ -60,7 +60,7 @@
         <!-- talvez adicionar opção auto, que tenta salvar local se online não deu certo -->
         
         <!-- valores internos a serem enviados pelo forms -->
-        <input name="task_id" type="hidden" id="test_id" >
+        <input name="task_id" type="hidden" id="task_id" >
         <input name="ft" type="hidden" id="ft" >
         <input name="fd" type="hidden" id="fd" >
         <input name="fx" type="hidden" id="fx" >
@@ -78,10 +78,8 @@
         <td class="JSmol_canvas" id="cellLeft">
           <script>
             Info_interactive.src="models/pseudobatracotoxin_molecule.xyz";     // start at: moveto {-666 39 745 139.54} 
-            Jmol.getApplet("jsmol_reference", Info_reference);
+            Jmol.getApplet("jsmolReferenceObject", Info_reference);
           </script>
-       
-          <!-- <img id="modelo_estatico" src="imgs/batracoisa_0.png"/> -->
         </td>
         <td id="tdCenter">
           <div class="debug">Tempo: <output id="timer_onscreen" ></output> s</div>
@@ -89,7 +87,7 @@
           <br><button class="debug" onclick="botaoSubmit()">!POST</button>
           <br><button class="debug" onclick="timerStop()">timerStop</button>
           <br><button class="debug" onclick="saveFile()" form="gsForm">Save Data Localy</button>
-          <br><button class="debug" onclick="Jmol.script(jsmol_molecula,'console')">console</button>
+          <br><button class="debug" onclick="Jmol.script(jsmolInteractiveObject,'console')">console</button>
           <br>
           <br><button id="startButton" onclick="botaoInicio()">INÍCIO!</button>
           <br><button id="submitButton" onclick="botaoSubmit()" style="visibility:hidden" form="gsForm">ENVIAR!</button>
@@ -99,7 +97,7 @@
         <td class="JSmol_canvas" id="cellRight"> <!--ajustar app para meio-->
           <script>
             Info_interactive.src="models/pseudobatracotoxin_molecule.xyz";     // start at: moveto {-666 39 745 139.54} 
-            Jmol.getApplet("jsmol_molecula", Info_interactive);
+            Jmol.getApplet("jsmolInteractiveObject", Info_interactive);
           </script>
         </td>
       </tr>

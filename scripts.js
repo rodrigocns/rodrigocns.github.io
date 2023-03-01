@@ -98,9 +98,9 @@ function botaoSubmit(){ //funções para executar com o botão de fim do teste.
   }
 }
 
-//funcao que insere valores no form antes de submeter
-function inserir_valores_form() { 
-  document.getElementById('test_id').value = task_list[task_n]; //qual tarefa foi realizada
+
+function inserir_valores_form() { //insert values in form before sumbission
+  document.getElementById('task_id').value = task_list[task_n]; //solved task identifier
   document.getElementById('ft').value = parametroT;
   document.getElementById('fd').value = parametroD;
   document.getElementById('fx').value = parametro1;
@@ -121,7 +121,7 @@ function tamanhoJanela() { //pega o tamanho/resolução da janela do browser
   //https://stackoverflow.com/questions/3437786/get-the-size-of-the-screen-current-web-page-and-browser-window
 }
 
-function zerar_contagem() { //reseta os valores de time_elapsed(num) e parametros (arrays)
+function zerar_contagem() { //reset time_elapsed(num) and parametros array values
   time_elapsed = 0;
   parametroT = [];
   parametroD = [];
@@ -133,8 +133,8 @@ function zerar_contagem() { //reseta os valores de time_elapsed(num) e parametro
   
 }
 
-let parametroT = [];  //tempo do sistema (Date.now())
-let parametroD = [];  //Duração em segundos
+let parametroT = [];  //system time (Date.now())
+let parametroD = [];  //Time elapsed in seconds
 let parametro1 = [];
 let parametro2 = [];
 let parametro3 = [];
@@ -156,7 +156,7 @@ function timerStart () {    //inicia contagem de tempo e registro de dados (getT
   }
 }
 
-function timerStop() { //função que para contagem
+function timerStop() { //stop the cronometer
   timerIsOn = false;
 }
 
@@ -211,7 +211,7 @@ function step() { //função executada a cada "interval" milissegundos
     
 var orientacaoQuat;
 function getTheNumbers() { //armazena os dados de orientação em quat. para os arrays a cada chamada
-  /*var*/ orientacaoQuat = Jmol.getPropertyAsArray(jsmol_molecula, 'orientationInfo.quaternion'); 
+  /*var*/ orientacaoQuat = Jmol.getPropertyAsArray(jsmolInteractiveObject, 'orientationInfo.quaternion'); 
   document.getElementById("indicador_orientacao").innerHTML = orientacaoQuat;// debug
   
   parametroT.push(Date.now());
@@ -239,7 +239,6 @@ form.addEventListener('submit', e => {
     .then(response => console.log('Success!', response))
     .catch(error => console.error('Error!', error.message))
 })
-// let data = ''
 
 let saveFile = () => { //Salvar os dados localmente.
 

@@ -1,5 +1,5 @@
 var Info_interactive = { 
-  //https://wiki.jmol.org/index.php/Jmol_JavaScript_Object/Info
+  //For more explanations go to https://wiki.jmol.org/index.php/Jmol_JavaScript_Object/Info
   color: "#000000",
   height: 400,
   width: 400,
@@ -27,16 +27,17 @@ var Info_interactive = {
   readyFunction: null,   //calls func. when jmol has loaded and is ready
   debug: true //deixar true se tiver problemas
 }
-var Info_reference = structuredClone(Info_interactive);
-//disable rotation
-Info_reference.script = Info_interactive.script.concat("set mouseDragFactor 0");
-//explaining JSmol commands:
+//explaining JSmol script commands:
 //disable perspective (needed for better precision in calculations of screen xy projections)
 // set perspectiveDepth OFF;
 //disable the input of most interactions
 // unbind _rotateZ; unbind _rotateZorZoom; unbind <...>';
 //disable the jmol watermark
 // frank off;
+
+var Info_reference = structuredClone(Info_interactive);
+//disable rotation
+Info_reference.script = Info_interactive.script.concat("set mouseDragFactor 0");
 
 //reference orientation
 //moveto 0 {-675 -389 -627 93.16} 
@@ -48,9 +49,9 @@ var Ori4 = 93.16;
 
 function prepMolecula(num) {   //mapper para o preparo do teste que está acontecendo
   //Rotaciona para a orientação inicial do objeto
-  jsmol_obj = jsmol_molecula; 
+  jsmol_obj = jsmolInteractiveObject; 
   Jmol.script(jsmol_obj,'moveto 0.0 {-666 39 745 139.54}');
-  jsmol_ref = jsmol_reference; 
+  jsmol_ref = jsmolReferenceObject; 
   Jmol.script(jsmol_ref,'moveto 0 {-675 -389 -627 93.16}');
   //em cada case # estão as configurações de renderização dos objetos de cada tarefa
   switch (num){
