@@ -64,8 +64,8 @@ function prepMolecula(num) {   //mapper para o preparo do teste que está aconte
       Jmol.script(jsmol_obj,'color structure; spacefill off; wireframe 0.15');
     break;
     case 2:
-      Jmol.script(jsmol_ref,'color structure; spacefill off; wireframe 0.15');
-      Jmol.script(jsmol_obj,'color structure; spacefill off; wireframe 0.15');
+      Jmol.script(jsmol_ref,'color cpk; spacefill 23%; wireframe 0.15');
+      Jmol.script(jsmol_obj,'color cpk; spacefill 23%; wireframe 0.15');
     break;
     case 3:
       Jmol.script(jsmol_ref,'color structure; spacefill 23%; wireframe 0.15');
