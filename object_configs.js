@@ -49,10 +49,10 @@ var Ori4 = 93.16;
 
 function prepMolecula(num) {   //mapper para o preparo do teste que está acontecendo
   //Rotaciona para a orientação inicial do objeto
-  jsmol_obj = jsmolInteractiveObject; 
-  Jmol.script(jsmol_obj,'moveto 0.0 {-666 39 745 139.54}');
   jsmol_ref = jsmolReferenceObject; 
   Jmol.script(jsmol_ref,'moveto 0 {-675 -389 -627 93.16}');
+  jsmol_obj = jsmolInteractiveObject; 
+  Jmol.script(jsmol_obj,'moveto 0.0 {-666 39 745 139.54}');
   //em cada case # estão as configurações de renderização dos objetos de cada tarefa
   switch (num){
     case 0:
