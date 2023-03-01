@@ -5,8 +5,7 @@ let task_n = 0; //número da tarefa interativa atual
 let stage = 0;
 
 const stage_elements = document.getElementsByClassName('stage'); //pega a lista de stages
-function nextStage() {
-  //makes the present stage (section with tag stage) invisible and shows the next section 
+function nextStage() {  //makes the present stage (section with tag stage) invisible and shows the next section 
   // get the currently visible stage with the `current-stage` class
   var currentSection = document.querySelector(".current-stage");
   // get the next sequential section with the `stage` class
@@ -17,56 +16,19 @@ function nextStage() {
   // if there is no next sequential section go back to the first one
   if (!nextSection) {
     nextSection = document.querySelector(".stage");
-    
   }
-
+  // hide button if element is the last one 
+  /*
+  if (stage_elements[stage_elements.length - 1]==nextSection) {
+    document.getElementById("next_stage_button_debug").style.visibility="hidden";
+  }
+  */
   // hide the current sequential section with the `stage` class
   currentSection.style.display = "none";
   currentSection.classList.remove("current-stage");
-
   // show the next sequential section with the `stage` class
   nextSection.style.display = "block";
   nextSection.classList.add("current-stage");
-
-  if (stage_elements[stage_elements.length - 1]==nextSection) {
-    
-    document.getElementById("next_stage_button_debug").style.visibility="hidden";
-  }
-}
-
-function prepMolecula(num) { 
-  //mapper para o preparo do teste que está acontecendo
-  //em "Jmol.script(...)" o comando em texto diz respeito à orientação de rotação que o objeto vai estar ao começar cada tarefa
-  Jmol.script(jsmol_molecula,'moveto 0.0 {-666 39 745 139.54}');
-  //em cada case estão as configurações de renderização do objeto interativo em cada tarefa
-  switch (num){
-    case 0:
-      Jmol.script(jsmol_molecula,'color cpk; spacefill off; wireframe 0.15');
-      document.getElementById('modelo_estatico').src='imgs/batracoisa_0.png';
-      break;
-    case 1:
-      Jmol.script(jsmol_molecula,'color structure; spacefill off; wireframe 0.15');
-      document.getElementById('modelo_estatico').src='imgs/batracoisa_1.png';
-      break;
-    case 2:
-      Jmol.script(jsmol_molecula,'color cpk; spacefill 23%; wireframe 0.15');
-      document.getElementById('modelo_estatico').src='imgs/batracoisa_2.png';
-      break;
-    case 3:
-      Jmol.script(jsmol_molecula,'color structure; spacefill 23%; wireframe 0.15');
-      document.getElementById('modelo_estatico').src='imgs/batracoisa_3.png';
-      break;
-    case 4:
-      Jmol.script(jsmol_molecula,'color cpk; spacefill 23%; wireframe OFF');
-      document.getElementById('modelo_estatico').src='imgs/batracoisa_4.png';
-      break;
-    case 5:
-      Jmol.script(jsmol_molecula,'color structure; spacefill 23%; wireframe OFF');
-      document.getElementById('modelo_estatico').src='imgs/batracoisa_5.png';
-      break;
-    
-    //https://chemapps.stolaf.edu/jmol/docs/examples/bonds.htm  altera visualisação dos dados
-  }
 }
 
 var debug_state = 0;
@@ -87,7 +49,27 @@ function debug() { //switch (on/off) de recursos de debug.
   // alert(debug_elements.length);
 }
 
-function botaoInicio() {
+function openFullscreen() { /* View in fullscreen */
+  if (document.documentElement.requestFullscreen) {
+    document.documentElement.requestFullscreen();
+  } else if (document.documentElement.webkitRequestFullscreen) { /* Safari */
+    document.documentElement.webkitRequestFullscreen();
+  } else if (document.documentElement.msRequestFullscreen) { /* IE11 */
+    document.documentElement.msRequestFullscreen();
+  }
+}
+
+function closeFullscreen() {/* Close fullscreen */
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.webkitExitFullscreen) { /* Safari */
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) { /* IE11 */
+    document.msExitFullscreen();
+  }
+}
+
+function botaoInicio() { //funções para executar com o botão de inicio do teste. 
   zerar_contagem();
   document.getElementById("cellLeft").style.visibility="visible";
   document.getElementById("cellRight").style.visibility="visible";
@@ -96,7 +78,7 @@ function botaoInicio() {
   document.getElementById("submitButton").style.visibility="visible";
 }
 
-function botaoSubmit(){
+function botaoSubmit(){ //funções para executar com o botão de fim do teste.
   timerStop();
   document.getElementById("cellLeft").style.visibility="hidden";
   document.getElementById("cellRight").style.visibility="hidden";
@@ -116,9 +98,9 @@ function botaoSubmit(){
   }
 }
 
-//funcao que insere valores no form antes de submeter
-function inserir_valores_form() { 
-  document.getElementById('test_id').value = task_list[task_n]; //qual tarefa foi realizada
+
+function inserir_valores_form() { //insert values in form before sumbission
+  document.getElementById('task_id').value = task_list[task_n]; //solved task identifier
   document.getElementById('ft').value = parametroT;
   document.getElementById('fd').value = parametroD;
   document.getElementById('fx').value = parametro1;
@@ -139,7 +121,7 @@ function tamanhoJanela() { //pega o tamanho/resolução da janela do browser
   //https://stackoverflow.com/questions/3437786/get-the-size-of-the-screen-current-web-page-and-browser-window
 }
 
-function zerar_contagem() { //reseta os valores de time_elapsed(num) e parametros (arrays)
+function zerar_contagem() { //reset time_elapsed(num) and parametros array values
   time_elapsed = 0;
   parametroT = [];
   parametroD = [];
@@ -151,8 +133,8 @@ function zerar_contagem() { //reseta os valores de time_elapsed(num) e parametro
   
 }
 
-let parametroT = [];  //tempo do sistema (Date.now())
-let parametroD = [];  //Duração em segundos
+let parametroT = [];  //system time (Date.now())
+let parametroD = [];  //Time elapsed in seconds
 let parametro1 = [];
 let parametro2 = [];
 let parametro3 = [];
@@ -174,7 +156,7 @@ function timerStart () {    //inicia contagem de tempo e registro de dados (getT
   }
 }
 
-function timerStop() { //função que para contagem
+function timerStop() { //stop the cronometer
   timerIsOn = false;
 }
 
@@ -199,7 +181,6 @@ function calc_drift(arr){ //calcula mediana do drift para correcao com base do a
 }
 
 function step() { //função executada a cada "interval" milissegundos
-  
   var dt = Date.now() - time_expected; // the drift (positive for overshooting)
   if (dt > interval) {  //demorou mais do que devia
 
@@ -230,7 +211,7 @@ function step() { //função executada a cada "interval" milissegundos
     
 var orientacaoQuat;
 function getTheNumbers() { //armazena os dados de orientação em quat. para os arrays a cada chamada
-  /*var*/ orientacaoQuat = Jmol.getPropertyAsArray(jsmol_molecula, 'orientationInfo.quaternion'); 
+  /*var*/ orientacaoQuat = Jmol.getPropertyAsArray(jsmolInteractiveObject, 'orientationInfo.quaternion'); 
   document.getElementById("indicador_orientacao").innerHTML = orientacaoQuat;// debug
   
   parametroT.push(Date.now());
@@ -258,9 +239,8 @@ form.addEventListener('submit', e => {
     .then(response => console.log('Success!', response))
     .catch(error => console.error('Error!', error.message))
 })
-// let data = ''
 
-let saveFile = () => {
+let saveFile = () => { //Salvar os dados localmente.
 
   // This variable stores all the data.
   let data =

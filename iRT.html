@@ -56,11 +56,11 @@
         <!-- Template: Texto no Html: <input name="header da coluna no gsheets" type="tipo do input"> -->
         Nome: <input name="fname" type="text" placeholder="Ex: Rodrigo Alves" size="30" autofocus><br>
         Email: <input name="email" type="email" placeholder="Ex: rodrigo@gmail.com" size="30"><br>
-        <input id="save_check" type="checkbox" onchange="localSaveSwitch(this)" > Salvar cópia local dos dados<br>
+        <input id="save_check" type="checkbox" onchange="localSaveSwitch(this)"> Salvar cópia local dos dados<br>
         <!-- talvez adicionar opção auto, que tenta salvar local se online não deu certo -->
         
         <!-- valores internos a serem enviados pelo forms -->
-        <input name="task_id" type="hidden" id="test_id" >
+        <input name="task_id" type="hidden" id="task_id" >
         <input name="ft" type="hidden" id="ft" >
         <input name="fd" type="hidden" id="fd" >
         <input name="fx" type="hidden" id="fx" >
@@ -68,7 +68,7 @@
         <input name="fz" type="hidden" id="fz" >
         <input name="fw" type="hidden" id="fw" >
       </form>
-      <button onclick="nextStage()">Próximo</button>
+      <button onclick="nextStage();prepMolecula(task_n)">Próximo</button>
     </div>
   </section>
   <section id="tab_teste" class="stage" style="display:none">  <!-- Tarefas interativas JSmol -->
@@ -76,7 +76,10 @@
     <table id="iRT_canvas_table"> <!--as bordas em css ajudam na formatacao, posso tirar no final-->
       <tr>
         <td class="JSmol_canvas" id="cellLeft">
-          <img id="modelo_estatico" src="imgs/batracoisa_0.png"/>
+          <script>
+            Info_interactive.src="models/pseudobatracotoxin_molecule.xyz";     // start at: moveto {-666 39 745 139.54} 
+            Jmol.getApplet("jsmolReferenceObject", Info_reference);
+          </script>
         </td>
         <td id="tdCenter">
           <div class="debug">Tempo: <output id="timer_onscreen" ></output> s</div>
@@ -84,7 +87,7 @@
           <br><button class="debug" onclick="botaoSubmit()">!POST</button>
           <br><button class="debug" onclick="timerStop()">timerStop</button>
           <br><button class="debug" onclick="saveFile()" form="gsForm">Save Data Localy</button>
-          <br><button class="debug" onclick="Jmol.script(jsmol_molecula,'console')">console</button>
+          <br><button class="debug" onclick="Jmol.script(jsmolInteractiveObject,'console')">console</button>
           <br>
           <br><button id="startButton" onclick="botaoInicio()">INÍCIO!</button>
           <br><button id="submitButton" onclick="botaoSubmit()" style="visibility:hidden" form="gsForm">ENVIAR!</button>
@@ -93,14 +96,13 @@
         </td>
         <td class="JSmol_canvas" id="cellRight"> <!--ajustar app para meio-->
           <script>
-            // Info.width=Info.height=400; 
-            Info.src="models/pseudobatracotoxin_molecule.xyz";     // start at: moveto {-666 39 745 139.54} 
-            Jmol.getApplet("jsmol_molecula", Info);
+            Info_interactive.src="models/pseudobatracotoxin_molecule.xyz";     // start at: moveto {-666 39 745 139.54} 
+            Jmol.getApplet("jsmolInteractiveObject", Info_interactive);
           </script>
         </td>
       </tr>
     </table>
-    <div class="debug" id=jsmol_molecula_console>Console (wip)</div>
+    <div id=jsmol_molecula_console class="debug">Console (wip)</div>
     
   </section>
   <section id="tab_fim" class="stage" style="display:none"> <!-- Texto de agradecimento e etc. -->
@@ -111,8 +113,8 @@
   <button class="debug" id="next_stage_button_debug" onclick="nextStage()">Pular estágio</button>
 
   <br>
-  <div style="position:sticky; bottom:0; ">
-    Updated 25/02/2023
+  <div style="position:sticky; bottom:0; font-size:x-small; ">
+    Updated 26/02/2023
   </div>
   <script src="scripts.js"></script> <!--precisa carregar por último, usa alguns elementos da própria página-->
 </body>
