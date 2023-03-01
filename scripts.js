@@ -98,8 +98,17 @@ function botaoSubmit(){ //funções para executar com o botão de fim do teste.
   }
 }
 
+//pixel:vertices distance (pixel:angstroms in Jmol) ratio calculation
+function rot_matrix(qr,qi,qj,qk,s=1){
+  R= [1-2*s*(qj**2 + qk**2), 2*s*(qi*qj - qk*qr), 2*s*(qi*qk + qj*qr),
+    2*s*(qi*qj + qk*qr), 1-2*s*(qi**2 + qk**2), 2*s*(qj*qk - qi*qr),
+    2*s*(qi*qk - qj*qr), 2*s*(qj*qk + qi*qr), 1-2*s*(qi**2 + qj**2)];
+}
+// rot_matrix(0.364020921169094,-0.461468888593546,-0.496180160381324,0.639015244149446)*[3.273825;2.1933;1.03843]
+//deveria dar
+// -2.0154	2.1806	-2.7911
 
-// Replace 5 with any positive integer you want
+// create numButtons button tags dinamically. Reflects task_list entries 
 const numButtons = task_list.length;
 const buttonContainer = document.getElementById("button-container");
 for (let i = 1; i <= numButtons; i++) {
