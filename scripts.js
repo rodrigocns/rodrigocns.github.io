@@ -171,14 +171,14 @@ for (let i = 1; i <= numButtons; i++) {
 }
 
 function inserir_valores_form() { //insert values in form before sumbission
-  document.getElementById('task_id').value = task_list[task_n]; //tasks identifier
-  document.getElementById('px:angstrom').value = razaoPxAngst;
-  document.getElementById('ft').value = parametroT;
-  document.getElementById('fDuration').value = parametroD;
-  document.getElementById('fQi').value = parametro1;
-  document.getElementById('fQj').value = parametro2;
-  document.getElementById('fQk').value = parametro3;
-  document.getElementById('fQr').value = parametro4;
+  document.getElementById('gsForm').task_id.value = task_list[task_n]; //tasks identifier
+  document.getElementById('gsForm').pxAngstRatio.value = razaoPxAngst;
+  document.getElementById('gsForm').epoch.value = parametroT;
+  document.getElementById('gsForm').duration.value = parametroD;
+  document.getElementById('gsForm').fQi.value = parametro1;
+  document.getElementById('gsForm').fQj.value = parametro2;
+  document.getElementById('gsForm').fQk.value = parametro3;
+  document.getElementById('gsForm').fQr.value = parametro4;
   //alert ("Func1 executou e alterou valor fy"); //debug
 }
 
@@ -321,13 +321,13 @@ let saveFile = () => { //Salvar os dados localmente.
     gsForm.fname.value + '\n' + 
     'email (email):\n' + 
     gsForm.email.value + '\n' + 
-    'Pixel to Angstrom ratio, for x and y axes (px:angstrom):\n' + 
+    'Pixel to Angstrom ratio, for x and y axes (pxAngstRatio):\n' + 
     razaoPxAngst + '\n' +
     'task_id: \n' + 
     task_list[task_n] + '\n' +
-    'Time Epoch (ft):\n' + 
+    'Time Epoch (epoch):\n' + 
     parametroT + '\n' + 
-    'Duration in seconds (fDuration):\n' + 
+    'Duration in seconds (duration):\n' + 
     parametroD + '\n' + 
     'Quaternions (Qi,Qj,Qk,Qr):\n' + 
     parametro1 + '\n' + 
