@@ -80,22 +80,22 @@ function botaoInicio() { //funções para executar com o botão de inicio do tes
 }
 
 function botaoSubmit(){ //funções para executar com o botão de fim do teste.
-  timerStop();
+  timerStop();  //stop cronometer
   document.getElementById("cellLeft").style.visibility="hidden";
-  document.getElementById("cellRight").style.visibility="hidden";
+  document.getElementById("cellRight").style.visibility="hidden"; //hides jmol screens
   inserir_valores_form();
-  document.getElementById("submitButton").style.visibility="hidden";
+  document.getElementById("submitButton").style.visibility="hidden"; //hides submit button
   task_n +=1; //Progride para a próxima tarefa em task_list e prepMolecula()
   // if (task_n >= 6) {task_n = 0;} /*volta ao primeiro*/
-  if (task_n >= task_list.length) {
-    document.getElementById("endTasksButton").style.visibility="visible";
-    return;
-  } /*finaliza os testes*/
-  //se falso, botão start aparece
-  document.getElementById("startButton").style.visibility="visible";
-  prepMolecula(task_n);
   if (is_local_save == true) {
     saveFile();
+  }
+  if (task_n >= task_list.length) { //if submitted task is/was last one, shows button for next stage instead of next task  
+    document.getElementById("endTasksButton").style.visibility="visible";
+    return;
+  } else {
+    document.getElementById("startButton").style.visibility="visible";
+    prepMolecula(task_n);
   }
 }
 
@@ -317,8 +317,19 @@ let saveFile = () => { //Salvar os dados localmente.
   // This variable stores all the data.
   let data =
   // data= 
+    'Name (fname):\n' + 
+    gsForm.fname.value + '\n' + 
+    'email (email):\n' + 
+    gsForm.email.value + '\n' + 
+    'Pixel to Angstrom ratio, for x and y axes (px:angstrom):\n' + 
+    razaoPxAngst + '\n' +
+    'task_id: \n' + 
+    task_list[task_n] + '\n' +
+    'Time Epoch (ft):\n' + 
     parametroT + '\n' + 
+    'Duration in seconds (fDuration):\n' + 
     parametroD + '\n' + 
+    'Quaternions (Qi,Qj,Qk,Qr):\n' + 
     parametro1 + '\n' + 
     parametro2 + '\n' + 
     parametro3 + '\n' + 
