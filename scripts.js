@@ -73,6 +73,8 @@ function botaoInicio() { //funções para executar com o botão de inicio do tes
   zerar_contagem();
   document.getElementById("cellLeft").style.visibility="visible";
   document.getElementById("cellRight").style.visibility="visible";
+  
+  getTheNumbers();                  // registra os dados SÓ do instante inicial (t=0)
   timerStart ();
   document.getElementById("startButton").style.visibility="hidden";
   document.getElementById("submitButton").style.visibility="visible";
@@ -195,14 +197,13 @@ function tamanhoJanela() { //pega o tamanho/resolução da janela do browser
 
 function zerar_contagem() { //reset time_elapsed(num) and parameter array values
   time_elapsed = 0;
+  document.getElementById("timer_onscreen").value = 0;
   parametroT = [];
   parametroD = [];
   parametro1 = []; 
   parametro2 = [];
   parametro3 = [];
   parametro4 = [];
-  // parametroF = []; 
-  
 }
 
 let parametroT = [];  //system time (Date.now())
@@ -211,10 +212,8 @@ let parametro1 = [];
 let parametro2 = [];
 let parametro3 = [];
 let parametro4 = [];
-// let parametroF = [];  //paramtetroF era para a distância à referencia
-var time_elapsed = 0;
-var tempo = document.getElementById("timer_onscreen"); //muda o valor do tempo na tela
-tempo.innerHTML = time_elapsed;
+var time_elapsed = 0; //duração do teste
+// document.getElementById("timer_onscreen").value = time_elapsed;
 var time_initial = Date.now();
 var timerIsOn = false;
 
@@ -224,7 +223,6 @@ function timerStart () {    //inicia contagem de tempo e registro de dados (getT
     time_expected = Date.now() + interval; //define o próximo ciclo esperado
     time_initial = Date.now();        // âncora da contagem de tempo com os ciclos do pc
     setTimeout(step, interval);       // começa a execuçao em loop da funcao "step" depois de "interval" milissegundos
-    getTheNumbers();                  // e registra os dados SÓ no instante inicial (t=0)
   }
 }
 
@@ -233,13 +231,13 @@ function timerStop() { //stop the cronometer
 }
 
 //contagem de tempo precisa com correção de drift https://stackoverflow.com/questions/29971898/how-to-create-an-accurate-timer-in-javascript 
-var interval = 100; // milissegundos. Período de cada registro
+var interval = 100; // milissegundos. Período esperado entre cada registro
 var time_expected = Date.now() + interval; 
 var drift_history = [];
 var drift_history_samples = 10;
 var drift_correction = 0;
 
-function calc_drift(arr){ //calcula mediana do drift para correcao com base do array
+function calc_drift(arr){ //calcula mediana do drift para correcao com base no array
   var values = arr.concat(); // copy array so it isn't mutated
   values.sort(function(a,b){
     return a-b;
@@ -260,7 +258,7 @@ function step() { //função executada a cada "interval" milissegundos
   // do what is to be done
   time_elapsed += interval/1000; // contagem sobe em "interval" segundos
   time_elapsed = Math.round(time_elapsed*10)/10; //arredonda pra ter só uma casa decimal
-  tempo.innerHTML = time_elapsed;
+  document.getElementById("timer_onscreen").value = time_elapsed;
   getTheNumbers();      //registro periódico da orientação
   
   if (dt <= interval) {
@@ -287,7 +285,7 @@ function getTheNumbers() { //armazena os dados de orientação em quat. para os 
   document.getElementById("indicador_orientacao").innerHTML = orientacaoQuat;// debug
   
   parametroT.push(Date.now());
-  parametroD.push(tempo.innerHTML);
+  parametroD.push(time_elapsed);
   parametro1.push(orientacaoQuat[0]);
   parametro2.push(orientacaoQuat[1]);
   parametro3.push(orientacaoQuat[2]);
@@ -298,7 +296,7 @@ function getTheNumbers() { //armazena os dados de orientação em quat. para os 
   // parametroF.push(Math.floor(valorTempResult) + "," + Math.round((valorTempResult%1)*1000));     // transformando float em string "abcd,efg"
 
   //cortei o grafico fora, depois eu reativo
-  // ctx.lineTo( (30+(tempo.innerHTML*10)) , (250-(valorTempResult/10)) );
+  // ctx.lineTo( (30+(timer_onscreen.value*10)) , (250-(valorTempResult/10)) );
   // ctx.stroke();
 }
 
