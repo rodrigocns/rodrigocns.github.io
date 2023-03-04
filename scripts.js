@@ -174,11 +174,11 @@ function inserir_valores_form() { //insert values in form before sumbission
   document.getElementById('task_id').value = task_list[task_n]; //tasks identifier
   document.getElementById('px:angstrom').value = razaoPxAngst;
   document.getElementById('ft').value = parametroT;
-  document.getElementById('fd').value = parametroD;
-  document.getElementById('fx').value = parametro1;
-  document.getElementById('fy').value = parametro2;
-  document.getElementById('fz').value = parametro3;
-  document.getElementById('fw').value = parametro4;
+  document.getElementById('fDuration').value = parametroD;
+  document.getElementById('fQi').value = parametro1;
+  document.getElementById('fQj').value = parametro2;
+  document.getElementById('fQk').value = parametro3;
+  document.getElementById('fQr').value = parametro4;
   //alert ("Func1 executou e alterou valor fy"); //debug
 }
 
