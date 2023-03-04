@@ -54,6 +54,7 @@
         
         <!-- valores internos a serem enviados pelo forms -->
         <input name="task_id" type="hidden" id="task_id" >
+        <input name="px:angstrom" type="hidden" id="px:angstrom" >
         <input name="ft" type="hidden" id="ft" >
         <input name="fd" type="hidden" id="fd" >
         <input name="fx" type="hidden" id="fx" >
@@ -78,7 +79,8 @@
           <br><button class="debug" onclick="tamanhoJanela()">scrSize</button>
           <br><button class="debug" onclick="botaoSubmit()">!POST</button>
           <br><button class="debug" onclick="timerStop()">timerStop</button>
-          <br><button class="debug" onclick="saveFile()" form="gsForm">Save Data Localy</button>
+          <br><button class="debug" onclick="saveFile()">Save Data Localy</button>
+          <br><button class="debug" onclick="pixelAngstromRatio(randXYZ(jsmolInteractiveObject),jsmolInteractiveObject,1)">px:Angst</button>
           <br><button class="debug" onclick="Jmol.script(jsmolInteractiveObject,'console')">console</button>
           <br>
           <br><button id="startButton" onclick="botaoInicio()">INÍCIO!</button>

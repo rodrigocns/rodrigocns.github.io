@@ -76,6 +76,7 @@ function botaoInicio() { //funções para executar com o botão de inicio do tes
   timerStart ();
   document.getElementById("startButton").style.visibility="hidden";
   document.getElementById("submitButton").style.visibility="visible";
+  razaoPxAngst=pixelAngstromRatio(randXYZ(jsmolInteractiveObject),jsmolInteractiveObject);
 }
 
 function botaoSubmit(){ //funções para executar com o botão de fim do teste.
@@ -98,15 +99,63 @@ function botaoSubmit(){ //funções para executar com o botão de fim do teste.
   }
 }
 
-//pixel:vertices distance (pixel:angstroms in Jmol) ratio calculation
-function rot_matrix(qr,qi,qj,qk,s=1){
-  R= [1-2*s*(qj**2 + qk**2), 2*s*(qi*qj - qk*qr), 2*s*(qi*qk + qj*qr),
-    2*s*(qi*qj + qk*qr), 1-2*s*(qi**2 + qk**2), 2*s*(qj*qk - qi*qr),
-    2*s*(qi*qk - qj*qr), 2*s*(qj*qk + qi*qr), 1-2*s*(qi**2 + qj**2)];
+function rot_matrix(qi,qj,qk,qr,s=1) { //generates 3x3 matrix of rotation related to input quaternion
+  //Jmol gives quaternion numbers with the real part at the last position. Thats why qr is last. 
+  let matrix = [
+    [1-2*s*(qj**2 + qk**2),   2*s*(qi*qj - qk*qr),   2*s*(qi*qk + qj*qr)],
+    [  2*s*(qi*qj + qk*qr), 1-2*s*(qi**2 + qk**2),   2*s*(qj*qk - qi*qr)],
+    [  2*s*(qi*qk - qj*qr),   2*s*(qj*qk + qi*qr), 1-2*s*(qi**2 + qj**2)],
+  ];
+  return matrix;
 }
-// rot_matrix(0.364020921169094,-0.461468888593546,-0.496180160381324,0.639015244149446)*[3.273825;2.1933;1.03843]
-//deveria dar
-// -2.0154	2.1806	-2.7911
+function matrix_prod (mat3x3,mat3x1) { //returns product of matrix 3x3 and matrix 3x1
+  let matProd = [
+    mat3x3[0][0]*mat3x1[0] + mat3x3[0][1]*mat3x1[1] + mat3x3[0][2]*mat3x1[2],
+    mat3x3[1][0]*mat3x1[0] + mat3x3[1][1]*mat3x1[1] + mat3x3[1][2]*mat3x1[2],
+    mat3x3[2][0]*mat3x1[0] + mat3x3[2][1]*mat3x1[1] + mat3x3[2][2]*mat3x1[2]
+  ];
+  return matProd;
+}
+function pixelAngstromRatio(xyz,jsmol_obj,debug=0){  //returns the pixel:Angstrons 
+  quatArr = Jmol.getPropertyAsArray(jsmol_obj, 'orientationInfo.quaternion'); 
+  
+  //get center of rotations xyz coordinates
+  let bBoxCenter = Jmol.getPropertyAsArray(jsmol_obj, 'boundBoxInfo.center'); 
+  //correct xyz coordinates as if rotation center is at (0,0,0)
+  let xyzCorrected = [xyz[0]-bBoxCenter[0],xyz[1]-bBoxCenter[1],xyz[2]-bBoxCenter[2]];
+  
+  //get rotation matrix
+  let matrix = rot_matrix(quatArr[0],quatArr[1],quatArr[2],quatArr[3]);
+  //aply rotation matrix to xyzCorrected coordinates
+  let xyzRotated = matrix_prod(matrix,xyzCorrected);
+  
+  //get the equivalent xy projection (pixels) of the xyz point in space. 
+  //NOTE: Jmol gives xyz "pixel" coordinates, but we use only x and y. 
+  //NOTE: y rises going up, x rises going right.
+  Jmol.script(jsmol_obj,'projecaoXY = point({'+xyz+'}, true)');
+  let sXYZ = Jmol.getPropertyAsArray(jsmol_obj, 'variableInfo.projecaoXY'); 
+  //correct pixel coordinates as if the middle of the screen is (0.0)
+  sHeight= Jmol.getPropertyAsArray(jsmol_obj, 'variableInfo._height');
+  sWidth= Jmol.getPropertyAsArray(jsmol_obj, 'variableInfo._width');
+  let sXYCorrected = [sXYZ[0]-sHeight/2, sXYZ[1]-sWidth/2];
+  //get the pixel:angstrom ratio
+  let razao = [sXYCorrected[0]/xyzRotated[0],sXYCorrected[1]/xyzRotated[1]];
+  if (debug==1){
+    console.log('razao pixel:Angstrom = '+razao)//debug
+  }
+  return razao;
+}
+
+function randXYZ(jsmol_obj) { //return random xyz coordinates inside boundbox of input jmol object 
+  let boxMin= Jmol.getPropertyAsArray(jsmol_obj, 'boundBoxInfo.corner0');
+  let boxMax= Jmol.getPropertyAsArray(jsmol_obj, 'boundBoxInfo.corner1');
+  let xyz = [0,0,0];
+  xyz[0] = Math.random()*(boxMax[0]-boxMin[0])+boxMin[0];
+  xyz[1] = Math.random()*(boxMax[1]-boxMin[1])+boxMin[1];
+  xyz[2] = Math.random()*(boxMax[2]-boxMin[2])+boxMin[2];
+  // console.log('xyz: '+xyz); //debug
+  return xyz;
+}
 
 // create numButtons button tags dinamically. Reflects task_list entries 
 const numButtons = task_list.length;
@@ -122,7 +171,8 @@ for (let i = 1; i <= numButtons; i++) {
 }
 
 function inserir_valores_form() { //insert values in form before sumbission
-  document.getElementById('task_id').value = task_list[task_n]; //solved task identifier
+  document.getElementById('task_id').value = task_list[task_n]; //tasks identifier
+  document.getElementById('px:angstrom').value = razaoPxAngst;
   document.getElementById('ft').value = parametroT;
   document.getElementById('fd').value = parametroD;
   document.getElementById('fx').value = parametro1;
@@ -143,7 +193,7 @@ function tamanhoJanela() { //pega o tamanho/resolução da janela do browser
   //https://stackoverflow.com/questions/3437786/get-the-size-of-the-screen-current-web-page-and-browser-window
 }
 
-function zerar_contagem() { //reset time_elapsed(num) and parametros array values
+function zerar_contagem() { //reset time_elapsed(num) and parameter array values
   time_elapsed = 0;
   parametroT = [];
   parametroD = [];
