@@ -7,7 +7,13 @@
 }
 
 a {
-  background-color:lightgray
+  background-color:#303030;
+  color:dodgerblue    ;
+  border-radius: 6px;
+  padding: 4px;
+}
+a:visited {
+  color:mediumorchid;
 }
 /*
 a:link {
@@ -16,10 +22,18 @@ a:link {
 a:hover {
   color:palegreen;
   font-weight:bold;
+}*/
+.dev-div{
+  color:cornsilk;
+  background-color: #404070;
 }
-a:visited {
-  color:palegoldenrod;
+a.dev-div{
+  color:gold;
 }
+a.dev-div:visited{
+  color:burlywood;
+}
+
 /* https://coolors.co/contrast-checker/112a46-acc8e5 */
 
 body{
@@ -53,6 +67,7 @@ header{
 #gsForm {
   padding: 100px 0;
 }
+
 
 table{
   border: 60px solid;
