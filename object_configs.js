@@ -47,6 +47,7 @@ var Ori2 = -389;
 var Ori3 = -627;
 var Ori4 = 93.16;
 
+const task_list = ["bastao_c","bastao_g","bolaBastao_c","bolaBastao_g","bola_c","bola_g","mrt"];
 function prepMolecula(num) {   //mapper para o preparo do teste que está acontecendo
   //Rotaciona para a orientação inicial do objeto
   jsmol_ref = jsmolReferenceObject; 

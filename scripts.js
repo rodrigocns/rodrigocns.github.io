@@ -1,6 +1,5 @@
 
 //Todas as Funcoes da página aqui. Precisa das funcoes referentes aos objetos jmol
-const task_list = ["bastao_c","bastao_g","bolaBastao_c","bolaBastao_g","bola_c","bola_g","mrt"];
 let task_n = 0; //número da tarefa interativa atual
 let stage = 0;
 
