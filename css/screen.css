@@ -9,7 +9,7 @@
 a {
   background-color:#303030;
   color:dodgerblue    ;
-  border-radius: 6px;
+  border-radius: 4px;
   padding: 4px;
 }
 a:visited {
@@ -38,15 +38,16 @@ a.dev-div:visited{
 
 body{
 	font:12px sans-serif;
-	line-height:1.5em;
+	line-height:2.0em;
 	color:#EEEEEE;
   background-color: #404040;
 }
 
 h1, h2, h3, h4, h5, h6{
-	font-weight:normal;
+	font:2.5em sans-serif;
+  font-weight:normal;
 	margin:0;
-	line-height:1.2em;
+	line-height:1.6em;
 	color:#EEEEEE;
   background-color: #404040;
 }
