@@ -1,6 +1,12 @@
+//functions for page data structure and flow.
 
-//Todas as Funcoes da página aqui. Precisa das funcoes referentes aos objetos jmol
-let task_n = 0; //número da tarefa interativa atual
+//Insert here your copied web app URL between the single quotes! 
+const scriptURL = 'https://script.google.com/macros/s/AKfycbxtKza8SDt27Ik39cktDyv66dD2Lt77vERuHWOVEnraLH91kQwBl1r2bPQoD8Gi1BZW/exec'
+
+//Besides the line above, everything else in this file should be left as it is.
+//Unless you know what you are doing, or you want to fiddle with coding and learn more! :D
+
+let task_n = 0; //número da tarefa interativa inicial
 let stage = 0;
 
 const stage_elements = document.getElementsByClassName('stage'); //pega a lista de stages
@@ -299,8 +305,7 @@ function getTheNumbers() { //armazena os dados de orientação em quat. para os 
   // ctx.stroke();
 }
 
-//snip traduz form em linha no gsheets
-const scriptURL = 'https://script.google.com/macros/s/AKfycbxtKza8SDt27Ik39cktDyv66dD2Lt77vERuHWOVEnraLH91kQwBl1r2bPQoD8Gi1BZW/exec'
+//snip traduz form em linha no gsheets. scriptURL moved to file's first lines.
 const form = document.forms['submit-to-google-sheet']
 form.addEventListener('submit', e => {
   e.preventDefault()
