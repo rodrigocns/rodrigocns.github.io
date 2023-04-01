@@ -176,6 +176,7 @@ for (let i = 1; i <= numButtons; i++) {
 }
 
 function inserir_valores_form() { //insert values in form before sumbission
+  document.getElementById('gsForm').sessionID.value = sessionID;
   document.getElementById('gsForm').task_id.value = task_list[task_n]; //tasks identifier
   document.getElementById('gsForm').pxAngstRatio.value = razaoPxAngst;
   document.getElementById('gsForm').epochStart.value = time_initial;
@@ -283,6 +284,9 @@ function step() { //função executada a cada "interval" milissegundos
   }
 }
 
+const timestamp = Date.now();
+const randomString = Math.random().toString(36).substring(2, 7);
+const sessionID = `${timestamp}-${randomString}`;
 var precision = 1000000 //quantidade de casas decimais para usar nos dados de quaternios
 var orientacaoQuat;
 function getTheNumbers() { //armazena os dados de orientação em quat. para os arrays a cada chamada
@@ -324,6 +328,8 @@ let saveFile = () => { //Salvar os dados localmente.
     gsForm.fname.value + '\n' + 
     'email (email):\n' + 
     gsForm.email.value + '\n' + 
+    'ID (sessionID):\n' + 
+    gsForm.sessionID.value + '\n' + 
     'Pixel to Angstrom ratio, for x and y axes (pxAngstRatio):\n' + 
     razaoPxAngst + '\n' +
     'task_id: \n' + 

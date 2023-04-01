@@ -43,7 +43,7 @@
   <section id="tab_form" class="stage current-stage" style="display:block"> <!-- Forms -->
     <div id="div_form" style="height:400px" >
       <form name="submit-to-google-sheet" id="gsForm">
-        Escreva seu nome, email para contato e clique em próximo.
+        Escreva nome e email para contato caso queira receber notícias sobre a pesquisa e clique em próximo.
         <br><br>
         
         <!-- Template: Texto no Html: <input name="header da coluna no gsheets" type="tipo do input"> -->
@@ -54,6 +54,7 @@
         
         <!-- valores internos a serem enviados pelo forms -->
         <!-- Precisa mudar aqui e no scripts.js -->
+        <input type="hidden" name="sessionID">
         <input type="hidden" name="task_id">
         <input type="hidden" name="pxAngstRatio">
         <input type="hidden" name="epochStart">
