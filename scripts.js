@@ -63,7 +63,6 @@ function openFullscreen() { /* View in fullscreen */
     document.documentElement.msRequestFullscreen();
   }
 }
-
 function closeFullscreen() {/* Close fullscreen */
   if (document.exitFullscreen) {
     document.exitFullscreen();
@@ -79,8 +78,8 @@ function botaoInicio() { //funções para executar com o botão de inicio do tes
   document.getElementById("cellLeft").style.visibility="visible";
   document.getElementById("cellRight").style.visibility="visible";
   
-  getTheNumbers();                  // registra os dados SÓ do instante inicial (t=0)
   timerStart ();
+  getTheNumbers();                  // registra os dados SÓ do instante inicial (t=0)
   document.getElementById("startButton").style.visibility="hidden";
   document.getElementById("submitButton").style.visibility="visible";
   razaoPxAngst=pixelAngstromRatio(randXYZ(jsmolInteractiveObject),jsmolInteractiveObject);
@@ -152,7 +151,6 @@ function pixelAngstromRatio(xyz,jsmol_obj,debug=0){  //returns the pixel:Angstro
   }
   return razao;
 }
-
 function randXYZ(jsmol_obj) { //return random xyz coordinates inside boundbox of input jmol object 
   let boxMin= Jmol.getPropertyAsArray(jsmol_obj, 'boundBoxInfo.corner0');
   let boxMax= Jmol.getPropertyAsArray(jsmol_obj, 'boundBoxInfo.corner1');
@@ -225,10 +223,10 @@ function zerar_contagem() { //reset time_elapsed(num) and parameter array values
 
 function timerStart () {    //inicia contagem de tempo e registro de dados (getTheNumbers())
   if (timerIsOn == false) {           // se timer estiver parado,
-    timerIsOn = true;                 // liga "led" do timer
     time_expected = Date.now() + interval; //define o próximo ciclo esperado
     time_initial = Date.now();        // âncora da contagem de tempo com os ciclos do pc
     setTimeout(step, interval);       // começa a execuçao em loop da funcao "step" depois de "interval" milissegundos
+    timerIsOn = true;                 // liga "luz LED" do timer
   }
 }
 
@@ -285,11 +283,15 @@ function step() { //função executada a cada "interval" milissegundos
   }
 }
     
+var testeTimeInit=[];
+var testeEpoch=[];
 var orientacaoQuat;
 function getTheNumbers() { //armazena os dados de orientação em quat. para os arrays a cada chamada
   /*var*/ orientacaoQuat = Jmol.getPropertyAsArray(jsmolInteractiveObject, 'orientationInfo.quaternion'); 
   document.getElementById("indicador_orientacao").innerHTML = orientacaoQuat;// debug
   
+  testeTimeInit.push(time_initial);
+  testeEpoch.push(Date.now());
   arrayEpoch.push(Date.now()-time_initial);
   parametroD.push(time_elapsed);
   parametro1.push(orientacaoQuat[0]);
@@ -360,6 +362,17 @@ let saveFile = () => { //Salvar os dados localmente.
   newLink.click(); 
   //créditos: https://www.encodedna.com/javascript/practice-ground/default.htm?pg=save_form_data_in_text_file_using_javascript
 }
+var is_local_save = false;
+document.getElementById('save_check').checked = false; //default é não salvar.
+function localSaveSwitch(checkbox) {
+  if (checkbox.checked) {
+    // document.body.style.backgroundColor = "red" //debug
+    is_local_save = true;
+  } else {
+    //document.body.style.backgroundColor = "" //debug
+    is_local_save = false;
+  }
+}
 
 //funções para a estrutura da página em abas 
 tabs = function(options) {  
@@ -401,16 +414,3 @@ tabs = function(options) {
 }
 // initialize the function
 tabs('nav ul');
-
-var is_local_save = false;
-document.getElementById('save_check').checked = false; //default é não salvar.
-function localSaveSwitch(checkbox) {
-  if (checkbox.checked) {
-    // document.body.style.backgroundColor = "red" //debug
-    is_local_save = true;
-  } else {
-    //document.body.style.backgroundColor = "" //debug
-    is_local_save = false;
-  }
-}
-
