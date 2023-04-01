@@ -290,7 +290,7 @@ function getTheNumbers() { //armazena os dados de orientação em quat. para os 
   /*var*/ orientacaoQuat = Jmol.getPropertyAsArray(jsmolInteractiveObject, 'orientationInfo.quaternion'); 
   document.getElementById("indicador_orientacao").innerHTML = orientacaoQuat;// debug
   
-  arrayEpoch.push(time_initial - Date.now());
+  arrayEpoch.push(Date.now()-time_initial);
   parametroD.push(time_elapsed);
   parametro1.push(orientacaoQuat[0]);
   parametro2.push(orientacaoQuat[1]);
