@@ -282,7 +282,8 @@ function step() { //função executada a cada "interval" milissegundos
     setTimeout(step, Math.max(0, interval - dt - drift_correction)); //terminando a primeira chamada, vai executar essa mesma funcao com um tempo corrigido
   }
 }
-    
+
+var precision = 1000000 //quantidade de casas decimais para usar nos dados de quaternios
 var orientacaoQuat;
 function getTheNumbers() { //armazena os dados de orientação em quat. para os arrays a cada chamada
   /*var*/ orientacaoQuat = Jmol.getPropertyAsArray(jsmolInteractiveObject, 'orientationInfo.quaternion'); 
@@ -290,10 +291,10 @@ function getTheNumbers() { //armazena os dados de orientação em quat. para os 
   
   arrayEpoch.push(Date.now()-time_initial);
   parametroD.push(time_elapsed);
-  parametro1.push(orientacaoQuat[0]);
-  parametro2.push(orientacaoQuat[1]);
-  parametro3.push(orientacaoQuat[2]);
-  parametro4.push(orientacaoQuat[3]);
+  parametro1.push( Math.round(orientacaoQuat[0]*precision)/precision );
+  parametro2.push( Math.round(orientacaoQuat[1]*precision)/precision );
+  parametro3.push( Math.round(orientacaoQuat[2]*precision)/precision );
+  parametro4.push( Math.round(orientacaoQuat[3]*precision)/precision );
   
   // calc. da distancia à resposta (CORRIGIR PRO QUATERNION!)
   // var valorTempResult =  Math.sqrt( Math.pow((orientacaoQuat[1]-Ori1),2) + Math.pow((orientacaoQuat[2]-Ori2),2) + Math.pow((orientacaoQuat[3]-Ori3),2) + Math.pow((orientacaoQuat[4]-Ori4),2) );  
