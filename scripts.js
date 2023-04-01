@@ -78,7 +78,7 @@ function botaoInicio() { //funções para executar com o botão de inicio do tes
   document.getElementById("cellLeft").style.visibility="visible";
   document.getElementById("cellRight").style.visibility="visible";
   
-  timerStart ();
+  timerStart ();                    //inicia contagem de tempo e funções periódicas
   getTheNumbers();                  // registra os dados SÓ do instante inicial (t=0)
   document.getElementById("startButton").style.visibility="hidden";
   document.getElementById("submitButton").style.visibility="visible";
@@ -283,15 +283,11 @@ function step() { //função executada a cada "interval" milissegundos
   }
 }
     
-var testeTimeInit=[];
-var testeEpoch=[];
 var orientacaoQuat;
 function getTheNumbers() { //armazena os dados de orientação em quat. para os arrays a cada chamada
   /*var*/ orientacaoQuat = Jmol.getPropertyAsArray(jsmolInteractiveObject, 'orientationInfo.quaternion'); 
   document.getElementById("indicador_orientacao").innerHTML = orientacaoQuat;// debug
   
-  testeTimeInit.push(time_initial);
-  testeEpoch.push(Date.now());
   arrayEpoch.push(Date.now()-time_initial);
   parametroD.push(time_elapsed);
   parametro1.push(orientacaoQuat[0]);
