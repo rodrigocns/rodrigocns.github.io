@@ -1,6 +1,12 @@
+//functions for page data structure and flow.
 
-//Todas as Funcoes da página aqui. Precisa das funcoes referentes aos objetos jmol
-let task_n = 0; //número da tarefa interativa atual
+//Insert here your copied web app URL between the single quotes! 
+const scriptURL = 'https://script.google.com/macros/s/AKfycbxtKza8SDt27Ik39cktDyv66dD2Lt77vERuHWOVEnraLH91kQwBl1r2bPQoD8Gi1BZW/exec'
+
+//Besides the line above, everything else in this file should be left as it is.
+//Unless you know what you are doing, or you want to fiddle with coding and learn more! :D
+
+let task_n = 0; //número da tarefa interativa inicial
 let stage = 0;
 
 const stage_elements = document.getElementsByClassName('stage'); //pega a lista de stages
@@ -57,7 +63,6 @@ function openFullscreen() { /* View in fullscreen */
     document.documentElement.msRequestFullscreen();
   }
 }
-
 function closeFullscreen() {/* Close fullscreen */
   if (document.exitFullscreen) {
     document.exitFullscreen();
@@ -73,8 +78,8 @@ function botaoInicio() { //funções para executar com o botão de inicio do tes
   document.getElementById("cellLeft").style.visibility="visible";
   document.getElementById("cellRight").style.visibility="visible";
   
+  timerStart ();                    //inicia contagem de tempo e funções periódicas
   getTheNumbers();                  // registra os dados SÓ do instante inicial (t=0)
-  timerStart ();
   document.getElementById("startButton").style.visibility="hidden";
   document.getElementById("submitButton").style.visibility="visible";
   razaoPxAngst=pixelAngstromRatio(randXYZ(jsmolInteractiveObject),jsmolInteractiveObject);
@@ -146,7 +151,6 @@ function pixelAngstromRatio(xyz,jsmol_obj,debug=0){  //returns the pixel:Angstro
   }
   return razao;
 }
-
 function randXYZ(jsmol_obj) { //return random xyz coordinates inside boundbox of input jmol object 
   let boxMin= Jmol.getPropertyAsArray(jsmol_obj, 'boundBoxInfo.corner0');
   let boxMax= Jmol.getPropertyAsArray(jsmol_obj, 'boundBoxInfo.corner1');
@@ -174,7 +178,8 @@ for (let i = 1; i <= numButtons; i++) {
 function inserir_valores_form() { //insert values in form before sumbission
   document.getElementById('gsForm').task_id.value = task_list[task_n]; //tasks identifier
   document.getElementById('gsForm').pxAngstRatio.value = razaoPxAngst;
-  document.getElementById('gsForm').epoch.value = parametroT;
+  document.getElementById('gsForm').epochStart.value = time_initial;
+  document.getElementById('gsForm').epochArr.value = arrayEpoch;
   document.getElementById('gsForm').duration.value = parametroD;
   document.getElementById('gsForm').fQi.value = parametro1;
   document.getElementById('gsForm').fQj.value = parametro2;
@@ -194,18 +199,7 @@ function tamanhoJanela() { //pega o tamanho/resolução da janela do browser
   //https://stackoverflow.com/questions/3437786/get-the-size-of-the-screen-current-web-page-and-browser-window
 }
 
-function zerar_contagem() { //reset time_elapsed(num) and parameter array values
-  time_elapsed = 0;
-  document.getElementById("timer_onscreen").value = 0;
-  parametroT = [];
-  parametroD = [];
-  parametro1 = []; 
-  parametro2 = [];
-  parametro3 = [];
-  parametro4 = [];
-}
-
-let parametroT = [];  //system time (Date.now())
+let arrayEpoch = [];  //system time (Date.now())
 let parametroD = [];  //Time elapsed in seconds
 let parametro1 = [];
 let parametro2 = [];
@@ -213,15 +207,26 @@ let parametro3 = [];
 let parametro4 = [];
 var time_elapsed = 0; //duração do teste
 // document.getElementById("timer_onscreen").value = time_elapsed;
-var time_initial = Date.now();
+var time_initial = Date.now(); //precisa ser global para usar no formulario
 var timerIsOn = false;
+
+function zerar_contagem() { //reset time_elapsed(num) and parameter array values
+  time_elapsed = 0;
+  document.getElementById("timer_onscreen").value = 0;
+  arrayEpoch = [];
+  parametroD = [];
+  parametro1 = []; 
+  parametro2 = [];
+  parametro3 = [];
+  parametro4 = [];
+}
 
 function timerStart () {    //inicia contagem de tempo e registro de dados (getTheNumbers())
   if (timerIsOn == false) {           // se timer estiver parado,
-    timerIsOn = true;                 // liga "led" do timer
     time_expected = Date.now() + interval; //define o próximo ciclo esperado
     time_initial = Date.now();        // âncora da contagem de tempo com os ciclos do pc
     setTimeout(step, interval);       // começa a execuçao em loop da funcao "step" depois de "interval" milissegundos
+    timerIsOn = true;                 // liga "luz LED" do timer
   }
 }
 
@@ -277,18 +282,19 @@ function step() { //função executada a cada "interval" milissegundos
     setTimeout(step, Math.max(0, interval - dt - drift_correction)); //terminando a primeira chamada, vai executar essa mesma funcao com um tempo corrigido
   }
 }
-    
+
+var precision = 1000000 //quantidade de casas decimais para usar nos dados de quaternios
 var orientacaoQuat;
 function getTheNumbers() { //armazena os dados de orientação em quat. para os arrays a cada chamada
   /*var*/ orientacaoQuat = Jmol.getPropertyAsArray(jsmolInteractiveObject, 'orientationInfo.quaternion'); 
   document.getElementById("indicador_orientacao").innerHTML = orientacaoQuat;// debug
   
-  parametroT.push(Date.now());
+  arrayEpoch.push(Date.now()-time_initial);
   parametroD.push(time_elapsed);
-  parametro1.push(orientacaoQuat[0]);
-  parametro2.push(orientacaoQuat[1]);
-  parametro3.push(orientacaoQuat[2]);
-  parametro4.push(orientacaoQuat[3]);
+  parametro1.push( Math.round(orientacaoQuat[0]*precision)/precision );
+  parametro2.push( Math.round(orientacaoQuat[1]*precision)/precision );
+  parametro3.push( Math.round(orientacaoQuat[2]*precision)/precision );
+  parametro4.push( Math.round(orientacaoQuat[3]*precision)/precision );
   
   // calc. da distancia à resposta (CORRIGIR PRO QUATERNION!)
   // var valorTempResult =  Math.sqrt( Math.pow((orientacaoQuat[1]-Ori1),2) + Math.pow((orientacaoQuat[2]-Ori2),2) + Math.pow((orientacaoQuat[3]-Ori3),2) + Math.pow((orientacaoQuat[4]-Ori4),2) );  
@@ -299,8 +305,7 @@ function getTheNumbers() { //armazena os dados de orientação em quat. para os 
   // ctx.stroke();
 }
 
-//snip traduz form em linha no gsheets
-const scriptURL = 'https://script.google.com/macros/s/AKfycbxtKza8SDt27Ik39cktDyv66dD2Lt77vERuHWOVEnraLH91kQwBl1r2bPQoD8Gi1BZW/exec'
+//snip traduz form em linha no gsheets. scriptURL moved to file's first lines.
 const form = document.forms['submit-to-google-sheet']
 form.addEventListener('submit', e => {
   e.preventDefault()
@@ -311,7 +316,8 @@ form.addEventListener('submit', e => {
 
 let saveFile = () => { //Salvar os dados localmente.
 
-  // This variable stores all the data.
+  // This variable stores all the local data.
+  //Parameter (header in online sheets): value
   let data =
   // data= 
     'Name (fname):\n' + 
@@ -322,8 +328,10 @@ let saveFile = () => { //Salvar os dados localmente.
     razaoPxAngst + '\n' +
     'task_id: \n' + 
     task_list[task_n] + '\n' +
-    'Time Epoch (epoch):\n' + 
-    parametroT + '\n' + 
+    '1st Epoch Unix  (epochStart):\n' + 
+    time_initial + '\n' + 
+    'Epoch array (epochArr):\n' + 
+    arrayEpoch + '\n' + 
     'Duration in seconds (duration):\n' + 
     parametroD + '\n' + 
     'Quaternions (Qi,Qj,Qk,Qr):\n' + 
@@ -350,6 +358,17 @@ let saveFile = () => { //Salvar os dados localmente.
 
   newLink.click(); 
   //créditos: https://www.encodedna.com/javascript/practice-ground/default.htm?pg=save_form_data_in_text_file_using_javascript
+}
+var is_local_save = false;
+document.getElementById('save_check').checked = false; //default é não salvar.
+function localSaveSwitch(checkbox) {
+  if (checkbox.checked) {
+    // document.body.style.backgroundColor = "red" //debug
+    is_local_save = true;
+  } else {
+    //document.body.style.backgroundColor = "" //debug
+    is_local_save = false;
+  }
 }
 
 //funções para a estrutura da página em abas 
@@ -392,16 +411,3 @@ tabs = function(options) {
 }
 // initialize the function
 tabs('nav ul');
-
-var is_local_save = false;
-document.getElementById('save_check').checked = false; //default é não salvar.
-function localSaveSwitch(checkbox) {
-  if (checkbox.checked) {
-    // document.body.style.backgroundColor = "red" //debug
-    is_local_save = true;
-  } else {
-    //document.body.style.backgroundColor = "" //debug
-    is_local_save = false;
-  }
-}
-
