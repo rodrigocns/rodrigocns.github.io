@@ -284,9 +284,11 @@ function step() { //função executada a cada "interval" milissegundos
   }
 }
 
-const timestamp = Date.now();
-const randomString = Math.random().toString(36).substring(2, 7);
-const sessionID = `${timestamp}-${randomString}`;
+//Criando id único da sessão (ninguém deveria conseguir abrir a página no mesmo milésimo sem querer)
+const sessionID = `${Date.now()}`;
+//const randomString = Math.random().toString(36).substring(2, 7);
+//const sessionID = `${Date.now()}-${randomString}`;
+
 var precision = 1000000 //quantidade de casas decimais para usar nos dados de quaternios
 var orientacaoQuat;
 function getTheNumbers() { //armazena os dados de orientação em quat. para os arrays a cada chamada
@@ -318,34 +320,35 @@ form.addEventListener('submit', e => {
     .catch(error => console.error('Error!', error.message))
 })
 
+function getLocalData() {
+  let data =
+    'sessionID:' + sessionID + ';' +
+    'fname:' + gsForm.fname.value + ';' +
+    'email:' + gsForm.email.value + ';' +
+    'pxAngstRatio:' + (razaoPxAngst[0]+razaoPxAngst[1])/2 + ';' +
+    '\n' + 
+    "sessionID,task_id,epoch,duration,Qi,Qj,Qk,Qr\n";
+  let newRow = "";
+  for (i = 0; i < parametro1.length; i++) {
+    newRow = 
+      sessionID + ',' +
+      task_list[task_n] + ',' +
+      time_initial+arrayEpoch[i] + ',' +
+      parametroD[i] + ',' +
+      parametro1[i] + ',' +
+      parametro2[i] + ',' +
+      parametro3[i] + ',' +
+      parametro4[i] + '\n';
+    data = data + newRow;
+  }
+  return data;
+}
+
 let saveFile = () => { //Salvar os dados localmente.
 
   // This variable stores all the local data.
-  //Parameter (header in online sheets): value
-  let data =
-  // data= 
-    'Name (fname):\n' + 
-    gsForm.fname.value + '\n' + 
-    'email (email):\n' + 
-    gsForm.email.value + '\n' + 
-    'ID (sessionID):\n' + 
-    gsForm.sessionID.value + '\n' + 
-    'Pixel to Angstrom ratio, for x and y axes (pxAngstRatio):\n' + 
-    razaoPxAngst + '\n' +
-    'task_id: \n' + 
-    task_list[task_n] + '\n' +
-    '1st Epoch Unix  (epochStart):\n' + 
-    time_initial + '\n' + 
-    'Epoch array (epochArr):\n' + 
-    arrayEpoch + '\n' + 
-    'Duration in seconds (duration):\n' + 
-    parametroD + '\n' + 
-    'Quaternions (Qi,Qj,Qk,Qr):\n' + 
-    parametro1 + '\n' + 
-    parametro2 + '\n' + 
-    parametro3 + '\n' + 
-    parametro4 + '\n';
-
+  let data = getLocalData();
+  
   // Convert the text to BLOB.
   const textToBLOB = new Blob([data], { type: 'text/plain' });
   const sFileName = 'IRT_OUTPUT_'+task_list[task_n]+'.csv';	// Local file name.
