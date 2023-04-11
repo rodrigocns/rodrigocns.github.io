@@ -132,23 +132,3 @@ function buildPoligonFilledMol(jsmol_obj) {
     color $f7 gray;\
     ');
 }
-
-/*
-draw ID f1 polygon [@30 @29 @35 @42 @43 @44 @36];
-draw ID f2 polygon [@29 @39 @41 @40 @30];
-draw ID f3 polygon [@30 @29 @28 @27 @7 @8];
-draw ID f4 polygon [@5 @6 @7 @8 @9 @10];
-draw ID f5 polygon [@2 @1 @6 @5];
-draw ID f6 polygon [@2 @3 @4 @5];
-draw ID f7 polygon [@2 @22 @10 @5];
-color $f1 gray;
-color $f2 gray;
-color $f3 gray;
-color $f4 gray;
-color $f5 gray;
-color $f6 gray;
-color $f7 gray;
-wireframe 0.08;
-set showHydrogens FALSE;
-
-*/
