@@ -1,7 +1,7 @@
 //functions for page data structure and flow.
 
 //Insert here your copied web app URL between the single quotes! 
-const scriptURL = 'https://script.google.com/macros/s/AKfycbxtKza8SDt27Ik39cktDyv66dD2Lt77vERuHWOVEnraLH91kQwBl1r2bPQoD8Gi1BZW/exec'
+const scriptURL = 'https://script.google.com/macros/s/AKfycbxtKza8SDt27Ik39cktDyv66dD2Lt77vERuHWOVEnraLH91kQwBl1r2bPQoD8Gi1BZW/exec';
 
 //Besides the line above, everything else in this file should be left as it is.
 //Unless you know what you are doing, or you want to fiddle with coding and learn more! :D
