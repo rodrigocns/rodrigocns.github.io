@@ -43,7 +43,8 @@
   <section id="tab_form" class="stage current-stage" style="display:block"> <!-- Forms -->
     <div id="div_form" style="height:400px" >
       <form name="submit-to-google-sheet" id="gsForm">
-        Escreva nome e email para contato caso queira receber notícias sobre a pesquisa e clique em próximo.
+        <!-- Escreva nome e email para contato caso queira receber notícias sobre a pesquisa e clique em próximo. -->
+        Write name and email for contact in case you want to receive news about the survey and click 'Next'.
         <br><br>
         
         <!-- Template: Texto no Html: <input name="header da coluna no gsheets" type="tipo do input"> -->
@@ -65,7 +66,7 @@
         <input type="hidden" name="fQk">
         <input type="hidden" name="fQr">
       </form>
-      <button onclick="nextStage();prepMolecula(task_n)">Próximo</button>
+      <button onclick="nextStage();prepMolecula(task_n)">Next</button>
     </div>
   </section>
   <section id="tab_teste" class="stage" style="display:none">  <!-- Tarefas interativas JSmol -->
@@ -78,6 +79,9 @@
           </script>
         </td>
         <td id="tdCenter">
+          When starting each task, you must rotate the right object until it is as close as you can get to the left object, and then click the 'DONE' button!  
+          When ready, click the 'GO!' button to start.
+          <br>
           <div class="debug">Tempo: <output id="timer_onscreen" ></output> s</div>
           <br><button class="debug" onclick="tamanhoJanela()">scrSize</button>
           <br><button class="debug" onclick="botaoSubmit()">!POST</button>
@@ -86,9 +90,9 @@
           <br><button class="debug" onclick="pixelAngstromRatio(randXYZ(jsmolInteractiveObject),jsmolInteractiveObject,1)">px:Angst</button>
           <br><button class="debug" onclick="Jmol.script(jsmolInteractiveObject,'console')">console</button>
           <br>
-          <br><button id="startButton" onclick="botaoInicio()">INÍCIO!</button>
-          <br><button id="submitButton" onclick="botaoSubmit()" style="visibility:hidden" form="gsForm">ENVIAR!</button>
-          <br><button id="endTasksButton" onclick="nextStage()" style="visibility:hidden">Próximo</button>
+          <br><button id="startButton" onclick="botaoInicio()">GO!</button>
+          <br><button id="submitButton" onclick="botaoSubmit()" style="visibility:hidden" form="gsForm">DONE!</button>
+          <br><button id="endTasksButton" onclick="nextStage()" style="visibility:hidden">Next</button>
  
         </td>
         <td class="JSmol_canvas" id="cellRight"> <!--ajustar app para meio-->
