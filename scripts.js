@@ -190,8 +190,12 @@ function inserir_valores_form() { //insert values in form before sumbission
   document.getElementById('gsForm').fQj.value = parametro2;
   document.getElementById('gsForm').fQk.value = parametro3;
   document.getElementById('gsForm').fQr.value = parametro4;
+  [winX,winY] = tamanhoJanela();
+  document.getElementById('gsForm').scrSizeX.value = winX;
+  document.getElementById('gsForm').scrSizeY.value = winY;
   //alert ("Func1 executou e alterou valor fy"); //debug
 }
+
 
 function tamanhoJanela() { //pega o tamanho/resolução da janela do browser
   var win = window,
@@ -200,7 +204,8 @@ function tamanhoJanela() { //pega o tamanho/resolução da janela do browser
   body = doc.getElementsByTagName('body')[0],
   x = win.innerWidth || docElem.clientWidth || body.clientWidth,
   y = win.innerHeight|| docElem.clientHeight|| body.clientHeight;
-  alert(x + ' × ' + y);    
+  console.log(x + ' × ' + y);
+  return [x,y];
   //https://stackoverflow.com/questions/3437786/get-the-size-of-the-screen-current-web-page-and-browser-window
 }
 
