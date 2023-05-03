@@ -71,37 +71,41 @@
   </section>
   <section id="tab_teste" class="stage" style="display:none">  <!-- Tarefas interativas JSmol -->
     <div class="debug" id="indicador_orientacao" style="background-color:gray">Test</div> <!--coordenadas de orientacao-->
-    <table id="iRT_canvas_table"> <!--as bordas em css ajudam na formatacao, posso tirar no final-->
-      <tr>
-        <td class="JSmol_canvas" id="cellLeft">
-          <script>
-            Jmol.getApplet("jsmolReferenceObject", Info_reference);
-          </script>
-        </td>
-        <td id="tdCenter">
+
+
+    <div id="iRT_canvas_table" class="flexElem"> <!--as bordas em css ajudam na formatacao, posso tirar no final-->
+      <div>
+        <div id="tdCenter">
           When starting each task, you must rotate the object on the right until it is as close as you can get to the object on the left, and then click the 'DONE' button!  
           When ready, click the 'GO!' button for the objects to appear and start the task.
           <br>
           <div class="debug">Duration: <output id="timer_onscreen" ></output> s</div>
-          <br><button class="debug" onclick="tamanhoJanela()">scrSize</button>
-          <br><button class="debug" onclick="botaoSubmit()">!POST</button>
-          <br><button class="debug" onclick="timerStop()">timerStop</button>
-          <br><button class="debug" onclick="saveFile()">Save Data Localy</button>
-          <br><button class="debug" onclick="pixelAngstromRatio(randXYZ(jsmolInteractiveObject),jsmolInteractiveObject,1)">px:Angst</button>
-          <br><button class="debug" onclick="Jmol.script(jsmolInteractiveObject,'console')">console</button>
-          <br>
-          <br><button id="startButton" onclick="botaoInicio()">GO!</button>
-          <br><button id="submitButton" onclick="botaoSubmit()" style="visibility:hidden" form="gsForm">DONE!</button>
-          <br><button id="endTasksButton" onclick="nextStage();closeFullscreen()" style="visibility:hidden">Next</button>
- 
-        </td>
-        <td class="JSmol_canvas" id="cellRight"> <!--ajustar app para meio-->
+          <button class="debug" onclick="tamanhoJanela()">scrSize</button>
+          <button class="debug" onclick="botaoSubmit()">!POST</button>
+          <button class="debug" onclick="timerStop()">timerStop</button>
+          <button class="debug" onclick="saveFile()">Save Data Localy</button>
+          <button class="debug" onclick="pixelAngstromRatio(randXYZ(jsmolInteractiveObject),jsmolInteractiveObject,1)">px:Angst</button>
+          <button class="debug" onclick="Jmol.script(jsmolInteractiveObject,'console')">console</button>
+          
+          <div>
+            <button id="startButton" onclick="botaoInicio()">GO!</button>
+            <button id="submitButton" onclick="botaoSubmit()" style="visibility:hidden" form="gsForm">DONE!</button>
+            <button id="endTasksButton" onclick="nextStage();closeFullscreen()" style="visibility:hidden">Next</button>
+          </div>
+    
+        </div>
+        <div class="JSmol_canvas" id="cellLeft">
+          <script>
+            Jmol.getApplet("jsmolReferenceObject", Info_reference);
+          </script>
+        </div>
+        <div class="JSmol_canvas" id="cellRight"> <!--ajustar app para meio-->
           <script>
             Jmol.getApplet("jsmolInteractiveObject", Info_interactive);
           </script>
-        </td>
-      </tr>
-    </table>
+        </div>
+      </div>
+    </div>
     <div id=jsmol_molecula_console class="debug">Console (wip)</div>
     
   </section>

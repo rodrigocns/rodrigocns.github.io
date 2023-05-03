@@ -81,7 +81,9 @@ function botaoInicio() { //funções para executar com o botão de inicio do tes
   timerStart ();                    //inicia contagem de tempo e funções periódicas
   getTheNumbers();                  // registra os dados SÓ do instante inicial (t=0)
   document.getElementById("startButton").style.visibility="hidden";
-  document.getElementById("submitButton").style.visibility="visible";
+  setTimeout(function() {
+    document.getElementById("submitButton").style.visibility="visible";
+  }, 1000);
   razaoPxAngst=pixelAngstromRatio(randXYZ(jsmolInteractiveObject),jsmolInteractiveObject);
 }
 
@@ -100,8 +102,10 @@ function botaoSubmit(){ //funções para executar com o botão de fim do teste.
     document.getElementById("endTasksButton").style.visibility="visible";
     return;
   } else {
-    document.getElementById("startButton").style.visibility="visible";
     prepMolecula(task_n);
+    setTimeout(function() {
+      document.getElementById("startButton").style.visibility="visible";
+    }, 1000);
   }
 }
 
