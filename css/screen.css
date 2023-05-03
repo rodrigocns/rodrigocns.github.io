@@ -67,6 +67,8 @@ header{
 
 #gsForm {
   padding: 100px 0;
+  width:90%;
+  margin:auto;
 }
 
 
@@ -91,10 +93,14 @@ th, td {
 }
 #tdCenter{
   display:table-cell; 
-  height:400px; 
   vertical-align:bottom; 
+  /* height:15rem;  */
   background-color:gray;
-  width:20%;
+  width:100%;
+}
+
+.flexElem{
+  display:flex;
 }
 
 .JSmol_canvas {

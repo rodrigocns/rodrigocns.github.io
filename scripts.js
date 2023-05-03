@@ -81,7 +81,9 @@ function botaoInicio() { //funções para executar com o botão de inicio do tes
   timerStart ();                    //inicia contagem de tempo e funções periódicas
   getTheNumbers();                  // registra os dados SÓ do instante inicial (t=0)
   document.getElementById("startButton").style.visibility="hidden";
-  document.getElementById("submitButton").style.visibility="visible";
+  setTimeout(function() {
+    document.getElementById("submitButton").style.visibility="visible";
+  }, 1000);
   razaoPxAngst=pixelAngstromRatio(randXYZ(jsmolInteractiveObject),jsmolInteractiveObject);
 }
 
@@ -100,8 +102,10 @@ function botaoSubmit(){ //funções para executar com o botão de fim do teste.
     document.getElementById("endTasksButton").style.visibility="visible";
     return;
   } else {
-    document.getElementById("startButton").style.visibility="visible";
     prepMolecula(task_n);
+    setTimeout(function() {
+      document.getElementById("startButton").style.visibility="visible";
+    }, 1000);
   }
 }
 
@@ -186,8 +190,12 @@ function inserir_valores_form() { //insert values in form before sumbission
   document.getElementById('gsForm').fQj.value = parametro2;
   document.getElementById('gsForm').fQk.value = parametro3;
   document.getElementById('gsForm').fQr.value = parametro4;
+  [winX,winY] = tamanhoJanela();
+  document.getElementById('gsForm').scrSizeX.value = winX;
+  document.getElementById('gsForm').scrSizeY.value = winY;
   //alert ("Func1 executou e alterou valor fy"); //debug
 }
+
 
 function tamanhoJanela() { //pega o tamanho/resolução da janela do browser
   var win = window,
@@ -196,7 +204,8 @@ function tamanhoJanela() { //pega o tamanho/resolução da janela do browser
   body = doc.getElementsByTagName('body')[0],
   x = win.innerWidth || docElem.clientWidth || body.clientWidth,
   y = win.innerHeight|| docElem.clientHeight|| body.clientHeight;
-  alert(x + ' × ' + y);    
+  console.log(x + ' × ' + y);
+  return [x,y];
   //https://stackoverflow.com/questions/3437786/get-the-size-of-the-screen-current-web-page-and-browser-window
 }
 

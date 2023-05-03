@@ -36,7 +36,7 @@ var Info_interactive = {
 // frank off;
 
 var Info_reference = structuredClone(Info_interactive);
-//disable rotation
+//disable rotation at 0. default is 1
 Info_reference.script = Info_interactive.script.concat("set mouseDragFactor 0");
 
 //reference orientation
