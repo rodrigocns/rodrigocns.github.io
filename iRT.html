@@ -41,7 +41,7 @@
     </div>
   </section>
   <section id="tab_form" class="stage current-stage" style="display:block"> <!-- Forms -->
-    <div id="div_form" style="height:400px" >
+    <div id="div_form">
       <form name="submit-to-google-sheet" id="gsForm">
         <!-- Escreva nome e email para contato caso queira receber notícias sobre a pesquisa e clique em próximo. -->
         Write name and email for contact in case you want to receive news about the survey and click 'Next'.
@@ -51,8 +51,13 @@
         Name: <input name="fname" type="text" placeholder="Ex: Rodrigo Alves" size="30" autofocus><br>
         Email: <input name="email" type="email" placeholder="Ex: rodrigo@gmail.com" size="30"><br>
         <input id="save_check" type="checkbox" onchange="localSaveSwitch(this)"> Download backup copy of data<br>
+        <br>
         <!-- talvez adicionar opção auto, que tenta salvar local se online não deu certo -->
-        
+        In the next section you will perform 3 rotation tasks. When you click on the 'GO!'
+         button, two objects will appear in opposite corners of the screen. The goal is to
+         rotate the object on the right until you get it as close as possible to the object 
+         on the left. To rotate it, simply drag the mouse over the object.  When you finish 
+         each of the 3 tasks, click on the 'DONE!' button to continue.
         <!-- valores internos a serem enviados pelo forms -->
         <!-- Precisa mudar aqui e no scripts.js -->
         <input type="hidden" name="sessionID">
@@ -66,8 +71,8 @@
         <input type="hidden" name="fQk">
         <input type="hidden" name="fQr">
       </form>
-      <button onclick="nextStage();prepMolecula(task_n);openFullscreen()">Next</button>
     </div>
+    <button onclick="nextStage();prepMolecula(task_n);openFullscreen()">Next</button>
   </section>
   <section id="tab_teste" class="stage" style="display:none">  <!-- Tarefas interativas JSmol -->
     <div class="debug" id="indicador_orientacao" style="background-color:gray">Test</div> <!--coordenadas de orientacao-->
@@ -76,8 +81,7 @@
     <div id="iRT_canvas_table" class="flexElem"> <!--as bordas em css ajudam na formatacao, posso tirar no final-->
       <div>
         <div id="tdCenter">
-          When starting each task, you must rotate the object on the right until it is as close as you can get to the object on the left, and then click the 'DONE' button!  
-          When ready, click the 'GO!' button for the objects to appear and start the task.
+
           <br>
           <div class="debug">Duration: <output id="timer_onscreen" ></output> s</div>
           <button class="debug" onclick="tamanhoJanela()">scrSize</button>
