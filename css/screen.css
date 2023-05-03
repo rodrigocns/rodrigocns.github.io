@@ -92,11 +92,11 @@ th, td {
   float: right;
 }
 #tdCenter{
-  /* display:table-cell;  */
-  /* vertical-align:bottom;  */
+  display:table-cell; 
+  vertical-align:bottom; 
   /* height:15rem;  */
   background-color:gray;
-  /* width:100%; */
+  width:100%;
 }
 
 .flexElem{

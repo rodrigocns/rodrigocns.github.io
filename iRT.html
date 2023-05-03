@@ -80,9 +80,18 @@
     <div class="debug" id="indicador_orientacao" style="background-color:gray">Test</div> <!--coordenadas de orientacao-->
 
 
-    <div id="iRT_canvas_table" class="flexElem"> <!--as bordas em css ajudam na formatacao, posso tirar no final-->
-      <div>
-        <div id="tdCenter">
+    <table id="iRT_canvas_table"> <!--as bordas em css ajudam na formatacao, posso tirar no final-->
+      <tr>
+        <button id="startButton" onclick="botaoInicio()">GO!</button>
+        <button id="submitButton" onclick="botaoSubmit()" style="visibility:hidden" form="gsForm">DONE!</button>
+      </tr>
+      <tr>
+        <td class="JSmol_canvas" id="cellLeft">
+          <script>
+            Jmol.getApplet("jsmolReferenceObject", Info_reference);
+          </script>
+        </td>
+        <td id="tdCenter">
 
           <br>
           <div class="debug">Duration: <output id="timer_onscreen" ></output> s</div>
@@ -94,24 +103,17 @@
           <button class="debug" onclick="Jmol.script(jsmolInteractiveObject,'console')">console</button>
           
           <div>
-            <button id="startButton" onclick="botaoInicio()">GO!</button>
-            <button id="submitButton" onclick="botaoSubmit()" style="visibility:hidden" form="gsForm">DONE!</button>
             <button id="endTasksButton" onclick="nextStage();closeFullscreen()" style="visibility:hidden">Next</button>
           </div>
     
-        </div>
-        <div class="JSmol_canvas" id="cellLeft">
-          <script>
-            Jmol.getApplet("jsmolReferenceObject", Info_reference);
-          </script>
-        </div>
-        <div class="JSmol_canvas" id="cellRight"> <!--ajustar app para meio-->
+        </td>
+        <td class="JSmol_canvas" id="cellRight"> <!--ajustar app para meio-->
           <script>
             Jmol.getApplet("jsmolInteractiveObject", Info_interactive);
           </script>
-        </div>
-      </div>
-    </div>
+        </td>
+      </tr>
+    </table>
     <div id=jsmol_molecula_console class="debug">Console (wip)</div>
     
   </section>
