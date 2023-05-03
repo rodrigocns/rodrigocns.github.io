@@ -66,7 +66,7 @@
         <input type="hidden" name="fQk">
         <input type="hidden" name="fQr">
       </form>
-      <button onclick="nextStage();prepMolecula(task_n)">Next</button>
+      <button onclick="nextStage();prepMolecula(task_n);openFullscreen()">Next</button>
     </div>
   </section>
   <section id="tab_teste" class="stage" style="display:none">  <!-- Tarefas interativas JSmol -->
@@ -92,7 +92,7 @@
           <br>
           <br><button id="startButton" onclick="botaoInicio()">GO!</button>
           <br><button id="submitButton" onclick="botaoSubmit()" style="visibility:hidden" form="gsForm">DONE!</button>
-          <br><button id="endTasksButton" onclick="nextStage()" style="visibility:hidden">Next</button>
+          <br><button id="endTasksButton" onclick="nextStage();closeFullscreen()" style="visibility:hidden">Next</button>
  
         </td>
         <td class="JSmol_canvas" id="cellRight"> <!--ajustar app para meio-->
