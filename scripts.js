@@ -126,7 +126,7 @@ function matrix_prod (mat3x3,mat3x1) { //returns product of matrix 3x3 and matri
   ];
   return matProd;
 }
-function pixelAngstromRatio(xyz,jsmol_obj,debug=0){  //returns the pixel:Angstrons 
+function pixelAngstromRatio(xyz,jsmol_obj,debug=0){  //returns the pixel to Angstrons ratio 
   quatArr = Jmol.getPropertyAsArray(jsmol_obj, 'orientationInfo.quaternion'); 
   
   //get center of rotations xyz coordinates
@@ -182,14 +182,20 @@ for (let i = 1; i <= numButtons; i++) {
 function inserir_valores_form() { //insert values in form before sumbission
   document.getElementById('gsForm').sessionID.value = sessionID;
   document.getElementById('gsForm').task_id.value = task_list[task_n]; //tasks identifier
-  document.getElementById('gsForm').pxAngstRatio.value = razaoPxAngst;
-  document.getElementById('gsForm').epochStart.value = time_initial;
-  document.getElementById('gsForm').epochArr.value = arrayEpoch;
-  document.getElementById('gsForm').duration.value = parametroD;
-  document.getElementById('gsForm').fQi.value = parametro1;
+  document.getElementById('gsForm').pxAngstRatio.value = razaoPxAngst; //pixels to jmol distance unit ratio 
+  document.getElementById('gsForm').epochStart.value = time_initial;//initial time in unix epoch
+  document.getElementById('gsForm').epochArr.value = arrayEpoch;//duration in milliseconds
+  document.getElementById('gsForm').duration.value = parametroD;//time registered by iRT
+  document.getElementById('gsForm').fQi.value = parametro1; //quaternion array of values of the interactive model.
   document.getElementById('gsForm').fQj.value = parametro2;
   document.getElementById('gsForm').fQk.value = parametro3;
-  document.getElementById('gsForm').fQr.value = parametro4;
+  document.getElementById('gsForm').fQr.value = parametro4; // Qr is the real component
+  refQuat = Jmol.getPropertyAsArray(jsmolReferenceObject, 'orientationInfo.quaternion');
+  document.getElementById('gsForm').ref_i.value = refQuat[0]; //quaternion values of the reference model
+  document.getElementById('gsForm').ref_j.value = refQuat[1];
+  document.getElementById('gsForm').ref_k.value = refQuat[2];
+  document.getElementById('gsForm').ref_r.value = refQuat[3];
+  
   [winX,winY] = tamanhoJanela();
   document.getElementById('gsForm').scrSizeX.value = winX;
   document.getElementById('gsForm').scrSizeY.value = winY;
