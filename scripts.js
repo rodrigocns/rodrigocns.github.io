@@ -203,6 +203,9 @@ function insert_form_values() { //insert values in form before sumbission
   document.getElementById('gsForm').scrSizeY.value = winY;  //Header,url field and other elements are outside 
   browserInfo = Jmol.getPropertyAsArray(jsmolInteractiveObject, 'appletInfo.operatingSystem');
   document.getElementById('gsForm').browser.value = browserInfo; // what browser was used
+  modelFileLocation = Jmol.getPropertyAsArray(jsmolInteractiveObject, 'fileName');
+  modelName = modelFileLocation.slice(modelFileLocation.lastIndexOf("/")+1);
+  document.getElementById('gsForm').modelName.value = modelName; // fileName of 3D model used
   gsFormStatus = 1;
   //alert ("Func1 executou e alterou valor fy"); //debug
   return gsFormStatus;
