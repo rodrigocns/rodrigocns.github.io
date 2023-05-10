@@ -194,11 +194,10 @@ function inserir_valores_form() { //insert values in form before sumbission
   document.getElementById('gsForm').ref_i.value = refQuat[0]; //quaternion values of the reference model
   document.getElementById('gsForm').ref_j.value = refQuat[1];
   document.getElementById('gsForm').ref_k.value = refQuat[2];
-  document.getElementById('gsForm').ref_r.value = refQuat[3];
-  
+  document.getElementById('gsForm').ref_r.value = refQuat[3]; 
   [winX,winY] = tamanhoJanela();
-  document.getElementById('gsForm').scrSizeX.value = winX;
-  document.getElementById('gsForm').scrSizeY.value = winY;
+  document.getElementById('gsForm').scrSizeX.value = winX;  // browser screen width and height (X,Y)
+  document.getElementById('gsForm').scrSizeY.value = winY;  //Header,url field and other elements are outside 
   //alert ("Func1 executou e alterou valor fy"); //debug
 }
 
