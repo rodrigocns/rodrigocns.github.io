@@ -201,6 +201,8 @@ function insert_form_values() { //insert values in form before sumbission
   [winX,winY] = tamanhoJanela();
   document.getElementById('gsForm').scrSizeX.value = winX;  // browser screen width and height (X,Y)
   document.getElementById('gsForm').scrSizeY.value = winY;  //Header,url field and other elements are outside 
+  browserInfo = Jmol.getPropertyAsArray(jsmolInteractiveObject, 'appletInfo.operatingSystem');
+  document.getElementById('gsForm').browser.value = browserInfo; // what browser was used
   gsFormStatus = 1;
   //alert ("Func1 executou e alterou valor fy"); //debug
   return gsFormStatus;
