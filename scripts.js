@@ -91,7 +91,10 @@ function botaoSubmit(){ //funções para executar com o botão de fim do teste.
   timerStop();  //stop cronometer
   document.getElementById("cellLeft").style.visibility="hidden";
   document.getElementById("cellRight").style.visibility="hidden"; //hides jmol screens
-  inserir_valores_form();
+  gsFormStatus = insert_form_values();
+  if (gsFormStatus != 1){
+    alert("Error in forms data upload!\nSomething inside the function insert_form_values() went wrong!");
+  }
   document.getElementById("submitButton").style.visibility="hidden"; //hides submit button
   task_n +=1; //Progride para a próxima tarefa em task_list e prepMolecula()
   // if (task_n >= 6) {task_n = 0;} /*volta ao primeiro*/
@@ -179,7 +182,7 @@ for (let i = 1; i <= numButtons; i++) {
   buttonContainer.appendChild(button);
 }
 
-function inserir_valores_form() { //insert values in form before sumbission
+function insert_form_values() { //insert values in form before sumbission
   document.getElementById('gsForm').sessionID.value = sessionID;
   document.getElementById('gsForm').task_id.value = task_list[task_n]; //tasks identifier
   document.getElementById('gsForm').pxAngstRatio.value = razaoPxAngst; //pixels to jmol distance unit ratio 
@@ -198,7 +201,9 @@ function inserir_valores_form() { //insert values in form before sumbission
   [winX,winY] = tamanhoJanela();
   document.getElementById('gsForm').scrSizeX.value = winX;  // browser screen width and height (X,Y)
   document.getElementById('gsForm').scrSizeY.value = winY;  //Header,url field and other elements are outside 
+  gsFormStatus = 1;
   //alert ("Func1 executou e alterou valor fy"); //debug
+  return gsFormStatus;
 }
 
 
