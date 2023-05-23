@@ -201,6 +201,16 @@ function insert_form_values() { //insert values in form before sumbission
   [winX,winY] = tamanhoJanela();
   document.getElementById('gsForm').scrSizeX.value = winX;  // browser screen width and height (X,Y)
   document.getElementById('gsForm').scrSizeY.value = winY;  //Header,url field and other elements are outside 
+  //refCanvasPositions = jsmolReferenceObject_canvas2d.getBoundingClientRect();
+  //document.getElementById('gsForm').cvsRefTop.value = refCanvasPositions.top;  // reference canvas top,right,bottom,left positions
+  //document.getElementById('gsForm').cvsRefRight.value = refCanvasPositions.right;  
+  //document.getElementById('gsForm').cvsRefBottom.value = refCanvasPositions.bottom;  
+  //document.getElementById('gsForm').cvsRefLeft.value = refCanvasPositions.left;  
+  //intCanvasPositions = jsmolInteractiveObject_canvas2d.getBoundingClientRect();
+  //document.getElementById('gsForm').cvsIntTop.value = intCanvasPositions.top;  // interactive canvas top,right,bottom,left positions
+  //document.getElementById('gsForm').cvsIntRight.value = intCanvasPositions.right;  
+  //document.getElementById('gsForm').cvsIntBottom.value = intCanvasPositions.bottom;  
+  //document.getElementById('gsForm').cvsIntLeft.value = intCanvasPositions.left;  
   browserInfo = Jmol.getPropertyAsArray(jsmolInteractiveObject, 'appletInfo.operatingSystem');
   document.getElementById('gsForm').browser.value = browserInfo; // what browser was used
   modelFileLocation = Jmol.getPropertyAsArray(jsmolInteractiveObject, 'fileName');
@@ -208,6 +218,7 @@ function insert_form_values() { //insert values in form before sumbission
   document.getElementById('gsForm').modelName.value = modelName; // fileName of 3D model used
   gsFormStatus = 1;
   //alert ("Func1 executou e alterou valor fy"); //debug
+  console.log("Form values inserted! gsFormStatus: "+gsFormStatus);
   return gsFormStatus;
 }
 
@@ -223,6 +234,16 @@ function tamanhoJanela() { //pega o tamanho/resolução da janela do browser
   return [x,y];
   //https://stackoverflow.com/questions/3437786/get-the-size-of-the-screen-current-web-page-and-browser-window
 }
+
+// function elemPosition(elemID) { //pega posições xy (left-top) e outras do elemento pela ID
+//   //const element = document.getElementById(elemID);
+//   const rect = elemID.getBoundingClientRect();
+//   const position = {
+//   x: rect.left + window.scrollX,
+//   y: rect.top + window.scrollY
+//   };
+//   console.log(position);
+// }
 
 let arrayEpoch = [];  //system time (Date.now())
 let parametroD = [];  //Time elapsed in seconds
