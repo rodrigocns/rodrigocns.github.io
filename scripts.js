@@ -201,12 +201,12 @@ function insert_form_values() { //insert values in form before sumbission
   [winX,winY] = tamanhoJanela();
   document.getElementById('gsForm').scrSizeX.value = winX;  // browser screen width and height (X,Y)
   document.getElementById('gsForm').scrSizeY.value = winY;  //Header,url field and other elements are outside 
-  refCanvasPositions = jsmolInteractiveObject.getBoundingClientRect();
+  refCanvasPositions = jsmolReferenceObject_canvas2d.getBoundingClientRect();
   document.getElementById('gsForm').cvsRefTop.value = refCanvasPositions.top;  // reference canvas top,right,bottom,left positions
   document.getElementById('gsForm').cvsRefRight.value = refCanvasPositions.right;  
   document.getElementById('gsForm').cvsRefBottom.value = refCanvasPositions.bottom;  
   document.getElementById('gsForm').cvsRefLeft.value = refCanvasPositions.left;  
-  intCanvasPositions = jsmolInteractiveObject.getBoundingClientRect();
+  intCanvasPositions = jsmolInteractiveObject_canvas2d.getBoundingClientRect();
   document.getElementById('gsForm').cvsIntTop.value = intCanvasPositions.top;  // interactive canvas top,right,bottom,left positions
   document.getElementById('gsForm').cvsIntRight.value = intCanvasPositions.right;  
   document.getElementById('gsForm').cvsIntBottom.value = intCanvasPositions.bottom;  
@@ -218,6 +218,7 @@ function insert_form_values() { //insert values in form before sumbission
   document.getElementById('gsForm').modelName.value = modelName; // fileName of 3D model used
   gsFormStatus = 1;
   //alert ("Func1 executou e alterou valor fy"); //debug
+  console.log("Form values inserted! gsFormStatus: "+gsFormStatus);
   return gsFormStatus;
 }
 
