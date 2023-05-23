@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iRT - interactive Rotation Tasks</title>
+  <link rel="stylesheet" href="css/screen.css" type="text/css" >
+  <link rel="stylesheet" href="css/w3.css"> <!--entender como funciona e fazer a minha versão-->
+  <script type="text/javascript" src="jsmol/JSmol.min.js"></script>
+  <script type="text/javascript" src="object_configs.js"></script>
+  
+</head>
+
+<body>
+  <!-- switch do modo debug -->
+  <div style="text-align:right"><span id="debug_switch" style="color:#404040" onclick="debug()">Debug</span></div>
+  <!-- <section class="w3-container w3-center w3-animate-opacity"> -->
+  <section id="tab_navigation" class="debug">
+    <!-- <div style="background:#404070"> -->
+    <div class="dev-div">
+      Você está no modo debug! Se foi engano, favor clicar novamente no canto da tela, ou recarregar a página e esquecer que viu isso! ;D
+      <br>
+      <!-- webpage Links -->
+      <a class="dev-div" href="rodrigocns.github.io">
+      Home</a>
+      <a class="dev-div" href="https://script.google.com/home/projects/1L21yINxKMX5ngrT7JYiIOuATQeicxtVxDmKmXGD_rSoaXtIG8n0nrACp/deployments/AKfycbxtKza8SDt27Ik39cktDyv66dD2Lt77vERuHWOVEnraLH91kQwBl1r2bPQoD8Gi1BZW">
+      AppScript</a> 
+      <a class="dev-div" href="https://docs.google.com/spreadsheets/d/1LSDoA22scyWVJUDlwudKqX0o86w5b-Ds-lGOhRBGYis/edit#gid=0">
+      Gsheets</a>
+      <!-- section navigation buttons -->
+      <nav>
+        <ul>
+          <li><a href="#tab_form">Forms</a></li>
+          <li><a href="#tab_teste">Teste</a></li>
+          <!-- <li><a href="#tab3">Gráfico</a></li> WIP -->
+        </ul>
+        <!-- iniciar as diferentes tarefas do teste interativo-->
+        <div id="button-container"></div>
+        <hr>
+      </nav>
+    </div>
+  </section>
+  <section id="tab_form" class="stage current-stage" style="display:block"> <!-- Forms -->
+    <div id="div_form">
+      <form name="submit-to-google-sheet" id="gsForm">
+        <!-- Escreva nome e email para contato caso queira receber notícias sobre a pesquisa e clique em próximo. -->
+        Write name and email for contact in case you want to receive news about the survey and click 'Next'.
+        <br><br>
+        
+        <!-- Template: Texto no Html: <input name="header da coluna no gsheets" type="tipo do input"> -->
+        Name: <input name="fname" type="text" placeholder="Ex: Rodrigo Alves" size="30" autofocus><br>
+        Email: <input name="email" type="email" placeholder="Ex: rodrigo@gmail.com" size="30"><br>
+        <input id="save_check" type="checkbox" onchange="localSaveSwitch(this)"> Download backup copy of data<br>
+        <br>
+        <!-- talvez adicionar opção auto, que tenta salvar local se online não deu certo -->
+        <!--
+          In the next section you will perform three rotation tasks. When you click on the 'GO!'
+        button, two objects will appear in opposite corners of the screen. Your goal is to rotate
+        the object on the right until it closely matches the object on the left as best as you can.
+        To rotate the object, click and drag your mouse over it.  When you finish 
+        each of the 3 tasks, click on the 'DONE!' button to continue.
+        -->
+        <!-- valores internos a serem enviados pelo forms -->
+        <!-- Precisa mudar aqui e no scripts.js -->
+        <input type="hidden" name="sessionID">
+        <input type="hidden" name="task_id">
+        <input type="hidden" name="pxAngstRatio">
+        <input type="hidden" name="epochStart">
+        <input type="hidden" name="epochArr">
+        <input type="hidden" name="duration">
+        <input type="hidden" name="fQi">
+        <input type="hidden" name="fQj">
+        <input type="hidden" name="fQk">
+        <input type="hidden" name="fQr">
+        <input type="hidden" name="ref_i">
+        <input type="hidden" name="ref_j">
+        <input type="hidden" name="ref_k">
+        <input type="hidden" name="ref_r">
+        <input type="hidden" name="scrSizeX">
+        <input type="hidden" name="scrSizeY">
+        <input type="hidden" name="browser">
+        <input type="hidden" name="modelName">
+      </form>
+    </div>
+    <button onclick="nextStage();prepMolecula(task_n);openFullscreen()">Next</button>
+  </section>
+  <section id="tab_teste" class="stage" style="display:none">  <!-- Tarefas interativas JSmol -->
+    <div class="debug" id="indicador_orientacao" style="background-color:gray">Test</div> <!--coordenadas de orientacao-->
+
+
+    <table id="iRT_canvas_table"> <!--as bordas em css ajudam na formatacao, posso tirar no final-->
+      <tr>
+        <button id="startButton" onclick="botaoInicio()">GO!</button>
+        <button id="submitButton" onclick="botaoSubmit()" style="visibility:hidden" form="gsForm">DONE!</button>
+      </tr>
+      <tr>
+        <td class="JSmol_canvas" id="cellLeft">
+          <script>
+            Jmol.getApplet("jsmolReferenceObject", Info_reference);
+          </script>
+        </td>
+        <td id="tdCenter">
+
+          <br>
+          <div class="debug">Duration: <output id="timer_onscreen" ></output> s</div>
+          <button class="debug" onclick="tamanhoJanela()">scrSize</button>
+          <button class="debug" onclick="botaoSubmit()">!POST</button>
+          <button class="debug" onclick="timerStop()">timerStop</button>
+          <button class="debug" onclick="saveFile()">Save Data Localy</button>
+          <button class="debug" onclick="pixelAngstromRatio(randXYZ(jsmolInteractiveObject),jsmolInteractiveObject,1)">px:Angst</button>
+          <button class="debug" onclick="Jmol.script(jsmolInteractiveObject,'console')">console</button>
+          
+          <div>
+            <button id="endTasksButton" onclick="nextStage();closeFullscreen()" style="visibility:hidden">Next</button>
+          </div>
+    
+        </td>
+        <td class="JSmol_canvas" id="cellRight"> <!--ajustar app para meio-->
+          <script>
+            Jmol.getApplet("jsmolInteractiveObject", Info_interactive);
+          </script>
+        </td>
+      </tr>
+    </table>
+    <div id=jsmol_molecula_console class="debug">Console (wip)</div>
+    
+  </section>
+  <section id="tab_fim" class="stage" style="display:none"> <!-- Texto de agradecimento e etc. -->
+    "Muito obrigado por participar da nossa pesquisa!"
+    "Thank you for participating in our research!"
+
+    Contact: rodrigoconsoli@gmail.com
+    <br><br><br><br>
+  </section>
+  <button class="debug" id="next_stage_button_debug" onclick="nextStage()">Pular estágio</button>
+
+  <br>
+  <div style="position:sticky; bottom:0; font-size:x-small; ">
+    Updated 10/05/2023
+  </div>
+  <script src="scripts.js"></script> <!--precisa carregar por último, usa alguns elementos da própria página-->
+</body>
+</html>

@@ -443,4 +443,5 @@ tabs = function(options) {
   });         
 }
 // initialize the function
+
 tabs('nav ul');
