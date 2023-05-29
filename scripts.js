@@ -84,7 +84,7 @@ function botaoInicio() { //funções para executar com o botão de inicio do tes
   setTimeout(function() {
     document.getElementById("submitButton").style.visibility="visible";
   }, 1000);
-  razaoPxAngst=pixelAngstromRatio(randXYZ(jsmolInteractiveObject),jsmolInteractiveObject);
+  razaoPxAngst=pixelAngstromRatio(jsmolInteractiveObject);
 }
 
 function botaoSubmit(){ //funções para executar com o botão de fim do teste.
@@ -129,9 +129,11 @@ function matrix_prod (mat3x3,mat3x1) { //returns product of matrix 3x3 and matri
   ];
   return matProd;
 }
-function pixelAngstromRatio(xyz,jsmol_obj,debug=0){  //returns the pixel to Angstrons ratio 
+function pixelAngstromRatio(jsmol_obj,debug=0){  //returns the pixel to Angstrons ratio 
+  // get random xyz coordinate inside jmol canvas
+  xyz = randXYZ(jsmol_obj);
+  // get jmol onject orientation 
   quatArr = Jmol.getPropertyAsArray(jsmol_obj, 'orientationInfo.quaternion'); 
-  
   //get center of rotations xyz coordinates
   let bBoxCenter = Jmol.getPropertyAsArray(jsmol_obj, 'boundBoxInfo.center'); 
   //correct xyz coordinates as if rotation center is at (0,0,0)
@@ -143,16 +145,18 @@ function pixelAngstromRatio(xyz,jsmol_obj,debug=0){  //returns the pixel to Angs
   let xyzRotated = matrix_prod(matrix,xyzCorrected);
   
   //get the equivalent xy projection (pixels) of the xyz point in space. 
-  //NOTE: Jmol gives xyz "pixel" coordinates, but we use only x and y. 
+  //NOTE: Jmol gives xyz screen coordinates in pixels, but we use only x and y. 
   //NOTE: y rises going up, x rises going right.
   Jmol.script(jsmol_obj,'projecaoXY = point({'+xyz+'}, true)');
   let sXYZ = Jmol.getPropertyAsArray(jsmol_obj, 'variableInfo.projecaoXY'); 
-  //correct pixel coordinates as if the middle of the screen is (0.0)
+  //get canvas height and width
   sHeight= Jmol.getPropertyAsArray(jsmol_obj, 'variableInfo._height');
   sWidth= Jmol.getPropertyAsArray(jsmol_obj, 'variableInfo._width');
+  //update pixel coordinates so the middle of the canvas is (0.0)
   let sXYCorrected = [sXYZ[0]-sHeight/2, sXYZ[1]-sWidth/2];
   //get the pixel:angstrom ratio
   let razao = [sXYCorrected[0]/xyzRotated[0],sXYCorrected[1]/xyzRotated[1]];
+  razao = [window.devicePixelRatio * razao[0], window.devicePixelRatio * razao[1]];
   if (debug==1){
     console.log('razao pixel:Angstrom = '+razao)//debug
   }
@@ -201,16 +205,17 @@ function insert_form_values() { //insert values in form before sumbission
   [winX,winY] = tamanhoJanela();
   document.getElementById('gsForm').scrSizeX.value = winX;  // browser screen width and height (X,Y)
   document.getElementById('gsForm').scrSizeY.value = winY;  //Header,url field and other elements are outside 
+  document.getElementById('gsForm').pxRatio.value = window.devicePixelRatio; // screen scaling of windows. As in how many pixels exist in a screen pixel
   refCanvasPositions = jsmolReferenceObject_canvas2d.getBoundingClientRect();
-  document.getElementById('gsForm').cvsRefTop.value = refCanvasPositions.top;  // reference canvas top,right,bottom,left positions
-  document.getElementById('gsForm').cvsRefRight.value = refCanvasPositions.right;  
-  document.getElementById('gsForm').cvsRefBottom.value = refCanvasPositions.bottom;  
-  document.getElementById('gsForm').cvsRefLeft.value = refCanvasPositions.left;  
+  document.getElementById('gsForm').cvsRefTop.value = refCanvasPositions.top * window.devicePixelRatio;  // reference canvas top,right,bottom,left positions
+  document.getElementById('gsForm').cvsRefRight.value = refCanvasPositions.right * window.devicePixelRatio;  
+  document.getElementById('gsForm').cvsRefBottom.value = refCanvasPositions.bottom * window.devicePixelRatio;  
+  document.getElementById('gsForm').cvsRefLeft.value = refCanvasPositions.left * window.devicePixelRatio;  
   intCanvasPositions = jsmolInteractiveObject_canvas2d.getBoundingClientRect();
-  document.getElementById('gsForm').cvsIntTop.value = intCanvasPositions.top;  // interactive canvas top,right,bottom,left positions
-  document.getElementById('gsForm').cvsIntRight.value = intCanvasPositions.right;  
-  document.getElementById('gsForm').cvsIntBottom.value = intCanvasPositions.bottom;  
-  document.getElementById('gsForm').cvsIntLeft.value = intCanvasPositions.left;  
+  document.getElementById('gsForm').cvsIntTop.value = intCanvasPositions.top * window.devicePixelRatio;  // interactive canvas top,right,bottom,left positions
+  document.getElementById('gsForm').cvsIntRight.value = intCanvasPositions.right * window.devicePixelRatio;  
+  document.getElementById('gsForm').cvsIntBottom.value = intCanvasPositions.bottom * window.devicePixelRatio;  
+  document.getElementById('gsForm').cvsIntLeft.value = intCanvasPositions.left * window.devicePixelRatio;  
   browserInfo = Jmol.getPropertyAsArray(jsmolInteractiveObject, 'appletInfo.operatingSystem');
   document.getElementById('gsForm').browser.value = browserInfo; // what browser was used
   modelFileLocation = Jmol.getPropertyAsArray(jsmolInteractiveObject, 'fileName');
@@ -348,7 +353,7 @@ function getTheNumbers() { //armazena os dados de orientação em quat. para os 
   parametro4.push( Math.round(orientacaoQuat[3]*precision)/precision );
   
   // calc. da distancia à resposta (CORRIGIR PRO QUATERNION!)
-  // var valorTempResult =  Math.sqrt( Math.pow((orientacaoQuat[1]-Ori1),2) + Math.pow((orientacaoQuat[2]-Ori2),2) + Math.pow((orientacaoQuat[3]-Ori3),2) + Math.pow((orientacaoQuat[4]-Ori4),2) );  
+  // var valorTempResult =  Math.sqrt( Math.pow((orientacaoQuat[1]-RefOri1),2) + Math.pow((orientacaoQuat[2]-RefOri2),2) + Math.pow((orientacaoQuat[3]-RefOri3),2) + Math.pow((orientacaoQuat[4]-RefOri4),2) );  
   // parametroF.push(Math.floor(valorTempResult) + "," + Math.round((valorTempResult%1)*1000));     // transformando float em string "abcd,efg"
 
   //cortei o grafico fora, depois eu reativo

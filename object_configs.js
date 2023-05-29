@@ -40,12 +40,8 @@ var Info_reference = structuredClone(Info_interactive);
 Info_reference.script = Info_interactive.script.concat("set mouseDragFactor 0");
 
 //reference orientation
-//moveto 0 {-675 -389 -627 93.16} 
-//or moveto 0 QUATERNION {-0.4902575975335792 -0.2825336376897219 -0.45539483504230244 0.6873410913449087}
-var Ori1 = -675;        
-var Ori2 = -389;
-var Ori3 = -627;
-var Ori4 = 93.16;
+//ex.: moveto 0 QUATERNION {-0.4902575975335792 -0.2825336376897219 -0.45539483504230244 0.6873410913449087}
+
 
 const task_list = ["bolaBastao_c","poligonFill","mrt"];
 
