@@ -89,15 +89,15 @@
         <input type="hidden" name="modelName">
       </form>
     </div>
-    <button onclick="nextStage();prepMolecula(task_n);openFullscreen()">Next</button>
+    <button onclick="nextStage();prepMolecule(task_n);openFullscreen()">Next</button>
   </section>
-  <section id="tab_teste" class="stage" style="display:none">  <!-- Tarefas interativas JSmol -->
-    <div class="debug" id="indicador_orientacao" style="background-color:gray">Test</div> <!--coordenadas de orientacao-->
+  <section id="tab_teste" class="stage" style="display:none">  <!-- JSmol interactive tasks -->
+    <div class="debug" id="indicador_orientacao" style="background-color:gray">Test</div> <!-- orientation coordinates -->
 
-    <table id="iRT_canvas_table"> <!--as bordas em css ajudam na formatacao, posso tirar no final-->
+    <table id="iRT_canvas_table"> 
       <tr>
-        <button id="startButton" onclick="botaoInicio()">GO!</button>
-        <button id="submitButton" onclick="botaoSubmit()" style="visibility:hidden" form="gsForm">DONE!</button>
+        <button id="startButton" onclick="buttonStart()">GO!</button>
+        <button id="submitButton" onclick="buttonSubmit()" style="visibility:hidden" form="gsForm">DONE!</button>
       </tr>
       <tr>
         <td class="JSmol_canvas" id="cellLeft">
@@ -110,8 +110,8 @@
           <br>
           <div class="debug">Duration: <output id="timer_onscreen" ></output> s</div>
           <br>
-          <button class="debug" onclick="tamanhoJanela()">scrSize</button>
-          <button class="debug" onclick="botaoSubmit()">!POST</button>
+          <button class="debug" onclick="getWindowSize()">scrSize</button>
+          <button class="debug" onclick="buttonSubmit()">!POST</button>
           <button class="debug" onclick="timerStop()">timerStop</button>
           <button class="debug" onclick="saveFile()">Save Data Localy</button>
           <button class="debug" onclick="pixelAngstromRatio(randXYZ(jsmolInteractiveObject),jsmolInteractiveObject,1)">px:Angst</button>
@@ -144,6 +144,6 @@
   <div style="position:sticky; bottom:0; font-size:x-small; ">
     Updated 29/05/2023
   </div>
-  <script src="scripts.js"></script> <!--precisa carregar por último, usa alguns elementos da própria página-->
+  <script src="scripts.js"></script> <!--needs to load last, uses some elements from the page itself-->
 </body>
 </html>

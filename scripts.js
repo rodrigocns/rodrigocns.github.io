@@ -6,10 +6,10 @@ const scriptURL = 'https://script.google.com/macros/s/AKfycbxtKza8SDt27Ik39cktDy
 //Besides the line above, everything else in this file should be left as it is.
 //Unless you know what you are doing, or you want to fiddle with coding and learn more! :D
 
-let task_n = 0; //número da tarefa interativa inicial
+let task_n = 0; //number of the initial interactive task
 let stage = 0;
 
-const stage_elements = document.getElementsByClassName('stage'); //pega a lista de stages
+const stage_elements = document.getElementsByClassName('stage'); //get stages list
 function nextStage() {  //makes the present stage (section with tag stage) invisible and shows the next section 
   // get the currently visible stage with the `current-stage` class
   var currentSection = document.querySelector(".current-stage");
@@ -37,8 +37,8 @@ function nextStage() {  //makes the present stage (section with tag stage) invis
 }
 
 var debug_state = 0;
-function debug() { //switch (on/off) de recursos de debug. 
-  //Alterna visibilidade de cada elemento de classe 'debug'
+function debug() { //switch (on/off) of debug features. 
+  //Toggles visibility of each 'debug' class element
   const debug_elements = document.getElementsByClassName('debug');
   if (debug_state == 0){
     debug_state = 1;
@@ -73,13 +73,13 @@ function closeFullscreen() {/* Close fullscreen */
   }
 }
 
-function botaoInicio() { //funções para executar com o botão de inicio do teste. 
+function buttonStart() { //functions to run when clicking the "GO" button.. 
   zerar_contagem();
   document.getElementById("cellLeft").style.visibility="visible";
   document.getElementById("cellRight").style.visibility="visible";
   
-  timerStart ();                    //inicia contagem de tempo e funções periódicas
-  getTheNumbers();                  // registra os dados SÓ do instante inicial (t=0)
+  timerStart ();         //starts time counting and periodic functions
+  getTheNumbers();       // records the data ONLY from the initial instant (t=0)
   document.getElementById("startButton").style.visibility="hidden";
   setTimeout(function() {
     document.getElementById("submitButton").style.visibility="visible";
@@ -87,7 +87,7 @@ function botaoInicio() { //funções para executar com o botão de inicio do tes
   razaoPxAngst=pixelAngstromRatio(jsmolInteractiveObject);
 }
 
-function botaoSubmit(){ //funções para executar com o botão de fim do teste.
+function buttonSubmit(){ //functions to run when clicking the "DONE" button.
   timerStop();  //stop cronometer
   document.getElementById("cellLeft").style.visibility="hidden";
   document.getElementById("cellRight").style.visibility="hidden"; //hides jmol screens
@@ -96,7 +96,7 @@ function botaoSubmit(){ //funções para executar com o botão de fim do teste.
     alert("Error in forms data upload!\nSomething inside the function insert_form_values() went wrong!");
   }
   document.getElementById("submitButton").style.visibility="hidden"; //hides submit button
-  task_n +=1; //Progride para a próxima tarefa em task_list e prepMolecula()
+  task_n +=1; //Progress to next task in task_list and prepMolecule()
   // if (task_n >= 6) {task_n = 0;} /*volta ao primeiro*/
   if (is_local_save == true) {
     saveFile();
@@ -105,7 +105,7 @@ function botaoSubmit(){ //funções para executar com o botão de fim do teste.
     document.getElementById("endTasksButton").style.visibility="visible";
     return;
   } else {
-    prepMolecula(task_n);
+    prepMolecule(task_n);
     setTimeout(function() {
       document.getElementById("startButton").style.visibility="visible";
     }, 1000);
@@ -181,7 +181,7 @@ for (let i = 1; i <= numButtons; i++) {
   button.innerText = `${i}`;
   button.onclick = function() {
     task_n=i-1;
-    prepMolecula(task_n);
+    prepMolecule(task_n);
   };
   buttonContainer.appendChild(button);
 }
@@ -202,7 +202,7 @@ function insert_form_values() { //insert values in form before sumbission
   document.getElementById('gsForm').ref_j.value = refQuat[1];
   document.getElementById('gsForm').ref_k.value = refQuat[2];
   document.getElementById('gsForm').ref_r.value = refQuat[3]; 
-  [winX,winY] = tamanhoJanela();
+  [winX,winY] = getWindowSize();
   document.getElementById('gsForm').scrSizeX.value = winX;  // browser screen width and height (X,Y)
   document.getElementById('gsForm').scrSizeY.value = winY;  //Header,url field and other elements are outside 
   document.getElementById('gsForm').pxRatio.value = window.devicePixelRatio; // screen scaling of windows. As in how many pixels exist in a screen pixel
@@ -228,7 +228,7 @@ function insert_form_values() { //insert values in form before sumbission
 }
 
 
-function tamanhoJanela() { //pega o tamanho/resolução da janela do browser
+function getWindowSize() { //pega o tamanho/resolução da janela do browser
   var win = window,
   doc = document,
   docElem = doc.documentElement,

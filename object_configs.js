@@ -25,7 +25,7 @@ var Info_interactive = {
   unbind _popupMenu;\
   frank off;",
   readyFunction: null,   //calls func. when jmol has loaded and is ready
-  debug: true //deixar true se tiver problemas
+  debug: true //gives more error warnings if true 
 }
 //explaining JSmol script commands:
 //disable perspective (needed for better precision in calculations of screen xy projections)
@@ -45,7 +45,7 @@ Info_reference.script = Info_interactive.script.concat("set mouseDragFactor 0");
 
 const task_list = ["bolaBastao_c","poligonFill","mrt"];
 
-function prepMolecula(num) {   //mapper para o preparo do teste que está acontecendo
+function prepMolecule(num) {   //mapper para o preparo do teste que está acontecendo
   //Rotaciona para a orientação inicial do objeto
   jsmol_ref = jsmolReferenceObject; //janela esquerda
   jsmol_obj = jsmolInteractiveObject; //janela direita
@@ -74,7 +74,7 @@ function prepMolecula(num) {   //mapper para o preparo do teste que está aconte
       Jmol.script(jsmol_obj,'moveto 0 QUATERNION {0,0,0,1}');
     break;
 
-    //https://chemapps.stolaf.edu/jmol/docs/examples/bonds.htm  altera visualisação dos dados
+    //https://chemapps.stolaf.edu/jmol/docs/examples/bonds.htm  help on altering model rendering
   }
 }
 function buildMRTModel(jsmol_obj) {

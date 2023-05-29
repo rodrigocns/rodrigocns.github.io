@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>iRT - interactive Rotation Tasks</title>
   <link rel="stylesheet" href="css/screen.css" type="text/css" >
-  <link rel="stylesheet" href="css/w3.css"> <!--entender como funciona e fazer a minha versão-->
   <script type="text/javascript" src="jsmol/JSmol.min.js"></script>
   <script type="text/javascript" src="object_configs.js"></script>
   
@@ -91,15 +90,15 @@
         <input type="hidden" name="modelName">
       </form>
     </div>
-    <button onclick="nextStage();prepMolecula(task_n);openFullscreen()">Next</button>
+    <button onclick="nextStage();prepMolecule(task_n);openFullscreen()">Next</button>
   </section>
   <section id="tab_teste" class="stage" style="display:none">  <!-- Tarefas interativas JSmol -->
     <div class="debug" id="indicador_orientacao" style="background-color:gray">Test</div> <!--coordenadas de orientacao-->
 
     <table id="iRT_canvas_table"> <!--as bordas em css ajudam na formatacao, posso tirar no final-->
       <tr>
-        <button id="startButton" onclick="botaoInicio()">GO!</button>
-        <button id="submitButton" onclick="botaoSubmit()" style="visibility:hidden" form="gsForm">DONE!</button>
+        <button id="startButton" onclick="buttonStart()">GO!</button>
+        <button id="submitButton" onclick="buttonSubmit()" style="visibility:hidden" form="gsForm">DONE!</button>
       </tr>
       <tr>
         <td class="JSmol_canvas" id="cellLeft">
@@ -112,8 +111,8 @@
           <br>
           <div class="debug">Duration: <output id="timer_onscreen" ></output> s</div>
           <br>
-          <button class="debug" onclick="tamanhoJanela()">scrSize</button>
-          <button class="debug" onclick="botaoSubmit()">!POST</button>
+          <button class="debug" onclick="getWindowSize()">scrSize</button>
+          <button class="debug" onclick="buttonSubmit()">!POST</button>
           <button class="debug" onclick="timerStop()">timerStop</button>
           <button class="debug" onclick="saveFile()">Save Data Localy</button>
           <button class="debug" onclick="pixelAngstromRatio(randXYZ(jsmolInteractiveObject),jsmolInteractiveObject,1)">px:Angst</button>
