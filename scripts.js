@@ -205,17 +205,17 @@ function insert_form_values() { //insert values in form before sumbission
   [winX,winY] = tamanhoJanela();
   document.getElementById('gsForm').scrSizeX.value = winX;  // browser screen width and height (X,Y)
   document.getElementById('gsForm').scrSizeY.value = winY;  //Header,url field and other elements are outside 
-  refCanvasPositions = jsmolReferenceObject_canvas2d.getBoundingClientRect();
-  document.getElementById('gsForm').cvsRefTop.value = refCanvasPositions.top;  // reference canvas top,right,bottom,left positions
-  document.getElementById('gsForm').cvsRefRight.value = refCanvasPositions.right;  
-  document.getElementById('gsForm').cvsRefBottom.value = refCanvasPositions.bottom;  
-  document.getElementById('gsForm').cvsRefLeft.value = refCanvasPositions.left;  
-  intCanvasPositions = jsmolInteractiveObject_canvas2d.getBoundingClientRect();
-  document.getElementById('gsForm').cvsIntTop.value = intCanvasPositions.top;  // interactive canvas top,right,bottom,left positions
-  document.getElementById('gsForm').cvsIntRight.value = intCanvasPositions.right;  
-  document.getElementById('gsForm').cvsIntBottom.value = intCanvasPositions.bottom;  
-  document.getElementById('gsForm').cvsIntLeft.value = intCanvasPositions.left;  
   document.getElementById('gsForm').pxRatio.value = window.devicePixelRatio; // screen scaling of windows. As in how many pixels exist in a screen pixel
+  refCanvasPositions = jsmolReferenceObject_canvas2d.getBoundingClientRect();
+  document.getElementById('gsForm').cvsRefTop.value = refCanvasPositions.top * window.devicePixelRatio;  // reference canvas top,right,bottom,left positions
+  document.getElementById('gsForm').cvsRefRight.value = refCanvasPositions.right * window.devicePixelRatio;  
+  document.getElementById('gsForm').cvsRefBottom.value = refCanvasPositions.bottom * window.devicePixelRatio;  
+  document.getElementById('gsForm').cvsRefLeft.value = refCanvasPositions.left * window.devicePixelRatio;  
+  intCanvasPositions = jsmolInteractiveObject_canvas2d.getBoundingClientRect();
+  document.getElementById('gsForm').cvsIntTop.value = intCanvasPositions.top * window.devicePixelRatio;  // interactive canvas top,right,bottom,left positions
+  document.getElementById('gsForm').cvsIntRight.value = intCanvasPositions.right * window.devicePixelRatio;  
+  document.getElementById('gsForm').cvsIntBottom.value = intCanvasPositions.bottom * window.devicePixelRatio;  
+  document.getElementById('gsForm').cvsIntLeft.value = intCanvasPositions.left * window.devicePixelRatio;  
   browserInfo = Jmol.getPropertyAsArray(jsmolInteractiveObject, 'appletInfo.operatingSystem');
   document.getElementById('gsForm').browser.value = browserInfo; // what browser was used
   modelFileLocation = Jmol.getPropertyAsArray(jsmolInteractiveObject, 'fileName');
@@ -353,7 +353,7 @@ function getTheNumbers() { //armazena os dados de orientação em quat. para os 
   parametro4.push( Math.round(orientacaoQuat[3]*precision)/precision );
   
   // calc. da distancia à resposta (CORRIGIR PRO QUATERNION!)
-  // var valorTempResult =  Math.sqrt( Math.pow((orientacaoQuat[1]-Ori1),2) + Math.pow((orientacaoQuat[2]-Ori2),2) + Math.pow((orientacaoQuat[3]-Ori3),2) + Math.pow((orientacaoQuat[4]-Ori4),2) );  
+  // var valorTempResult =  Math.sqrt( Math.pow((orientacaoQuat[1]-RefOri1),2) + Math.pow((orientacaoQuat[2]-RefOri2),2) + Math.pow((orientacaoQuat[3]-RefOri3),2) + Math.pow((orientacaoQuat[4]-RefOri4),2) );  
   // parametroF.push(Math.floor(valorTempResult) + "," + Math.round((valorTempResult%1)*1000));     // transformando float em string "abcd,efg"
 
   //cortei o grafico fora, depois eu reativo
