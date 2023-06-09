@@ -188,7 +188,7 @@ for (let i = 1; i <= numButtons; i++) {
 
 function insert_form_values() { //insert values in form before sumbission
   document.getElementById('gsForm').sessionID.value = sessionID;
-  document.getElementById('gsForm').task_id.value = task_list[task_n]; //tasks identifier
+  document.getElementById('gsForm').taskID.value = task_list[task_n]; //tasks identifier
   document.getElementById('gsForm').pxAngstRatio.value = razaoPxAngst; //pixels to jmol distance unit ratio 
   document.getElementById('gsForm').epochStart.value = time_initial;//initial time in unix epoch
   document.getElementById('gsForm').epochArr.value = arrayEpoch;//duration in milliseconds
@@ -377,7 +377,7 @@ function getLocalData() {
     'email:' + gsForm.email.value + ';' +
     'pxAngstRatio:' + (razaoPxAngst[0]+razaoPxAngst[1])/2 + ';' +
     '\n' + 
-    "sessionID,task_id,epoch,duration,Qi,Qj,Qk,Qr\n";
+    "sessionID,taskID,epoch,duration,Qi,Qj,Qk,Qr\n";
   let newRow = "";
   for (i = 0; i < parametro1.length; i++) {
     newRow = 
