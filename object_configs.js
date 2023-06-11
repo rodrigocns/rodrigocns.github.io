@@ -42,7 +42,7 @@ Info_reference.script = Info_interactive.script.concat("set mouseDragFactor 0");
 //reference orientation
 //ex.: moveto 0 QUATERNION {-0.4902575975335792 -0.2825336376897219 -0.45539483504230244 0.6873410913449087}
 
-
+// List of interactive task names the subject will perform 
 const task_list = ["bolaBastao_c","poligonFill","mrt"];
 
 function prepMolecule(num) {   //mapper para o preparo do teste que está acontecendo
