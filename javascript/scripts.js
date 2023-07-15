@@ -198,7 +198,7 @@ function insert_form_values() { //insert values in form before sumbission
   document.getElementById('gsForm').fQk.value = parametro3;
   document.getElementById('gsForm').fQr.value = parametro4; // Qr is the real component
   refQuat = Jmol.getPropertyAsArray(jsmolReferenceObject, 'orientationInfo.quaternion');
-  document.getElementById('gsForm').ref_i.value = refQuat[0]; //quaternion values of the reference model
+  document.getElementById('gsForm').ref_i.value = refQuat[0]; //quaternion values of the target model
   document.getElementById('gsForm').ref_j.value = refQuat[1];
   document.getElementById('gsForm').ref_k.value = refQuat[2];
   document.getElementById('gsForm').ref_r.value = refQuat[3]; 
@@ -207,7 +207,7 @@ function insert_form_values() { //insert values in form before sumbission
   document.getElementById('gsForm').scrSizeY.value = winY;  //Header,url field and other elements are outside 
   document.getElementById('gsForm').pxRatio.value = window.devicePixelRatio; // screen scaling of windows. As in how many pixels exist in a screen pixel
   refCanvasPositions = jsmolReferenceObject_canvas2d.getBoundingClientRect();
-  document.getElementById('gsForm').cvsRefTop.value = refCanvasPositions.top * window.devicePixelRatio;  // reference canvas top,right,bottom,left positions
+  document.getElementById('gsForm').cvsRefTop.value = refCanvasPositions.top * window.devicePixelRatio;  // target Object canvas top,right,bottom,left positions
   document.getElementById('gsForm').cvsRefRight.value = refCanvasPositions.right * window.devicePixelRatio;  
   document.getElementById('gsForm').cvsRefBottom.value = refCanvasPositions.bottom * window.devicePixelRatio;  
   document.getElementById('gsForm').cvsRefLeft.value = refCanvasPositions.left * window.devicePixelRatio;  
