@@ -395,9 +395,6 @@ form.addEventListener('submit', e => {
 'pxRatio:'+ gsForm.pxRatio.value + ';'+
 ;
 */
-
-
-
 function getLocalData() {
   let sessionData = 
     sessionID + ';'+
@@ -448,31 +445,6 @@ function getLocalData() {
     sessionRow = '';
   }
   return data;
-
-
-  /*let dataOld =
-    'sessionID;' + sessionID + ';' +
-    'fname:' + gsForm.fname.value + ';' +
-    'email:' + gsForm.email.value + ';' +
-    'pxAngstRatio:' + (razaoPxAngst[0]+razaoPxAngst[1])/2 + ';' +
-    '\n' + 
-    "sessionID,taskID,epoch,duration,Qi,Qj,Qk,Qr\n";
-  
-  let newRow = "";
-  for (i = 0; i < parametro1.length; i++) {
-    newRow = 
-      sessionID + ',' +
-      task_list[task_n] + ',' +
-      time_initial+arrayEpoch[i] + ',' +
-      parametroD[i] + ',' +
-      parametro1[i] + ',' +
-      parametro2[i] + ',' +
-      parametro3[i] + ',' +
-      parametro4[i] + '\n';
-    data = data + newRow;
-  }
-  return data;
-  */
 }
 
 let saveFile = () => { //Salvar os dados localmente.
