@@ -6,10 +6,10 @@ const scriptURL = 'https://script.google.com/macros/s/AKfycbxtKza8SDt27Ik39cktDy
 //Besides the line above, everything else in this file should be left as it is.
 //Unless you know what you are doing, or you want to fiddle with coding and learn more! :D
 
-let task_n = 0; //número da tarefa interativa inicial
+let task_n = 0; //number of the initial interactive task
 let stage = 0;
 
-const stage_elements = document.getElementsByClassName('stage'); //pega a lista de stages
+const stage_elements = document.getElementsByClassName('stage'); //get stages list
 function nextStage() {  //makes the present stage (section with tag stage) invisible and shows the next section 
   // get the currently visible stage with the `current-stage` class
   var currentSection = document.querySelector(".current-stage");
@@ -37,8 +37,8 @@ function nextStage() {  //makes the present stage (section with tag stage) invis
 }
 
 var debug_state = 0;
-function debug() { //switch (on/off) de recursos de debug. 
-  //Alterna visibilidade de cada elemento de classe 'debug'
+function debug() { //switch (on/off) of debug features. 
+  //Toggles visibility of each 'debug' class element
   const debug_elements = document.getElementsByClassName('debug');
   if (debug_state == 0){
     debug_state = 1;
@@ -73,13 +73,13 @@ function closeFullscreen() {/* Close fullscreen */
   }
 }
 
-function botaoInicio() { //funções para executar com o botão de inicio do teste. 
+function buttonStart() { //functions to run when clicking the "GO" button.. 
   zerar_contagem();
   document.getElementById("cellLeft").style.visibility="visible";
   document.getElementById("cellRight").style.visibility="visible";
   
-  timerStart ();                    //inicia contagem de tempo e funções periódicas
-  getTheNumbers();                  // registra os dados SÓ do instante inicial (t=0)
+  timerStart ();         //starts time counting and periodic functions
+  getTheNumbers();       // records the data ONLY from the initial instant (t=0)
   document.getElementById("startButton").style.visibility="hidden";
   setTimeout(function() {
     document.getElementById("submitButton").style.visibility="visible";
@@ -87,7 +87,7 @@ function botaoInicio() { //funções para executar com o botão de inicio do tes
   razaoPxAngst=pixelAngstromRatio(jsmolInteractiveObject);
 }
 
-function botaoSubmit(){ //funções para executar com o botão de fim do teste.
+function buttonSubmit(){ //functions to run when clicking the "DONE" button.
   timerStop();  //stop cronometer
   document.getElementById("cellLeft").style.visibility="hidden";
   document.getElementById("cellRight").style.visibility="hidden"; //hides jmol screens
@@ -96,7 +96,7 @@ function botaoSubmit(){ //funções para executar com o botão de fim do teste.
     alert("Error in forms data upload!\nSomething inside the function insert_form_values() went wrong!");
   }
   document.getElementById("submitButton").style.visibility="hidden"; //hides submit button
-  task_n +=1; //Progride para a próxima tarefa em task_list e prepMolecula()
+  task_n +=1; //Progress to next task in task_list and prepMolecule()
   // if (task_n >= 6) {task_n = 0;} /*volta ao primeiro*/
   if (is_local_save == true) {
     saveFile();
@@ -105,7 +105,7 @@ function botaoSubmit(){ //funções para executar com o botão de fim do teste.
     document.getElementById("endTasksButton").style.visibility="visible";
     return;
   } else {
-    prepMolecula(task_n);
+    prepMolecule(task_n);
     setTimeout(function() {
       document.getElementById("startButton").style.visibility="visible";
     }, 1000);
@@ -181,14 +181,14 @@ for (let i = 1; i <= numButtons; i++) {
   button.innerText = `${i}`;
   button.onclick = function() {
     task_n=i-1;
-    prepMolecula(task_n);
+    prepMolecule(task_n);
   };
   buttonContainer.appendChild(button);
 }
 
 function insert_form_values() { //insert values in form before sumbission
   document.getElementById('gsForm').sessionID.value = sessionID;
-  document.getElementById('gsForm').task_id.value = task_list[task_n]; //tasks identifier
+  document.getElementById('gsForm').taskID.value = task_list[task_n]; //tasks identifier
   document.getElementById('gsForm').pxAngstRatio.value = razaoPxAngst; //pixels to jmol distance unit ratio 
   document.getElementById('gsForm').epochStart.value = time_initial;//initial time in unix epoch
   document.getElementById('gsForm').epochArr.value = arrayEpoch;//duration in milliseconds
@@ -198,16 +198,18 @@ function insert_form_values() { //insert values in form before sumbission
   document.getElementById('gsForm').fQk.value = parametro3;
   document.getElementById('gsForm').fQr.value = parametro4; // Qr is the real component
   refQuat = Jmol.getPropertyAsArray(jsmolReferenceObject, 'orientationInfo.quaternion');
-  document.getElementById('gsForm').ref_i.value = refQuat[0]; //quaternion values of the reference model
+  document.getElementById('gsForm').ref_i.value = refQuat[0]; //quaternion values of the target model
   document.getElementById('gsForm').ref_j.value = refQuat[1];
   document.getElementById('gsForm').ref_k.value = refQuat[2];
   document.getElementById('gsForm').ref_r.value = refQuat[3]; 
-  [winX,winY] = tamanhoJanela();
+  modelFileLocation = Jmol.getPropertyAsArray(jsmolInteractiveObject, 'fileName');
+  modelName = modelFileLocation.slice(modelFileLocation.lastIndexOf("/")+1);
+  document.getElementById('gsForm').modelName.value = modelName; // fileName of 3D model used
+  [winX,winY] = getWindowSize();
   document.getElementById('gsForm').scrSizeX.value = winX;  // browser screen width and height (X,Y)
   document.getElementById('gsForm').scrSizeY.value = winY;  //Header,url field and other elements are outside 
-  document.getElementById('gsForm').pxRatio.value = window.devicePixelRatio; // screen scaling of windows. As in how many pixels exist in a screen pixel
   refCanvasPositions = jsmolReferenceObject_canvas2d.getBoundingClientRect();
-  document.getElementById('gsForm').cvsRefTop.value = refCanvasPositions.top * window.devicePixelRatio;  // reference canvas top,right,bottom,left positions
+  document.getElementById('gsForm').cvsRefTop.value = refCanvasPositions.top * window.devicePixelRatio;  // target Object canvas top,right,bottom,left positions
   document.getElementById('gsForm').cvsRefRight.value = refCanvasPositions.right * window.devicePixelRatio;  
   document.getElementById('gsForm').cvsRefBottom.value = refCanvasPositions.bottom * window.devicePixelRatio;  
   document.getElementById('gsForm').cvsRefLeft.value = refCanvasPositions.left * window.devicePixelRatio;  
@@ -216,11 +218,9 @@ function insert_form_values() { //insert values in form before sumbission
   document.getElementById('gsForm').cvsIntRight.value = intCanvasPositions.right * window.devicePixelRatio;  
   document.getElementById('gsForm').cvsIntBottom.value = intCanvasPositions.bottom * window.devicePixelRatio;  
   document.getElementById('gsForm').cvsIntLeft.value = intCanvasPositions.left * window.devicePixelRatio;  
+  document.getElementById('gsForm').pxRatio.value = window.devicePixelRatio; // screen scaling of windows. As in how many pixels exist in a screen pixel
   browserInfo = Jmol.getPropertyAsArray(jsmolInteractiveObject, 'appletInfo.operatingSystem');
   document.getElementById('gsForm').browser.value = browserInfo; // what browser was used
-  modelFileLocation = Jmol.getPropertyAsArray(jsmolInteractiveObject, 'fileName');
-  modelName = modelFileLocation.slice(modelFileLocation.lastIndexOf("/")+1);
-  document.getElementById('gsForm').modelName.value = modelName; // fileName of 3D model used
   gsFormStatus = 1;
   //alert ("Func1 executou e alterou valor fy"); //debug
   console.log("Form values inserted! gsFormStatus: "+gsFormStatus);
@@ -228,7 +228,7 @@ function insert_form_values() { //insert values in form before sumbission
 }
 
 
-function tamanhoJanela() { //pega o tamanho/resolução da janela do browser
+function getWindowSize() { //pega o tamanho/resolução da janela do browser
   var win = window,
   doc = document,
   docElem = doc.documentElement,
@@ -370,26 +370,79 @@ form.addEventListener('submit', e => {
     .catch(error => console.error('Error!', error.message))
 })
 
+
+/*
+'sessionID:'+ sessionID + ';'+
+'taskID:'+ task_list[task_n-1] + ';'+
+'startEpoch:'+ time_initial + ';'+
+'email:'+ gsForm.email.value + ';'+
+'subject:'+ gsForm.fname.value + ';'+
+'ref_i:'+ gsForm.ref_i.value + ';'+
+'ref_j:'+ gsForm.ref_j.value + ';'+
+'ref_k:'+ gsForm.ref_k.value + ';'+
+'ref_r:'+ gsForm.ref_r.value + ';'+
+'modelName:'+ gsForm.modelName.value + ';'+
+'scrSizeX:'+ gsForm.scrSizeX.value + ';'+
+'scrSizeY:'+ gsForm.scrSizeY.value + ';'+
+'cvsRefTop:'+ gsForm.cvsRefTop.value + ';'+
+'cvsRefRight:'+ gsForm.cvsRefRight.value + ';'+
+'cvsRefBottom:'+ gsForm.cvsRefBottom.value + ';'+
+'cvsRefLeft:'+ gsForm.cvsRefLeft.value + ';'+
+'cvsIntTop:'+ gsForm.cvsIntTop.value + ';'+
+'cvsIntRight:'+ gsForm.cvsIntRight.value + ';'+
+'cvsIntBottom:'+ gsForm.cvsIntBottom.value + ';'+
+'cvsIntLeft:'+ gsForm.cvsIntLeft.value + ';'+
+'pxRatio:'+ gsForm.pxRatio.value + ';'+
+;
+*/
 function getLocalData() {
-  let data =
-    'sessionID:' + sessionID + ';' +
-    'fname:' + gsForm.fname.value + ';' +
-    'email:' + gsForm.email.value + ';' +
-    'pxAngstRatio:' + (razaoPxAngst[0]+razaoPxAngst[1])/2 + ';' +
-    '\n' + 
-    "sessionID,task_id,epoch,duration,Qi,Qj,Qk,Qr\n";
+  let sessionData = 
+    sessionID + ';'+
+    task_list[task_n-1] + ';'+
+    time_initial + ';'+
+    gsForm.email.value + ';'+
+    gsForm.fname.value + ';'+
+    gsForm.pxAngstRatio.value + ';'+
+    gsForm.ref_i.value + ';'+
+    gsForm.ref_j.value + ';'+
+    gsForm.ref_k.value + ';'+
+    gsForm.ref_r.value + ';'+
+    gsForm.modelName.value + ';'+
+    gsForm.scrSizeX.value + ';'+
+    gsForm.scrSizeY.value + ';'+
+    gsForm.cvsRefTop.value + ';'+
+    gsForm.cvsRefRight.value + ';'+
+    gsForm.cvsRefBottom.value + ';'+
+    gsForm.cvsRefLeft.value + ';'+
+    gsForm.cvsIntTop.value + ';'+
+    gsForm.cvsIntRight.value + ';'+
+    gsForm.cvsIntBottom.value + ';'+
+    gsForm.cvsIntLeft.value + ';'+
+    gsForm.pxRatio.value + ';';
+
+  let sessionRow = sessionData;
+  let data = 
+    'sessionID;' + 'taskID;' + 'epoch;' + 'duration;' + 'Qi;'+ 'Qj;'+ 'Qk;'+ 'Qr;' + 
+    'sessionID;' + 'taskID;' + 'startEpoch;' + 'email;' + 'subject;' + 'pxAngstRatio;' + 
+    'ref_i;' + 'ref_j;' + 'ref_k;' + 'ref_theta;' + 'modelName;' + 'scrSizeX;' + 'scrSizeY;' +
+    'cvsRefTop;' + 'cvsRefRight;' + 'cvsRefBottom;' + 'cvsRefLeft;' + 
+    'cvsIntTop;' + 'cvsIntRight;' + 'cvsIntBottom;' + 'cvsIntLeft;' + 'pxRatio;' + 
+    '\n' ;
   let newRow = "";
-  for (i = 0; i < parametro1.length; i++) {
+  for (i=0; i< parametro1.length; i++) {
     newRow = 
-      sessionID + ',' +
-      task_list[task_n] + ',' +
-      time_initial+arrayEpoch[i] + ',' +
-      parametroD[i] + ',' +
-      parametro1[i] + ',' +
-      parametro2[i] + ',' +
-      parametro3[i] + ',' +
-      parametro4[i] + '\n';
+      sessionID + ';'+
+      task_list[task_n-1] + ';'+
+      (time_initial + arrayEpoch[i]) + ';'+
+      (i*0.1) + ';'+
+      parametro1[i] + ';'+
+      parametro2[i] + ';'+
+      parametro3[i] + ';'+
+      parametro4[i] + ';'+
+      sessionRow +  
+      '\n';
     data = data + newRow;
+    sessionRow = '';
   }
   return data;
 }
@@ -401,7 +454,7 @@ let saveFile = () => { //Salvar os dados localmente.
   
   // Convert the text to BLOB.
   const textToBLOB = new Blob([data], { type: 'text/plain' });
-  const sFileName = 'IRT_OUTPUT_'+task_list[task_n]+'.csv';	// Local file name.
+  const sFileName = 'IRT_OUTPUT '+sessionID+' '+task_list[task_n-1]+'.csv';	// Local file name.
 
   let newLink = document.createElement("a");
   newLink.download = sFileName;
