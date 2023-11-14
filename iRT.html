@@ -116,6 +116,13 @@
           <button class="debug" onclick="saveFile()">Save Data Localy</button>
           <button class="debug" onclick="pixelAngstromRatio(randXYZ(jsmolInteractiveObject),jsmolInteractiveObject,1)">px:Angst</button>
           <button class="debug" onclick="Jmol.script(jsmolInteractiveObject,'console')">console</button>
+          <button class="debug" onclick="load_lin(jsmolInteractiveObject)">Load linear</button>
+          <button class="debug" onclick="load_seg(jsmolInteractiveObject)">Load segment</button>
+          <button class="debug" onclick="load_per(jsmolInteractiveObject)">Load perimeter</button>
+          <button class="debug" onclick="load_per2(jsmolInteractiveObject)">Load perimeter</button>
+          <button class="debug" onclick="load_fac(jsmolInteractiveObject)">Load faces</button>
+          <button class="debug" onclick="Jmol.script(jsmolInteractiveObject, 'select *; color gray;' )">gray</button>
+          <button class="debug" onclick="Jmol.script(jsmolInteractiveObject, 'select *; color cpk;' )">cpk</button>
           
           <div>
             <button id="endTasksButton" onclick="nextStage();closeFullscreen()" style="visibility:hidden">Next</button>

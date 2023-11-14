@@ -22,8 +22,8 @@ var Info_interactive = {
   unbind _setMeasure;\
   unbind _slideZoom;\
   unbind _wheelZoom;\
-  unbind _popupMenu;\
   frank off;",
+  //unbind _popupMenu;\ //comment out pra testes (CRIAR SWITCH COM MODO DEBUG!)
   readyFunction: null,   //calls func. when jmol has loaded and is ready
   debug: true //gives more error warnings if true 
 }
@@ -34,6 +34,8 @@ var Info_interactive = {
 // unbind _rotateZ; unbind _rotateZorZoom; unbind <...>';
 //disable the jmol watermark
 // frank off;
+//remove/add bond between selected atoms
+// select C4 C5; connect (selected) DELETE;
 
 var Info_reference = structuredClone(Info_interactive);
 //disable rotation at 0. default is 1
@@ -127,4 +129,30 @@ function buildPoligonFilledMol(jsmol_obj) {
     color $f6 gray;\
     color $f7 gray;\
     ');
+}
+
+function load_lin() {
+  Jmol.script(jsmol_obj, 'load models/PrePos_line.xyz');
+  Jmol.script(jsmol_obj, 'background black; color cpk; spacefill OFF; set ambientPercent 45; wireframe 0.15')
+  Jmol.script(jsmol_obj, 'select C4, C5, C12, C11, C15; connect (selected) DELETE;' );
+}
+function load_seg() {
+  Jmol.script(jsmol_obj, 'load models/PrePos_segments.xyz');
+  Jmol.script(jsmol_obj, 'background black; color cpk; spacefill OFF; set ambientPercent 45; wireframe 0.15')
+}
+function load_per() {
+  Jmol.script(jsmol_obj, 'load models/PrePos_perimeter.xyz');
+  Jmol.script(jsmol_obj, 'background black; color cpk; spacefill OFF; set ambientPercent 45; wireframe 0.15')
+  Jmol.script(jsmol_obj, 'select C4, C5; connect (selected) DELETE;' );
+  Jmol.script(jsmol_obj, 'select C12, C11; connect (selected) DELETE;' );
+}
+function load_per2() {
+  Jmol.script(jsmol_obj, 'load models/PrePos_perimeter2.xyz');
+  Jmol.script(jsmol_obj, 'background black; color cpk; spacefill OFF; set ambientPercent 45; wireframe 0.15')
+  Jmol.script(jsmol_obj, 'select C4, C5; connect (selected) DELETE;' );
+  Jmol.script(jsmol_obj, 'select C12, C11; connect (selected) DELETE;' );
+}
+function load_fac() {
+  Jmol.script(jsmol_obj, 'load models/PrePos_faces.xyz');
+  Jmol.script(jsmol_obj, 'background black; color cpk; spacefill OFF; set ambientPercent 45; wireframe 0.15')
 }
