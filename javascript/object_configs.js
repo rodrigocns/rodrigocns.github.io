@@ -49,10 +49,11 @@ Info_reference.script = Info_interactive.script.concat("set mouseDragFactor 0");
 const task_list = ["bolaBastao_c","poligonFill","mrt"];
 
 function prepMolecule(num) {   //mapper para o preparo do teste que está acontecendo
-  //Rotaciona para a orientação inicial do objeto
+  // SE PULAR CASES VAI DAR ERRO! task_list.length e quantidade de cases precisa ser igual!
   jsmol_ref = jsmolReferenceObject; //janela esquerda
   jsmol_obj = jsmolInteractiveObject; //janela direita
-  //em cada case # estão as configurações de renderização dos objetos de cada tarefa
+  //em cada case # estão as chamadas das funções de renderização dos objetos
+  // e suas orientações para cada tarefa
   switch (num){
     case 0:
       buildBallStickMol(jsmol_ref);
@@ -76,7 +77,6 @@ function prepMolecule(num) {   //mapper para o preparo do teste que está aconte
       Jmol.script(jsmol_ref,'moveto 0 QUATERNION {0.29922234471855447,0.2236541366945916,-0.10297736856098816,0.9218679282439424}');
       Jmol.script(jsmol_obj,'moveto 0 QUATERNION {0,0,0,1}');
     break;
-
     //https://chemapps.stolaf.edu/jmol/docs/examples/bonds.htm  help on altering model rendering
   }
 }
