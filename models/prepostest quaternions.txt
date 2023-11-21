@@ -1,0 +1,49 @@
+Linear ref
+OrientationInfo.Quaternion	{0.4590 0.4866 -0.4611 -0.5831}
+
+Linear start
+moveTo 0 quaternion {0.7910  0.3605  0.4065  0.2812}
+OrientationInfo.Quaternion	{-0.4065 -0.2812 0.7910 0.3605}
+
+LinearMirror start
+OrientationInfo.Quaternion	{0.6945 -0.1174 0.6696 -0.2358}
+
+----------------------------------------------
+Segment ref
+OrientationInfo.Quaternion	{-0.7126 -0.1870 0.2015 0.6455}
+Segment ref (sobreposição)
+OrientationInfo.Quaternion	{-0.6583 -0.1168 0.2756 0.6907}
+
+Segment start
+OrientationInfo.Quaternion	{-0.2508 -0.4495 0.7128 -0.4764}
+
+SegmentMirror start (near true object)
+OrientationInfo.Quaternion	{0.7242 0.4967 -0.2213 0.4240}
+SegmentMirror start (alternate)
+OrientationInfo.Quaternion	{0.6769 0.0808 0.5685 -0.4606}
+
+---------------------------------------------------
+Perimeter ref
+OrientationInfo.Quaternion	{-0.0471 0.7526 -0.6326 -0.1769}
+
+perimeter start
+OrientationInfo.Quaternion	{0.6832 -0.0267 -0.5950 -0.4224}
+
+perimeterMirror start 
+(near true obj)
+OrientationInfo.Quaternion	{-0.6045 0.4107 0.6822 0.0227}
+OrientationInfo.Quaternion	{-0.2278 -0.5864 0.2507 0.7358}
+
+-----------------------------------------------------
+Faces ref
+OrientationInfo.Quaternion	{0.3939 0.1734 -0.5907 0.6825}
+
+Faces start 
+OrientationInfo.Quaternion	{-0.4412 0.5134 0.1199 0.7262}
+
+FacesMirror start (near)
+OrientationInfo.Quaternion	{-0.1196 0.7117 0.4659 0.5121}
+OrientationInfo.Quaternion	{0.7034 -0.1115 -0.6420 0.2840}
+
+
+getProperty OrientationInfo.Quaternion

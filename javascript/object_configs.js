@@ -46,7 +46,13 @@ Info_reference.script = Info_interactive.script.concat("set mouseDragFactor 0");
 // 'moveTo 0 QUATERNION {0.6249 -0.0366 -0.6990 -0.3458}' e 'moveto 0.0 {-666 39 745 139.54}' são equivalentes.
 
 // List of interactive task names the subject will perform 
-const task_list = ["bolaBastao_c","poligonFill","mrt"];
+const task_list = [
+  "Line","LineMirror",
+  "Segments","SegmentsMirror",
+  "Perimeter","PerimeterMirror",
+  "Faces","FacesMirror",
+  "bolaBastao_c","poligonFill","mrt"
+];
 
 function prepMolecule(num) {   //mapper para o preparo do teste que está acontecendo
   // SE PULAR CASES VAI DAR ERRO! task_list.length e quantidade de cases precisa ser igual!
@@ -56,25 +62,76 @@ function prepMolecule(num) {   //mapper para o preparo do teste que está aconte
   // e suas orientações para cada tarefa
   switch (num){
     case 0:
+      buildLin(jsmol_ref);
+      buildLin(jsmol_obj);
+      Jmol.script(jsmol_ref, 'moveTo 0 quaternion {0.4590 0.4866 -0.4611 -0.5831}');
+      Jmol.script(jsmol_obj, 'moveTo 0 quaternion {0.7910  0.3605  0.4065  0.2812}');
+    break;
+    case 1:
+      buildLin(jsmol_ref);
+      buildLinMirror(jsmol_obj);
+      Jmol.script(jsmol_ref, 'moveTo 0 quaternion {0.4590 0.4866 -0.4611 -0.5831}');
+      Jmol.script(jsmol_obj, 'moveTo 0 quaternion {0.6945 -0.1174 0.6696 -0.2358}');
+    break;
+    case 2:
+      buildSeg(jsmol_ref);
+      buildSeg(jsmol_obj);
+      Jmol.script(jsmol_ref, 'moveTo 0 quaternion {-0.6583 -0.1168 0.2756 0.6907}');
+      Jmol.script(jsmol_obj, 'moveTo 0 quaternion {-0.2508 -0.4495 0.7128 -0.4764}');
+    break;
+    case 3:
+      buildSeg(jsmol_ref);
+      buildSegMirror(jsmol_obj);
+      Jmol.script(jsmol_ref, 'moveTo 0 quaternion {-0.6583 -0.1168 0.2756 0.6907}');
+      Jmol.script(jsmol_obj, 'moveTo 0 quaternion {0.6769 0.0808 0.5685 -0.4606}');
+    break;
+    case 4:
+      buildPer(jsmol_ref);
+      buildPer(jsmol_obj);
+      Jmol.script(jsmol_ref, 'moveTo 0 quaternion {-0.0471 0.7526 -0.6326 -0.1769}');
+      Jmol.script(jsmol_obj, 'moveTo 0 quaternion {0.6832 -0.0267 -0.5950 -0.4224}');
+    break;
+    case 5:
+      buildPer(jsmol_ref);
+      buildPerMirror(jsmol_obj);
+      Jmol.script(jsmol_ref, 'moveTo 0 quaternion {-0.0471 0.7526 -0.6326 -0.1769}');
+      Jmol.script(jsmol_obj, 'moveTo 0 quaternion {-0.6045 0.4107 0.6822 0.0227}');
+    break;
+    case 6:
+      buildFac(jsmol_ref);
+      buildFac(jsmol_obj);
+      Jmol.script(jsmol_ref, 'moveTo 0 quaternion {0.3939 0.1734 -0.5907 0.6825}');
+      Jmol.script(jsmol_obj, 'moveTo 0 quaternion {-0.4412 0.5134 0.1199 0.7262}');
+    break;
+    case 7:
+      buildFac(jsmol_ref);
+      buildFacMirror(jsmol_obj);
+      Jmol.script(jsmol_ref, 'moveTo 0 quaternion {0.3939 0.1734 -0.5907 0.6825}');
+      Jmol.script(jsmol_obj, 'moveTo 0 quaternion {0.7034 -0.1115 -0.6420 0.2840}');
+    break;
+    case 8: 
+      //cor interativa
       buildBallStickMol(jsmol_ref);
       buildBallStickMol(jsmol_obj);
       Jmol.script(jsmol_ref,'color cpk; spacefill 23%; wireframe 0.15');
       Jmol.script(jsmol_obj,'color cpk; spacefill 23%; wireframe 0.15');
-      Jmol.script(jsmol_ref,'moveto 0 QUATERNION {-0.4902575975335792 -0.2825336376897219 -0.45539483504230244 0.6873410913449087}');
+      Jmol.script(jsmol_ref,'moveto 0 QUATERNION {-0.4903 -0.2825 -0.4554 0.6873}');
       Jmol.script(jsmol_obj,'moveTo 0 QUATERNION {0.6249 -0.0366 -0.6990 -0.3458}');
     break;
-    case 1:
+    case 9: 
+      //cor polyfill interativa
       buildPoligonFilledMol(jsmol_obj);
       buildPoligonFilledMol(jsmol_ref);
       Jmol.script(jsmol_ref,'color cpk; spacefill off; wireframe 0.08');
       Jmol.script(jsmol_obj,'color cpk; spacefill off; wireframe 0.08');
-      Jmol.script(jsmol_ref,'moveto 0 QUATERNION {-0.4902575975335792 -0.2825336376897219 -0.45539483504230244 0.6873410913449087}');
+      Jmol.script(jsmol_ref,'moveto 0 QUATERNION {-0.4903 -0.2825 -0.4554 0.6873}');
       Jmol.script(jsmol_obj,'moveTo 0 QUATERNION {0.6249 -0.0366 -0.6990 -0.3458}');
     break;
-    case 2:
+    case 10: 
+      //mrt polycubes
       buildMRTModel(jsmol_ref);
       buildMRTModel(jsmol_obj);
-      Jmol.script(jsmol_ref,'moveto 0 QUATERNION {0.29922234471855447,0.2236541366945916,-0.10297736856098816,0.9218679282439424}');
+      Jmol.script(jsmol_ref,'moveto 0 QUATERNION {0.2992,0.2237,-0.1030,0.9219}');
       Jmol.script(jsmol_obj,'moveto 0 QUATERNION {0,0,0,1}');
     break;
     //https://chemapps.stolaf.edu/jmol/docs/examples/bonds.htm  help on altering model rendering
@@ -132,49 +189,47 @@ function buildPoligonFilledMol(jsmol_obj) {
     ');
 }
 
-function buildLin() {
+function buildLin(jsmol_obj) {
   Jmol.script(jsmol_obj, 'load models/PrePos_line.xyz');
+  Jmol.script(jsmol_obj, 'background black; color cpk; spacefill OFF; set ambientPercent 45; wireframe 0.15')
+  Jmol.script(jsmol_obj, 'select C4, C5, C12, C11, C15; connect (selected) DELETE;' );
+}
+function buildLinMirror(jsmol_obj) {
+  Jmol.script(jsmol_obj, 'load models/PrePos_line_mirror.xyz');
   Jmol.script(jsmol_obj, 'background black; color cpk; spacefill OFF; set ambientPercent 45; wireframe 0.15')
   Jmol.script(jsmol_obj, 'select C4, C5, C12, C11, C15; connect (selected) DELETE;' );
   Jmol.script(jsmol_obj, 'moveTo 0 quaternion {0.7910  0.3605  0.4065  0.2812}');
 }
-function buildSeg() {
+function buildSeg(jsmol_obj) {
   Jmol.script(jsmol_obj, 'load models/PrePos_segments.xyz');
   Jmol.script(jsmol_obj, 'background black; color cpk; spacefill OFF; set ambientPercent 45; wireframe 0.15')
   Jmol.script(jsmol_obj, 'moveTo 0 quaternion {0.7910  0.3605  0.4065  0.2812}');
 }
-function buildPer() {
+function buildSegMirror(jsmol_obj) {
+  Jmol.script(jsmol_obj, 'load models/PrePos_segments_mirror.xyz');
+  Jmol.script(jsmol_obj, 'background black; color cpk; spacefill OFF; set ambientPercent 45; wireframe 0.15')
+  Jmol.script(jsmol_obj, 'moveTo 0 quaternion {0.7910  0.3605  0.4065  0.2812}');
+}
+function buildPer(jsmol_obj) {
   Jmol.script(jsmol_obj, 'load models/PrePos_perimeter.xyz');
   Jmol.script(jsmol_obj, 'background black; color cpk; spacefill OFF; set ambientPercent 45; wireframe 0.15')
   Jmol.script(jsmol_obj, 'select C4, C5; connect (selected) DELETE;' );
   Jmol.script(jsmol_obj, 'select C12, C11; connect (selected) DELETE;' );
   Jmol.script(jsmol_obj, 'moveTo 0 quaternion {0.7910  0.3605  0.4065  0.2812}');
 }
-function buildFac() {
-  Jmol.script(jsmol_obj, 'load models/PrePos_faces.xyz');
-  Jmol.script(jsmol_obj, 'background black; color cpk; spacefill OFF; set ambientPercent 45; wireframe 0.15')
-  Jmol.script(jsmol_obj, 'moveTo 0 quaternion {0.7910  0.3605  0.4065  0.2812}');
-}
-
-function buildLinMirror() {
-  Jmol.script(jsmol_obj, 'load models/PrePos_line_mirror.xyz');
-  Jmol.script(jsmol_obj, 'background black; color cpk; spacefill OFF; set ambientPercent 45; wireframe 0.15')
-  Jmol.script(jsmol_obj, 'select C4, C5, C12, C11, C15; connect (selected) DELETE;' );
-  Jmol.script(jsmol_obj, 'moveTo 0 quaternion {0.7910  0.3605  0.4065  0.2812}');
-}
-function buildSegMirror() {
-  Jmol.script(jsmol_obj, 'load models/PrePos_segments_mirror.xyz');
-  Jmol.script(jsmol_obj, 'background black; color cpk; spacefill OFF; set ambientPercent 45; wireframe 0.15')
-  Jmol.script(jsmol_obj, 'moveTo 0 quaternion {0.7910  0.3605  0.4065  0.2812}');
-}
-function buildPerMirror() {
+function buildPerMirror(jsmol_obj) {
   Jmol.script(jsmol_obj, 'load models/PrePos_perimeter_mirror.xyz');
   Jmol.script(jsmol_obj, 'background black; color cpk; spacefill OFF; set ambientPercent 45; wireframe 0.15')
   Jmol.script(jsmol_obj, 'select C4, C5; connect (selected) DELETE;' );
   Jmol.script(jsmol_obj, 'select C12, C11; connect (selected) DELETE;' );
   Jmol.script(jsmol_obj, 'moveTo 0 quaternion {0.7910  0.3605  0.4065  0.2812}');
 }
-function buildFacMirror() {
+function buildFac(jsmol_obj) {
+  Jmol.script(jsmol_obj, 'load models/PrePos_faces.xyz');
+  Jmol.script(jsmol_obj, 'background black; color cpk; spacefill OFF; set ambientPercent 45; wireframe 0.15')
+  Jmol.script(jsmol_obj, 'moveTo 0 quaternion {0.7910  0.3605  0.4065  0.2812}');
+}
+function buildFacMirror(jsmol_obj) {
   Jmol.script(jsmol_obj, 'load models/PrePos_faces_mirror.xyz');
   Jmol.script(jsmol_obj, 'background black; color cpk; spacefill OFF; set ambientPercent 45; wireframe 0.15')
   Jmol.script(jsmol_obj, 'moveTo 0 quaternion {0.7910  0.3605  0.4065  0.2812}');
