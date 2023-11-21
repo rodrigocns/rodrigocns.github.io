@@ -150,13 +150,6 @@ function buildPer() {
   Jmol.script(jsmol_obj, 'select C12, C11; connect (selected) DELETE;' );
   Jmol.script(jsmol_obj, 'moveTo 0 quaternion {0.7910  0.3605  0.4065  0.2812}');
 }
-function buildPer2() {
-  Jmol.script(jsmol_obj, 'load models/PrePos_perimeter2.xyz');
-  Jmol.script(jsmol_obj, 'background black; color cpk; spacefill OFF; set ambientPercent 45; wireframe 0.15')
-  Jmol.script(jsmol_obj, 'select C4, C5; connect (selected) DELETE;' );
-  Jmol.script(jsmol_obj, 'select C12, C11; connect (selected) DELETE;' );
-  Jmol.script(jsmol_obj, 'moveTo 0 quaternion {0.7910  0.3605  0.4065  0.2812}');
-}
 function buildFac() {
   Jmol.script(jsmol_obj, 'load models/PrePos_faces.xyz');
   Jmol.script(jsmol_obj, 'background black; color cpk; spacefill OFF; set ambientPercent 45; wireframe 0.15')
@@ -176,13 +169,6 @@ function buildSegMirror() {
 }
 function buildPerMirror() {
   Jmol.script(jsmol_obj, 'load models/PrePos_perimeter_mirror.xyz');
-  Jmol.script(jsmol_obj, 'background black; color cpk; spacefill OFF; set ambientPercent 45; wireframe 0.15')
-  Jmol.script(jsmol_obj, 'select C4, C5; connect (selected) DELETE;' );
-  Jmol.script(jsmol_obj, 'select C12, C11; connect (selected) DELETE;' );
-  Jmol.script(jsmol_obj, 'moveTo 0 quaternion {0.7910  0.3605  0.4065  0.2812}');
-}
-function buildPer2Mirror() {
-  Jmol.script(jsmol_obj, 'load models/PrePos_perimeter2_mirror.xyz');
   Jmol.script(jsmol_obj, 'background black; color cpk; spacefill OFF; set ambientPercent 45; wireframe 0.15')
   Jmol.script(jsmol_obj, 'select C4, C5; connect (selected) DELETE;' );
   Jmol.script(jsmol_obj, 'select C12, C11; connect (selected) DELETE;' );
