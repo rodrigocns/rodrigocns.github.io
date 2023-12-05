@@ -47,3 +47,12 @@ OrientationInfo.Quaternion	{0.7034 -0.1115 -0.6420 0.2840} *
 
 
 getProperty OrientationInfo.Quaternion
+
+
+
+
+"Line","LineMirror","LineAltered", "LineGray",
+"SegmentAltered","Segment", "SegmentMirror", "SegmentGray",
+"Perimeter", "PerimeterAltered", "PerimeterMirror", "PerimeterGray",
+"FacesAltered", "Faces", "FacesMirror", "FacesGray",
+"Batraco","PolyFill"
