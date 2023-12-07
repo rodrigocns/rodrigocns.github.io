@@ -3,7 +3,9 @@ OrientationInfo.Quaternion	{0.4590 0.4866 -0.4611 -0.5831}
 
 Linear start
 moveTo 0 quaternion {0.7910  0.3605  0.4065  0.2812}
-OrientationInfo.Quaternion	{-0.4065 -0.2812 0.7910 0.3605}
+OrientationInfo.Quaternion	{0.7106 0.1497 0.6589 0.1961}
+
+
 
 LinearMirror start
 OrientationInfo.Quaternion	{0.6945 -0.1174 0.6696 -0.2358}
