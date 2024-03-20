@@ -346,7 +346,7 @@ function getTheNumbers() { //armazena os dados de orientação em quat. para os 
   document.getElementById("indicador_orientacao").innerHTML = orientacaoQuat;// debug
   
   arrayEpoch.push(Date.now()-time_initial);
-  parametroD.push(time_elapsed);
+  parametroD.push(time_elapsed.toFixed(1)); //adiciona na pilha dados de tempo percorrido, com 1 casa decimal {toFixed(1)}
   parametro1.push( Math.round(orientacaoQuat[0]*precision)/precision );
   parametro2.push( Math.round(orientacaoQuat[1]*precision)/precision );
   parametro3.push( Math.round(orientacaoQuat[2]*precision)/precision );
