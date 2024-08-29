@@ -115,7 +115,8 @@
           <button class="debug" onclick="timerStop()">timerStop</button>
           <button class="debug" onclick="saveFile()">Save Data Localy</button>
           <button class="debug" onclick="pixelAngstromRatio(randXYZ(jsmolInteractiveObject),jsmolInteractiveObject,1)">px:Angst</button>
-          <button class="debug" onclick="Jmol.script(jsmolInteractiveObject,'console')">console</button>
+          <button class="debug" onclick="Jmol.script(jsmolReferenceObject,'console')">consoleTgt</button>
+          <button class="debug" onclick="Jmol.script(jsmolInteractiveObject,'console')">consoleInt</button>
           <br><br>
           <button class="debug" onclick="buildLin(jsmolInteractiveObject)">linear</button>
           <button class="debug" onclick="buildLinMirror(jsmolInteractiveObject)">linear m</button>
