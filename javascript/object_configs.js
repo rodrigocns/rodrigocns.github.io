@@ -22,20 +22,23 @@ var Info_interactive = {
   unbind _setMeasure;\
   unbind _slideZoom;\
   unbind _wheelZoom;\
+  unbind _popupMenu;\
+  bind 'CTRL+LEFT+down' '_popupMenu';\
   frank off;",
-  //unbind _popupMenu;\ //comment out pra testes (CRIAR SWITCH COM MODO DEBUG!)
   readyFunction: null,   //calls func. when jmol has loaded and is ready
   debug: true //gives more error warnings if true 
 }
-//explaining JSmol script commands:
-//disable perspective (needed for better precision in calculations of screen xy projections)
+//== explaining JSmol script commands: ==
+//disable perspective (needed for better precision in calculations of screen xy projections):
 // set perspectiveDepth OFF;
-//disable the input of most interactions
+//disable the input of most interactions:
 // unbind _rotateZ; unbind _rotateZorZoom; unbind <...>';
-//disable the jmol watermark
+//disable the jmol watermark:
 // frank off;
-//remove/add bond between selected atoms
+//remove/add bond between selected atoms:
 // select C4 C5; connect (selected) DELETE;
+// //Re-enable functions:
+// bind "ALT-LEFT-drag" "_rotateZ";
 
 var Info_reference = structuredClone(Info_interactive);
 //disable rotation at 0. default is 1
@@ -46,15 +49,10 @@ Info_reference.script = Info_interactive.script.concat("set mouseDragFactor 0");
 // 'moveTo 0 QUATERNION {0.6249 -0.0366 -0.6990 -0.3458}' e 'moveto 0.0 {-666 39 745 139.54}' são equivalentes.
 
 // List of interactive task names the subject will perform 
-const task_list = [
-  "Line","LineMirror","LineAltered", "LineGray",
-  "SegmentAltered","Segment", "SegmentMirror", "SegmentGray",
-  "Perimeter", "PerimeterAltered", "PerimeterMirror", "PerimeterGray",
-  "FacesAltered", "Faces", "FacesMirror", "FacesGray",
-  "Batraco","PolyFill"
-];
+const task_list = ["bolaBastao_c","poligonFill","mrt"];
 
 function prepMolecule(num) {   //mapper para o preparo do teste que está acontecendo
+  //Rotaciona para a orientação inicial do objeto
   // SE PULAR CASES VAI DAR ERRO! task_list.length e quantidade de cases precisa ser igual!
   jsmol_ref = jsmolReferenceObject; //janela esquerda
   jsmol_obj = jsmolInteractiveObject; //janela direita
@@ -62,168 +60,28 @@ function prepMolecule(num) {   //mapper para o preparo do teste que está aconte
   // e suas orientações para cada tarefa
   switch (num){
     case 0:
-      //Line
-      buildLin(jsmol_ref);
-      buildLin(jsmol_obj);
-      Jmol.script(jsmol_ref, 'moveTo 0 quaternion {0.4590 0.4866 -0.4611 -0.5831}');
-      Jmol.script(jsmol_obj, 'moveTo 0 quaternion {0.7106 0.1497 0.6589 0.1961}');
-    break;
-    case 1:
-      //Line Mirror gray
-      buildLin(jsmol_ref);
-      buildLinMirror(jsmol_obj);
-      Jmol.script(jsmol_ref, 'moveTo 0 quaternion {0.4590 0.4866 -0.4611 -0.5831}');
-      Jmol.script(jsmol_obj, 'moveTo 0 quaternion {0.6945 -0.1174 0.6696 -0.2358}');
-      Jmol.script(jsmol_ref, 'select *; color gray');
-      Jmol.script(jsmol_obj, 'select *; color gray');
-    break;
-    case 2:
-      //Line altered
-      buildLin(jsmol_ref);
-      buildLin(jsmol_obj);
-      Jmol.script(jsmol_ref, 'moveTo 0 quaternion {0.4590 0.4866 -0.4611 -0.5831}');
-      Jmol.script(jsmol_obj, 'moveTo 0 quaternion {0.7106 0.1497 0.6589 0.1961}');
-      Jmol.script(jsmol_obj, 'select C3; color white; select O18; color grey');
-      Jmol.script(jsmol_obj, 'rotate Z 90');
-    break;
-    case 3:
-      //Line gray
-      buildLin(jsmol_ref);
-      buildLin(jsmol_obj);
-      Jmol.script(jsmol_ref, 'moveTo 0 quaternion {0.4590 0.4866 -0.4611 -0.5831}');
-      Jmol.script(jsmol_obj, 'moveTo 0 quaternion {0.7106 0.1497 0.6589 0.1961}');
-      Jmol.script(jsmol_obj, 'rotate x 180; rotate z 180');
-      Jmol.script(jsmol_ref, 'select *; color gray');
-      Jmol.script(jsmol_obj, 'select *; color gray');
-
-    break;
-    case 4:
-      //Segment ALT
-      buildSeg(jsmol_ref);
-      buildSeg(jsmol_obj);
-      Jmol.script(jsmol_ref, 'moveTo 0 quaternion {-0.6583 -0.1168 0.2756 0.6907}');
-      Jmol.script(jsmol_obj, 'moveTo 0 quaternion {-0.2508 -0.4495 0.7128 -0.4764}');
-      Jmol.script(jsmol_obj, 'select C17, C12; color white; select O13, O16; color grey');
-    break;
-    case 5:
-      //Segment
-      buildSeg(jsmol_ref);
-      buildSeg(jsmol_obj);
-      Jmol.script(jsmol_ref, 'moveTo 0 quaternion {-0.6583 -0.1168 0.2756 0.6907}');
-      Jmol.script(jsmol_obj, 'moveTo 0 quaternion {-0.2508 -0.4495 0.7128 -0.4764}');
-    break;
-    case 6:
-      //Segment gray Mirrored
-      buildSeg(jsmol_ref);
-      buildSegMirror(jsmol_obj);
-      Jmol.script(jsmol_ref, 'moveTo 0 quaternion {-0.6583 -0.1168 0.2756 0.6907}');
-      Jmol.script(jsmol_obj, 'moveTo 0 quaternion {0.6769 0.0808 0.5685 -0.4606}');
-      Jmol.script(jsmol_ref, 'select *; color gray');
-      Jmol.script(jsmol_obj, 'select *; color gray');
-    break;
-    case 7:
-      //Segment gray
-      buildSeg(jsmol_ref);
-      buildSeg(jsmol_obj);
-      Jmol.script(jsmol_ref, 'moveTo 0 quaternion {-0.6583 -0.1168 0.2756 0.6907}');
-      Jmol.script(jsmol_obj, 'moveTo 0 quaternion {-0.2508 -0.4495 0.7128 -0.4764}');
-      Jmol.script(jsmol_obj, 'rotate x 180; rotate z 180');
-      Jmol.script(jsmol_ref, 'select *; color gray');
-      Jmol.script(jsmol_obj, 'select *; color gray');
-    break;
-    case 8:
-      //Perimeter
-      buildPer(jsmol_ref);
-      buildPer(jsmol_obj);
-      Jmol.script(jsmol_ref, 'moveTo 0 quaternion {-0.0471 0.7526 -0.6326 -0.1769}');
-      Jmol.script(jsmol_obj, 'moveTo 0 quaternion {0.6832 -0.0267 -0.5950 -0.4224}');
-    break;
-    case 9:
-      //Perimeter ALT
-      buildPer(jsmol_ref);
-      buildPer(jsmol_obj);
-      Jmol.script(jsmol_ref, 'moveTo 0 quaternion {-0.0471 0.7526 -0.6326 -0.1769}');
-      Jmol.script(jsmol_obj, 'moveTo 0 quaternion {0.6832 -0.0267 -0.5950 -0.4224}');
-      Jmol.script(jsmol_obj, 'select C3; color white; select O14; color grey');
-    break;
-    case 10:
-      //Perimeter gray Mirrored
-      buildPer(jsmol_ref);
-      buildPerMirror(jsmol_obj);
-      Jmol.script(jsmol_ref, 'moveTo 0 quaternion {-0.0471 0.7526 -0.6326 -0.1769}');
-      Jmol.script(jsmol_obj, 'moveTo 0 quaternion {-0.6045 0.4107 0.6822 0.0227}');
-      Jmol.script(jsmol_ref, 'select *; color gray');
-      Jmol.script(jsmol_obj, 'select *; color gray');
-    break;
-    case 11:
-      //Perimeter gray
-      buildPer(jsmol_ref);
-      buildPer(jsmol_obj);
-      Jmol.script(jsmol_ref, 'moveTo 0 quaternion {-0.0471 0.7526 -0.6326 -0.1769}');
-      Jmol.script(jsmol_obj, 'moveTo 0 quaternion {0.6832 -0.0267 -0.5950 -0.4224}');
-      Jmol.script(jsmol_ref, 'select *; color gray');
-      Jmol.script(jsmol_obj, 'select *; color gray');
-    break;
-    case 12:
-      //Faces ALT+++
-      buildFac(jsmol_ref);
-      buildFac(jsmol_obj);
-      Jmol.script(jsmol_ref, 'moveTo 0 quaternion {0.3939 0.1734 -0.5907 0.6825}');
-      Jmol.script(jsmol_obj, 'moveTo 0 quaternion {-0.4412 0.5134 0.1199 0.7262}');
-      Jmol.script(jsmol_obj, 'select C1; color white; select O11; color grey');
-      Jmol.script(jsmol_ref, 'select *; color gray');
-      Jmol.script(jsmol_obj, 'select *; color gray');
-    break;
-    case 13:
-      //Faces 
-      buildFac(jsmol_ref);
-      buildFac(jsmol_obj);
-      Jmol.script(jsmol_ref, 'moveTo 0 quaternion {0.3939 0.1734 -0.5907 0.6825}');
-      Jmol.script(jsmol_obj, 'moveTo 0 quaternion {-0.4412 0.5134 0.1199 0.7262}');
-      Jmol.script(jsmol_ref, 'select *; color gray');
-      Jmol.script(jsmol_obj, 'select *; color gray');
-    break;
-    case 14:
-      //Faces Mirrored
-      buildFac(jsmol_ref);
-      buildFacMirror(jsmol_obj);
-      Jmol.script(jsmol_ref, 'moveTo 0 quaternion {0.3939 0.1734 -0.5907 0.6825}');
-      Jmol.script(jsmol_obj, 'moveTo 0 quaternion {0.7034 -0.1115 -0.6420 0.2840}');
-    break;
-    case 15:
-      //Faces 
-      buildFac(jsmol_ref);
-      buildFac(jsmol_obj);
-      Jmol.script(jsmol_ref, 'moveTo 0 quaternion {0.3939 0.1734 -0.5907 0.6825}');
-      Jmol.script(jsmol_obj, 'moveTo 0 quaternion {-0.4412 0.5134 0.1199 0.7262}');
-      Jmol.script(jsmol_obj, 'rotate x 180; rotate z 180');
-      Jmol.script(jsmol_ref, 'select *; color gray');
-      Jmol.script(jsmol_obj, 'select *; color gray');
-    break;
-    case 16: 
-      //cor interativa
       buildBallStickMol(jsmol_ref);
       buildBallStickMol(jsmol_obj);
       Jmol.script(jsmol_ref,'color cpk; spacefill 23%; wireframe 0.15');
       Jmol.script(jsmol_obj,'color cpk; spacefill 23%; wireframe 0.15');
-      Jmol.script(jsmol_ref,'moveto 0 QUATERNION {-0.4903 -0.2825 -0.4554 0.6873}');
-      Jmol.script(jsmol_obj,'moveTo 0 QUATERNION {0.6249 -0.0366 -0.6990 -0.3458}');
-      Jmol.script(jsmol_ref, 'select oxygen,nitrogen; color white');
-      Jmol.script(jsmol_obj, 'select oxygen,nitrogen; color white');
-      Jmol.script(jsmol_ref, 'hide hydrogen');
-      Jmol.script(jsmol_obj, 'hide hydrogen');
+      Jmol.script(jsmol_ref,'moveto 0 QUATERNION {-0.4902575975335792 -0.2825336376897219 -0.45539483504230244 0.6873410913449087}');
+      Jmol.script(jsmol_obj,'moveto 0.0 {-666 39 745 139.54}');
     break;
-    case 17: 
-      //cor polyfill interativa
+    case 1:
       buildPoligonFilledMol(jsmol_obj);
       buildPoligonFilledMol(jsmol_ref);
       Jmol.script(jsmol_ref,'color cpk; spacefill off; wireframe 0.08');
       Jmol.script(jsmol_obj,'color cpk; spacefill off; wireframe 0.08');
-      Jmol.script(jsmol_ref,'moveto 0 QUATERNION {-0.4903 -0.2825 -0.4554 0.6873}');
-      Jmol.script(jsmol_obj,'moveTo 0 QUATERNION {0.6249 -0.0366 -0.6990 -0.3458}');
-      Jmol.script(jsmol_ref, 'select oxygen,nitrogen; color white');
-      Jmol.script(jsmol_obj, 'select oxygen,nitrogen; color white');
+      Jmol.script(jsmol_ref,'moveto 0 QUATERNION {-0.4902575975335792 -0.2825336376897219 -0.45539483504230244 0.6873410913449087}');
+      Jmol.script(jsmol_obj,'moveto 0.0 {-666 39 745 139.54}');
     break;
+    case 2:
+      buildMRTModel(jsmol_ref);
+      buildMRTModel(jsmol_obj);
+      Jmol.script(jsmol_ref,'moveto 0 QUATERNION {0.29922234471855447,0.2236541366945916,-0.10297736856098816,0.9218679282439424}');
+      Jmol.script(jsmol_obj,'moveto 0 QUATERNION {0,0,0,1}');
+    break;
+
     //https://chemapps.stolaf.edu/jmol/docs/examples/bonds.htm  help on altering model rendering
   }
 }
@@ -277,58 +135,4 @@ function buildPoligonFilledMol(jsmol_obj) {
     color $f6 gray;\
     color $f7 gray;\
     ');
-}
-
-function buildLin(jsmol_obj) {
-  Jmol.script(jsmol_obj, 'load models/PrePos_line.xyz');
-  Jmol.script(jsmol_obj, 'background black; color cpk; spacefill OFF; set ambientPercent 45; wireframe 0.15')
-  Jmol.script(jsmol_obj, 'select oxygen; color white');
-  Jmol.script(jsmol_obj, 'select C4, C5, C12, C11, C15; connect (selected) DELETE;' );
-}
-function buildLinMirror(jsmol_obj) {
-  Jmol.script(jsmol_obj, 'load models/PrePos_line_mirror.xyz');
-  Jmol.script(jsmol_obj, 'background black; color cpk; spacefill OFF; set ambientPercent 45; wireframe 0.15')
-  Jmol.script(jsmol_obj, 'select oxygen; color white');
-  Jmol.script(jsmol_obj, 'select C4, C5, C12, C11, C15; connect (selected) DELETE;' );
-  Jmol.script(jsmol_obj, 'moveTo 0 quaternion {0.7910  0.3605  0.4065  0.2812}');
-}
-function buildSeg(jsmol_obj) {
-  Jmol.script(jsmol_obj, 'load models/PrePos_segments.xyz');
-  Jmol.script(jsmol_obj, 'background black; color cpk; spacefill OFF; set ambientPercent 45; wireframe 0.15')
-  Jmol.script(jsmol_obj, 'select oxygen; color white');
-  Jmol.script(jsmol_obj, 'moveTo 0 quaternion {0.7910  0.3605  0.4065  0.2812}');
-}
-function buildSegMirror(jsmol_obj) {
-  Jmol.script(jsmol_obj, 'load models/PrePos_segments_mirror.xyz');
-  Jmol.script(jsmol_obj, 'background black; color cpk; spacefill OFF; set ambientPercent 45; wireframe 0.15')
-  Jmol.script(jsmol_obj, 'select oxygen; color white');
-  Jmol.script(jsmol_obj, 'moveTo 0 quaternion {0.7910  0.3605  0.4065  0.2812}');
-}
-function buildPer(jsmol_obj) {
-  Jmol.script(jsmol_obj, 'load models/PrePos_perimeter.xyz');
-  Jmol.script(jsmol_obj, 'background black; color cpk; spacefill OFF; set ambientPercent 45; wireframe 0.15')
-  Jmol.script(jsmol_obj, 'select oxygen; color white');
-  Jmol.script(jsmol_obj, 'select C4, C5; connect (selected) DELETE;' );
-  Jmol.script(jsmol_obj, 'select C12, C11; connect (selected) DELETE;' );
-  Jmol.script(jsmol_obj, 'moveTo 0 quaternion {0.7910  0.3605  0.4065  0.2812}');
-}
-function buildPerMirror(jsmol_obj) {
-  Jmol.script(jsmol_obj, 'load models/PrePos_perimeter_mirror.xyz');
-  Jmol.script(jsmol_obj, 'background black; color cpk; spacefill OFF; set ambientPercent 45; wireframe 0.15')
-  Jmol.script(jsmol_obj, 'select oxygen; color white');
-  Jmol.script(jsmol_obj, 'select C4, C5; connect (selected) DELETE;' );
-  Jmol.script(jsmol_obj, 'select C12, C11; connect (selected) DELETE;' );
-  Jmol.script(jsmol_obj, 'moveTo 0 quaternion {0.7910  0.3605  0.4065  0.2812}');
-}
-function buildFac(jsmol_obj) {
-  Jmol.script(jsmol_obj, 'load models/PrePos_faces.xyz');
-  Jmol.script(jsmol_obj, 'background black; color cpk; spacefill OFF; set ambientPercent 45; wireframe 0.15')
-  Jmol.script(jsmol_obj, 'select oxygen; color white');
-  Jmol.script(jsmol_obj, 'moveTo 0 quaternion {0.7910  0.3605  0.4065  0.2812}');
-}
-function buildFacMirror(jsmol_obj) {
-  Jmol.script(jsmol_obj, 'load models/PrePos_faces_mirror.xyz');
-  Jmol.script(jsmol_obj, 'background black; color cpk; spacefill OFF; set ambientPercent 45; wireframe 0.15')
-  Jmol.script(jsmol_obj, 'select oxygen; color white');
-  Jmol.script(jsmol_obj, 'moveTo 0 quaternion {0.7910  0.3605  0.4065  0.2812}');
 }
