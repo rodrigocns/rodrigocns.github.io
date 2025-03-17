@@ -38,7 +38,7 @@
       </nav>
     </div>
   </section>
-  <section id="tab_form" class="stage current-stage" style="display:block"> <!-- Forms -->
+  <section id="tab_form" class="ContentStage current-ContentStage" style="display:block"> <!-- Forms -->
     <div id="div_form">
       <form name="submit-to-google-sheet" id="gsForm">
         <!-- Escreva nome e email para contato caso queira receber notícias sobre a pesquisa e clique em próximo. -->
@@ -57,8 +57,9 @@
         To rotate the object, click and drag your mouse over it.  When you finish 
         each of the 3 tasks, click on the 'DONE!' button to continue.
         -->
+        
         <!-- internal values to be sent by forms -->
-        <!-- need to change here and in scripts.js -->
+        <!-- Changes here should be replicated in scripts.js -->
         <input type="hidden" name="sessionID">
         <input type="hidden" name="taskID">
         <input type="hidden" name="pxAngstRatio">
@@ -91,7 +92,17 @@
     <button onclick="nextStage();prepMolecule(task_n);openFullscreen()">Next</button>
   </section>
   
-  <section id="tab_teste" class="stage" style="display:none">  <!-- JSmol interactive tasks -->
+  <section id="tab_paper_task" class="ContentStage" style="display:none"> <!-- paper-to-screen task -->
+    <img id="imgmap" src="images/img (1).jpg" usemap="#task_alternatives_map">
+    <map name="task_alternatives_map">
+      <area shape="rect" coords=" 205,819,  414,1117" alt="A" onclick="imgAlternativeChosen('A')">
+      <area shape="rect" coords=" 458,819,  667,1117" alt="B" onclick="imgAlternativeChosen('B')">
+      <area shape="rect" coords=" 721,819,  930,1117" alt="C" onclick="imgAlternativeChosen('C')">
+      <area shape="rect" coords=" 979,819, 1188,1117" alt="D" onclick="imgAlternativeChosen('D')">
+      <area shape="rect" coords="1231,819, 1440,1117" alt="E" onclick="imgAlternativeChosen('E')">
+    </map>
+  </section>
+  <section id="tab_iRT" class="ContentStage" style="display:none">  <!-- JSmol interactive tasks -->
     <div class="debug" id="indicador_orientacao" style="background-color:gray">Test</div> <!-- orientation coordinates -->
 
     <table id="iRT_canvas_table"> 
@@ -147,7 +158,7 @@
     <div id=jsmol_molecula_console class="debug">Console (wip)</div>
     
   </section>
-  <section id="tab_fim" class="stage" style="display:none"> <!-- Final words -->
+  <section id="tab_fim" class="ContentStage" style="display:none"> <!-- Final words -->
     "Muito obrigado por participar da nossa pesquisa!"<br>
     "Thank you for taking part in our research!"<br>
     <br>
@@ -159,7 +170,7 @@
 
   <br>
   <div style="position:sticky; bottom:0; font-size:x-small; ">
-    Updated 14/11/2023
+    Last updated 2025/03/17
   </div>
   <script src="javascript/scripts.js"></script> <!--needs to load last, uses some elements from the page itself-->
 </body>

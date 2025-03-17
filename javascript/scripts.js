@@ -7,20 +7,20 @@ const scriptURL = 'https://script.google.com/macros/s/AKfycbxtKza8SDt27Ik39cktDy
 //Unless you know what you are doing, or you want to fiddle with coding and learn more! :D
 
 let task_n = 0; //number of the initial interactive task
-let stage = 0;
+let ContentStage = 0;
 
-const stage_elements = document.getElementsByClassName('stage'); //get stages list
-function nextStage() {  //makes the present stage (section with tag stage) invisible and shows the next section 
-  // get the currently visible stage with the `current-stage` class
-  var currentSection = document.querySelector(".current-stage");
-  // get the next sequential section with the `stage` class
+const stage_elements = document.getElementsByClassName('ContentStage'); //get stages list
+function nextStage() {  //makes the present ContentStage (section with tag ContentStage) invisible and shows the next section 
+  // get the currently visible section with the `current-ContentStage` class
+  var currentSection = document.querySelector(".current-ContentStage");
+  // get the next sequential section with the `ContentStage` class
   var nextSection = currentSection.nextElementSibling;
-  while (nextSection && !nextSection.classList.contains("stage")) {
+  while (nextSection && !nextSection.classList.contains("ContentStage")) {
     nextSection = nextSection.nextElementSibling;
   }
   // if there is no next sequential section go back to the first one
   if (!nextSection) {
-    nextSection = document.querySelector(".stage");
+    nextSection = document.querySelector(".ContentStage");
   }
   // hide button if element is the last one 
   /*
@@ -28,12 +28,12 @@ function nextStage() {  //makes the present stage (section with tag stage) invis
     document.getElementById("next_stage_button_debug").style.visibility="hidden";
   }
   */
-  // hide the current sequential section with the `stage` class
+  // hide the current sequential section with the `ContentStage` class
   currentSection.style.display = "none";
-  currentSection.classList.remove("current-stage");
-  // show the next sequential section with the `stage` class
+  currentSection.classList.remove("current-ContentStage");
+  // show the next sequential section with the `ContentStage` class
   nextSection.style.display = "block";
-  nextSection.classList.add("current-stage");
+  nextSection.classList.add("current-ContentStage");
 }
 
 var debug_state = 0;
@@ -171,6 +171,20 @@ function randXYZ(jsmol_obj) { //return random xyz coordinates inside boundbox of
   xyz[2] = Math.random()*(boxMax[2]-boxMin[2])+boxMin[2];
   // console.log('xyz: '+xyz); //debug
   return xyz;
+}
+
+imgmap_n = 1;
+function imgAlternativeChosen(chosen_alternative) {
+  alert("You chose alternative " + chosen_alternative);
+  //add chosen_alternative to forms
+  //
+  //get next image
+  imgmap_n += 1;
+  if (imgmap_n < 30 ) {
+    const img = document.getElementById("imgmap");
+    img.src = "images/img ("+imgmap_n+").jpg"; // Change to the new image path
+  }
+  elseif
 }
 
 // create numButtons button tags dinamically. Reflects task_list entries 
