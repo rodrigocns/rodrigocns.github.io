@@ -10,7 +10,8 @@ let task_n = 0; //number of the initial interactive task
 let ContentStage = 0;
 
 const stage_elements = document.getElementsByClassName('ContentStage'); //get stages list
-function nextStage() {  //makes the present ContentStage (section with tag ContentStage) invisible and shows the next section 
+//hides the current section (with tag current-ContentStage), and shows the next section 
+function nextStage() {  
   // get the currently visible section with the `current-ContentStage` class
   var currentSection = document.querySelector(".current-ContentStage");
   // get the next sequential section with the `ContentStage` class
@@ -175,16 +176,20 @@ function randXYZ(jsmol_obj) { //return random xyz coordinates inside boundbox of
 
 imgmap_n = 1;
 function imgAlternativeChosen(chosen_alternative) {
-  alert("You chose alternative " + chosen_alternative);
+  //alert("You chose alternative " + chosen_alternative);
   //add chosen_alternative to forms
-  //
-  //get next image
+  //TODO add func.
+  //go to next image
   imgmap_n += 1;
-  if (imgmap_n < 30 ) {
+  // if there are more images
+  if (imgmap_n <= 30 ) {
     const img = document.getElementById("imgmap");
     img.src = "images/img ("+imgmap_n+").jpg"; // Change to the new image path
   }
-  elseif
+  // else, 
+  else {
+    nextStage();
+  }
 }
 
 // create numButtons button tags dinamically. Reflects task_list entries 
@@ -200,7 +205,7 @@ for (let i = 1; i <= numButtons; i++) {
   buttonContainer.appendChild(button);
 }
 
-function insert_form_values() { //insert values in form before sumbission
+function insert_form_values() { //insert values in form before sumbission to google sheets
   document.getElementById('gsForm').sessionID.value = sessionID;
   document.getElementById('gsForm').taskID.value = task_list[task_n]; //tasks identifier
   document.getElementById('gsForm').pxAngstRatio.value = razaoPxAngst; //pixels to jmol distance unit ratio 
