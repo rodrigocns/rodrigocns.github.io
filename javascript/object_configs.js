@@ -1,3 +1,5 @@
+//functions and scripts for Jmol objects in interactive tasks.
+
 var Info_interactive = { 
   //For more explanations go to https://wiki.jmol.org/index.php/Jmol_JavaScript_Object/Info
   color: "#000000",
@@ -11,7 +13,8 @@ var Info_interactive = {
   defaultModel: "",
   src: "models/pseudobatracotoxin_molecule.xyz", //script overwrites this
   script: 
-  "load models/pseudobatracotoxin_molecule.xyz;\
+  "set antialiasDisplay true; \
+  load models/pseudobatracotoxin_molecule.xyz;\
   set perspectiveDepth OFF;\
   unbind _rotateZ;\
   unbind _rotateZorZoom;\
