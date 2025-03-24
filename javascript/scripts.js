@@ -174,15 +174,15 @@ function randXYZ(jsmol_obj) { //return random xyz coordinates inside boundbox of
   return xyz;
 }
 
-imgmap_n = 1;
+imgmap_n = 1; paperAnswer = "";
 function imgAlternativeChosen(chosen_alternative) {
   //alert("You chose alternative " + chosen_alternative);
   //add chosen_alternative to forms
-  //TODO add func.
+  paperAnswer = paperAnswer + chosen_alternative;
   //go to next image
   imgmap_n += 1;
   // if there are more images
-  if (imgmap_n <= 30 ) {
+  if (imgmap_n <= 3 ) {
     const img = document.getElementById("imgmap");
     img.src = "images/img ("+imgmap_n+").jpg"; // Change to the new image path
   }
