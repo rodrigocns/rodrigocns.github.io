@@ -241,8 +241,9 @@ function insert_form_values() { //insert values in form before sumbission to goo
   modelFileLocation = Jmol.getPropertyAsArray(jsmolInteractiveObject, 'fileName');
   modelName = modelFileLocation.slice(modelFileLocation.lastIndexOf("/")+1);
   document.getElementById('gsForm').modelName.value = modelName; // fileName of 3D model used
+  document.getElementById('gsForm').paperAnswer.value = paperAnswer;
+  //Inform ok status to console
   gsFormStatus = 1;
-  //alert ("Func1 executou e alterou valor fy"); //debug
   console.log("Form values inserted! gsFormStatus: "+gsFormStatus);
   return gsFormStatus;
 }
