@@ -78,7 +78,8 @@ function buttonStart() { //functions to run when clicking the "GO" button..
   zerar_contagem();
   document.getElementById("cellLeft").style.visibility="visible";
   document.getElementById("cellRight").style.visibility="visible";
-  
+  Jmol.script(jsmolReferenceObject,'refresh'); // refresh pixels of object window
+  Jmol.script(jsmolInteractiveObject,'refresh');
   timerStart ();         //starts time counting and periodic functions
   getTheNumbers();       // records the data ONLY from the initial instant (t=0)
   document.getElementById("startButton").style.visibility="hidden";
@@ -245,7 +246,6 @@ function insert_form_values() { //insert values in form before sumbission to goo
   console.log("Form values inserted! gsFormStatus: "+gsFormStatus);
   return gsFormStatus;
 }
-
 
 function getWindowSize() { //pega o tamanho/resolução da janela do browser
   var win = window,
