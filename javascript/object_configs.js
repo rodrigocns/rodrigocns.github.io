@@ -12,22 +12,23 @@ var Info_interactive = {
 
   defaultModel: "",
   src: "models/pseudobatracotoxin_molecule.xyz", //script overwrites this
-  script: 
-  "set antialiasDisplay true; \
-  load models/pseudobatracotoxin_molecule.xyz;\
-  set perspectiveDepth OFF;\
-  unbind _rotateZ;\
-  unbind _rotateZorZoom;\
-  unbind _reset;\
-  unbind _translate;\
-  unbind _center;\
-  unbind _pickAtom;\
-  unbind _setMeasure;\
-  unbind _slideZoom;\
-  unbind _wheelZoom;\
-  unbind _popupMenu;\
-  bind 'CTRL+LEFT+down' '_popupMenu';\
-  frank off;",
+  script: `
+    set antialiasDisplay true; 
+    load models/pseudobatracotoxin_molecule.xyz;
+    set perspectiveDepth OFF;
+    unbind _rotateZ;
+    unbind _rotateZorZoom;
+    unbind _reset;
+    unbind _translate;
+    unbind _center;
+    unbind _pickAtom;
+    unbind _setMeasure;
+    unbind _slideZoom;
+    unbind _wheelZoom;
+    unbind _popupMenu;
+    bind 'CTRL+LEFT+down' '_popupMenu';
+    frank off;
+  `,
   readyFunction: null,   //calls func. when jmol has loaded and is ready
   debug: true //gives more error warnings if true 
 }
