@@ -5,9 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>iRT - interactive Rotation Tasks</title>
   <link rel="stylesheet" href="css/screen.css" type="text/css" >
-  <script type="text/javascript" src="jsmol/JSmol.min.js"></script>
-  <script type="text/javascript" src="javascript/object_configs.js"></script>
-  
+  <script src="jsmol/JSmol.min.js"></script>
+  <script src="javascript/object_configs.js"></script>
+  <script src="jspsych/jspsych.js"></script>
+  <script src="jspsych/plugin-html-keyboard-response.js"></script>
+  <!--<script src="plugin-corsi-blocks/package.json"></script> -->
+  <script src="https://unpkg.com/@jspsych-contrib/plugin-corsi-blocks@2.0.0"></script>
+  <!--<link href="jspsych/jspsych.css" rel="stylesheet" type="text/css" /> -->
 </head>
 
 <body>
@@ -38,7 +42,8 @@
       </nav>
     </div>
   </section>
-  <section id="tab_form" class="ContentStage current-ContentStage" style="display:block"> <!-- Forms -->
+  <!-- Forms -->
+  <section id="tab_form" class="ContentStage current-ContentStage" style="display:block"> 
     <div id="div_form">
       <form name="submit-to-google-sheet" id="gsForm">
         <!-- Escreva nome e email para contato caso queira receber notícias sobre a pesquisa e clique em próximo. -->
@@ -93,7 +98,8 @@
     </div>
     <button onclick="nextStage();prepMolecule(task_n);openFullscreen()">Next</button>
   </section>
-  <section id="tab_paper_task" class="ContentStage" style="display:none"> <!-- paper-to-screen task -->
+  <!-- paper-to-screen task -->
+  <section id="tab_paper_task" class="ContentStage" style="display:none"> 
     <!-- common height of notebooks is 768px. Image is 1625x1250, and resized to 60% its size in page -->
     <img id="imgmap" src="images/img (1).jpg" usemap="#task_alternatives_map" height="750"> 
     <map name="task_alternatives_map">
@@ -103,6 +109,66 @@
       <area shape="rect" coords=" 585,480, 713,660" alt="D" onclick="imgAlternativeChosen('D')">
       <area shape="rect" coords=" 737,480, 865,660" alt="E" onclick="imgAlternativeChosen('E')">
     </map>
+  </section>
+  <!-- corsi block tapping task from jsPsych -->
+  <section id="tab_corsi" class="ContentStage" style="display:none"> 
+    Corsi block-tapping task (JSmol)
+  </section>
+  <section id="tab_corsi" class="ContentStage" style="display:none"> 
+    Corsi block-tapping task (jsPsych)
+      <script> 
+      /*
+      //initialize jsPsych
+      const jsPsych = initJsPsych();
+    
+      //create timeline
+      var timeline = [];
+    
+      //define welcome message trial
+      var welcome = {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: "Welcome to the experiment. Press any key to begin."
+      };
+      timeline.push(welcome);
+
+      var instructions = {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: `
+          <p>In this experiment, a circle will appear in the center 
+          of the screen.</p><p>If the circle is <strong>blue</strong>, 
+          press the letter F on the keyboard as fast as you can.</p>
+          <p>If the circle is <strong>orange</strong>, press the letter J 
+          as fast as you can.</p>
+          <div style='width: 700px;'>
+          <div style='float: left;'><img src='img/blue.png'></img>
+          <p class='small'><strong>Press the F key</strong></p></div>
+          <div style='float: right;'><img src='img/orange.png'></img>
+          <p class='small'><strong>Press the J key</strong></p></div>
+          </div>
+          <p>Press any key to begin.</p>
+          `,
+        post_trial_gap: 2000
+      };
+      timeline.push(instructions);
+
+      const show_sequence = {
+        type: jsPsychCorsiBlocks,
+        sequence: [3,1],
+        mode: 'display'
+      }
+      timeline.push(show_sequence);
+
+      const response = {
+        type: jsPsychCorsiBlocks,
+        sequence: [3,1],
+        mode: 'input'
+      }
+      timeline.push(response);
+
+      //start jsPsych experiment
+      jsPsych.run(timeline);
+      */
+    </script>
   </section>
   <section id="tab_iRT" class="ContentStage" style="display:none">  <!-- JSmol interactive tasks -->
     <div class="debug" id="indicador_orientacao" style="background-color:gray">Test</div> <!-- orientation coordinates -->
