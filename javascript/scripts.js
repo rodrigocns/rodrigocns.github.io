@@ -38,7 +38,8 @@ function nextStage() {
 }
 
 var debug_state = 0;
-function debug() { //switch (on/off) of debug features. 
+//switch (on/off) of debug features.
+function debug() {  
   //Toggles visibility of each 'debug' class element
   const debug_elements = document.getElementsByClassName('debug');
   if (debug_state == 0){
@@ -55,7 +56,8 @@ function debug() { //switch (on/off) of debug features.
   // alert(debug_elements.length);
 }
 
-function openFullscreen() { /* View in fullscreen */
+/* View in fullscreen */
+function openFullscreen() { 
   if (document.documentElement.requestFullscreen) {
     document.documentElement.requestFullscreen();
   } else if (document.documentElement.webkitRequestFullscreen) { /* Safari */
@@ -64,7 +66,9 @@ function openFullscreen() { /* View in fullscreen */
     document.documentElement.msRequestFullscreen();
   }
 }
-function closeFullscreen() {/* Close fullscreen */
+
+/* Close fullscreen */
+function closeFullscreen() {
   if (document.exitFullscreen) {
     document.exitFullscreen();
   } else if (document.webkitExitFullscreen) { /* Safari */
@@ -74,7 +78,8 @@ function closeFullscreen() {/* Close fullscreen */
   }
 }
 
-function buttonStart() { //functions to run when clicking the "GO" button.. 
+//functions to run when clicking the "GO" button..
+function buttonStart() {  
   zerar_contagem();
   document.getElementById("cellLeft").style.visibility="visible";
   document.getElementById("cellRight").style.visibility="visible";
@@ -89,7 +94,8 @@ function buttonStart() { //functions to run when clicking the "GO" button..
   razaoPxAngst=pixelAngstromRatio(jsmolInteractiveObject);
 }
 
-function buttonSubmit(){ //functions to run when clicking the "DONE" button.
+//functions to run when clicking the "DONE" button.
+function buttonSubmit(){ 
   timerStop();  //stop cronometer
   document.getElementById("cellLeft").style.visibility="hidden";
   document.getElementById("cellRight").style.visibility="hidden"; //hides jmol screens
@@ -114,7 +120,8 @@ function buttonSubmit(){ //functions to run when clicking the "DONE" button.
   }
 }
 
-function rot_matrix(qi,qj,qk,qr,s=1) { //generates 3x3 matrix of rotation related to input quaternion
+//generates 3x3 matrix of rotation related to input quaternion
+function rot_matrix(qi,qj,qk,qr,s=1) { 
   //Jmol gives quaternion numbers with the real part at the last position. Thats why qr is last. 
   let matrix = [
     [1-2*s*(qj**2 + qk**2),   2*s*(qi*qj - qk*qr),   2*s*(qi*qk + qj*qr)],
@@ -123,7 +130,9 @@ function rot_matrix(qi,qj,qk,qr,s=1) { //generates 3x3 matrix of rotation relate
   ];
   return matrix;
 }
-function matrix_prod (mat3x3,mat3x1) { //returns product of matrix 3x3 and matrix 3x1
+
+//returns product of matrix 3x3 and matrix 3x1
+function matrix_prod (mat3x3,mat3x1) { 
   let matProd = [
     mat3x3[0][0]*mat3x1[0] + mat3x3[0][1]*mat3x1[1] + mat3x3[0][2]*mat3x1[2],
     mat3x3[1][0]*mat3x1[0] + mat3x3[1][1]*mat3x1[1] + mat3x3[1][2]*mat3x1[2],
@@ -131,7 +140,9 @@ function matrix_prod (mat3x3,mat3x1) { //returns product of matrix 3x3 and matri
   ];
   return matProd;
 }
-function pixelAngstromRatio(jsmol_obj,debug=0){  //returns the pixel to Angstrons ratio 
+
+//returns the pixel to Angstrons ratio
+function pixelAngstromRatio(jsmol_obj,debug=0){   
   // get random xyz coordinate inside jmol canvas
   xyz = randXYZ(jsmol_obj);
   // get jmol onject orientation 
@@ -164,7 +175,9 @@ function pixelAngstromRatio(jsmol_obj,debug=0){  //returns the pixel to Angstron
   }
   return razao;
 }
-function randXYZ(jsmol_obj) { //return random xyz coordinates inside boundbox of input jmol object 
+
+//return random xyz coordinates inside boundbox of input jmol object
+function randXYZ(jsmol_obj) {  
   let boxMin= Jmol.getPropertyAsArray(jsmol_obj, 'boundBoxInfo.corner0');
   let boxMax= Jmol.getPropertyAsArray(jsmol_obj, 'boundBoxInfo.corner1');
   let xyz = [0,0,0];
@@ -175,6 +188,7 @@ function randXYZ(jsmol_obj) { //return random xyz coordinates inside boundbox of
   return xyz;
 }
 
+// Register chosen alternative of paper task to forms
 imgmap_n = 1; paperAnswer = "";
 function imgAlternativeChosen(chosen_alternative) {
   //alert("You chose alternative " + chosen_alternative);
@@ -182,12 +196,12 @@ function imgAlternativeChosen(chosen_alternative) {
   paperAnswer = paperAnswer + chosen_alternative;
   //go to next image
   imgmap_n += 1;
-  // if there are more images
+  // if there are more images, load next image in new image path (img.src)
   if (imgmap_n <= 3 ) {
     const img = document.getElementById("imgmap");
     img.src = "images/img ("+imgmap_n+").jpg"; // Change to the new image path
   }
-  // else, 
+  // else,
   else {
     nextStage();
   }
