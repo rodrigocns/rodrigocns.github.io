@@ -17,6 +17,7 @@
 <body>
   <!-- debug mode switch -->
   <div style="text-align:right"><span id="debug_switch" style="color:#404040" onclick="debug()">Debug</span></div>
+  
   <!-- <section class="w3-container w3-center w3-animate-opacity"> -->
   <section id="tab_navigation" class="debug">
     <div class="dev-div">
@@ -42,6 +43,7 @@
       </nav>
     </div>
   </section>
+  
   <!-- Forms -->
   <section id="tab_form" class="ContentStage current-ContentStage" style="display:block"> 
     <div id="div_form">
@@ -98,6 +100,7 @@
     </div>
     <button onclick="nextStage();prepMolecule(task_n);openFullscreen()">Next</button>
   </section>
+  
   <!-- paper-to-screen task -->
   <section id="tab_paper_task" class="ContentStage" style="display:none"> 
     <!-- common height of notebooks is 768px. Image is 1625x1250, and resized to 60% its size in page -->
@@ -110,14 +113,12 @@
       <area shape="rect" coords=" 737,480, 865,660" alt="E" onclick="imgAlternativeChosen('E')">
     </map>
   </section>
+
   <!-- corsi block tapping task from jsPsych -->
-  <section id="tab_corsi" class="ContentStage" style="display:none"> 
-    Corsi block-tapping task (JSmol)
-  </section>
-  <section id="tab_corsi" class="ContentStage" style="display:none"> 
+  <section id="corsi-task-container" class="ContentStage" style="display:none"> 
     Corsi block-tapping task (jsPsych)
       <script> 
-      /*
+      
       //initialize jsPsych
       const jsPsych = initJsPsych();
     
@@ -131,6 +132,7 @@
       };
       timeline.push(welcome);
 
+      /*
       var instructions = {
         type: jsPsychHtmlKeyboardResponse,
         stimulus: `
@@ -150,24 +152,49 @@
         post_trial_gap: 2000
       };
       timeline.push(instructions);
+      */
 
+      // Define the Corsi Block Tapping Task
+      const corsi_trial = {
+          type: 'plugin-corsi-blocks', // Ensure you have this plugin loaded
+          grid_size: [4, 4], // Standard 4x4 grid
+          sequence_length: 5, // Number of blocks in the sequence
+          trial_duration: null, // No time limit per trial
+          show_feedback: true, // Show if response was correct
+          practice: false, // Set to true for practice trials
+          on_finish: function(data) {
+              console.log(data); // Log data for debugging
+          }
+      };
+      timeline.push(corsi_trial);
+      
       const show_sequence = {
         type: jsPsychCorsiBlocks,
         sequence: [3,1],
         mode: 'display'
-      }
+      };
       timeline.push(show_sequence);
 
       const response = {
         type: jsPsychCorsiBlocks,
         sequence: [3,1],
         mode: 'input'
-      }
+      };
       timeline.push(response);
 
       //start jsPsych experiment
       jsPsych.run(timeline);
-      */
+      
+// Run experiment inside an HTML section
+document.addEventListener('DOMContentLoaded', function() {
+    const experimentContainer = document.getElementById('corsi-task-container');
+    if (experimentContainer) {
+        jsPsych.run(timeline);
+    } else {
+        console.error('Corsi task container not found in HTML');
+    }
+});
+
     </script>
   </section>
   <section id="tab_iRT" class="ContentStage" style="display:none">  <!-- JSmol interactive tasks -->
