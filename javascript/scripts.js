@@ -201,9 +201,11 @@ function imgAlternativeChosen(chosen_alternative) {
     const img = document.getElementById("imgmap");
     img.src = "images/img ("+imgmap_n+").jpg"; // Change to the new image path
   }
-  // else,
+  // else, 
   else {
-    nextStage();
+    document.getElementById("endOfPaperTasksButton").style.visibility = "visible";
+    document.getElementById("imgmap").style.visibility = "hidden";
+    
   }
 }
 
