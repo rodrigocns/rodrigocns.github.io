@@ -113,7 +113,10 @@
       <area shape="rect" coords=" 737,480, 865,660" alt="E" onclick="imgAlternativeChosen('E')">
     </map>
     <br>
-    <button id="endOfPaperTasksButton" onclick="nextStage()" style="visibility:hidden">Next</button>
+    <!-- start jsPsych experiment -->
+    <button id="endOfPaperTasksButton" onclick="nextStage();jsPsych.run(timeline);" style="visibility:hidden">Next</button>
+    
+
   </section>
 
   <!-- corsi block tapping task from jsPsych -->
@@ -183,19 +186,6 @@
         mode: 'input'
       };
       timeline.push(response);
-
-      //start jsPsych experiment
-      jsPsych.run(timeline);
-      
-// Run experiment inside an HTML section
-document.addEventListener('DOMContentLoaded', function() {
-    const experimentContainer = document.getElementById('corsi-task-container');
-    if (experimentContainer) {
-        jsPsych.run(timeline);
-    } else {
-        console.error('Corsi task container not found in HTML');
-    }
-});
 
     </script>
   </section>
