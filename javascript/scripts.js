@@ -205,7 +205,6 @@ function imgAlternativeChosen(chosen_alternative) {
   else {
     document.getElementById("endOfPaperTasksButton").style.visibility = "visible";
     document.getElementById("imgmap").style.visibility = "hidden";
-    
   }
 }
 
@@ -222,7 +221,8 @@ for (let i = 1; i <= numButtons; i++) {
   buttonContainer.appendChild(button);
 }
 
-function insert_form_values() { //insert values in form before sumbission to google sheets
+//insert values in form before sumbission to google sheets
+function insert_form_values() { 
   document.getElementById('gsForm').sessionID.value = sessionID;
   document.getElementById('gsForm').taskID.value = task_list[task_n]; //tasks identifier
   document.getElementById('gsForm').pxAngstRatio.value = razaoPxAngst; //pixels to jmol distance unit ratio 
@@ -264,7 +264,8 @@ function insert_form_values() { //insert values in form before sumbission to goo
   return gsFormStatus;
 }
 
-function getWindowSize() { //pega o tamanho/resolução da janela do browser
+//gets the browser window size/resolution
+function getWindowSize() { 
   var win = window,
   doc = document,
   docElem = doc.documentElement,
@@ -276,7 +277,8 @@ function getWindowSize() { //pega o tamanho/resolução da janela do browser
   //https://stackoverflow.com/questions/3437786/get-the-size-of-the-screen-current-web-page-and-browser-window
 }
 
-function elemPosition(elemID) { //pega posições xy (left-top) e outras do elemento pela ID
+//take xy position ( left-top) of element from its ID
+function elemPosition(elemID) { 
   //const element = document.getElementById(elemID);
   const rect = elemID.getBoundingClientRect();
   const position = {
@@ -297,7 +299,8 @@ var time_elapsed = 0; //duração do teste
 var time_initial = Date.now(); //precisa ser global para usar no formulario
 var timerIsOn = false;
 
-function zerar_contagem() { //reset time_elapsed(num) and parameter array values
+//reset time_elapsed(num) and parameter array values
+function zerar_contagem() { 
   time_elapsed = 0;
   document.getElementById("timer_onscreen").value = 0;
   arrayEpoch = [];
@@ -308,7 +311,8 @@ function zerar_contagem() { //reset time_elapsed(num) and parameter array values
   parametro4 = [];
 }
 
-function timerStart () {    //inicia contagem de tempo e registro de dados (getTheNumbers())
+//starts time counting (cronometer) and its associated data collection (getTheNumbers())
+function timerStart () {    
   if (timerIsOn == false) {           // se timer estiver parado,
     time_expected = Date.now() + interval; //define o próximo ciclo esperado
     time_initial = Date.now();        // âncora da contagem de tempo com os ciclos do pc
@@ -317,18 +321,20 @@ function timerStart () {    //inicia contagem de tempo e registro de dados (getT
   }
 }
 
-function timerStop() { //stop the cronometer
+//stop the cronometer
+function timerStop() { 
   timerIsOn = false;
 }
 
-//contagem de tempo precisa com correção de drift https://stackoverflow.com/questions/29971898/how-to-create-an-accurate-timer-in-javascript 
-var interval = 100; // milissegundos. Período esperado entre cada registro
+//precise time counting with drift correction https://stackoverflow.com/questions/29971898/how-to-create-an-accurate-timer-in-javascript 
+var interval = 100; // milisseconds. Expected interval between each data point 
 var time_expected = Date.now() + interval; 
 var drift_history = [];
 var drift_history_samples = 10;
 var drift_correction = 0;
 
-function calc_drift(arr){ //calcula mediana do drift para correcao com base no array
+//Calculates drift median for its correction based in the array 
+function calc_drift(arr){ 
   var values = arr.concat(); // copy array so it isn't mutated
   values.sort(function(a,b){
     return a-b;
@@ -341,7 +347,8 @@ function calc_drift(arr){ //calcula mediana do drift para correcao com base no a
   return median;
 }
 
-function step() { //função executada a cada "interval" milissegundos
+//function called after each "interval" milisseconds
+function step() { 
   var dt = Date.now() - time_expected; // the drift (positive for overshooting)
   if (dt > interval) {  //demorou mais do que devia
 
@@ -370,14 +377,15 @@ function step() { //função executada a cada "interval" milissegundos
   }
 }
 
-//Criando id único da sessão (ninguém deveria conseguir abrir a página no mesmo milésimo sem querer)
+//Creating unique session ID based in unix epoch
 const sessionID = `${Date.now()}`;
 //const randomString = Math.random().toString(36).substring(2, 7);
 //const sessionID = `${Date.now()}-${randomString}`;
 
-var precision = 1000000 //quantidade de casas decimais para usar nos dados de quaternios
+var precision = 1000000 //decimal point (precision) used in queternion data
 var orientacaoQuat;
-function getTheNumbers() { //armazena os dados de orientação em quat. para os arrays a cada chamada
+//obtain the quaternion orientation data for arrays at each call
+function getTheNumbers() { 
   /*var*/ orientacaoQuat = Jmol.getPropertyAsArray(jsmolInteractiveObject, 'orientationInfo.quaternion'); 
   document.getElementById("indicador_orientacao").innerHTML = orientacaoQuat;// debug
   
@@ -397,7 +405,7 @@ function getTheNumbers() { //armazena os dados de orientação em quat. para os 
   // ctx.stroke();
 }
 
-//snip traduz form em linha no gsheets. scriptURL moved to file's first lines.
+//snip translate form in a gsheets line. scriptURL is located at this file's first lines.
 const form = document.forms['submit-to-google-sheet']
 form.addEventListener('submit', e => {
   e.preventDefault()
@@ -430,7 +438,8 @@ function getLocalData() {
   return data;
 }
 
-let saveFile = () => { //Salvar os dados localmente.
+//Save data locally (backup)
+let saveFile = () => { 
 
   // This variable stores all the local data.
   let data = getLocalData();
@@ -455,7 +464,7 @@ let saveFile = () => { //Salvar os dados localmente.
   //créditos: https://www.encodedna.com/javascript/practice-ground/default.htm?pg=save_form_data_in_text_file_using_javascript
 }
 var is_local_save = false;
-document.getElementById('save_check').checked = false; //default é não salvar.
+document.getElementById('save_check').checked = false; //default is to save only online.
 function localSaveSwitch(checkbox) {
   if (checkbox.checked) {
     // document.body.style.backgroundColor = "red" //debug
@@ -466,7 +475,7 @@ function localSaveSwitch(checkbox) {
   }
 }
 
-//funções para a estrutura da página em abas 
+//Functions for page's tabs structure 
 tabs = function(options) {  
   //ENTENDER MELHOR O QUE ESTA SENDO FEITO AQUI
   var defaults = {  
