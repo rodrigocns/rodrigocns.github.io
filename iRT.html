@@ -317,9 +317,37 @@
           {sequence: corsiSeq[1], mode: 'display', prompt: '2b display'},
           {sequence: corsiSeq[1], mode: 'input'  , prompt: '2b input'  },
         ]
-
       }
       timeline.push(corsi2);
+
+      const corsi2_if = {
+        timeline: [corsi3],
+        conditional_function: function(){
+          // get the data from the previous trial,
+          // and check which key was pressed
+          //const test = jsPsych.data.results.trials[5].correct;
+//          if (jsPsych.data.results.trials[3].correct || jsPsych.data.results.trials[5].correct){
+//            return true;
+//          } else {
+//            return false;
+//          }
+          return (jsPsych.data.results.trials[3].correct || jsPsych.data.results.trials[5].correct);
+        }
+      }
+      timeline.push(corsi2_if);
+
+      var corsi3 = {
+        type: jsPsychCorsiBlocks,
+        blocks: corsiBlocksCoordinates,
+        display_width: '800px', display_height: '800px',
+        timeline: [
+          {sequence: corsiSeq[2], mode: 'display', prompt: '3a display'},
+          {sequence: corsiSeq[2], mode: 'input'  , prompt: '3a input'  },
+          {sequence: corsiSeq[3], mode: 'display', prompt: '3b display'},
+          {sequence: corsiSeq[3], mode: 'input'  , prompt: '3b input'  },
+        ]
+      }
+
 
       //display data
       var jsPsych = initJsPsych({
