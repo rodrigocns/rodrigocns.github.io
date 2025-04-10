@@ -307,37 +307,19 @@
       
       //corsi
 
-      var corsi2aDisp = {
-        type: jsPsychCorsiBlocks,blocks: corsiBlocksCoordinates,display_width: '800px',display_height: '800px',
-        sequence: corsiSeq[0],
-        mode: 'display',
-        prompt: '2a disp',
-      };
-      timeline.push(corsi2aDisp);
+      var corsi2 = {
+        type: jsPsychCorsiBlocks,
+        blocks: corsiBlocksCoordinates,
+        display_width: '800px', display_height: '800px',
+        timeline: [
+          {sequence: corsiSeq[0], mode: 'display', prompt: '2a display'},
+          {sequence: corsiSeq[0], mode: 'input'  , prompt: '2a input'  },
+          {sequence: corsiSeq[1], mode: 'display', prompt: '2b display'},
+          {sequence: corsiSeq[1], mode: 'input'  , prompt: '2b input'  },
+        ]
 
-      var corsi2aInpt = {
-        type: jsPsychCorsiBlocks,blocks: corsiBlocksCoordinates,display_width: '800px',display_height: '800px',
-        sequence: corsiSeq[0],
-        mode: 'input',
-        prompt: '2a inpt',
-      };
-      timeline.push(corsi2aInpt);
-
-      var corsi2bDisp = {
-        type: jsPsychCorsiBlocks,blocks: corsiBlocksCoordinates,display_width: '800px',display_height: '800px',
-        sequence: corsiSeq[1],
-        mode: 'display',
-        prompt: '2b disp',
-      };
-      timeline.push(corsi2bDisp);
-
-      var corsi2bInpt = {
-        type: jsPsychCorsiBlocks,blocks: corsiBlocksCoordinates,display_width: '800px',display_height: '800px',
-        sequence: corsiSeq[1],
-        mode: 'input',
-        prompt: '2b inpt',
-      };
-      timeline.push(corsi2bInpt);
+      }
+      timeline.push(corsi2);
 
       //display data
       var jsPsych = initJsPsych({
