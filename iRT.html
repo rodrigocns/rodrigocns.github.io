@@ -9,9 +9,14 @@
   <script src="javascript/object_configs.js"></script>
   <script src="jspsych/jspsych.js"></script>
   <script src="jspsych/plugin-html-keyboard-response.js"></script>
-  <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@2.1.0"></script>
   <script src="https://unpkg.com/@jspsych/plugin-preload@2.1.0"></script>
   <script src="https://unpkg.com/@jspsych-contrib/plugin-corsi-blocks@2.0.0"></script>
+  <script src="jspsych/plugin-html-button-response.js"></script>
+  <style>
+    #jspsych-corsi-stimulus {
+      margin: auto;
+    }
+  </style>
   <!--<link href="jspsych/jspsych.css" rel="stylesheet" type="text/css" /> -->
 </head>
 
@@ -115,9 +120,10 @@
     </map>
     <br>
     <!-- start jsPsych experiment -->
-    <button id="endOfPaperTasksButton" onclick="nextStage()" style="visibility:hidden">Next</button>
-    
-
+    <button id="endOfPaperTasksButton" style="visibility:hidden" 
+      onclick='nextStage(); document.getElementById("jspsych-content").style.visibility="visible";'>
+      Next
+    </button> 
   </section>
 
   <!-- RT task demo from jsPsych -->
@@ -232,19 +238,20 @@
     </script>
   </section>
 -->
+  
   <!-- corsi block tapping task from jsPsych -->
   <section id="corsi-task-container" class="ContentStage" style="display:none"> 
     Corsi block-tapping task
-      <script> 
+    <div id="jspsych-content-div" class="jspsych-content-wrapper">This is jspsych-target div</div>
+    <script> 
       var introductionText = `
         <p>In this experiment, squares will flash in a sequence.</p>
         <p>After the squares stop flashing, click in the squares following the same sequence.</p>
         <div style='width: 700px;'>
         </div>
-        <p>Press any key to begin.</p>
+        <p>Press the "Next" button to begin.</p>
         `;
 
-      
       // corsi block position and sequences taken from the e-corsi paper supplemental material. 
       
       // position is a percentage of the screen, calculated as (x-a)/horizontal area, (y-b)/vertical area,
@@ -286,25 +293,33 @@
       ];
 
       //initialize jsPsych
-      var jsPsych = initJsPsych();
+      var jsPsych = initJsPsych({
+          display_element: 'jspsych-content-div'
+      });
     
       //create timeline
       var timeline = [];
     
+      var jsPsychPreload = {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: "",
+        choices: "NO_KEYS",
+        trial_duration: 200,
+        on_finish: function(data){
+          document.getElementById("jspsych-content").style.visibility="hidden";
+        },
+      };
+      timeline.push(jsPsychPreload);
+
       //define welcome message trial
       var welcome = {
-        type: jsPsychHtmlKeyboardResponse,
-        stimulus: "Welcome to the experiment. Press any key to begin."
+        type: jsPsychHtmlButtonResponse,
+        stimulus: introductionText,
+        choices: ['Next'],
+        post_trial_gap: 1000
       };
       timeline.push(welcome);
 
-      var instructions = {
-        type: jsPsychHtmlKeyboardResponse,
-        stimulus: introductionText,
-        post_trial_gap: 1000
-      };
-      timeline.push(instructions);
-      
       //corsi
 
       var corsi2 = {
