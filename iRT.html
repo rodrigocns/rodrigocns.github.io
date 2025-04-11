@@ -429,8 +429,10 @@
 
   <button class="debug" id="next_stage_button_debug" onclick="nextStage()">Next stage</button>
   <br>
-  <div style="position:sticky; bottom:0; font-size:x-small; ">
-    Last updated: <script> document.write(document.lastModified);</script>
+  <div style="position:absolute; bottom:5px; font-size:x-small; ">
+    <script>
+      document.write(`Last updated: `+ document.lastModified);
+    </script>
   </div>
   <script src="javascript/scripts.js"></script> <!--needs to load last, uses some elements from the page itself-->
 </body>
