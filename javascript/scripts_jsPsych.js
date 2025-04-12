@@ -55,17 +55,17 @@ var jsPsych = initJsPsych({display_element: 'jspsych-content-div'});
 var timeline = [];
 
 //define welcome message trial
-var welcome = {
+var corsiWelcome = {
   type: jsPsychHtmlButtonResponse,
   stimulus: introductionText,
   choices: ['Next'],
-  post_trial_gap: 1000,
+  post_trial_gap: 500,
   //function to hide the corsi block content
   on_load: function(){
     document.getElementById("jspsych-content").style.visibility="hidden";
   },
 };
-timeline.push(welcome);
+timeline.push(corsiWelcome);
 
 //corsi
 var corsi_answer_array = [];
