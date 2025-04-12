@@ -49,7 +49,9 @@ var corsiSeq = [
 ];
 
 //initialize jsPsych. 
-var jsPsych = initJsPsych({display_element: 'jspsych-content-div'});
+var jsPsych = initJsPsych({
+//  display_element: 'corsi-task-container'
+});
 
 //create timeline
 var timeline = [];
@@ -117,15 +119,6 @@ var corsi3 = {
   }
 };
 
-//display data
-var jsPsych = initJsPsych({
-  on_finish: function() {
-    //show data on-screen
-    jsPsych.data.displayData();
-    //logs data to console
-    jsPsych.data.results.trials;
-  }
-});
 
 // start trial sequence
 jsPsych.run(timeline);
