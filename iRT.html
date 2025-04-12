@@ -129,8 +129,15 @@
 
   <!-- corsi block tapping task from jsPsych -->
   <section id="corsi-task-container" class="ContentStage" style="display:none"> 
-    Corsi block-tapping task
-    
+    <p>Corsi block-tapping task</p>
+
+    <div id='corsi-result' style="display:none">
+      <p>Your score was <span id='corsi-score-span'>1</span>. </p>
+      <p>Please, proceed to the next task </p>
+      <button id="endOfCorsiButton"  onclick='nextStage()'>
+        Next
+      </button>
+    </div> 
   </section>
 
   <!-- interactive Rotation Tasks -->

@@ -113,12 +113,13 @@ function CorsiTrial(sequenceLength, nextTrial) {
       
 const corsiEnd = {
   type: jsPsychHtmlKeyboardResponse,
-  stimulus: corsiScoreText,
+  stimulus: " ",
   choices: "NO_KEYS",
-//  trial_duration: 100,
-  on_load: function() {
+  trial_duration: 100,
+  on_finish: function() {
+    //document.getElementById("corsi-score-span").innerText=corsi_score;
     document.getElementById("corsi-score-span").innerText=corsi_score;
-    //timeline.push(corsiEnd);
+    document.getElementById("corsi-result").style.display='block';
   }
 };
 
