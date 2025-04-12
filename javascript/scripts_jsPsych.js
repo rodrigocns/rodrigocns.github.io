@@ -68,6 +68,7 @@ var welcome = {
 timeline.push(welcome);
 
 //corsi
+var corsi_answer_array = [];
 
 var corsi2 = {
   type: jsPsychCorsiBlocks,
@@ -79,15 +80,19 @@ var corsi2 = {
     {sequence: corsiSeq[1], mode: 'display', prompt: '2b display'},
     {sequence: corsiSeq[1], mode: 'input'  , prompt: '2b input'  },
   ],
+  // check if any of last 2 answers were correct
   on_timeline_finish: function() {
     result_a = jsPsych.data.results.trials[jsPsych.data.results.trials.length-3]
     result_b = jsPsych.data.results.trials[jsPsych.data.results.trials.length-1]
+    corsi_answer_array.push(result_a);
+    corsi_answer_array.push(result_b);
+    //if correct, proceed to next corsi trial
     if (result_a || result_b) {
-      console.log('Corsi2 finished');
+      console.log('Corsi2 passed.');
       timeline.push(corsi3);
     };
   }
-}
+};
 timeline.push(corsi2);
 
 var corsi3 = {
@@ -99,8 +104,18 @@ var corsi3 = {
     {sequence: corsiSeq[2], mode: 'input'  , prompt: '3a input'  },
     {sequence: corsiSeq[3], mode: 'display', prompt: '3b display'},
     {sequence: corsiSeq[3], mode: 'input'  , prompt: '3b input'  },
-  ]
-}
+  ],
+  on_timeline_finish: function() {
+    result_a = jsPsych.data.results.trials[jsPsych.data.results.trials.length-3]
+    result_b = jsPsych.data.results.trials[jsPsych.data.results.trials.length-1]
+    corsi_answer_array.push(result_a);
+    corsi_answer_array.push(result_b);
+    if (result_a || result_b) {
+      console.log('Corsi3 passed.');
+      timeline.push(corsi4);
+    };
+  }
+};
 
 //display data
 var jsPsych = initJsPsych({
