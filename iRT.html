@@ -110,21 +110,34 @@
   
   <!-- paper-to-screen task -->
   <section id="tab_paper_task" class="ContentStage" style="display:none"> 
-    <!-- common height of notebooks is 768px. Image is 1625x1250, and resized to 60% its size in page -->
-    <img id="imgmap" src="images/img (1).jpg" usemap="#task_alternatives_map" height="750"> 
-    <map name="task_alternatives_map">
-      <area shape="rect" coords=" 119,480, 247,660" alt="A" onclick="imgAlternativeChosen('A')">
-      <area shape="rect" coords=" 273,480, 401,660" alt="B" onclick="imgAlternativeChosen('B')">
-      <area shape="rect" coords=" 430,480, 558,660" alt="C" onclick="imgAlternativeChosen('C')">
-      <area shape="rect" coords=" 585,480, 713,660" alt="D" onclick="imgAlternativeChosen('D')">
-      <area shape="rect" coords=" 737,480, 865,660" alt="E" onclick="imgAlternativeChosen('E')">
-    </map>
+    <div style="position: relative; display: inline-block;">
+      <!-- common height of notebooks is 768px. Image is 1625x1250, and resized to 60% its size in page -->
+      <img id="imgmap" src="images/img (1).jpg" usemap="#task_alternatives_map" height="750"> 
+      <map name="task_alternatives_map" style="cursor: pointer">
+        <area shape="rect" coords=" 119,480, 247,660" alt="A" onclick="imgAlternativeChosen('A')">
+        <area shape="rect" coords=" 273,480, 401,660" alt="B" onclick="imgAlternativeChosen('B')">
+        <area shape="rect" coords=" 430,480, 558,660" alt="C" onclick="imgAlternativeChosen('C')">
+        <area shape="rect" coords=" 585,480, 713,660" alt="D" onclick="imgAlternativeChosen('D')">
+        <area shape="rect" coords=" 737,480, 865,660" alt="E" onclick="imgAlternativeChosen('E')">
+      </map>
+
+      <div class="hide-cursor"
+        style="
+          position: absolute;
+          top: 540px;
+          left: 119px;
+          width: 750px;
+          height: 100px;
+          background-color: rgba(0,0,255,0.1); /* for fully transparent, leave (x,y,z,0) */
+        ">
+      </div>
+    </div> 
     <br>
     <!-- end paper task -->
     <button id="endOfPaperTasksButton" style="visibility:hidden" 
       onclick='nextStage(); document.getElementById("jspsych-content").style.visibility="visible";'>
       Next
-    </button> 
+    </button>
   </section>
 
   <!-- corsi block tapping task from jsPsych -->

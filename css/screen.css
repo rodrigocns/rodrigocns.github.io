@@ -98,6 +98,9 @@ nav li.selected a{
   box-shadow:none; 
 }
 
+.hide-cursor {
+  cursor: none;
+}
 
 .dev-div{
   color:cornsilk;
