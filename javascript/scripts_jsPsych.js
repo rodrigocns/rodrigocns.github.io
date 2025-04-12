@@ -106,12 +106,12 @@ function CorsiTrial(sequenceLength, nextTrial) {
       corsi_score = this.seqLength;
     } else {
       console.log(`corsi seq. ${this.seqLength} failed. Correct responses: ${result_a}, ${result_b}`);
-      timeline.push(corsiPreEnd);
+      timeline.push(corsiEnd);
     };
   }
 };
       
-const corsiPreEnd = {
+const corsiEnd = {
   type: jsPsychHtmlKeyboardResponse,
   stimulus: corsiScoreText,
   choices: "NO_KEYS",
@@ -122,15 +122,8 @@ const corsiPreEnd = {
   }
 };
 
-const corsiEnd = {
-  type: jsPsychHtmlButtonResponse,
-  stimulus: corsiScoreText,
-  choices: ['Next'],
-  
-};
-
 //declare each trial in reverse order (from last to first)
-const corsi11 = new CorsiTrial(11,corsiPreEnd);
+const corsi11 = new CorsiTrial(11,corsiEnd);
 const corsi10 = new CorsiTrial(10,corsi11);
 const corsi09 = new CorsiTrial( 9,corsi10);
 const corsi08 = new CorsiTrial( 8,corsi09);
