@@ -321,7 +321,15 @@
           {sequence: corsiSeq[0], mode: 'input'  , prompt: '2a input'  },
           {sequence: corsiSeq[1], mode: 'display', prompt: '2b display'},
           {sequence: corsiSeq[1], mode: 'input'  , prompt: '2b input'  },
-        ]
+        ],
+        on_timeline_finish: function() {
+          result_a = jsPsych.data.results.trials[jsPsych.data.results.trials.length-3]
+          result_b = jsPsych.data.results.trials[jsPsych.data.results.trials.length-1]
+          if (result_a || result_b) {
+            console.log('Corsi2 finished');
+            timeline.push(corsi3);
+          };
+        }
       }
       timeline.push(corsi2);
 
@@ -336,18 +344,6 @@
           {sequence: corsiSeq[3], mode: 'input'  , prompt: '3b input'  },
         ]
       }
-
-      //Corsi conditional node from 2 to 3
-      const corsi2_if = {
-        timeline: [corsi3],
-        conditional_function: function(){
-          // get the data from the previous trial,
-          // and check which key was pressed
-          return (jsPsych.data.results.trials[3].correct || jsPsych.data.results.trials[5].correct);
-        }
-      }
-      timeline.push(corsi2_if);
-
 
       //display data
       var jsPsych = initJsPsych({
