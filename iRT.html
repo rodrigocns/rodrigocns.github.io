@@ -242,7 +242,6 @@
   <!-- corsi block tapping task from jsPsych -->
   <section id="corsi-task-container" class="ContentStage" style="display:none"> 
     Corsi block-tapping task
-    <div id="jspsych-content-div" class="jspsych-content-wrapper">This is jspsych-target div</div>
     <script> 
       var introductionText = `
         <p>In this experiment, squares will flash in a sequence.</p>
@@ -292,10 +291,8 @@
         [3,1,6,0,4,5,7,2,8,3,2],
       ];
 
-      //initialize jsPsych
-      var jsPsych = initJsPsych({
-          display_element: 'jspsych-content-div'
-      });
+      //initialize jsPsych. 
+      var jsPsych = initJsPsych({display_element: 'jspsych-content-div'});
     
       //create timeline
       var timeline = [];
