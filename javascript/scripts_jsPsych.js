@@ -70,55 +70,73 @@ var corsiWelcome = {
 timeline.push(corsiWelcome);
 
 //corsi
-var corsi_answer_array = [];
+let corsi_answer_array = [];
+var corsi_score = 1;
 
-var corsi2 = {
-  type: jsPsychCorsiBlocks,
-  blocks: corsiBlocksCoordinates,
-  display_width: '800px', display_height: '800px',
-  timeline: [
-    {sequence: corsiSeq[0], mode: 'display', prompt: '2a display'},
-    {sequence: corsiSeq[0], mode: 'input'  , prompt: '2a input'  },
-    {sequence: corsiSeq[1], mode: 'display', prompt: '2b display'},
-    {sequence: corsiSeq[1], mode: 'input'  , prompt: '2b input'  },
+//corsi trial constructor
+function CorsiTrial(sequenceLength, nextTrial) {
+  this.seqLength = sequenceLength;
+  this.nextTrial = nextTrial;
+  this.type= jsPsychCorsiBlocks,
+  this.blocks= corsiBlocksCoordinates,
+  this.display_width= '800px', 
+  this.display_height= '800px',
+  this.sequence_block_duration = 500,
+  this.timeline= [
+    {sequence: corsiSeq[this.seqLength*2-4], mode: 'display', prompt: `${this.seqLength}a display`},
+    {sequence: corsiSeq[this.seqLength*2-4], mode: 'input'  , prompt: `${this.seqLength}a input`  },
+    {sequence: corsiSeq[this.seqLength*2-3], mode: 'display', prompt: `${this.seqLength}b display`},
+    {sequence: corsiSeq[this.seqLength*2-3], mode: 'input'  , prompt: `${this.seqLength}b input`  },
   ],
   // check if any of last 2 answers were correct
-  on_timeline_finish: function() {
-    result_a = jsPsych.data.results.trials[jsPsych.data.results.trials.length-3]
-    result_b = jsPsych.data.results.trials[jsPsych.data.results.trials.length-1]
+  this.on_timeline_finish= function() {
+    result_a = jsPsych.data.results.trials[jsPsych.data.results.trials.length-3].correct;
+    result_b = jsPsych.data.results.trials[jsPsych.data.results.trials.length-1].correct;
     corsi_answer_array.push(result_a);
     corsi_answer_array.push(result_b);
-    //if correct, proceed to next corsi trial
+    //if correct, proceed to next corsi trial. Else, ends trials.
     if (result_a || result_b) {
-      console.log('Corsi2 passed.');
-      timeline.push(corsi3);
+      console.log(`corsi seq. ${this.seqLength} passed. Correct responses: ${result_a}, ${result_b}`);
+      timeline.push(this.nextTrial);
+      corsi_score = this.seqLength;
+    } else {
+      console.log(`corsi seq. ${this.seqLength} failed. Correct responses: ${result_a}, ${result_b}`);
+      timeline.push(corsiPreEnd);
     };
   }
 };
-timeline.push(corsi2);
-
-var corsi3 = {
-  type: jsPsychCorsiBlocks,
-  blocks: corsiBlocksCoordinates,
-  display_width: '800px', display_height: '800px',
-  timeline: [
-    {sequence: corsiSeq[2], mode: 'display', prompt: '3a display'},
-    {sequence: corsiSeq[2], mode: 'input'  , prompt: '3a input'  },
-    {sequence: corsiSeq[3], mode: 'display', prompt: '3b display'},
-    {sequence: corsiSeq[3], mode: 'input'  , prompt: '3b input'  },
-  ],
-  on_timeline_finish: function() {
-    result_a = jsPsych.data.results.trials[jsPsych.data.results.trials.length-3]
-    result_b = jsPsych.data.results.trials[jsPsych.data.results.trials.length-1]
-    corsi_answer_array.push(result_a);
-    corsi_answer_array.push(result_b);
-    if (result_a || result_b) {
-      console.log('Corsi3 passed.');
-      timeline.push(corsi4);
-    };
+      
+const corsiPreEnd = {
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: corsiScoreText,
+  choices: "NO_KEYS",
+//  trial_duration: 100,
+  on_load: function() {
+    document.getElementById("corsi-score-span").innerText=corsi_score;
+    //timeline.push(corsiEnd);
   }
 };
 
+const corsiEnd = {
+  type: jsPsychHtmlButtonResponse,
+  stimulus: corsiScoreText,
+  choices: ['Next'],
+  
+};
+
+//declare each trial in reverse order (from last to first)
+const corsi11 = new CorsiTrial(11,corsiPreEnd);
+const corsi10 = new CorsiTrial(10,corsi11);
+const corsi09 = new CorsiTrial( 9,corsi10);
+const corsi08 = new CorsiTrial( 8,corsi09);
+const corsi07 = new CorsiTrial( 7,corsi08);
+const corsi06 = new CorsiTrial( 6,corsi07);
+const corsi05 = new CorsiTrial( 5,corsi06);
+const corsi04 = new CorsiTrial( 4,corsi05);
+const corsi03 = new CorsiTrial( 3,corsi04);
+const corsi02 = new CorsiTrial( 2,corsi03);
+
+timeline.push(corsi02);
 
 // start trial sequence
 jsPsych.run(timeline);
