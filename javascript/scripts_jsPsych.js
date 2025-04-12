@@ -1,12 +1,17 @@
 // jsPsych functions and variables
 
 var introductionText = `
-  <p>In this experiment, squares will flash in a sequence.</p>
-  <p>After the squares stop flashing, click in the squares following the same sequence.</p>
-  <div style='width: 700px;'>
-  </div>
-  <p>Press the "Next" button to begin.</p>
-  `;
+<p>In this experiment, squares will flash in a sequence.</p>
+<p>After the squares stop flashing, click in the squares following the same sequence.</p>
+<div style='width: 700px;'>
+</div>
+<p>Press the "Next" button to begin.</p>
+`;
+
+var corsiScoreText = `
+<p>Your score was <span id='corsi-score-span'>1</span>. </p>
+<p>Please, proceed to the next task </p>
+`;
 
 // corsi block position and sequences taken from the e-corsi paper supplemental material. 
 
