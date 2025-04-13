@@ -7,8 +7,8 @@ var Info_interactive = {
   width: 400,
   use: "HTML5",
   j2sPath: "jsmol/j2s",
-  serverURL: null,
-//  serverURL: "jsmol/php/jsmol.php",
+//  serverURL: null,
+  serverURL: "jsmol/php/jsmol.php",
   disableMouse: true,
 
   defaultModel: "",
