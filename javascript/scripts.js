@@ -82,6 +82,7 @@ function closeFullscreen() {
 }
 
 //functions to run when clicking the "GO" button..
+let razaoPxAngst = [0,0];
 function buttonStart() {  
   zerar_contagem();
   document.getElementById("cellLeft").style.visibility="visible";
@@ -93,8 +94,10 @@ function buttonStart() {
   document.getElementById("startButton").style.visibility="hidden";
   setTimeout(function() {
     document.getElementById("submitButton").style.visibility="visible";
+    razaoPxAngst=pixelAngstromRatio(jsmolInteractiveObject);
+    console.log(`razaoPxAngst: ${razaoPxAngst}}`);
   }, 1000);
-  razaoPxAngst=pixelAngstromRatio(jsmolInteractiveObject);
+  
 }
 
 //functions to run when clicking the "DONE" button.
@@ -173,9 +176,9 @@ function pixelAngstromRatio(jsmol_obj,debug=0){
   //get the pixel:angstrom ratio
   let razao = [sXYCorrected[0]/xyzRotated[0],sXYCorrected[1]/xyzRotated[1]];
   razao = [window.devicePixelRatio * razao[0], window.devicePixelRatio * razao[1]];
-  if (debug==1){
+//  if (debug==1){
     console.log('razao pixel:Angstrom = '+razao)//debug
-  }
+  //}
   return razao;
 }
 
@@ -277,7 +280,7 @@ function getWindowSize() {
   body = doc.getElementsByTagName('body')[0],
   x = win.innerWidth || docElem.clientWidth || body.clientWidth,
   y = win.innerHeight|| docElem.clientHeight|| body.clientHeight;
-  console.log(x + ' × ' + y);
+  console.log('Window resolution: ' + x + ' × ' + y);
   return [x,y];
   //https://stackoverflow.com/questions/3437786/get-the-size-of-the-screen-current-web-page-and-browser-window
 }
@@ -420,7 +423,7 @@ form.addEventListener('submit', e => {
 })
 
 function getLocalData() {
-  let data =
+  var data =
     'sessionID:' + sessionID + ';' +
     'fname:' + gsForm.fname.value + ';' +
     'email:' + gsForm.email.value + ';' +
