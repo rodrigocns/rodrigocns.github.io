@@ -188,7 +188,9 @@ function randXYZ(jsmol_obj) {
   return xyz;
 }
 
-// Register chosen alternative of paper task to forms
+// Pass Paper task chosen answers to forms
+//Each time an alternative is chosen, 'paperAnswer' register the choice, 
+// 'imgmap_n' increases and next image is loaded, until the image is the last one.
 imgmap_n = 1; paperAnswer = "";
 function imgAlternativeChosen(chosen_alternative) {
   //alert("You chose alternative " + chosen_alternative);
