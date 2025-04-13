@@ -6,6 +6,9 @@ const scriptURL = 'https://script.google.com/macros/s/AKfycbxtKza8SDt27Ik39cktDy
 //Besides the line above, everything else in this file should be left as it is.
 //Unless you know what you are doing, or you want to fiddle with coding and learn more! :D
 
+//trying to fix X-Frame-Options problem
+delete Jmol._tracker;
+
 let task_n = 0; //number of the initial interactive task
 let ContentStage = 0;
 
