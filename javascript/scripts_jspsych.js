@@ -72,6 +72,8 @@ timeline.push(corsiWelcome);
 
 //corsi
 let corsi_answer_array = [];
+var corsi_trial_count = 0;
+var corsi_trial_correct = 0;
 var corsi_score = 1;
 
 //corsi trial constructor
@@ -95,6 +97,8 @@ function CorsiTrial(sequenceLength, nextTrial) {
     result_b = jsPsych.data.results.trials[jsPsych.data.results.trials.length-1].correct;
     corsi_answer_array.push(result_a);
     corsi_answer_array.push(result_b);
+    corsi_trial_correct = corsi_trial_correct + result_a + result_b;
+    corsi_trial_count = corsi_trial_count + 2;
     //if correct, proceed to next corsi trial. Else, ends trials.
     if (result_a || result_b) {
       console.log(`corsi seq. ${this.seqLength} passed. Correct responses: ${result_a}, ${result_b}`);
@@ -113,7 +117,8 @@ const corsiEnd = {
   choices: "NO_KEYS",
   trial_duration: 100,
   on_finish: function() {
-    //document.getElementById("corsi-score-span").innerText=corsi_score;
+    document.getElementById("corsi-correct-span").innerText=corsi_trial_correct;
+    document.getElementById("corsi-count-span").innerText=corsi_trial_count;
     document.getElementById("corsi-score-span").innerText=corsi_score;
     document.getElementById("corsi-result").style.display='block';
   }

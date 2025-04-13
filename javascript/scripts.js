@@ -267,6 +267,8 @@ function insert_form_values() {
   document.getElementById('gsForm').modelName.value = modelName; // fileName of 3D model used
   document.getElementById('gsForm').paperAnswer.value = paperAnswer;
   document.getElementById('gsForm').corsiScore.value = corsi_score;
+  document.getElementById('gsForm').corsiTrialCorrect.value = corsi_trial_correct;
+  document.getElementById('gsForm').corsiTrialCount.value = corsi_trial_count;
   //Inform ok status to console
   gsFormStatus = 1;
   console.log("Form values inserted! gsFormStatus: "+gsFormStatus);
