@@ -1,7 +1,7 @@
 // jsPsych functions and variables
 
 var introductionText = `
-<p>In this experiment, squares will flash in a sequence.</p>
+<p>In this trial, squares will flash in a sequence.</p>
 <p>After the squares stop flashing, click in the squares following the same sequence.</p>
 <div style='width: 700px;'>
 </div>
