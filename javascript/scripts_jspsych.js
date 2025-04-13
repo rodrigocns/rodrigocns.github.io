@@ -8,10 +8,6 @@ var introductionText = `
 <p>Press the "Next" button to begin.</p>
 `;
 
-var corsiScoreText = `
-<p>Your score was <span id='corsi-score-span'>1</span>. </p>
-<p>Please, proceed to the next task </p>
-`;
 
 // corsi block position and sequences taken from the e-corsi paper supplemental material. 
 
