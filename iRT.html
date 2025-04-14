@@ -64,13 +64,7 @@
         Email: <input name="email" type="text" placeholder="Ex: rodrigo@gmail.com" size="30"><br>
         <input id="save_check" type="checkbox" onchange="localSaveSwitch(this)"> Download backup copy of data<br>
         <br>
-        <!--
-          In the next section you will perform three rotation tasks. When you click on the 'GO!'
-        button, two objects will appear in opposite corners of the screen. Your goal is to rotate
-        the object on the right until it closely matches the object on the left as best as you can.
-        To rotate the object, click and drag your mouse over it.  When you finish 
-        each of the 3 tasks, click on the 'DONE!' button to continue.
-        -->
+
         
         <!-- internal values to be sent by forms -->
         <!-- Changes here should be replicated in scripts.js -->
@@ -163,7 +157,7 @@
 
     <table id="iRT_canvas_table"> 
       <tr>
-        <button id="startButton" onclick="buttonStart()">GO!</button>
+        <button id="startButton" onclick="buttonStart();hideId('iRT-instructions')">GO!</button>
         <button id="submitButton" onclick="buttonSubmit()" style="visibility:hidden" form="gsForm">DONE!</button>
       </tr>
       <tr>
@@ -173,7 +167,13 @@
           </script>
         </td>
         <td id="tdCenter">
-
+          <span id="iRT-instructions">
+              In the next section you will perform three rotation tasks. When you click on the 'GO!'
+            button, two objects will appear in opposite corners of the screen. Your goal is to rotate
+            the object on the right until it closely matches the object on the left as best as you can.
+            To rotate the object, click and drag your mouse over it.  After completing 
+            each task, click on the 'DONE!' button.
+          </span>
           <br>
           <div class="debug">Duration: <output id="timer_onscreen" ></output> s</div>
           <br>
