@@ -67,8 +67,9 @@ function hideId(idNameAsString) {
   if (document.getElementById(idNameAsString).style.visibility == "hidden") {
     document.getElementById(idNameAsString).style.visibility="visible";
     console.log(`Unhid the element ${idNameAsString}`);
+  } else {
+    document.getElementById(idNameAsString).style.visibility="hidden";
   }
-  document.getElementById(idNameAsString).style.visibility="hidden";
 }
 
 /* View in fullscreen */
