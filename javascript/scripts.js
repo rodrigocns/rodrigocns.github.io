@@ -64,11 +64,11 @@ function hideId(idNameAsString) {
   if (typeof(idNameAsString) != "string" ) {
     console.log("Atention: Argument passed to hideId() is not a string.")
   }
-  if (document.getElementById(idName).style.visibility == "hidden") {
-    document.getElementById(idName).style.visibility="visible";
+  if (document.getElementById(idNameAsString).style.visibility == "hidden") {
+    document.getElementById(idNameAsString).style.visibility="visible";
     console.log(`Unhid the element ${idNameAsString}`);
   }
-  document.getElementById(idName).style.visibility="hidden";
+  document.getElementById(idNameAsString).style.visibility="hidden";
 }
 
 /* View in fullscreen */
