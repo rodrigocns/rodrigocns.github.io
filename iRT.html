@@ -105,6 +105,43 @@
     <button onclick="nextStage();prepMolecule(task_n);openFullscreen()">Next</button>
   </section>
   
+  <!-- paper-to-screen task intro-->
+  <section id="tab_paper_intro" class="ContentStage" style="display:none"> 
+    <!--document.getElementById("imgmap").src = "images/img ("+imgmap_n+").jpg"-->
+    <div style="position: relative; display: inline-block;">
+      <img id="imgmap-intro1" src="images/PSVT-R Intro (1) en.jpg" usemap="#task_intro1_map" height="750"> 
+      <map name="task_intro1_map" style="cursor: pointer">
+        <area shape="rect" coords=" 119,370, 247,515" alt="A" onclick="alert('Wrong, try again')">
+        <area shape="rect" coords=" 273,370, 401,515" alt="B" onclick="document.getElementById('mapB').style.border='thick solid red'">
+        <area shape="rect" coords=" 430,370, 558,515" alt="C" onclick="document.getElementById('mapC').style.backgroundColor='rgba(255,0,0,0.1)'">
+        <area shape="rect" coords=" 585,370, 713,515" alt="D" onclick="document.getElementById('mapD').style.border='thick solid green';hideId('button-end-paper-intro')">
+        <area shape="rect" coords=" 737,370, 865,515" alt="E" onclick="document.getElementById('mapE').innerText='Errado'">
+      </map>
+      
+      <div class="hide-cursor"
+        style="
+          color: red;
+          position: absolute;
+          top: 410px;
+          left: 119px;
+          width: 750px;
+          height: 110px;
+          background-color: rgba(0,0,255,0);
+        ">
+      <div id="mapA" class="paper-intro-choices" style="left: 10px"></div>
+      <div id="mapB" class="paper-intro-choices" style="left: 160px"></div>
+      <div id="mapC" class="paper-intro-choices" style="left: 310px"></div>
+      <div id="mapD" class="paper-intro-choices" style="left: 460px; color: green;"></div>
+      <div id="mapE" class="paper-intro-choices" style="left: 610px"></div>
+    </div> 
+    <br>
+    <!-- end paper intro -->
+    <button id="button-end-paper-intro" style="visibility:hidden" 
+      onclick='nextStage()'>
+      Next
+    </button>
+  </section>
+
   <!-- paper-to-screen task -->
   <section id="tab_paper_task" class="ContentStage" style="display:none"> 
     <div style="position: relative; display: inline-block;">

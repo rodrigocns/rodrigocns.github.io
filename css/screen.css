@@ -102,6 +102,14 @@ nav li.selected a{
   cursor: none;
 }
 
+.paper-intro-choices {
+  position: absolute;
+  top: 0px;
+  width: 130px;
+  height: 100px;
+  font-weight: bold;
+}
+
 .dev-div{
   color:cornsilk;
   background-color: #404070;
