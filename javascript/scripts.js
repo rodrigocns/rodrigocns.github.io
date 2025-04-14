@@ -59,6 +59,18 @@ function debug() {
   // alert(debug_elements.length);
 }
 
+/* hide document element */
+function hideId(idNameAsString) {
+  if (typeof(idNameAsString) != "string" ) {
+    console.log("Atention: Argument passed to hideId() is not a string.")
+  }
+  if (document.getElementById(idName).style.visibility == "hidden") {
+    document.getElementById(idName).style.visibility="visible";
+    console.log(`Unhid the element ${idNameAsString}`);
+  }
+  document.getElementById(idName).style.visibility="hidden";
+}
+
 /* View in fullscreen */
 function openFullscreen() { 
   if (document.documentElement.requestFullscreen) {
