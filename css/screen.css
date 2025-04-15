@@ -102,6 +102,16 @@ nav li.selected a{
   cursor: none;
 }
 
+.hidden-elem {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.unhider:hover .hidden-elem {
+  visibility: visible;
+  opacity: 1;
+}
+
 .paper-intro-choices {
   position: absolute;
   top: 0px;
