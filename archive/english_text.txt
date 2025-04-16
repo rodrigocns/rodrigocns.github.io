@@ -1,0 +1,13 @@
+Forms intro
+Write name and email for contact in case you want to receive news about the survey and click 'Next'.
+        
+
+
+iRT introduction
+In the next section you will perform rotation tasks. 
+When you click on the 'GO!' button, two objects will appear in opposite corners of the screen. 
+Your goal is to rotate the object on the right until it closely matches the object on the left as best as you can.
+To rotate the object, click and drag your mouse over it. 
+After completing each task, click on the 'DONE!' button.
+
+
