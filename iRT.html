@@ -140,7 +140,7 @@
         
       </form>
     </div>
-    <button onclick="nextStage();prepMolecule(task_n);openFullscreen()">Next</button>
+    <button onclick="nextStage();prepMolecule(task_n);openFullscreen();removeId('last-updated');">Next</button>
   </section>
   
   <!-- paper-to-screen task intro-->
@@ -291,7 +291,7 @@
 
   <button class="debug" id="next_stage_button_debug" onclick="nextStage()">Next stage</button>
   <br>
-  <div class="unhider" style="position:absolute; bottom:5px; left:5px; font-size:x-small; " >
+  <div id="last-updated" class="unhider" style="position:absolute; bottom:5px; left:5px; font-size:x-small; " >
     <script>
       document.write(`Last updated: `+ document.lastModified);
     </script>
