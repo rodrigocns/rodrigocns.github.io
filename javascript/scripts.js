@@ -502,7 +502,7 @@ let saveFile = () => {
   //créditos: https://www.encodedna.com/javascript/practice-ground/default.htm?pg=save_form_data_in_text_file_using_javascript
 }
 var is_local_save = false;
-document.getElementById('checkbox-local-checkbox').checked = false; //default is to save only online.
+document.getElementById('checkbox-local-backup').checked = false; //default is to save only online.
 function localSaveSwitch(checkbox) {
   if (checkbox.checked) {
     // document.body.style.backgroundColor = "red" //debug
