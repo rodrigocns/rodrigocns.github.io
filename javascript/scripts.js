@@ -61,14 +61,28 @@ function debug() {
 
 /* hide document element */
 function hideId(idNameAsString) {
+  //check is argument is a name, a string
   if (typeof(idNameAsString) != "string" ) {
     console.log("Atention: Argument passed to hideId() is not a string.")
   }
+  //if already hidden, unhide. Else, hide it.
   if (document.getElementById(idNameAsString).style.visibility == "hidden") {
     document.getElementById(idNameAsString).style.visibility="visible";
     console.log(`Unhid the element ${idNameAsString}`);
   } else {
     document.getElementById(idNameAsString).style.visibility="hidden";
+  }
+}
+
+function removeId(idNameAsString) {
+  if (typeof(idNameAsString) != "string" ) {
+    console.log("Atention: Argument passed to removeId() is not a string.")
+  }
+  if (document.getElementById(idNameAsString).style.display == "none") {
+    document.getElementById(idNameAsString).style.visibility="block";
+    console.log(`"Un-removed" the element ${idNameAsString}`);
+  } else {
+    document.getElementById(idNameAsString).style.visibility="none";
   }
 }
 
