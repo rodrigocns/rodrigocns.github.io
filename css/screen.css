@@ -122,6 +122,16 @@ nav li.selected a{
   /* for fully transparent, leave (x,y,z,0) */
 }
 
+.fixed-footer {
+  position: fixed;
+  text-align: left;
+  bottom: 0;
+  left:   0;
+  width: 100%;
+  padding: 10px;
+  z-index: 1000;
+}
+
 .paper-intro-choices {
   position: absolute;
   top: 0px;
