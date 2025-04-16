@@ -79,10 +79,10 @@ function removeId(idNameAsString) {
     console.log("Atention: Argument passed to removeId() is not a string.")
   }
   if (document.getElementById(idNameAsString).style.display == "none") {
-    document.getElementById(idNameAsString).style.visibility="block";
+    document.getElementById(idNameAsString).style.display="block";
     console.log(`"Un-removed" the element ${idNameAsString}`);
   } else {
-    document.getElementById(idNameAsString).style.visibility="none";
+    document.getElementById(idNameAsString).style.display="none";
   }
 }
 
