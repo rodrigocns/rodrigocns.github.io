@@ -80,16 +80,19 @@ var corsi_score = 1;
 function CorsiTrial(sequenceLength, nextTrial) {
   this.seqLength = sequenceLength;
   this.nextTrial = nextTrial;
-  this.type= jsPsychCorsiBlocks,
-  this.blocks= corsiBlocksCoordinates,
-  this.display_width= '800px', 
-  this.display_height= '800px',
+  this.type = jsPsychCorsiBlocks,
+  this.blocks = corsiBlocksCoordinates,
+  this.display_width = '800px', 
+  this.display_height = '800px',
+  this.block_color = "#555",
+  this.highlight_color = "yellow",
   this.sequence_block_duration = 500,
-  this.timeline= [
-    {sequence: corsiSeq[this.seqLength*2-4], mode: 'display', prompt: `${this.seqLength}a display`},
-    {sequence: corsiSeq[this.seqLength*2-4], mode: 'input'  , prompt: `${this.seqLength}a input`  },
-    {sequence: corsiSeq[this.seqLength*2-3], mode: 'display', prompt: `${this.seqLength}b display`},
-    {sequence: corsiSeq[this.seqLength*2-3], mode: 'input'  , prompt: `${this.seqLength}b input`  },
+  this.timeline = [
+    {sequence: corsiSeq[this.seqLength*2-4], mode: 'display', /*prompt: `${this.seqLength}a display`*/},
+    {sequence: corsiSeq[this.seqLength*2-4], mode: 'input'  , prompt: `Repita a sequência`  },
+    {sequence: corsiSeq[this.seqLength*2-3], mode: 'display', /*prompt: `${this.seqLength}b display`*/},
+    {sequence: corsiSeq[this.seqLength*2-3], mode: 'input'  , prompt: `Repita a sequência`  },
+  
   ],
   // check if any of last 2 answers were correct
   this.on_timeline_finish= function() {
