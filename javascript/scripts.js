@@ -224,7 +224,7 @@ function imgAlternativeChosen(chosen_alternative) {
   }
   // else, 
   else {
-    document.getElementById("endOfPaperTasksButton").style.visibility = "visible";
+    document.getElementById("button-end-psvtr").style.visibility = "visible";
     document.getElementById("imgmap").style.visibility = "hidden";
   }
 }
