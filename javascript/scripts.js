@@ -220,7 +220,7 @@ function imgAlternativeChosen(chosen_alternative) {
   // if there are more images, load next image in new image path (img.src)
   if (imgmap_n <= 3 ) {
     const img = document.getElementById("imgmap");
-    img.src = "images/img ("+imgmap_n+").jpg"; // Change to the new image path
+    img.src = "images/PSVT-R ("+imgmap_n+").jpg"; // Change to the new image path
   }
   // else, 
   else {

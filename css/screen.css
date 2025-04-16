@@ -112,6 +112,16 @@ nav li.selected a{
   opacity: 1;
 }
 
+.div-psvt-answers {
+  position: absolute;
+  top: 540px;
+  left: 109px;
+  width: 770px;
+  height: 130px;
+  background-color: rgba(0,0,255,0); 
+  /* for fully transparent, leave (x,y,z,0) */
+}
+
 .paper-intro-choices {
   position: absolute;
   top: 0px;

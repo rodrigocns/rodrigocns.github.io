@@ -108,34 +108,27 @@
   <section id="tab_paper_intro" class="ContentStage" style="display:none"> 
     <!--document.getElementById("imgmap").src = "images/img ("+imgmap_n+").jpg"-->
     <div style="position: relative; display: inline-block;">
-      <img id="imgmap-intro1" src="images/PSVT-R Intro (1) en.jpg" usemap="#task_intro1_map" height="750"> 
+      <img id="imgmap-intro1" src="images/PSVT-R Intro pt-br (1).jpg" usemap="#task_intro1_map" height="750"> 
       <map name="task_intro1_map" style="cursor: pointer">
-        <area shape="rect" coords=" 119,370, 247,515" alt="A" onclick="alert('Wrong, try again')">
-        <area shape="rect" coords=" 273,370, 401,515" alt="B" onclick="document.getElementById('mapB').style.border='thick solid red'">
-        <area shape="rect" coords=" 430,370, 558,515" alt="C" onclick="document.getElementById('mapC').style.backgroundColor='rgba(255,0,0,0.1)'">
-        <area shape="rect" coords=" 585,370, 713,515" alt="D" onclick="document.getElementById('mapD').style.border='thick solid green';hideId('button-end-paper-intro')">
-        <area shape="rect" coords=" 737,370, 865,515" alt="E" onclick="document.getElementById('mapE').innerText='Errado'">
+        <area shape="rect" coords=" 119,430, 247,570" alt="A" onclick="document.getElementById('mapA').style.border='thick solid red'">
+        <area shape="rect" coords=" 273,430, 401,570" alt="B" onclick="document.getElementById('mapB').style.border='thick solid red'">
+        <area shape="rect" coords=" 430,430, 558,570" alt="C" onclick="document.getElementById('mapC').style.border='thick solid red'">
+        <area shape="rect" coords=" 585,430, 713,570" alt="D" onclick="document.getElementById('mapD').style.border='thick solid green';hideId('button-end-paper-intro')">
+        <area shape="rect" coords=" 737,430, 865,570" alt="E" onclick="document.getElementById('mapE').style.border='thick solid red'">
       </map>
       
-      <div class="hide-cursor"
-        style="
-          color: red;
-          position: absolute;
-          top: 410px;
-          left: 119px;
-          width: 750px;
-          height: 110px;
-          background-color: rgba(0,0,255,0);
-        ">
-      <div id="mapA" class="paper-intro-choices" style="left: 10px"></div>
+      <!-- div covering all answers -->
+    <div class="hide-cursor div-psvt-answers"
+      style="top: 465px; height:110px; background-color: rgba(0,0,255,0)">
+      <div id="mapA" class="paper-intro-choices" style="left:   5px"></div>
       <div id="mapB" class="paper-intro-choices" style="left: 160px"></div>
-      <div id="mapC" class="paper-intro-choices" style="left: 310px"></div>
-      <div id="mapD" class="paper-intro-choices" style="left: 460px; color: green;"></div>
-      <div id="mapE" class="paper-intro-choices" style="left: 610px"></div>
+      <div id="mapC" class="paper-intro-choices" style="left: 315px"></div>
+      <div id="mapD" class="paper-intro-choices" style="left: 470px; color: green;"></div>
+      <div id="mapE" class="paper-intro-choices" style="left: 625px"></div>
     </div> 
     <br>
     <!-- end paper intro -->
-    <button id="button-end-paper-intro" style="visibility:hidden" 
+    <button id="button-end-paper-intro" style="visibility:hidden ;" 
       onclick='nextStage()'>
       Next
     </button>
@@ -146,24 +139,17 @@
     <div style="position: relative; display: inline-block;">
       <!-- common height of notebooks is 768px.
         Image is 1625x1250, and was resized to 60% of its size in page -->
-      <img id="imgmap" src="images/img (1).jpg" usemap="#task_alternatives_map" height="750"> 
+      <img id="imgmap" src="images/PSVT-R (1).jpg" usemap="#task_alternatives_map" height="750"> 
       <map name="task_alternatives_map" style="cursor: pointer">
-        <area shape="rect" coords=" 119,480, 247,640" alt="A" onclick="imgAlternativeChosen('A')">
-        <area shape="rect" coords=" 273,480, 401,640" alt="B" onclick="imgAlternativeChosen('B')">
-        <area shape="rect" coords=" 430,480, 558,640" alt="C" onclick="imgAlternativeChosen('C')">
-        <area shape="rect" coords=" 585,480, 713,640" alt="D" onclick="imgAlternativeChosen('D')">
-        <area shape="rect" coords=" 737,480, 865,640" alt="E" onclick="imgAlternativeChosen('E')">
+        <area shape="rect" coords=" 119,480, 247,660" alt="A" onclick="imgAlternativeChosen('A')">
+        <area shape="rect" coords=" 273,480, 401,660" alt="B" onclick="imgAlternativeChosen('B')">
+        <area shape="rect" coords=" 430,480, 558,660" alt="C" onclick="imgAlternativeChosen('C')">
+        <area shape="rect" coords=" 585,480, 713,660" alt="D" onclick="imgAlternativeChosen('D')">
+        <area shape="rect" coords=" 737,480, 865,660" alt="E" onclick="imgAlternativeChosen('E')">
       </map>
       
-      <div class="hide-cursor"
-        style="
-          position: absolute;
-          top: 540px;
-          left: 119px;
-          width: 750px;
-          height: 110px;
-          background-color: rgba(0,0,255,0); /* for fully transparent, leave (x,y,z,0) */
-        ">
+      <div class="hide-cursor div-psvt-answers" 
+      style="background-color: rgba(0,0,255,0) ">
       </div>
     </div> 
     <br>
@@ -266,7 +252,7 @@
 
   <button class="debug" id="next_stage_button_debug" onclick="nextStage()">Next stage</button>
   <br>
-  <div style="position:absolute; bottom:5px; left:5px; font-size:x-small; " class="unhider">
+  <div class="unhider" style="position:absolute; bottom:5px; left:5px; font-size:x-small; " >
     <script>
       document.write(`Last updated: `+ document.lastModified);
     </script>
