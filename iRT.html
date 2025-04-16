@@ -56,15 +56,63 @@
     <div id="div_form">
       <form name="submit-to-google-sheet" id="gsForm">
         <!-- Escreva nome e email para contato caso queira receber notícias sobre a pesquisa e clique em próximo. -->
-        Write name and email for contact in case you want to receive news about the survey and click 'Next'.
+        Se desejar receber informações sobre a pesquisa 
+        e sobre o seu desempenho nos testes,
+        escreva nome e e-mail de contato. 
         <br><br>
         
-        <!-- Template: Text in Html: <input name="column header in gsheets" type="input type"> -->
-        Name: <input name="fname" type="text" placeholder="Ex: Rodrigo Alves" size="30" autofocus><br>
-        Email: <input name="email" type="text" placeholder="Ex: rodrigo@gmail.com" size="30"><br>
-        <br>
+        <!-- Template: 
+         Text in Html: 
+         <input name="column header in gsheets" type="input type"> -->
+        <!-- for more input options: https://www.w3schools.com/js/js_input_examples.asp  -->
+        <p>Name: 
+        <input name="fname" type="text" placeholder="Ex: Rodrigo Alves" size="30" autofocus></p>
+        <p>Email: 
+          <input name="email" type="text" placeholder="Ex: rodrigo@gmail.com" size="30"></p>
+        <p>Preencha os campos abaixo:</p>
 
+        <p>Já participou desta pesquisa anteriormente?
+          <br><input type="text" size="30">
+        </p>
+        <p>Qual curso você está matriculado?
+          <br><input type="text" size="30">
+        </p>
+        <p>E em qual semestre?
+          <br><input type="text" size="30">
+        </p>
+        <p>Você já foi identificado como um estudante superdotado?
+          <br><input type="text" size="30">
+        </p>
+        <p> Sexo:
+          <br><input type="text" size="30">
+        </p>
+        <p> Idade:
+          <br><input type="text" size="30">
+        </p>
+        <p> Etnia:
+          <br><input type="text" size="30">
+        </p>
+        <p> Já exerceu atividade remunerada?
+          <br><input type="text" size="30">
+        </p>
+        <p>
+           Com que frequência você usa modelos tridimensionais?
+          <br><input type="text" size="30">
+        </p>
+        <p> De
+          <br><input type="text" size="30">
+        </p>
+        <p> Etnia:
+          <br><input type="text" size="30">
+        </p>
+        <p> Etnia:
+          <br><input type="text" size="30">
+        </p>
+  
         
+
+        Clique em 'Próximo' para continuar.
+
         <!-- internal values to be sent by forms -->
         <!-- Changes here should be replicated in scripts.js -->
         <input type="hidden" name="sessionID">
