@@ -1,11 +1,18 @@
 // jsPsych functions and variables
 
 var introductionText = `
-<p>In this trial, squares will flash in a sequence.</p>
-<p>After the squares stop flashing, click in the squares following the same sequence.</p>
-<div style='width: 700px;'>
-</div>
-<p>Press the "Next" button to begin.</p>
+
+<p>
+Alguns quadrados vão piscar em uma determinada sequência na tela.
+<br>
+Quando a sequência terminar, clique nos quadrados na mesma ordem em que eles piscaram.
+<br>
+Em seguida, uma nova sequência vai começar a piscar. 
+<br>
+O tamanho das sequências aumentará gradualmente.
+</p>
+<div style='width: 700px;'></div>
+<p>Clique no botão "Próximo" para começar.</p>
 `;
 
 
@@ -61,7 +68,7 @@ var timeline = [];
 var corsiWelcome = {
   type: jsPsychHtmlButtonResponse,
   stimulus: introductionText,
-  choices: ['Next'],
+  choices: ['Próximo'],
   post_trial_gap: 500,
   //function to hide the corsi block content
   on_load: function(){
