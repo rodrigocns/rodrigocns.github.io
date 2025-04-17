@@ -140,7 +140,7 @@
         
       </form>
     </div>
-    <button onclick="nextStage();prepMolecule(task_n);openFullscreen();removeId('last-updated');">Next</button>
+    <button onclick="nextStage();prepMolecule(task_n);openFullscreen();removeById('last-updated');">Next</button>
   </section>
   
   <!-- paper-to-screen task intro-->
@@ -152,7 +152,7 @@
         <area shape="rect" coords=" 119,430, 247,570" alt="A" onclick="document.getElementById('mapA').style.border='thick solid red'">
         <area shape="rect" coords=" 273,430, 401,570" alt="B" onclick="document.getElementById('mapB').style.border='thick solid red'">
         <area shape="rect" coords=" 430,430, 558,570" alt="C" onclick="document.getElementById('mapC').style.border='thick solid red'">
-        <area shape="rect" coords=" 585,430, 713,570" alt="D" onclick="document.getElementById('mapD').style.border='thick solid green';hideId('button-end-paper-intro')">
+        <area shape="rect" coords=" 585,430, 713,570" alt="D" onclick="document.getElementById('mapD').style.border='thick solid green';unhideById('button-end-paper-intro')">
         <area shape="rect" coords=" 737,430, 865,570" alt="E" onclick="document.getElementById('mapE').style.border='thick solid red'">
       </map>
       
@@ -219,7 +219,7 @@
 
     <table id="table-iRT-canvas"> 
       <tr>
-        <button id="startButton" onclick="buttonStart();hideId('iRT-instructions')">GO!</button>
+        <button id="startButton" onclick="buttonStart();removeById('iRT-instructions')">GO!</button>
         <button id="submitButton" onclick="buttonSubmit()" style="visibility:hidden" form="gsForm">DONE!</button>
       </tr>
       <tr>
@@ -229,15 +229,7 @@
           </script>
         </td>
         <td id="tdCenter">
-          <span id="iRT-instructions">
-            <p> In the next section you will perform rotation tasks.</p> 
-            <p> When you click on the 'GO!' button, two objects will appear in
-              opposite corners of the screen. </p>
-            <p> Your goal is to rotate the object on the right until it closely
-              matches the object on the left as best as you can.</p>
-            <p> To rotate the object, click and drag your mouse over it. </p>
-            <p> After completing each task, click on the 'DONE!' button.</p>
-          </span>
+          <span id="iRT-instructions"></span>
           <br>
           <div class="debug">Duration: <output id="timer_onscreen" ></output> s</div>
           <br>

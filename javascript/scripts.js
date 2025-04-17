@@ -60,10 +60,10 @@ function debug() {
 }
 
 /* hide document element */
-function hideId(idNameAsString) {
+function visibilityById (idNameAsString) {
   //check is argument is a name, a string
   if (typeof(idNameAsString) != "string" ) {
-    console.log("Atention: Argument passed to hideId() is not a string.")
+    console.log ("Atention: Argument passed to hideId() is not a string.")
   }
   //if already hidden, unhide. Else, hide it.
   if (document.getElementById(idNameAsString).style.visibility == "hidden") {
@@ -74,20 +74,23 @@ function hideId(idNameAsString) {
   }
 }
 
-function removeId(idNameAsString) {
-  if (typeof(idNameAsString) != "string" ) {
-    console.log("Atention: Argument passed to removeId() is not a string.")
-  }
-  if (document.getElementById(idNameAsString).style.display == "none") {
-    document.getElementById(idNameAsString).style.display="block";
-    console.log(`"Un-removed" the element ${idNameAsString}`);
-  } else {
-    document.getElementById(idNameAsString).style.display="none";
-  }
+function hideById (idNameAsString) {
+  document.getElementById(idNameAsString).style.visibility="hidden";
+}
+function unhideId (idNameAsString) {
+  document.getElementById(idNameAsString).style.visibility="visible";
+}
+
+function removeById (idNameAsString) {
+  document.getElementById(idNameAsString).style.display="none";
+}
+
+function unremoveById (idNameAsString) {
+  document.getElementById(idNameAsString).style.display = "block";
 }
 
 /* View in fullscreen */
-function openFullscreen() { 
+function openFullscreen () { 
   if (document.documentElement.requestFullscreen) {
     document.documentElement.requestFullscreen();
   } else if (document.documentElement.webkitRequestFullscreen) { /* Safari */
