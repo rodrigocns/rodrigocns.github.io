@@ -115,15 +115,15 @@ function closeFullscreen() {
 let razaoPxAngst = [0,0];
 function buttonStart() {  
   zerar_contagem();
-  document.getElementById("cellLeft").style.visibility="visible";
-  document.getElementById("cellRight").style.visibility="visible";
+  unhideById("cellLeft");
+  unhideById("cellRight");
   Jmol.script(jsmolReferenceObject,'refresh'); // refresh pixels of object window
   Jmol.script(jsmolInteractiveObject,'refresh');
   timerStart ();         //starts time counting and periodic functions
   getTheNumbers();       // records the data ONLY from the initial instant (t=0)
-  document.getElementById("startButton").style.visibility="hidden";
+  hideById("startButton");
   setTimeout(function() {
-    document.getElementById("submitButton").style.visibility="visible";
+    unhideById("submitButton")
     razaoPxAngst=pixelAngstromRatio(jsmolInteractiveObject);
     console.log(`razaoPxAngst: ${razaoPxAngst}}`);
   }, 1000);
@@ -132,26 +132,31 @@ function buttonStart() {
 
 //functions to run when clicking the "DONE" button.
 function buttonSubmit(){ 
-  timerStop();  //stop cronometer
-  document.getElementById("cellLeft").style.visibility="hidden";
-  document.getElementById("cellRight").style.visibility="hidden"; //hides jmol screens
+  //stop cronometer
+  timerStop();  
+  //hide jsmol screens
+  hideById("cellLeft");
+  hideById("cellRight");
+  //pass forms data to sheets
   gsFormStatus = insert_form_values();
   if (gsFormStatus != 1){
     alert("Error in forms data upload!\nSomething inside the function insert_form_values() went wrong!");
   }
-  document.getElementById("submitButton").style.visibility="hidden"; //hides submit button
+  //hide submit button
+  hideById("submitButton");
   task_n +=1; //Progress to next task in task_list and prepMolecule()
   // if (task_n >= 6) {task_n = 0;} /*volta ao primeiro*/
   if (is_local_save == true) {
     saveFile();
   }
-  if (task_n >= task_list.length) { //if submitted task is/was last one, shows button for next stage instead of next task  
-    document.getElementById("endTasksButton").style.visibility="visible";
+  //if submitted task is/was last one, shows button for next stage instead of next task  
+  if (task_n >= task_list.length) { 
+    unhideById("endTasksButton");
     return;
   } else {
     prepMolecule(task_n);
     setTimeout(function() {
-      document.getElementById("startButton").style.visibility="visible";
+      unhideById("startButton");
     }, 1000);
   }
 }
@@ -241,8 +246,8 @@ function imgAlternativeChosen(chosen_alternative) {
   }
   // else, 
   else {
-    document.getElementById("button-end-psvtr").style.visibility = "visible";
-    document.getElementById("imgmap").style.visibility = "hidden";
+    unhideById("button-end-psvtr");
+    hideById("imgmap");
   }
 }
 

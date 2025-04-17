@@ -70,9 +70,9 @@ var corsiWelcome = {
   stimulus: introductionText,
   choices: ['Próximo'],
   post_trial_gap: 500,
-  //function to hide the corsi block content
+  //function to hide the corsi block content on load
   on_load: function(){
-    document.getElementById("jspsych-content").style.visibility="hidden";
+    removeById("jspsych-content");
   },
 };
 timeline.push(corsiWelcome);
@@ -89,7 +89,7 @@ function CorsiTrial(sequenceLength, nextTrial) {
   this.nextTrial = nextTrial;
   this.type = jsPsychCorsiBlocks,
   this.blocks = corsiBlocksCoordinates,
-//  this.block_size = 12,
+  this.block_size = 12, // 12 default
   this.display_width = '800px', 
   this.display_height = '800px',
   this.sequence_gap_duration = 1000, //250 default
