@@ -89,11 +89,17 @@ function CorsiTrial(sequenceLength, nextTrial) {
   this.nextTrial = nextTrial;
   this.type = jsPsychCorsiBlocks,
   this.blocks = corsiBlocksCoordinates,
+//  this.block_size = 12,
   this.display_width = '800px', 
   this.display_height = '800px',
-  this.block_color = "#555",
-  this.highlight_color = "yellow",
-  this.sequence_block_duration = 500,
+  this.sequence_gap_duration = 1000, //250 default
+  this.sequence_block_duration = 500,//1000 default
+  this.pre_stim_duration = 500, //500 default
+  this.response_animation_duration = 500, //500 default
+  this.block_color = "#777",  //#555 default
+  this.highlight_color = "yellow", //#f00 default
+  this.correct_colot = "#0f0" //#0f0 default
+  this.incorrect_color = "#f00" //#f00 default
   this.timeline = [
     {sequence: corsiSeq[this.seqLength*2-4], mode: 'display', /*prompt: `${this.seqLength}a display`*/},
     {sequence: corsiSeq[this.seqLength*2-4], mode: 'input'  , prompt: `Repita a sequência`  },
