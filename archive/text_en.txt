@@ -1,9 +1,19 @@
-Forms intro
+== Forms intro ==
+
 Write name and email for contact in case you want to receive news about the survey and click 'Next'.
         
 
+== Corsi Intro ==
 
-iRT introduction
+Some squares will flash in a specific sequence on the screen.
+When the sequence is finished, click the squares in the same order they flashed.
+After this, a new sequence will start flashing.
+The sequences will gradually increase in length.
+
+Press the "Next" button to begin
+
+== iRT introduction ==
+
 In the next section you will perform rotation tasks. 
 When you click on the 'GO!' button, two objects will appear in opposite corners of the screen. 
 Your goal is to rotate the object on the right until it closely matches the object on the left as best as you can.

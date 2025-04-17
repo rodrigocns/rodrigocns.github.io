@@ -1,10 +1,19 @@
-Forms intro
+== Forms intro ==
 Escreva nome e email para contato se desejar receber informações sobre a pesquisa. 
 Clique em 'Próximo' para continuar.
         
+== Corsi intro ==
+
+Alguns quadrados vão piscar em uma determinada sequência na tela.
+Quando a sequência terminar, clique nos quadrados na mesma ordem em que eles piscaram.
+Em seguida, uma nova sequência vai começar a piscar. 
+O tamanho das sequências aumentará gradualmente.
+
+Clique no botão "Próximo" para começar.
 
 
-iRT introduction
+== iRT introduction ==
+
 A próxima etapa consiste em tarefas de rotacionar objetos.
 Ao clicar no botão “Começar!”, vão aparecer dois objetos em cantos opostos da tela. 
 O objetivo é rotacionar o objeto da direita até que ele fique o mais parecido possível do objeto da esquerda.
