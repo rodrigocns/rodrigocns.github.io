@@ -77,7 +77,7 @@ function visibilityById (idNameAsString) {
 function hideById (idNameAsString) {
   document.getElementById(idNameAsString).style.visibility="hidden";
 }
-function unhideId (idNameAsString) {
+function unhideById (idNameAsString) {
   document.getElementById(idNameAsString).style.visibility="visible";
 }
 
