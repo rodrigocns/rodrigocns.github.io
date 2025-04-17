@@ -207,7 +207,8 @@
       <p><span id="corsi-correct-span">0</span> out of <span id="corsi-count-span">2</span> correct answers.</p>
       <p>Your score was <span id='corsi-score-span'>1</span>. </p>
       <p>Please, proceed to the next task </p>
-      <button id="endOfCorsiButton"  onclick='nextStage()'>
+      <button id="endOfCorsiButton"  onclick='nextStage();
+      document.getElementById("iRT-instructions").innerHTML = instructionTextiRT;'>
         Next
       </button>
     </div> 
@@ -219,8 +220,8 @@
 
     <table id="table-iRT-canvas"> 
       <tr>
-        <button id="startButton" onclick="buttonStart();removeById('iRT-instructions')">GO!</button>
-        <button id="submitButton" onclick="buttonSubmit()" style="visibility:hidden" form="gsForm">DONE!</button>
+        <button id="startButton" onclick="buttonStart();removeById('iRT-instructions')">Começar!</button>
+        <button id="submitButton" onclick="buttonSubmit()" style="visibility:hidden" form="gsForm">Pronto!</button>
       </tr>
       <tr>
         <td class="jsmol-canvas" id="cellLeft">

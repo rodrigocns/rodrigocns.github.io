@@ -1,5 +1,16 @@
 //functions and scripts for Jmol objects in interactive tasks.
 
+var instructionTextiRT =`
+<p> A próxima etapa consiste em 5 tarefas de rotação de objetos.
+<br> Ao clicar no botão “Começar!”, vão aparecer dois objetos 
+em cantos opostos da tela. 
+<br> Rotacione o objeto da direita até que ele 
+fique o mais parecido possível com o objeto da esquerda.
+<br> Para girar o objeto, clique e arraste o cursor do mouse sobre ele. 
+<br> Ao concluir cada tarefa, clique no botão “Pronto!”.
+</p>
+`;
+
 var Info_interactive = { 
   //For more explanations go to https://wiki.jmol.org/index.php/Jmol_JavaScript_Object/Info
   color: "#000000",

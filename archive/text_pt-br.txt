@@ -1,4 +1,5 @@
 == Forms intro ==
+
 Escreva nome e email para contato se desejar receber informações sobre a pesquisa. 
 Clique em 'Próximo' para continuar.
         
@@ -14,8 +15,8 @@ Clique no botão "Próximo" para começar.
 
 == iRT introduction ==
 
-A próxima etapa consiste em tarefas de rotacionar objetos.
+A próxima etapa consiste em 5 tarefas de rotação de objetos.
 Ao clicar no botão “Começar!”, vão aparecer dois objetos em cantos opostos da tela. 
-O objetivo é rotacionar o objeto da direita até que ele fique o mais parecido possível do objeto da esquerda.
+Rotacione o objeto da direita até que ele fique o mais parecido possível com o objeto da esquerda.
 Para girar o objeto, clique e arraste o cursor do mouse sobre ele. 
-Ao concluir cada tarefa, clique no botão “Feito!”.
+Ao concluir cada tarefa, clique no botão “Pronto!”.
