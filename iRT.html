@@ -213,17 +213,17 @@
     </div> 
   </section>
 
-  <!-- interactive Rotation Tasks -->
+  <!-- interactive Rotation Tasks (iRT) -->
   <section id="tab_iRT" class="ContentStage" style="display:none">  <!-- JSmol interactive tasks -->
     <div class="debug" id="indicador_orientacao" style="background-color:gray">Test</div> <!-- orientation coordinates -->
 
-    <table id="iRT_canvas_table"> 
+    <table id="table-iRT-canvas"> 
       <tr>
         <button id="startButton" onclick="buttonStart();hideId('iRT-instructions')">GO!</button>
         <button id="submitButton" onclick="buttonSubmit()" style="visibility:hidden" form="gsForm">DONE!</button>
       </tr>
       <tr>
-        <td class="JSmol_canvas" id="cellLeft">
+        <td class="jsmol-canvas" id="cellLeft">
           <script>
             Jmol.getApplet("jsmolReferenceObject", Info_reference);
           </script>
@@ -268,7 +268,7 @@
           </div>
     
         </td>
-        <td class="JSmol_canvas" id="cellRight"> 
+        <td class="jsmol-canvas" id="cellRight"> 
           <script>
             Jmol.getApplet("jsmolInteractiveObject", Info_interactive);
           </script>

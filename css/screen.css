@@ -173,7 +173,7 @@ th, td {
   border: 1px solid; /*these borders help with formatting, but can be removed*/
   border-color: white;
 }
-#iRT_canvas_table{
+#table-iRT-canvas{
   width: 80%;
   margin: auto;
   background-color: #404040; 
@@ -196,7 +196,7 @@ th, td {
   display:flex;
 }
 
-.JSmol_canvas {
+.jsmol-canvas {
   text-align: center;
   visibility:hidden;
   width: auto;
