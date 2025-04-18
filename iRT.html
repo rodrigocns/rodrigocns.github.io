@@ -54,26 +54,21 @@
   <!-- Forms -->
   <section id="tab_form" class="ContentStage current-ContentStage" style="display:block"> 
     <div id="div_form">
-      <form name="submit-to-google-sheet" id="gsForm">
+      <form name="submit-to-google-sheet" id="gsForm" autocomplete="off">
         <!-- Escreva nome e email para contato caso queira receber notícias sobre a pesquisa e clique em próximo. -->
         <p>
-          Se desejar receber informações sobre a pesquisa 
-        e sobre o seu desempenho nos testes,<br>
-        escreva nome e e-mail de contato.<br> 
+          Se desejar receber informações sobre a pesquisa, escreva nome e e-mail de contato.
+        <br>
         Os seus dados serão armazenados anonimamente e mantidos em sigilo.
         </p>
-        
-        <!-- Template: 
-         Text in Html: 
-         <input name="column header in gsheets" type="input type"> -->
-        <!-- for more input options: https://www.w3schools.com/js/js_input_examples.asp  -->
         <p> Nome (opcional): 
-          <input name="fname" type="text" placeholder="Ex: Rodrigo Alves" size="30" autofocus></p>
+          <input type="text" name="fname" placeholder="Ex: Rodrigo Alves" size="30" autofocus></p>
         <p> Email (opcional): 
-          <input name="email" type="text" placeholder="Ex: rodrigo@gmail.com" size="30"></p>
+          <input type="text" name="email" placeholder="Ex: rodrigo@gmail.com" size="30"></p>
         <hr>
         <h2> Preencha os campos abaixo:
-        </h3><br>
+        <!-- for more input options: https://www.w3schools.com/js/js_input_examples.asp  -->
+        </h2><br>
         <p> Já participou desta pesquisa anteriormente?<br>
           <input type="radio" name="p_repeat" id="p_repeat_sim" value="Sim">
           <label for="p_repeat_sim">Sim</label> |
