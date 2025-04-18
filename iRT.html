@@ -103,8 +103,8 @@
           <input type="text" name="p_work">
         </p>
         <p> Com que frequência (sendo 0 nunca, e 9 constantemente) você: <br>
-          <label for="p_3dmodels">Usa modelos tridimensionais? </label>
-          <span id="p_3dmodels_value">0</span>
+          <label for="p_3dmodels">Usa modelos tridimensionais?  </label>
+          (<span id="p_3dmodels_value">0</span>)
           <input type="range" id="p_3dmodels" name="p_3dmodels" min="0" max="9" >
           <br>
         </p>
@@ -164,32 +164,49 @@
   
   <!-- paper-to-screen task intro-->
   <section id="tab_paper_intro" class="ContentStage" style="display:none"> 
-    <!--document.getElementById("imgmap").src = "images/img ("+imgmap_n+").jpg"-->
-    <div style="position: relative; display: inline-block;">
-      <img id="imgmap-intro1" src="images/PSVT-R Intro pt-br (1).jpg" usemap="#task_intro1_map" height="750"> 
+    <script>
+      function choicePaperIntro(introNum){
+        const introImage = document.getElementById(`imgmap-intro${introNum}`);
+        introImage.src = `images/PSVT-R_Intro_ptbr_(${introNum})ans.jpg`;
+        unhideById(`button-next-paper-intro${introNum}`);
+      };
+    </script>
+    
+    <!-- paper intro 1 -->
+    <div id="div-psvt-intro1" style="position: relative; display: block;">
+      <img id="imgmap-intro1" src="images/PSVT-R_Intro_ptbr_(1).jpg" usemap="#task_intro1_map" height="750"> 
       <map name="task_intro1_map" style="cursor: pointer">
-        <area shape="rect" coords=" 119,430, 247,570" alt="A" onclick="document.getElementById('mapA').style.border='thick solid red'">
-        <area shape="rect" coords=" 273,430, 401,570" alt="B" onclick="document.getElementById('mapB').style.border='thick solid red'">
-        <area shape="rect" coords=" 430,430, 558,570" alt="C" onclick="document.getElementById('mapC').style.border='thick solid red'">
-        <area shape="rect" coords=" 585,430, 713,570" alt="D" onclick="document.getElementById('mapD').style.border='thick solid green';unhideById('button-end-paper-intro')">
-        <area shape="rect" coords=" 737,430, 865,570" alt="E" onclick="document.getElementById('mapE').style.border='thick solid red'">
+        <area shape="rect" coords=" 119,430, 247,570" alt="A" onclick="choicePaperIntro(1)">
+        <area shape="rect" coords=" 273,430, 401,570" alt="B" onclick="choicePaperIntro(1)">
+        <area shape="rect" coords=" 430,430, 558,570" alt="C" onclick="choicePaperIntro(1)">
+        <area shape="rect" coords=" 585,430, 713,570" alt="D" onclick="choicePaperIntro(1)">
+        <area shape="rect" coords=" 737,430, 865,570" alt="E" onclick="choicePaperIntro(1)">
       </map>
-      
-      <!-- div covering all answers -->
-    <div class="hide-cursor div-psvt-answers"
-      style="top: 465px; height:110px; background-color: rgba(0,0,255,0)">
-      <div id="mapA" class="paper-intro-choices" style="left:   5px"></div>
-      <div id="mapB" class="paper-intro-choices" style="left: 160px"></div>
-      <div id="mapC" class="paper-intro-choices" style="left: 315px"></div>
-      <div id="mapD" class="paper-intro-choices" style="left: 470px; color: green;"></div>
-      <div id="mapE" class="paper-intro-choices" style="left: 625px"></div>
-    </div> 
-    <br>
-    <!-- end paper intro -->
-    <button id="button-end-paper-intro" style="visibility:hidden ;" 
-      onclick='nextStage()'>
-      Próximo
-    </button>
+      <br>
+      <!-- end of paper intro1 -->
+      <button id="button-next-paper-intro1" style="visibility:hidden ;" 
+        onclick='removeById("div-psvt-intro1"); unremoveById("div-psvt-intro2")'>
+        Próximo
+      </button>
+    </div>
+
+    <!-- paper intro 2 -->
+    <div id="div-psvt-intro2" style="position: relative; display: none;">
+      <img id="imgmap-intro2" src="images/PSVT-R_Intro_ptbr_(2).jpg" usemap="#task_intro2_map" height="750"> 
+      <map name="task_intro2_map" style="cursor: pointer">
+        <area shape="rect" coords=" 119,510, 247,650" alt="A" onclick="choicePaperIntro(2)">
+        <area shape="rect" coords=" 273,510, 401,650" alt="B" onclick="choicePaperIntro(2)">
+        <area shape="rect" coords=" 430,510, 558,650" alt="C" onclick="choicePaperIntro(2)">
+        <area shape="rect" coords=" 585,510, 713,650" alt="D" onclick="choicePaperIntro(2)">
+        <area shape="rect" coords=" 737,510, 865,650" alt="E" onclick="choicePaperIntro(2)">
+      </map>
+      <br>
+      <button id="button-next-paper-intro2" style="visibility:hidden ;" 
+        onclick='nextStage()'>
+        Começar!
+      </button>
+    </div>
+
   </section>
 
   <!-- paper-to-screen task -->
@@ -206,9 +223,10 @@
         <area shape="rect" coords=" 737,480, 865,660" alt="E" onclick="imgAlternativeChosen('E')">
       </map>
       
+      <!--RAIMUNDO DISSE QUE ESCONDER O CURSOR NÃO IMPEDE ELE DE USAR COMO AJUDA 
       <div class="hide-cursor div-psvt-answers" 
       style="background-color: rgba(0,0,255,0) ">
-      </div>
+      </div>-->
     </div> 
     <br>
     <!-- end paper task -->
