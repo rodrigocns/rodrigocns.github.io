@@ -133,9 +133,8 @@ const corsiEnd = {
   choices: "NO_KEYS",
   trial_duration: 100,
   on_finish: function() {
-    document.getElementById("corsi-correct-span").innerText=corsi_trial_correct;
-    document.getElementById("corsi-count-span").innerText=corsi_trial_count;
-    document.getElementById("corsi-score-span").innerText=corsi_score;
+    console.log(`Corsi block task complete. Score:${corsi_score} 
+      | Correct answers: ${corsi_trial_correct} of ${corsi_trial_count}`);
     document.getElementById("corsi-result").style.display='block';
   }
 };
