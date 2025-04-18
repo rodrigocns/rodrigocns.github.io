@@ -16,7 +16,7 @@ body{
 }
 
 h1, h2, h3, h4, h5, h6{
-	font:2.5em sans-serif;
+	/*font:2.5em sans-serif;*/
   font-weight:normal;
 	margin:0;
 	line-height:1.6em;
@@ -129,7 +129,7 @@ nav li.selected a{
   left:   0;
   width: 100%;
   padding: 10px;
-  z-index: 1000;
+  z-index: -1;
 }
 
 .paper-intro-choices {
@@ -159,7 +159,7 @@ a.dev-div:visited{
 }
 
 #gsForm {
-  padding: 100px 0;
+  padding: 50px 0;
   width:90%;
   margin:auto;
 }
