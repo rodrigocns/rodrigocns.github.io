@@ -127,9 +127,8 @@ nav li.selected a{
   text-align: left;
   bottom: 0;
   left:   0;
-  width: 100%;
+  width: 25%;
   padding: 10px;
-  z-index: -1;
 }
 
 .paper-intro-choices {
