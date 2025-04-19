@@ -111,6 +111,13 @@ function closeFullscreen() {
   }
 }
 
+//function to track mouse movement and position
+
+onmousemove = function(e) {
+  mouseX=e.clientX;
+  mouseY=e.clientY;
+}
+
 //functions to run when clicking the "GO" button..
 let razaoPxAngst = [0,0];
 function buttonStart() {  
@@ -284,6 +291,9 @@ function insertFormValues() {
   gsForm.ref_j.value = refQuat[1];
   gsForm.ref_k.value = refQuat[2];
   gsForm.ref_r.value = refQuat[3];
+  //mouse position (xy) array
+  gsForm.mouseX.value = arrayMouseX;
+  gsForm.mouseY.value = arrayMouseY; 
   // browser screen width and height (X,Y)
   //Header,url field and other elements are outside 
   [scrSizeX,scrSizeY] = getWindowSize();
@@ -349,6 +359,8 @@ let parametro1 = [];
 let parametro2 = [];
 let parametro3 = [];
 let parametro4 = [];
+let arrayMouseX = [];
+let arrayMouseY = [];
 var time_elapsed = 0; //duração do teste
 // document.getElementById("timer_onscreen").value = time_elapsed;
 var time_initial = Date.now(); //precisa ser global para usar no formulario
@@ -364,6 +376,8 @@ function zerar_contagem() {
   parametro2 = [];
   parametro3 = [];
   parametro4 = [];
+  arrayMouseX = [];
+  arrayMouseY = [];
 }
 
 //starts time counting (cronometer) and its associated data collection (getTheNumbers())
@@ -450,6 +464,8 @@ function getTheNumbers() {
   parametro2.push( Math.round(orientacaoQuat[1]*precision)/precision );
   parametro3.push( Math.round(orientacaoQuat[2]*precision)/precision );
   parametro4.push( Math.round(orientacaoQuat[3]*precision)/precision );
+  arrayMouseX.push(mouseX);
+  arrayMouseY.push(mouseY);
   
   // calc. da distancia à resposta (CORRIGIR PRO QUATERNION!)
   // var valorTempResult =  Math.sqrt( Math.pow((orientacaoQuat[1]-RefOri1),2) + Math.pow((orientacaoQuat[2]-RefOri2),2) + Math.pow((orientacaoQuat[3]-RefOri3),2) + Math.pow((orientacaoQuat[4]-RefOri4),2) );  
@@ -518,7 +534,7 @@ function getLocalData() {
     '\n' + 
     
     'browser:' + browserInfo + ';\n' +
-    "sessionID;taskID;epoch;duration;Qi;Qj;Qk;Qr\n";
+    "sessionID;taskID;epoch;duration;Qi;Qj;Qk;Qr;mouseX;mouseY;\n";
   let newRow = "";
   for (i = 0; i < parametro1.length; i++) {
     newRow = 
@@ -530,6 +546,8 @@ function getLocalData() {
       parametro2[i]             + ';' +
       parametro3[i]             + ';' +
       parametro4[i]             + ';' +
+      arrayMouseX[i]            + ';' +
+      arrayMouseY[i]            + '\n';
     localData = localData + newRow;
   }
   return localData;
