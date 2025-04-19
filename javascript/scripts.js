@@ -138,9 +138,9 @@ function buttonSubmit(){
   hideById("cellLeft");
   hideById("cellRight");
   //pass forms data to sheets
-  gsFormStatus = insert_form_values();
+  gsFormStatus = insertFormValues();
   if (gsFormStatus != 1){
-    console.log("Error in forms data upload!\nSomething inside the function insert_form_values() went wrong!");
+    console.log("Error in forms data upload!\nSomething inside the function insertFormValues() went wrong!");
   }
   //hide submit button
   hideById("submitButton");
@@ -265,7 +265,7 @@ for (let i = 1; i <= numButtons; i++) {
 }
 
 //insert values in form before sumbission to google sheets
-function insert_form_values() { 
+function insertFormValues() { 
   const gsForm = document.getElementById('gsForm');
   gsForm.sessionID.value = sessionID;
   gsForm.taskID.value = task_list[task_n]; //tasks identifier
