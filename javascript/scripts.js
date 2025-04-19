@@ -492,7 +492,8 @@ let saveFile = () => {
   
   // Convert the text to BLOB.
   const textToBLOB = new Blob([data], { type: 'text/plain' });
-  const sFileName = 'IRT_OUTPUT_'+task_list[task_n]+'.csv';	// Local file name.
+  // Local file name.
+  const sFileName = `IRT_OUTPUT_${sessionID}_${task_list[task_n]}.csv`;	
 
   let newLink = document.createElement("a");
   newLink.download = sFileName;
