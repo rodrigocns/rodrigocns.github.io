@@ -65,9 +65,10 @@ Info_reference.script = Info_interactive.script.concat("set mouseDragFactor 0");
 // 'moveTo 0 QUATERNION {0.6249 -0.0366 -0.6990 -0.3458}' e 'moveto 0.0 {-666 39 745 139.54}' são equivalentes.
 
 // List of interactive task names the subject will perform 
-const task_list = ["bolaBastao_c","poligonFill","mrt"];
+const task_list = ["metaloCuban","bolaBastao_c","bolaBastao_g","polygonFill","policube"];
 
-function prepMolecule(num) {   //mapper para o preparo do teste que está acontecendo
+//mapper para o preparo do teste que está acontecendo
+function prepMolecule(num) {   
   //Rotaciona para a orientação inicial do objeto
   // SE PULAR CASES VAI DAR ERRO! task_list.length e quantidade de cases precisa ser igual!
   jsmol_ref = jsmolReferenceObject; //janela esquerda
@@ -76,22 +77,36 @@ function prepMolecule(num) {   //mapper para o preparo do teste que está aconte
   // e suas orientações para cada tarefa
   switch (num){
     case 0:
-      buildBallStickMol(jsmol_ref);
-      buildBallStickMol(jsmol_obj);
-      Jmol.script(jsmol_ref,'color cpk; spacefill 23%; wireframe 0.15');
-      Jmol.script(jsmol_obj,'color cpk; spacefill 23%; wireframe 0.15');
-      Jmol.script(jsmol_ref,'moveto 0 QUATERNION {-0.4902575975335792 -0.2825336376897219 -0.45539483504230244 0.6873410913449087}');
-      Jmol.script(jsmol_obj,'moveto 0.0 {-666 39 745 139.54}');
+      buildMetaloCuban(jsmol_ref);
+      buildMetaloCuban(jsmol_obj);
+      Jmol.script(jsmol_ref, 'moveto 0 QUATERNION {-0.490257 -0.282533 -0.455394  0.687341}');
+      Jmol.script(jsmol_obj, 'moveto 0 QUATERNION { 0.624884 -0.036592 -0.699007 -0.345790}');
     break;
     case 1:
-      buildPoligonFilledMol(jsmol_obj);
-      buildPoligonFilledMol(jsmol_ref);
-      Jmol.script(jsmol_ref,'color cpk; spacefill off; wireframe 0.08');
-      Jmol.script(jsmol_obj,'color cpk; spacefill off; wireframe 0.08');
-      Jmol.script(jsmol_ref,'moveto 0 QUATERNION {-0.4902575975335792 -0.2825336376897219 -0.45539483504230244 0.6873410913449087}');
-      Jmol.script(jsmol_obj,'moveto 0.0 {-666 39 745 139.54}');
+      buildBallStickMol(jsmol_ref);
+      buildBallStickMol(jsmol_obj);
+      //Jmol.script(jsmol_ref,'color cpk; spacefill 23%; wireframe 0.15');
+      //Jmol.script(jsmol_obj,'color cpk; spacefill 23%; wireframe 0.15');
+      Jmol.script(jsmol_ref,'moveto 0 QUATERNION {-0.490257 -0.282533 -0.455394  0.687341}');
+      Jmol.script(jsmol_obj,'moveto 0 QUATERNION { 0.624884 -0.036592 -0.699007 -0.345790}');
     break;
     case 2:
+      buildBallStickMol(jsmol_ref);
+      buildBallStickMol(jsmol_obj);
+      Jmol.script(jsmol_ref,'color [0x808080];');
+      Jmol.script(jsmol_obj,'color [0x808080];');
+      Jmol.script(jsmol_ref,'moveto 0 QUATERNION {-0.490257 -0.282533 -0.455394  0.687341}');
+      Jmol.script(jsmol_obj,'moveto 0 QUATERNION { 0.624884 -0.036592 -0.699007 -0.345790}');
+    break;
+    case 3:
+      buildPoligonFilledMol(jsmol_ref);
+      buildPoligonFilledMol(jsmol_obj);
+      Jmol.script(jsmol_ref,'color cpk; spacefill off; wireframe 0.08');
+      Jmol.script(jsmol_obj,'color cpk; spacefill off; wireframe 0.08');
+      Jmol.script(jsmol_ref,'moveto 0 QUATERNION {-0.490257 -0.282533 -0.455394  0.687341}');
+      Jmol.script(jsmol_obj,'moveto 0 QUATERNION { 0.624884 -0.036592 -0.699007 -0.345790}');
+    break;
+    case 4:
       buildMRTModel(jsmol_ref);
       buildMRTModel(jsmol_obj);
       Jmol.script(jsmol_ref,'moveto 0 QUATERNION {0.29922234471855447,0.2236541366945916,-0.10297736856098816,0.9218679282439424}');
@@ -101,11 +116,12 @@ function prepMolecule(num) {   //mapper para o preparo do teste que está aconte
     //https://chemapps.stolaf.edu/jmol/docs/examples/bonds.htm  help on altering model rendering
   }
 }
+
 function buildMRTModel(jsmol_obj) {
   //load new 3D model
   Jmol.script(jsmol_obj,'load models/MRT_VK_mol.xyz');
   //change background color, line/vertices color, vertices size, ambient shadows from light-source
-  Jmol.script(jsmol_obj,'background white; color [0x404040]; spacefill OFF;set ambientPercent 100; wireframe 0.10');
+  Jmol.script(jsmol_obj,'background black; color [0x808080]; spacefill OFF;set ambientPercent 100; wireframe 0.10');
   //draw polygons to build opaque solid. The vertices numbers must follow a clockwise or counterclockwise order.
   //For multi-line commands, each line besides the last ends with a '\' 
   Jmol.script(jsmol_obj,'\
@@ -122,6 +138,11 @@ function buildMRTModel(jsmol_obj) {
     draw ID f11 polygon [@34 @37 @38 @35]; color $f11 [0xf0f0f0];color $f11 TRANSLUCENT 0.4;\
     draw ID f12 polygon [@35 @38 @44 @41]; color $f12 [0xf0f0f0];color $f12 TRANSLUCENT 0.4;\
     ');
+}
+
+function buildMetaloCuban(jsmol_obj) {
+  Jmol.script(jsmol_obj,'load models/metalo-cuban.xyz');
+  Jmol.script(jsmol_obj,'background black; color cpk; spacefill 23%;set ambientPercent 45; wireframe 0.15');
 }
 
 function buildBallStickMol(jsmol_obj) {
