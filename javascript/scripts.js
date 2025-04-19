@@ -514,7 +514,7 @@ function getLocalData() {
     task_list[task_n]                   + ';' +
     gsForm.fname.value                  + ';' +
     gsForm.email.value                  + ';' +
-    Math.round((razaoPxAngst[0]+razaoPxAngst[1])*10E6/2)*10E6 + ';' +
+    (razaoPxAngst[0]+razaoPxAngst[1])/2 + ';' +
     time_initial                        + ';' +
     modelName                           + ';' +
     scrSizeX                            + ';' +
