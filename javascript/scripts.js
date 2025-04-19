@@ -140,7 +140,7 @@ function buttonSubmit(){
   //pass forms data to sheets
   gsFormStatus = insert_form_values();
   if (gsFormStatus != 1){
-    alert("Error in forms data upload!\nSomething inside the function insert_form_values() went wrong!");
+    console.log("Error in forms data upload!\nSomething inside the function insert_form_values() went wrong!");
   }
   //hide submit button
   hideById("submitButton");
@@ -266,44 +266,53 @@ for (let i = 1; i <= numButtons; i++) {
 
 //insert values in form before sumbission to google sheets
 function insert_form_values() { 
-  document.getElementById('gsForm').sessionID.value = sessionID;
-  document.getElementById('gsForm').taskID.value = task_list[task_n]; //tasks identifier
-  document.getElementById('gsForm').pxAngstRatio.value = razaoPxAngst; //pixels to jmol distance unit ratio 
-  document.getElementById('gsForm').epochStart.value = time_initial;//initial time in unix epoch
-  document.getElementById('gsForm').epochArr.value = arrayEpoch;//duration in milliseconds
-  document.getElementById('gsForm').duration.value = parametroD;//time registered by iRT
-  document.getElementById('gsForm').fQi.value = parametro1; //quaternion array of values of the interactive model.
-  document.getElementById('gsForm').fQj.value = parametro2;
-  document.getElementById('gsForm').fQk.value = parametro3;
-  document.getElementById('gsForm').fQr.value = parametro4; // Qr is the real component
+  const gsForm = document.getElementById('gsForm');
+  gsForm.sessionID.value = sessionID;
+  gsForm.taskID.value = task_list[task_n]; //tasks identifier
+  gsForm.pxAngstRatio.value = razaoPxAngst; //pixels to jmol distance unit ratio 
+  gsForm.epochStart.value = time_initial;//initial time in unix epoch
+  gsForm.epochArr.value = arrayEpoch;//duration in milliseconds
+  gsForm.duration.value = parametroD;//time registered by iRT
+  //quaternion array of values of the interactive model.
+  gsForm.fQi.value = parametro1; 
+  gsForm.fQj.value = parametro2;
+  gsForm.fQk.value = parametro3;
+  gsForm.fQr.value = parametro4; // Qr is the real (non-imaginary) component
+  //quaternion values of the target model
   refQuat = Jmol.getPropertyAsArray(jsmolReferenceObject, 'orientationInfo.quaternion');
-  document.getElementById('gsForm').ref_i.value = refQuat[0]; //quaternion values of the target model
-  document.getElementById('gsForm').ref_j.value = refQuat[1];
-  document.getElementById('gsForm').ref_k.value = refQuat[2];
-  document.getElementById('gsForm').ref_r.value = refQuat[3]; 
-  [winX,winY] = getWindowSize();
-  document.getElementById('gsForm').scrSizeX.value = winX;  // browser screen width and height (X,Y)
-  document.getElementById('gsForm').scrSizeY.value = winY;  //Header,url field and other elements are outside 
-  document.getElementById('gsForm').pxRatio.value = window.devicePixelRatio; // screen scaling of windows. As in how many pixels exist in a screen pixel
+  gsForm.ref_i.value = refQuat[0]; 
+  gsForm.ref_j.value = refQuat[1];
+  gsForm.ref_k.value = refQuat[2];
+  gsForm.ref_r.value = refQuat[3];
+  // browser screen width and height (X,Y)
+  //Header,url field and other elements are outside 
+  [scrSizeX,scrSizeY] = getWindowSize();
+  gsForm.scrSizeX.value = scrSizeX;  
+  gsForm.scrSizeY.value = scrSizeY;  
+  // screen scaling of windows. As in how many pixels exist in a screen pixel
+  gsForm.pxRatio.value = window.devicePixelRatio; 
+  // target Object canvas top,right,bottom,left positions
   refCanvasPositions = jsmolReferenceObject_canvas2d.getBoundingClientRect();
-  document.getElementById('gsForm').cvsRefTop.value = refCanvasPositions.top * window.devicePixelRatio;  // target Object canvas top,right,bottom,left positions
-  document.getElementById('gsForm').cvsRefRight.value = refCanvasPositions.right * window.devicePixelRatio;  
-  document.getElementById('gsForm').cvsRefBottom.value = refCanvasPositions.bottom * window.devicePixelRatio;  
-  document.getElementById('gsForm').cvsRefLeft.value = refCanvasPositions.left * window.devicePixelRatio;  
+  gsForm.cvsRefTop.value = refCanvasPositions.top * window.devicePixelRatio;  
+  gsForm.cvsRefRight.value = refCanvasPositions.right * window.devicePixelRatio;  
+  gsForm.cvsRefBottom.value = refCanvasPositions.bottom * window.devicePixelRatio;  
+  gsForm.cvsRefLeft.value = refCanvasPositions.left * window.devicePixelRatio;  
+  // interactive canvas top,right,bottom,left positions
   intCanvasPositions = jsmolInteractiveObject_canvas2d.getBoundingClientRect();
-  document.getElementById('gsForm').cvsIntTop.value = intCanvasPositions.top * window.devicePixelRatio;  // interactive canvas top,right,bottom,left positions
-  document.getElementById('gsForm').cvsIntRight.value = intCanvasPositions.right * window.devicePixelRatio;  
-  document.getElementById('gsForm').cvsIntBottom.value = intCanvasPositions.bottom * window.devicePixelRatio;  
-  document.getElementById('gsForm').cvsIntLeft.value = intCanvasPositions.left * window.devicePixelRatio;  
+  gsForm.cvsIntTop.value = intCanvasPositions.top * window.devicePixelRatio;  
+  gsForm.cvsIntRight.value = intCanvasPositions.right * window.devicePixelRatio;  
+  gsForm.cvsIntBottom.value = intCanvasPositions.bottom * window.devicePixelRatio;  
+  gsForm.cvsIntLeft.value = intCanvasPositions.left * window.devicePixelRatio;  
+  // what browser was used
   browserInfo = Jmol.getPropertyAsArray(jsmolInteractiveObject, 'appletInfo.operatingSystem');
-  document.getElementById('gsForm').browser.value = browserInfo; // what browser was used
+  gsForm.browser.value = browserInfo; 
   modelFileLocation = Jmol.getPropertyAsArray(jsmolInteractiveObject, 'fileName');
+  // fileName of 3D model used, after all '/' folder divisories
   modelName = modelFileLocation.slice(modelFileLocation.lastIndexOf("/")+1);
-  document.getElementById('gsForm').modelName.value = modelName; // fileName of 3D model used
-  document.getElementById('gsForm').paperAnswer.value = paperAnswer;
-  document.getElementById('gsForm').corsiScore.value = corsi_score;
-  document.getElementById('gsForm').corsiTrialCorrect.value = corsi_trial_correct;
-  document.getElementById('gsForm').corsiTrialCount.value = corsi_trial_count;
+  gsForm.modelName.value = modelName; 
+  gsForm.paperAnswer.value = paperAnswer;
+  gsForm.corsiScore.value = corsi_score;
+  gsForm.corsiAnswer.value = corsi_answer_array;
   //Inform ok status to console
   gsFormStatus = 1;
   console.log("Form values inserted! gsFormStatus: "+gsFormStatus);
@@ -460,38 +469,80 @@ form.addEventListener('submit', e => {
     .catch(error => console.error('Error!', error.message))
 })
 
+//data used in local backup
 function getLocalData() {
-  var data =
-    'sessionID:' + sessionID + ';' +
-    'fname:' + gsForm.fname.value + ';' +
-    'email:' + gsForm.email.value + ';' +
-    'pxAngstRatio:' + (razaoPxAngst[0]+razaoPxAngst[1])/2 + ';' +
+  var localData =
+    'sessionID'     + ';' +
+    'taskID'        + ';' +
+    'fname'         + ';' +
+    'email'         + ';' +
+    'pxAngstRatio'  + ';' +
+    'epochStart'    + ';' +
+    'modelName'     + ';' +
+    'scrSizeX'      + ';' +
+    'scrSizeY'      + ';' +
+    'cvsRefTop'     + ';' +
+    'cvsRefRight'   + ';' +
+    'cvsRefBottom'  + ';' +
+    'cvsRefLeft'    + ';' +
+    'cvsIntTop'     + ';' +
+    'cvsIntRight'   + ';' +
+    'cvsIntBottom'  + ';' +
+    'cvsIntLeft'    + ';' +
+    'pxRatio'       + ';' +
+    'paperAnswer'   + ';' +
+    'corsiScore'    + ';' +
+    'corsiAnswer'   + ';' +
     '\n' + 
-    "sessionID,taskID,epoch,duration,Qi,Qj,Qk,Qr\n";
+    sessionID                           + ';' +
+    task_list[task_n]                   + ';' +
+    gsForm.fname.value                  + ';' +
+    gsForm.email.value                  + ';' +
+    (razaoPxAngst[0]+razaoPxAngst[1])/2 + ';' +
+    time_initial                        + ';' +
+    modelName                           + ';' +
+    scrSizeX                            + ';' +
+    scrSizeX                            + ';' +
+    gsForm.cvsRefTop.value              + ';' +
+    gsForm.cvsRefRight.value            + ';' +
+    gsForm.cvsRefBottom.value           + ';' +
+    gsForm.cvsRefLeft.value             + ';' +
+    gsForm.cvsIntTop.value              + ';' +
+    gsForm.cvsIntRight.value            + ';' +
+    gsForm.cvsIntBottom.value           + ';' +
+    gsForm.cvsIntLeft.value             + ';' +
+    gsForm.pxRatio.value                + ';' +
+    paperAnswer                         + ';' +
+    gsForm.corsiScore.value             + ';' +
+    gsForm.corsiAnswer.value            + ';' +
+    '\n' + 
+    
+    'browser:' + browserInfo + ';\n' +
+    "sessionID;taskID;epoch;duration;Qi;Qj;Qk;Qr\n";
   let newRow = "";
   for (i = 0; i < parametro1.length; i++) {
     newRow = 
-      sessionID + ',' +
-      task_list[task_n] + ',' +
-      time_initial+arrayEpoch[i] + ',' +
-      parametroD[i] + ',' +
-      parametro1[i] + ',' +
-      parametro2[i] + ',' +
-      parametro3[i] + ',' +
-      parametro4[i] + '\n';
-    data = data + newRow;
+      sessionID                 + ';' +
+      task_list[task_n]         + ';' +
+      arrayEpoch[i]             + ';' +
+      parametroD[i]             + ';' +
+      parametro1[i]             + ';' +
+      parametro2[i]             + ';' +
+      parametro3[i]             + ';' +
+      parametro4[i]             + ';' +
+    localData = localData + newRow;
   }
-  return data;
+  return localData;
 }
 
 //Save data locally (backup)
 let saveFile = () => { 
 
   // This variable stores all the local data.
-  let data = getLocalData();
+  let backupData = getLocalData();
   
   // Convert the text to BLOB.
-  const textToBLOB = new Blob([data], { type: 'text/plain' });
+  const textToBLOB = new Blob([backupData], { type: 'text/plain' });
   // Local file name.
   const sFileName = `IRT_OUTPUT_${sessionID}_${task_list[task_n]}.csv`;	
 
@@ -509,6 +560,7 @@ let saveFile = () => {
 
   newLink.click(); 
   //créditos: https://www.encodedna.com/javascript/practice-ground/default.htm?pg=save_form_data_in_text_file_using_javascript
+  console.log("Local Backup download started!");
 }
 var is_local_save = false;
 document.getElementById('checkbox-local-backup').checked = false; //default is to save only online.
