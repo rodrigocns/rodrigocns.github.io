@@ -23,10 +23,10 @@ var Info_interactive = {
   disableMouse: true,
 
   defaultModel: "",
-  src: "models/pseudobatracotoxin_molecule.xyz", //script overwrites this
+  src: "models/metalo-cuban.xyz", //script overwrites this
   script: `
     set antialiasDisplay true; 
-    load models/pseudobatracotoxin_molecule.xyz;
+    load models/metalo-cuban.xyz;
     set perspectiveDepth OFF;
     unbind _rotateZ;
     unbind _rotateZorZoom;
@@ -65,7 +65,7 @@ Info_reference.script = Info_interactive.script.concat("set mouseDragFactor 0");
 // 'moveTo 0 QUATERNION {0.6249 -0.0366 -0.6990 -0.3458}' e 'moveto 0.0 {-666 39 745 139.54}' são equivalentes.
 
 // List of interactive task names the subject will perform 
-const task_list = ["metaloCuban","bolaBastao_c","bolaBastao_g","polygonFill","policube"];
+const task_list = ["metaloCuban","bolaBastao_c","bolaBastao_g","polygonFill","polycubeVK"];
 
 //mapper para o preparo do teste que está acontecendo
 function prepMolecule(num) {   
@@ -74,7 +74,7 @@ function prepMolecule(num) {
   jsmol_ref = jsmolReferenceObject; //janela esquerda
   jsmol_obj = jsmolInteractiveObject; //janela direita
   //em cada case # estão as chamadas das funções de renderização dos objetos
-  // e suas orientações para cada tarefa
+  // suas orientações rotacionais e configs. específicos de cada tarefa (ex. modelo gray em cinza)
   switch (num){
     case 0:
       buildMetaloCuban(jsmol_ref);
@@ -85,8 +85,6 @@ function prepMolecule(num) {
     case 1:
       buildBallStickMol(jsmol_ref);
       buildBallStickMol(jsmol_obj);
-      //Jmol.script(jsmol_ref,'color cpk; spacefill 23%; wireframe 0.15');
-      //Jmol.script(jsmol_obj,'color cpk; spacefill 23%; wireframe 0.15');
       Jmol.script(jsmol_ref,'moveto 0 QUATERNION {-0.490257 -0.282533 -0.455394  0.687341}');
       Jmol.script(jsmol_obj,'moveto 0 QUATERNION { 0.624884 -0.036592 -0.699007 -0.345790}');
     break;
@@ -107,17 +105,17 @@ function prepMolecule(num) {
       Jmol.script(jsmol_obj,'moveto 0 QUATERNION { 0.624884 -0.036592 -0.699007 -0.345790}');
     break;
     case 4:
-      buildMRTModel(jsmol_ref);
-      buildMRTModel(jsmol_obj);
-      Jmol.script(jsmol_ref,'moveto 0 QUATERNION {0.29922234471855447,0.2236541366945916,-0.10297736856098816,0.9218679282439424}');
-      Jmol.script(jsmol_obj,'moveto 0 QUATERNION {0,0,0,1}');
+      buildPolycubesVK(jsmol_ref);
+      buildPolycubesVK(jsmol_obj);
+      Jmol.script(jsmol_ref,'moveto 0 QUATERNION {-0.490257 -0.282533 -0.455394  0.687341}');
+      Jmol.script(jsmol_obj,'moveto 0 QUATERNION { 0.624884 -0.036592 -0.699007 -0.345790}');
     break;
 
     //https://chemapps.stolaf.edu/jmol/docs/examples/bonds.htm  help on altering model rendering
   }
 }
 
-function buildMRTModel(jsmol_obj) {
+function buildPolycubesVK(jsmol_obj) {
   //load new 3D model
   Jmol.script(jsmol_obj,'load models/MRT_VK_mol.xyz');
   //change background color, line/vertices color, vertices size, ambient shadows from light-source
