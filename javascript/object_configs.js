@@ -125,18 +125,18 @@ function buildMRTModel(jsmol_obj) {
   //draw polygons to build opaque solid. The vertices numbers must follow a clockwise or counterclockwise order.
   //For multi-line commands, each line besides the last ends with a '\' 
   Jmol.script(jsmol_obj,'\
-    draw ID f1 polygon [@1 @5 @19 @15]; color $f1 [0xf0f0f0];color $f1 TRANSLUCENT 0.4;\
-    draw ID f2 polygon [@1 @15 @18 @4]; color $f2 [0xf0f0f0];color $f2 TRANSLUCENT 0.4;\
-    draw ID f3 polygon [@19 @15 @18 @26 @25 @21]; color $f3 [0xf0f0f0];color $f3 TRANSLUCENT 0.4;\
-    draw ID f4 polygon [@5 @19 @21 @7]; color $f4 [0xf0f0f0];color $f4 TRANSLUCENT 0.4;\
-    draw ID f5 polygon [@1 @5 @7 @13 @14 @4]; color $f5 [0xf0f0f0];color $f5 TRANSLUCENT 0.4;\
-    draw ID f6 polygon [@18 @4 @14 @37 @34 @26]; color $f6 [0xf0f0f0];color $f6 TRANSLUCENT 0.4;\
-    draw ID f7 polygon [@7 @21 @25 @39 @42 @13]; color $f7 [0xf0f0f0];color $f7 TRANSLUCENT 0.4;\
-    draw ID f8 polygon [@14 @13 @42 @44 @38 @37]; color $f8 [0xf0f0f0];color $f8 TRANSLUCENT 0.4;\
-    draw ID f9 polygon [@25 @26 @34 @35 @41 @39]; color $f9 [0xf0f0f0];color $f9 TRANSLUCENT 0.4;\
-    draw ID f10 polygon [@41 @39 @42 @44]; color $f10 [0xf0f0f0];color $f10 TRANSLUCENT 0.4;\
-    draw ID f11 polygon [@34 @37 @38 @35]; color $f11 [0xf0f0f0];color $f11 TRANSLUCENT 0.4;\
-    draw ID f12 polygon [@35 @38 @44 @41]; color $f12 [0xf0f0f0];color $f12 TRANSLUCENT 0.4;\
+    draw ID f1 polygon [@1 @5 @19 @15]; color $f1 [0xf0f0f0];color $f1 TRANSLUCENT 0.0;\
+    draw ID f2 polygon [@1 @15 @18 @4]; color $f2 [0xf0f0f0];color $f2 TRANSLUCENT 0.0;\
+    draw ID f3 polygon [@19 @15 @18 @26 @25 @21]; color $f3 [0xf0f0f0];color $f3 TRANSLUCENT 0.0;\
+    draw ID f4 polygon [@5 @19 @21 @7]; color $f4 [0xf0f0f0];color $f4 TRANSLUCENT 0.0;\
+    draw ID f5 polygon [@1 @5 @7 @13 @14 @4]; color $f5 [0xf0f0f0];color $f5 TRANSLUCENT 0.0;\
+    draw ID f6 polygon [@18 @4 @14 @37 @34 @26]; color $f6 [0xf0f0f0];color $f6 TRANSLUCENT 0.0;\
+    draw ID f7 polygon [@7 @21 @25 @39 @42 @13]; color $f7 [0xf0f0f0];color $f7 TRANSLUCENT 0.0;\
+    draw ID f8 polygon [@14 @13 @42 @44 @38 @37]; color $f8 [0xf0f0f0];color $f8 TRANSLUCENT 0.0;\
+    draw ID f9 polygon [@25 @26 @34 @35 @41 @39]; color $f9 [0xf0f0f0];color $f9 TRANSLUCENT 0.0;\
+    draw ID f10 polygon [@41 @39 @42 @44]; color $f10 [0xf0f0f0];color $f10 TRANSLUCENT 0.0;\
+    draw ID f11 polygon [@34 @37 @38 @35]; color $f11 [0xf0f0f0];color $f11 TRANSLUCENT 0.0;\
+    draw ID f12 polygon [@35 @38 @44 @41]; color $f12 [0xf0f0f0];color $f12 TRANSLUCENT 0.0;\
     ');
 }
 
