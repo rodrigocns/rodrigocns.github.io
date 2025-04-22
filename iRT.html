@@ -206,10 +206,14 @@
       </map>
       <br>
       <button id="button-next-paper-intro2" style="visibility:hidden ;" 
-        onclick='nextStage()'>
-        Começar!
+        onclick='removeById("div-psvt-intro2"); unhideById("button-paper-task-start")'>
+        Próximo
       </button>
     </div>
+    <button id="button-paper-task-start" style="visibility:hidden ;" 
+      onclick='nextStage()'>
+      Começar!
+    </button>
 
   </section>
 
@@ -236,7 +240,7 @@
     <!-- end paper task -->
     <button id="button-end-psvtr" style="visibility:hidden" 
       onclick='nextStage(); unremoveById("jspsych-content");'>
-      Next
+      Próximo
     </button>
   </section>
 
@@ -297,7 +301,7 @@
           <button class="debug" onclick="Jmol.script(jsmolInteractiveObject, 'moveTo 0 quaternion {0.7910  0.3605  0.4065  0.2812}')">startPosNew</button>
           
           <div>
-            <button id="endTasksButton" onclick="nextStage();closeFullscreen()" style="visibility:hidden">Next</button>
+            <button id="endTasksButton" onclick="nextStage();closeFullscreen()" style="visibility:hidden">Próximo</button>
           </div>
     
         </td>
