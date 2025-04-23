@@ -118,10 +118,10 @@ onmousemove = function(e) {
   mouseY=e.clientY;
 }
 
-//functions to run when clicking the "GO" button..
+//functions to run when starting an iRT trial ..
 let razaoPxAngst = [0,0];
-function buttonStart() {  
-  zerar_contagem();
+function iRTStart() {  
+  zerarContagem();
   unhideById("cellLeft");
   unhideById("cellRight");
   Jmol.script(jsmolReferenceObject,'refresh'); // refresh pixels of object window
@@ -169,7 +169,7 @@ function buttonSubmit(){
 }
 
 //generates 3x3 matrix of rotation related to input quaternion
-function rot_matrix(qi,qj,qk,qr,s=1) { 
+function rotationMatrix(qi,qj,qk,qr,s=1) { 
   //Jmol gives quaternion numbers with the real part at the last position. Thats why qr is last. 
   let matrix = [
     [1-2*s*(qj**2 + qk**2),   2*s*(qi*qj - qk*qr),   2*s*(qi*qk + qj*qr)],
@@ -180,7 +180,7 @@ function rot_matrix(qi,qj,qk,qr,s=1) {
 }
 
 //returns product of matrix 3x3 and matrix 3x1
-function matrix_prod (mat3x3,mat3x1) { 
+function matrixProduct (mat3x3,mat3x1) { 
   let matProd = [
     mat3x3[0][0]*mat3x1[0] + mat3x3[0][1]*mat3x1[1] + mat3x3[0][2]*mat3x1[2],
     mat3x3[1][0]*mat3x1[0] + mat3x3[1][1]*mat3x1[1] + mat3x3[1][2]*mat3x1[2],
@@ -201,9 +201,9 @@ function pixelAngstromRatio(jsmol_obj,debug=0){
   let xyzCorrected = [xyz[0]-bBoxCenter[0],xyz[1]-bBoxCenter[1],xyz[2]-bBoxCenter[2]];
   
   //get rotation matrix
-  let matrix = rot_matrix(quatArr[0],quatArr[1],quatArr[2],quatArr[3]);
+  let matrix = rotationMatrix(quatArr[0],quatArr[1],quatArr[2],quatArr[3]);
   //aply rotation matrix to xyzCorrected coordinates
-  let xyzRotated = matrix_prod(matrix,xyzCorrected);
+  let xyzRotated = matrixProduct(matrix,xyzCorrected);
   
   //get the equivalent xy projection (pixels) of the xyz point in space. 
   //NOTE: Jmol gives xyz screen coordinates in pixels, but we use only x and y. 
@@ -367,7 +367,7 @@ var time_initial = Date.now(); //precisa ser global para usar no formulario
 var timerIsOn = false;
 
 //reset time_elapsed(num) and parameter array values
-function zerar_contagem() { 
+function zerarContagem() { 
   time_elapsed = 0;
   document.getElementById("timer_onscreen").value = 0;
   arrayEpoch = [];
@@ -403,7 +403,7 @@ var drift_history_samples = 10;
 var drift_correction = 0;
 
 //Calculates drift median for its correction based in the array 
-function calc_drift(arr){ 
+function calcDrift(arr){ 
   var values = arr.concat(); // copy array so it isn't mutated
   values.sort(function(a,b){
     return a-b;
@@ -433,7 +433,7 @@ function step() {
     // (add to remove because the correction is applied by subtraction)
     drift_history.push(dt + drift_correction); //adiciona um ponto no array de drifts
     // predict new drift correction
-    drift_correction = calc_drift(drift_history);
+    drift_correction = calcDrift(drift_history);
     // cap and refresh samples
     if (drift_history.length >= drift_history_samples) {
       drift_history.shift();  //remove um ponto no array de drifts se estiver com mais de 10
