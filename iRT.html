@@ -29,6 +29,7 @@
   <section id="tab_navigation" class="debug">
     <div class="dev-div">
       You are in debug mode! If this was a mistake, please click again in the corner of the screen, or reload the page, and forget you saw this! ;D
+      <button onclick="saveProfilingData()">Profiling</button>
       <br>
       <!-- webpage Links -->
       <a class="dev-div" href="rodrigocns.github.io">
@@ -56,11 +57,13 @@
   <section id="tab_form" class="ContentStage current-ContentStage" style="display:block"> 
     <div id="div_form">
       <form name="submit-to-google-sheet" id="gsForm" autocomplete="off">
-        <!-- Escreva nome e email para contato caso queira receber notícias sobre a pesquisa e clique em próximo. -->
+        <!-- Escreva nome e email para contato caso queira receber notícias
+          sobre a pesquisa e clique em próximo. -->
         <p>
-          Se desejar receber informações sobre a pesquisa, escreva nome e e-mail de contato.
-        <br>
-        Os seus dados serão armazenados anonimamente e mantidos em sigilo.
+          Se desejar receber seus dados ou mais informações sobre a pesquisa,<br> 
+          escreva nome e e-mail de contato.
+          <br>
+          Os seus dados serão armazenados anonimamente e mantidos em sigilo.<br>
         </p>
         <p> Nome (opcional): 
           <input type="text" name="fname" placeholder="Ex: Rodrigo Alves" size="30" autofocus></p>
@@ -100,23 +103,15 @@
         <p> Etnia: <br>
           <input type="text" name="p_ethnic">
         </p>
-        <p> Já exerceu atividade remunerada? Em qual área?<br>
-          <input type="text" name="p_work">
+        <p> Já exerceu/exerce atividade remunerada? Qual era sua ocupação? Por quanto tempo?<br>
+          <textarea id="p_work" name="p_work" rows="2" cols="50" ></textarea>
         </p>
-        <p> Com que frequência (sendo 0 nunca, e 9 constantemente) você: <br>
-          <label for="p_3dmodels">Usa modelos tridimensionais?  </label>
-          (<span id="p_3dmodels_value">0</span>)
-          <input type="range" id="p_3dmodels" name="p_3dmodels" min="0" max="9" >
+        <p> Com que frequência (sendo 0 nunca, e 10 constantemente) você: <br>
+          <image></image>
+          Usa modelos tridimensionais (no estudo, trabalho, etc.)? 
+          <input type="number" id="p_3dmodels" name="p_3dmodels" min="0" max="10" >
           <br>
         </p>
-        <script>
-          //Update number of range input when changing slider
-          const rangeInput = document.getElementById("p_3dmodels");
-          const rangeValue = document.getElementById("p_3dmodels_value");
-          rangeInput.addEventListener ("input", () => {
-            rangeValue.innerText = rangeInput.value;
-          });
-        </script>
 
         <!-- internal values to be sent by forms -->
         <!-- Changes here should be replicated in scripts.js: 
@@ -268,7 +263,7 @@
   </section>
 
   <!-- iRT - interactive Rotation Tasks -->
-  <section id="tab_iRT" class="ContentStage" style="display:none">  <!-- JSmol interactive tasks -->
+  <section id="tab_iRT" class="ContentStage" style="display:none">  
     <div class="debug" id="indicador_orientacao" style="background-color:gray">Test</div> <!-- orientation coordinates -->
 
     <table id="table-iRT-canvas"> 
@@ -311,7 +306,7 @@
           <button class="debug" onclick="Jmol.script(jsmolInteractiveObject, 'moveTo 0 quaternion {0.7910  0.3605  0.4065  0.2812}')">startPosNew</button>
           
           <div>
-            <button id="endTasksButton" onclick="nextStage();closeFullscreen()" style="visibility:hidden">Próximo</button>
+            <button id="endTasksButton" onclick="nextStage();" style="visibility:hidden">Próximo</button>
           </div>
     
         </td>
@@ -326,16 +321,64 @@
     
   </section>
   
-  <!-- End of trials: agradecimentos-->
-  <section id="tab_fim" class="ContentStage" style="display:none"> <!-- Final words -->
-    "Muito obrigado por participar da nossa pesquisa!"<br>
-    "Thank you for taking part in our research!"<br>
-    <br>
-    rodrigo.consoli@alumni.usp.br
 
-    <br><br><br><br>
+  <!-- final questions -->
+  <section id="tab_fim" class="ContentStage" style="display:none"> <!-- Final words -->
+    <h1>Últimas perguntas:</h1>
+    <form id="endForm" autocomplete="off">
+      Em uma escala de 0 a 10, sendo 0 muito fácil e 10 muito difícil,<br>
+        qual foi a sua dificuldade com os testes?
+      <table style="margin:auto">
+        <tr>
+          <td><img src="images/icon_paper.png"></img></td>
+          <td style="padding:10px">
+            Rotação mental de blocos <br>
+            <input type="number" name="p_dific_paper" min="0" max="10" >
+          </td>
+        </tr>
+        <tr>
+          <td><img src="images/icon_corsi.png"></img></td>
+          <td style="padding:10px"> 
+            Sequência de blocos piscando <br>
+            <input type="number" name="p_dific_corsi" min="0" max="10" >
+          </td>
+        </tr>
+        <tr>
+          <td><img src="images/icon_jsmol.png"></img></td>
+          <td style="padding:10px"> 
+            Rotação interativa de objetos<br>
+            <input type="number" name="p_dific_jsmol" min="0" max="10" >
+          </td>
+        </tr>
+      </table>
+      <p>
+        Você percebeu alguma semelhança entre os objetos de rotação interativa? 
+        <input type="radio" name="p_likeness" id="p_likeness_sim" value="Sim" 
+        onchange="unhideById('input-likeness-txt')">
+        <label for="p_likeness_sim">Sim</label> |
+        <input type="radio" name="p_likeness" id="p_likeness_nao" value="Não"
+        onchange="unhideById('button-final-trial')">
+        <label for="p_likeness_nao">Não</label>
+      </p>
+      <div id="input-likeness-txt" style="visibility:hidden" >
+        <label for="p_likeness_txt">Descreva sucintamente, por favor:</label>
+        <br>
+        <textarea id="p_likeness_txt" name="p_likeness_txt" rows="5" cols="50"
+        oninput="unhideById('button-final-trial')"></textarea>
+      </div>
+    </form>
+    <button id="button-final-trial" style="visibility:hidden"
+    onclick="nextStage();closeFullscreen();saveProfilingData()" >Próximo</button>
   </section>
 
+  <!-- End of trials: agradecimentos-->
+  <section id="tab_fim" class="ContentStage" style="display:none"> <!-- Final words -->
+    <p>
+      "Muito obrigado por participar da nossa pesquisa!"<br>
+      "Thank you for taking part in our research!"<br>
+    </p>
+  </section>
+  
   <button class="debug" id="next_stage_button_debug" onclick="nextStage()">Next stage</button>
   <br>
   <div id="last-updated" class="unhider fixed-footer" style=" font-size:x-small; " >

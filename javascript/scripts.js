@@ -354,7 +354,7 @@ function insertFormValues() {
   modelName = modelFileLocation.slice(modelFileLocation.lastIndexOf("/")+1);
   gsForm.modelName.value = modelName; 
   gsForm.paperAnswer.value = paperAnswer;
-  gsForm.paperAnswer.value = paperRt;
+  gsForm.paperRt.value = paperRt;
   gsForm.corsiScore.value = corsi_score;
   gsForm.corsiTrials.value = corsi_correct_trials_array;
   gsForm.corsiRt.value = corsi_rt_array;
@@ -536,6 +536,71 @@ form.addEventListener('submit', e => {
     .then(response => console.log('Success!', response))
     .catch(error => console.error('Error!', error.message))
 })
+
+//save profiling data
+function saveProfilingData () {
+  //get forms links
+  const gsForm = document.getElementById('gsForm');
+  const endForm = document.getElementById('endForm')
+
+  const profileData = {
+    sessionID: sessionID,
+    name:     gsForm.fname.value,
+    email:    gsForm.email.value,
+    returningSubject:   gsForm.p_repeat.value,
+    enrolledCourse:     gsForm.p_curso.value,
+    enrolledSemester:   gsForm.p_semester.value,
+    giftedStudent:      gsForm.p_gifted.value,
+    sex:                gsForm.p_sex.value,
+    age:                gsForm.p_age.value,
+    ethnicity:          gsForm.p_ethnic.value,
+    work:               gsForm.p_work.value,
+
+    models3DFrequency:  gsForm.p_3dmodels.value,
+
+    browser:            navigator.userAgent,
+    pixelRatio:         window.devicePixelRatio,
+
+    paperAnswer:        paperAnswer,
+    paperRt:            paperRt,
+
+    corsiScore:         corsi_score,
+    corsiTrials:        corsi_correct_trials_array,
+    corsiRt:            corsi_rt_array,
+    corsiChoices:       corsi_choice_array,
+    corsiTrialId:       corsi_trial_id_array,
+    corsiEpoch:         corsiEpoch,
+    corsiMouseX:        corsiMouseX,
+    corsiMouseY:        corsiMouseY,
+
+    dificultyPaper:     endForm.p_dific_paper.value,
+    dificultyCorsi:     endForm.p_dific_corsi.value,
+    dificultyJsmol:     endForm.p_dific_jsmol.value,
+    jsmolLikeness:      endForm.p_likeness.value,
+    jsmolLikenessText:  endForm.p_likeness_txt.value,
+  };
+  
+  //make the data structure into json. 
+  //stringify(profileData) builds a compact .json
+  //stringify(profileData,null,2) builds a pretty, multi-line .json
+  
+  function replacer(key,value){
+    if (Array.isArray(value)) {
+      return JSON.stringify(value); //compact arrays
+    }
+    return value; //other data formats
+  }
+
+  let jsonString = JSON.stringify(profileData, replacer, 2);
+
+  jsonString = jsonString.replace(/"(\[.*?\])"/g, (_, arrayStr) => arrayStr);
+
+  const blob = new Blob([jsonString], { type: "application/json" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = `profile-data-${sessionID}.json`;
+  link.click();
+}
 
 //data used in local backup
 function getLocalData() {
