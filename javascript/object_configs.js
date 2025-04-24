@@ -14,8 +14,8 @@ fique o mais parecido possível com o objeto da esquerda.
 var Info_interactive = { 
   //For more explanations go to https://wiki.jmol.org/index.php/Jmol_JavaScript_Object/Info
   color: "#000000",
-  height: 400,
-  width: 400,
+  height: 600,
+  width: 600,
   use: "HTML5",
   j2sPath: "jsmol/j2s",
 //  serverURL: null,

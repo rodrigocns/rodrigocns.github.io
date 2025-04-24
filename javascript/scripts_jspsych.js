@@ -1,7 +1,8 @@
 // jsPsych functions and variables
 
 var introductionText = `
-
+<p>Blocos de Corsi
+</p>
 <p>
 Alguns quadrados vão piscar em uma determinada sequência na tela.
 <br>

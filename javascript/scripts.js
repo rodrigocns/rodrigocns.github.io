@@ -251,10 +251,10 @@ function imgAlternativeChosen(chosen_alternative) {
     const img = document.getElementById("imgmap");
     img.src = "images/PSVT-R ("+imgmap_n+").jpg"; // Change to the new image path
   }
-  // else, 
+  // else, blank screen for next trial
   else {
-    unhideById("button-end-psvtr");
-    hideById("imgmap");
+    nextStage();
+    unhideById("button-corsi-start");
   }
 }
 
@@ -456,7 +456,7 @@ var orientacaoQuat;
 //obtain the quaternion orientation data for arrays at each call
 function getTheNumbers() { 
   /*var*/ orientacaoQuat = Jmol.getPropertyAsArray(jsmolInteractiveObject, 'orientationInfo.quaternion'); 
-  document.getElementById("indicador_orientacao").innerHTML = orientacaoQuat;// debug
+  document.getElementById("indicador_orientacao").innerHTML = `Quaternion: ${orientacaoQuat}`;// debug
   
   arrayEpoch.push(Date.now()-time_initial);
   parametroD.push(time_elapsed.toFixed(1)); //adiciona na pilha dados de tempo percorrido, com 1 casa decimal {toFixed(1)}

@@ -47,7 +47,7 @@
         <!-- start the different tasks of the interactive test -->
         <div id="button-container"></div>
       </nav>
-      <button class="debug" id="next_stage_button_debug" onclick="nextStage()">Next stage</button>
+      <button class="debug" id="next_stage_button_debug" onclick="nextStage()">Next trial</button>
       <hr>
     </div>
   </section>
@@ -239,21 +239,18 @@
     </div> 
     <br>
     <!-- end paper task -->
-    <button id="button-end-psvtr" style="visibility:hidden" 
-      onclick='nextStage(); unremoveById("jspsych-content");'>
-      Próximo
-    </button>
   </section>
 
   <!-- corsi block tapping task from jsPsych -->
   <section id="corsi-task-container" class="ContentStage" style="display:none"> 
-    <p>Blocos de Corsi</p>
-
+    <button id="button-corsi-start" 
+      onclick='unremoveById("jspsych-content");removeById("button-corsi-start")'>
+      Próximo
+    </button>
     <div id='corsi-result' style="display:none">
       <p>Aperte 'Próximo' para prosseguir
       </p>
-      <button id="endOfCorsiButton"  onclick='nextStage();
-      document.getElementById("iRT-instructions").innerHTML = instructionTextiRT;'>
+      <button id="endOfCorsiButton"  onclick='nextStage();'>
         Próximo
       </button>
     </div> 
@@ -275,7 +272,8 @@
           </script>
         </td>
         <td id="tdCenter">
-          <span id="iRT-instructions"></span>
+          <span id="iRT-instructions" ></span>
+          <script>document.getElementById('iRT-instructions').innerHTML=instructionTextiRT</script>
           <br>
           <div class="debug">Duration: <output id="timer_onscreen" ></output> s</div>
           <br>
