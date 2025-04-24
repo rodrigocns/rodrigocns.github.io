@@ -136,9 +136,8 @@ function iRTStart() {
   }, 1000);
   
 }
-
 //functions to run when clicking the "DONE" button.
-function buttonSubmit(){ 
+function buttoniRTSubmit(){ 
   //stop cronometer
   timerStop();  
   //hide jsmol screens
@@ -166,6 +165,25 @@ function buttonSubmit(){
       unhideById("startButton");
     }, 1000);
   }
+}
+
+//functions to run when starting/running corsi
+function corsiStart() {  
+  zerarContagem();
+  timerStart ();         //starts time counting and periodic functions
+  getTheNumbers();       // records the data ONLY from the initial instant (t=0)
+}
+//functions to run when completing corsi trials.
+var corsiEpoch = [];
+var corsiMouseX = [];
+var corsiMouseY = [];
+function buttonCorsiSubmit(){ 
+  //stop cronometer
+  timerStop();  
+  corsiEpoch = arrayEpoch;
+  corsiMouseX = arrayMouseX;
+  corsiMouseY = arrayMouseY;
+  console.log("Corsi data saved!");
 }
 
 //generates 3x3 matrix of rotation related to input quaternion
@@ -218,9 +236,9 @@ function pixelAngstromRatio(jsmol_obj,debug=0){
   //get the pixel:angstrom ratio
   let razao = [sXYCorrected[0]/xyzRotated[0],sXYCorrected[1]/xyzRotated[1]];
   razao = [window.devicePixelRatio * razao[0], window.devicePixelRatio * razao[1]];
-//  if (debug==1){
+  if (debug==1){
     console.log('razao pixel:Angstrom = '+razao)//debug
-  //}
+  }
   return razao;
 }
 
@@ -239,17 +257,22 @@ function randXYZ(jsmol_obj) {
 // Pass chosen Paper task answers to forms
 //Each time an alternative is chosen, choice is pushed to 'paperAnswer' array, 
 // 'imgmap_n' increases and next image is loaded, until the image is the last one.
-imgmap_n = 1; paperAnswer = "";
+var imgmap_n = 1; 
+var paperAnswer = "";
+var paperRt = [];
 function imgAlternativeChosen(chosen_alternative) {
-  //alert("You chose alternative " + chosen_alternative);
+  paperRt = paperRt.concat(toc());
   //add chosen_alternative to forms
   paperAnswer = paperAnswer + chosen_alternative;
   //go to next image
   imgmap_n += 1;
+  //lock clicking inside map for 1000 ms, to avoid misclicks
+  lockMap("imgmap");
   // if there are more images, load next image in new image path (img.src)
   if (imgmap_n <= 3 ) {
     const img = document.getElementById("imgmap");
     img.src = "images/PSVT-R ("+imgmap_n+").jpg"; // Change to the new image path
+    tic (); // img is loaded, 
   }
   // else, blank screen for next trial
   else {
@@ -257,6 +280,16 @@ function imgAlternativeChosen(chosen_alternative) {
     unhideById("button-corsi-start");
   }
 }
+//lock clicking inside map 
+function lockMap(mapId, duration = 1000) {
+  const map = document.getElementById(mapId);
+  map.style.pointerEvents = "none";
+
+  setTimeout(() => {
+    map.style.pointerEvents = "auto";
+  }, duration);
+}
+
 
 // create numButtons button tags dinamically. Reflects task_list entries 
 const numButtons = task_list.length;
@@ -321,8 +354,15 @@ function insertFormValues() {
   modelName = modelFileLocation.slice(modelFileLocation.lastIndexOf("/")+1);
   gsForm.modelName.value = modelName; 
   gsForm.paperAnswer.value = paperAnswer;
+  gsForm.paperAnswer.value = paperRt;
   gsForm.corsiScore.value = corsi_score;
-  gsForm.corsiAnswer.value = corsi_answer_array;
+  gsForm.corsiTrials.value = corsi_correct_trials_array;
+  gsForm.corsiRt.value = corsi_rt_array;
+  gsForm.corsiChoices.value = corsi_choice_array;
+  gsForm.corsiTrialId.value = corsi_trial_id_array;
+  gsForm.corsiEpoch.value  = corsiEpoch ;
+  gsForm.corsiMouseX.value = corsiMouseX;
+  gsForm.corsiMouseY.value = corsiMouseY;
   //Inform ok status to console
   gsFormStatus = 1;
   console.log("Form values inserted! gsFormStatus: "+gsFormStatus);
@@ -351,6 +391,18 @@ function elemPosition(elemID) {
   y: rect.top + window.scrollY
   };
   console.log(position);
+}
+
+//simple duration tracker 
+var startTime = 0;
+function tic () {
+  startTime = Date.now();
+}
+function toc () {
+  const endTime = Date.now();
+  const rt = (endTime - startTime)/1000;
+  console.log (`Elapsed time: ${rt} seconds`);
+  return rt;
 }
 
 let arrayEpoch = [];  //system time (Date.now())
@@ -507,8 +559,15 @@ function getLocalData() {
     'cvsIntLeft'    + ';' +
     'pxRatio'       + ';' +
     'paperAnswer'   + ';' +
+    'paperRt'       + ';' +
     'corsiScore'    + ';' +
-    'corsiAnswer'   + ';' +
+    'corsiTrials'   + ';' +
+    'corsiRt'       + ';' +
+    'corsiChoices'  + ';' +
+    'corsiTrialId'  + ';' +
+    'corsiEpoch'    + ';' +
+    'corsiMouseX'   + ';' +
+    'corsiMouseY'   + ';' +
     '\n' + 
     sessionID                           + ';' +
     task_list[task_n]                   + ';' +
@@ -529,8 +588,18 @@ function getLocalData() {
     gsForm.cvsIntLeft.value             + ';' +
     gsForm.pxRatio.value                + ';' +
     paperAnswer                         + ';' +
+    paperRt                             + ';' +
     gsForm.corsiScore.value             + ';' +
-    gsForm.corsiAnswer.value            + ';' +
+    gsForm.corsiTrials.value            + ';' +
+    gsForm.corsiRt.value                + ';' +
+    gsForm.corsiChoices.value           + ';' +
+    gsForm.corsiTrialId.value           + ';' +
+    gsForm.corsiEpoch.value             + ';' +
+    gsForm.corsiMouseX.value            + ';' +
+    gsForm.corsiMouseY.value            + ';' +
+    
+    
+    
     '\n' + 
     
     'browser:' + browserInfo + ';\n' +

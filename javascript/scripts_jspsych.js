@@ -75,11 +75,17 @@ var corsiWelcome = {
   on_load: function(){
     removeById("jspsych-content");
   },
+  on_finish: function() {
+    corsiStart();
+  },
 };
 timeline.push(corsiWelcome);
 
 //corsi
-let corsi_answer_array = [];
+let corsi_correct_trials_array = [];
+var corsi_rt_array = [];
+var corsi_choice_array = [];
+var corsi_trial_id_array = [];
 var corsi_trial_count = 0;
 var corsi_trial_correct = 0;
 var corsi_score = 1;
@@ -101,19 +107,36 @@ function CorsiTrial(sequenceLength, nextTrial) {
   this.highlight_color = "yellow", //#f00 default
   this.correct_colot = "#0f0" //#0f0 default
   this.incorrect_color = "#f00" //#f00 default
+  //timeline repetition: double pair (display/input/display/input) of 
+  // corsi trials for each length of the sequence (2, 3, 4 etc.) 
+  //IF OTHER TRIALS ARE ADDED BEFORE THIS, seqLength WILL BREAK ORDER
   this.timeline = [
     {sequence: corsiSeq[this.seqLength*2-4], mode: 'display', /*prompt: `${this.seqLength}a display`*/},
     {sequence: corsiSeq[this.seqLength*2-4], mode: 'input'  , prompt: `Repita a sequência`  },
     {sequence: corsiSeq[this.seqLength*2-3], mode: 'display', /*prompt: `${this.seqLength}b display`*/},
     {sequence: corsiSeq[this.seqLength*2-3], mode: 'input'  , prompt: `Repita a sequência`  },
-  
   ],
   // check if any of last 2 answers were correct
   this.on_timeline_finish= function() {
-    result_a = jsPsych.data.results.trials[jsPsych.data.results.trials.length-3].correct;
-    result_b = jsPsych.data.results.trials[jsPsych.data.results.trials.length-1].correct;
-    corsi_answer_array.push(result_a);
-    corsi_answer_array.push(result_b);
+    //get corsi data array length to have the correct indexes
+    length_a = jsPsych.data.results.trials.length -3;
+    length_b = jsPsych.data.results.trials.length -1;
+    //correct answer: boolean
+    result_a = jsPsych.data.results.trials[length_a].correct;
+    result_b = jsPsych.data.results.trials[length_b].correct;
+    corsi_correct_trials_array.push(result_a);
+    corsi_correct_trials_array.push(result_b);
+    //response time array: int for milliseconds
+    corsi_rt_array = corsi_rt_array.concat(jsPsych.data.results.trials[length_a].rt);
+    corsi_rt_array = corsi_rt_array.concat(jsPsych.data.results.trials[length_b].rt);
+    //chosen answers array: int for choice id (0 to 8)
+    corsi_choice_array = corsi_choice_array.concat(jsPsych.data.results.trials[length_a].response)
+    corsi_choice_array = corsi_choice_array.concat(jsPsych.data.results.trials[length_b].response)
+    //corsi trial id array (from 0 to n) for each subject's choice
+    // concat ( new Array(answer length).fill(id) )
+    corsi_trial_id_array = corsi_trial_id_array.concat(new Array(jsPsych.data.results.trials[length_a].response.length).fill(this.seqLength*2-4));
+    corsi_trial_id_array = corsi_trial_id_array.concat(new Array(jsPsych.data.results.trials[length_b].response.length).fill(this.seqLength*2-3));
+    //count of trial amount and correct answers 
     corsi_trial_correct = corsi_trial_correct + result_a + result_b;
     corsi_trial_count = corsi_trial_count + 2;
     //if correct, proceed to next corsi trial. Else, ends trials.
@@ -133,6 +156,9 @@ const corsiEnd = {
   stimulus: " ",
   choices: "NO_KEYS",
   trial_duration: 100,
+  on_load: function() {
+    buttonCorsiSubmit ();
+  },
   on_finish: function() {
     console.log(`Corsi block task complete. Score:${corsi_score} 
       | Correct answers: ${corsi_trial_correct} of ${corsi_trial_count}`);

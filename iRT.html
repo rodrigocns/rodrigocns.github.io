@@ -151,10 +151,15 @@
         <input type="hidden" name="browser">
         <input type="hidden" name="modelName">
         <input type="hidden" name="paperAnswer">
+        <input type="hidden" name="paperRt">
         <input type="hidden" name="corsiScore">
-        <!--<input type="hidden" name="corsiTrialCorrect">
-        <input type="hidden" name="corsiTrialCount">-->
-        <input type="hidden" name="corsiAnswer">
+        <input type="hidden" name="corsiTrials">
+        <input type="hidden" name="corsiRt">
+        <input type="hidden" name="corsiChoices">
+        <input type="hidden" name="corsiTrialId">
+        <input type="hidden" name="corsiEpoch">
+        <input type="hidden" name="corsiMouseX">
+        <input type="hidden" name="corsiMouseY">
         
       </form>
     </div>
@@ -207,23 +212,29 @@
       </map>
       <br>
       <button id="button-next-paper-intro2" style="visibility:hidden ;" 
-        onclick='removeById("div-psvt-intro2"); unhideById("button-paper-task-start")'>
+        onclick='removeById("div-psvt-intro2"); nextStage();'>
         Próximo
       </button>
     </div>
-    <button id="button-paper-task-start" style="visibility:hidden ;" 
-      onclick='nextStage()'>
-      Começar!
-    </button>
+
 
   </section>
 
   <!-- paper-to-screen task -->
   <section id="tab_paper_task" class="ContentStage" style="display:none"> 
-    <div style="position: relative; display: inline-block;">
+
+    <div id="div-imgmap" style="position: relative; display: inline-block;">
+      <button id="button-paper-task-start" onclick='removeById("button-paper-task-start");unhideById("imgmap");tic();'>
+        Começar!
+      </button>
+      <br>
       <!-- common height of notebooks is 768px.
         Image is 1625x1250, and was resized to 60% of its size in page -->
-      <img id="imgmap" src="images/PSVT-R (1).jpg" usemap="#task_alternatives_map" height="750"> 
+      <img id="imgmap" src="images/PSVT-R (1).jpg" usemap="#task_alternatives_map"
+      style="visibility:hidden;" height="750" >
+      <script>
+        document.getElementById('imgmap').onload = function(){ tic(); };
+      </script> 
       <map name="task_alternatives_map" style="cursor: pointer">
         <area shape="rect" coords=" 119,480, 247,660" alt="A" onclick="imgAlternativeChosen('A')">
         <area shape="rect" coords=" 273,480, 401,660" alt="B" onclick="imgAlternativeChosen('B')">
@@ -263,7 +274,7 @@
     <table id="table-iRT-canvas"> 
       <tr>
         <button id="startButton" onclick="iRTStart();removeById('iRT-instructions')">Começar!</button>
-        <button id="submitButton" onclick="buttonSubmit()" style="visibility:hidden" form="gsForm">Pronto!</button>
+        <button id="submitButton" onclick="buttoniRTSubmit()" style="visibility:hidden" form="gsForm">Pronto!</button>
       </tr>
       <tr>
         <td class="jsmol-canvas" id="cellLeft">
@@ -278,7 +289,7 @@
           <div class="debug">Duration: <output id="timer_onscreen" ></output> s</div>
           <br>
           <button class="debug" onclick="getWindowSize()">scrSize</button>
-          <button class="debug" onclick="buttonSubmit()">!POST</button>
+          <button class="debug" onclick="buttoniRTSubmit()">!POST</button>
           <button class="debug" onclick="timerStop()">timerStop</button>
           <button class="debug" onclick="saveFile()">Save Data Localy</button>
           <button class="debug" onclick="pixelAngstromRatio(randXYZ(jsmolInteractiveObject),jsmolInteractiveObject,1)">px:Angst</button>
