@@ -13,10 +13,10 @@ let task_n = 0; //number of the initial interactive task
 let ContentStage = 0;
 
 const stage_elements = document.getElementsByClassName('ContentStage'); //get stages list
-//hides the current section (with tag current-ContentStage), and shows the next section 
+//hides the current section (with tag ContentStage-now), and shows the next section 
 function nextStage() {  
-  // get the currently visible section with the `current-ContentStage` class
-  var currentSection = document.querySelector(".current-ContentStage");
+  // get the currently visible section with the `ContentStage-now` class
+  var currentSection = document.querySelector(".ContentStage-now");
   // get the next sequential section with the `ContentStage` class
   var nextSection = currentSection.nextElementSibling;
   while (nextSection && !nextSection.classList.contains("ContentStage")) {
@@ -26,18 +26,18 @@ function nextStage() {
   if (!nextSection) {
     nextSection = document.querySelector(".ContentStage");
   }
-  // hide button if element is the last one 
   /*
+  // hide button if element is the last one 
   if (stage_elements[stage_elements.length - 1]==nextSection) {
     document.getElementById("next_stage_button_debug").style.visibility="hidden";
   }
   */
   // hide the current sequential section with the `ContentStage` class
   currentSection.style.display = "none";
-  currentSection.classList.remove("current-ContentStage");
+  currentSection.classList.remove("ContentStage-now");
   // show the next sequential section with the `ContentStage` class
   nextSection.style.display = "block";
-  nextSection.classList.add("current-ContentStage");
+  nextSection.classList.add("ContentStage-now");
 }
 
 var debug_state = 0;
