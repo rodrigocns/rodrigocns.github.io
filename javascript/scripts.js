@@ -85,8 +85,8 @@ function removeById (idNameAsString) {
   document.getElementById(idNameAsString).style.display="none";
 }
 
-function unremoveById (idNameAsString) {
-  document.getElementById(idNameAsString).style.display = "block";
+function unremoveById (idNameAsString, displayType="block") {
+  document.getElementById(idNameAsString).style.display = displayType;
 }
 
 /* View in fullscreen */
