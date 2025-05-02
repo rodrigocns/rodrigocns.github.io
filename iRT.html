@@ -167,6 +167,140 @@
     </div>
   </section>
   
+  <!-- chem.vis. test -->
+  <section id="tab_fim" class="ContentStage" style="display:none">
+    <h1>Teste química:</h1>
+    <form id="form-chem-test" autocomplete="off" >
+      
+      <table style="margin:auto" id="a_quim">
+        <tr>
+          <td colspan="4" style="padding:10px">
+            <img height="300px" src="testequimica/a.3-etil-5-metil-heptano.png"></img>
+            <br>
+            Marque as opções abaixo que possuem as moléculas iguais à estrutura acima.  
+          </td>
+        </tr>
+        <tr>
+          <td><img src="testequimica/a.quimA.jpg" height="300px" ></img></td>
+          <td><img src="testequimica/a.quimB.jpg" height="300px" ></img></td>
+          <td><img src="testequimica/a.quimC.jpg" height="300px" ></img></td>
+          <td><img src="testequimica/a.quimD.jpg" height="300px" ></img></td>
+        </tr>
+        <tr >
+          <td><input type="checkbox" name="p_a_quimA" value="A" ></td>
+          <td><input type="checkbox" name="p_a_quimB" value="B" ></td>
+          <td><input type="checkbox" name="p_a_quimC" value="C" ></td>
+          <td><input type="checkbox" name="p_a_quimD" value="D" ></td>
+        </tr>
+        <tr >
+          <td colspan="4" style="padding:10px" onclick="console.log('deu certo')">
+            Qual o grau de certeza da sua resposta?<br>
+            <input type="radio" name="p_a_quim_cert" id="p_a_quim_cert_2" value="2">
+            <label for="p_a_quim_cert_2">Estou muito certo</label>
+            <input type="radio" name="p_a_quim_cert" id="p_a_quim_cert_1" value="1">
+            <label for="p_a_quim_cert_1">Estou com alguma dúvida</label>
+            <input type="radio" name="p_a_quim_cert" id="p_a_quim_cert_0" value="0">
+            <label for="p_a_quim_cert_0">Chutei</label>
+          </td>
+        </tr>
+        <tr >
+          <td colspan="4" style="padding:10px">
+            <button id="button-chem-next" type="button"
+              onclick="removeById('a-quim');unremoveById('b-quim','table')">
+              Próximo
+            </button>
+          </td>
+        </tr>
+      </table>
+
+      <table style="margin:auto; display:none" id="b-quim">
+        <tr>
+          <td colspan="4" style="padding:10px">
+            <img height="300px" src="testequimica/a.3-etil-5-metil-heptano.png"></img>
+            <br>
+            Marque as opções abaixo que possuem as moléculas iguais à estrutura acima.  
+          </td>
+        </tr>
+        <tr>
+          <td><img src="testequimica/b.quimA.jpg" height="300px" ></img></td>
+          <td><img src="testequimica/b.quimB.jpg" height="300px" ></img></td>
+          <td><img src="testequimica/b.quimC.jpg" height="300px" ></img></td>
+          <td><img src="testequimica/b.quimD.jpg" height="300px" ></img></td>
+        </tr>
+        <tr >
+          <td><input type="checkbox" name="p_b_quimA" value="A" ></td>
+          <td><input type="checkbox" name="p_b_quimB" value="B" ></td>
+          <td><input type="checkbox" name="p_b_quimC" value="C" ></td>
+          <td><input type="checkbox" name="p_b_quimD" value="D" ></td>
+        </tr>
+        <tr>
+          <td colspan="4" style="padding:10px">
+            Qual o grau de certeza da sua resposta?<br>
+            <input type="radio" name="p_b_quim_cert" id="p_b_quim_cert_2" value="2">
+            <label for="p_b_quim_cert_2">Estou muito certo</label>
+            <input type="radio" name="p_b_quim_cert" id="p_b_quim_cert_1" value="1">
+            <label for="p_b_quim_cert_1">Estou com alguma dúvida</label>
+            <input type="radio" name="p_b_quim_cert" id="p_b_quim_cert_0" value="0">
+            <label for="p_b_quim_cert_0">Chutei</label>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" style="padding:10px">
+            <button id="button-chem-next" type="button"
+              onclick="removeById('b-quim');unremoveById('c-quim','table')">
+              Próximo
+            </button>
+          </td>
+        </tr>
+      </table>
+
+      <table style="margin:auto; display:none;" id="c-quim">
+        <tr>
+          <td colspan="4" style="padding:10px">
+            <img height="300px" src="testequimica/a.3-etil-5-metil-heptano.png"></img>
+            <br>
+            Marque as opções abaixo que possuem as moléculas iguais à estrutura acima.  
+          </td>
+        </tr>
+        <tr>
+          <td><img src="testequimica/c.quimA.jpg" height="300px" ></img></td>
+          <td><img src="testequimica/c.quimB.jpg" height="300px" ></img></td>
+          <td><img src="testequimica/c.quimC.jpg" height="300px" ></img></td>
+          <td><img src="testequimica/c.quimD.jpg" height="300px" ></img></td>
+        </tr>
+        <tr >
+          <td><input type="checkbox" name="p_c_quimA" value="A" ></td>
+          <td><input type="checkbox" name="p_c_quimB" value="B" ></td>
+          <td><input type="checkbox" name="p_c_quimC" value="C" ></td>
+          <td><input type="checkbox" name="p_c_quimD" value="D" ></td>
+        </tr>
+        <tr>
+          <td colspan="4" style="padding:10px" >
+            Qual o grau de certeza da sua resposta?<br>
+            <input type="radio" name="p_c_quim_cert" id="p_c_quim_cert_2" value="2">
+            <label for="p_c_quim_cert_2">Estou muito certo</label>
+            <input type="radio" name="p_c_quim_cert" id="p_c_quim_cert_1" value="1">
+            <label for="p_c_quim_cert_1">Estou com alguma dúvida</label>
+            <input type="radio" name="p_c_quim_cert" id="p_c_quim_cert_0" value="0">
+            <label for="p_c_quim_cert_0">Chutei</label>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="4" style="padding:10px">
+            <button id="button-chem-next" type="button"
+              onclick="removeById('c-quim');setTimeout(unhideById('button-chem-end'),1000)">
+              Próximo
+            </button>
+          </td>
+        </tr>
+      </table>
+    </form>
+
+    <button id="button-chem-end" style="visibility:hidden"
+      onclick="nextStage()" >PróximoX
+    </button>
+  </section>
+
   <!-- paper-to-screen task intro-->
   <section id="tab_paper_intro" class="ContentStage" style="display:none"> 
     <script>
