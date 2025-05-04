@@ -216,5 +216,4 @@ table.paddedTable td, th {
   transform: translateX(-50%); /*shift left by half its length*/
   width: 25%;
   padding: 10px;
-  background-color:#404070;
 }
