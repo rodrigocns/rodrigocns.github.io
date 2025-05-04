@@ -158,20 +158,23 @@ a.dev-div:visited{
 }
 
 #gsForm {
-  padding: 25px 0;
+  padding: 10px 0;
   width:90%;
   margin:auto;
 }
 
-
-table{
+table {
   border: 1px solid;
   border-color: #606060;
 }
-th, td {
+th {
   border: 1px solid; /*these borders help with formatting, but can be removed*/
   border-color: white;
 }
+td {
+  border: 1px solid; /*these borders help with formatting, but can be removed*/
+  border-color: white;
+} 
 #table-iRT-canvas{
   width: 90%;
   margin: auto;
@@ -190,6 +193,11 @@ th, td {
   width:100%;
 }
 
+table.paddedTable td, th {
+  padding: 5px;
+  min-width: 80px;
+}
+
 .flexElem{
   display:flex;
 }
@@ -200,4 +208,13 @@ th, td {
   width: auto;
 }
 
-
+.bottom-fixed {
+  position: fixed;
+  text-align: center;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%); /*shift left by half its length*/
+  width: 25%;
+  padding: 10px;
+  background-color:#404070;
+}
