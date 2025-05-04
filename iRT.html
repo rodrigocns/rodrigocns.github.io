@@ -52,66 +52,16 @@
       <hr>
     </div>
   </section>
-  
+
   <!-- Forms -->
   <section id="tab_form" class="ContentStage ContentStage-now" style="display:block"> 
-    <div id="div_form">
-      <form name="submit-to-google-sheet" id="gsForm" autocomplete="off">
-        <!-- Escreva nome e email para contato caso queira receber notícias
-          sobre a pesquisa e clique em próximo. -->
-        <p>
-          Se desejar receber seus dados ou mais informações sobre a pesquisa,<br> 
-          escreva nome e e-mail de contato.
-          <br>
-          Os seus dados serão armazenados anonimamente e mantidos em sigilo.<br>
-        </p>
-        <p> Nome (opcional): 
-          <input type="text" name="fname" placeholder="Ex: Rodrigo Alves" size="30" autofocus></p>
-        <p> Email (opcional): 
-          <input type="text" name="email" placeholder="Ex: rodrigo@gmail.com" size="30"></p>
-        <hr>
-        <h2> Preencha os campos abaixo:
+    <form name="submit-to-google-sheet" id="gsForm" autocomplete="off">
+      <h1>Preencha os campos abaixo:</h1>
+      <hr>
+      <!-- Forms: hidden forms -->
+      <div id="div-form-0">
+        
         <!-- for more input options: https://www.w3schools.com/js/js_input_examples.asp  -->
-        </h2><br>
-        <p> Já participou desta pesquisa anteriormente?<br>
-          <input type="radio" name="p_repeat" id="p_repeat_sim" value="Sim">
-          <label for="p_repeat_sim">Sim</label> |
-          <input type="radio" name="p_repeat" id="p_repeat_nao" value="Não">
-          <label for="p_repeat_nao">Não</label>
-        </p>
-        <p> Qual curso você está matriculado? <br>
-          <input type="text" name="p_curso">
-        </p>
-        <p> E está cursando qual semestre? <br>
-          <input type="number" name="p_semester" min="1">
-        </p>
-        <p> Você já foi identificado como um estudante superdotado? <br>
-          <input type="radio" name="p_gifted" id="p_gifted_sim" value="Sim">
-          <label for="p_gifted_sim">Sim</label> |
-          <input type="radio" name="p_gifted" id="p_gifted_nao" value="Não">
-          <label for="p_gifted_nao">Não</label>
-        </p>
-        <p> Sexo: <br>
-          <input type="radio" name="p_sex" id="p_sex_male" value="male">
-          <label for="p_sex_male">Masculino</label>
-          <input type="radio" name="p_sex" id="p_sex_female" value="female">
-          <label for="p_sex_female">Feminino</label>
-        </p>
-        <p> Idade: <br>
-          <input type="number" name="p_age" min="1">
-        </p>
-        <p> Etnia: <br>
-          <input type="text" name="p_ethnic">
-        </p>
-        <p> Já exerceu/exerce atividade remunerada? Qual era sua ocupação? Por quanto tempo?<br>
-          <textarea id="p_work" name="p_work" rows="2" cols="50" ></textarea>
-        </p>
-        <p> Com que frequência (sendo 0 nunca, e 10 constantemente) você: <br>
-          <image></image>
-          Usa modelos tridimensionais (no estudo, trabalho, etc.)? 
-          <input type="number" id="p_3dmodels" name="p_3dmodels" min="0" max="10" >
-          <br>
-        </p>
 
         <!-- internal values to be sent by forms -->
         <!-- Changes here should be replicated in scripts.js: 
@@ -155,16 +105,576 @@
         <input type="hidden" name="corsiEpoch">
         <input type="hidden" name="corsiMouseX">
         <input type="hidden" name="corsiMouseY">
-        
-      </form>
-    </div>
-    <hr>
-    Clique em 'Próximo' para continuar.
+      </div>
+      
+      <!-- Forms: info para retorno -->
+      <div id="div-form-1">
+        <p>
+          Se deseja receber uma cópia dos seus dados e participar de <br>
+          pesquisas como esta no futuro, deixe seu nome e email.
+        </p>
+        <p> Nome (opcional): 
+          <input type="text" name="fname" placeholder="Ex: Rodrigo Alves" size="30" autofocus></p>
+        <p> Email (opcional): 
+          <input type="text" name="email" placeholder="Ex: rodrigo@gmail.com" size="30"></p>
+        <br>
+        <div class="bottom-fixed">
+          <button type="button" onclick="removeById('div-form-1');unremoveById('div-form-2')">Próximo</button>
+        </div>
+      </div>
+      
+      <!-- Forms: informações gerais -->
+      <div id="div-form-2" style="display:none">
+        <p> Sexo Biológico: <br>
+          <input type="radio" name="p_sex" id="p_sex_male" value="male">
+          <label for="p_sex_male">Masculino</label>
+          <input type="radio" name="p_sex" id="p_sex_female" value="female">
+          <label for="p_sex_female">Feminino</label>
+        </p>
+        <p> Gênero: <br>
+          <input type="radio" name="p_gender" id="p_gender_male" value="male">
+          <label for="p_gender_male">Masculino</label>
+          <input type="radio" name="p_gender" id="p_gender_female" value="female">
+          <label for="p_gender_female">Feminino</label>
+          <input type="radio" name="p_gender" id="p_gender_other" value="other">
+          <label for="p_gender_other">Outros</label>
+          <input type="radio" name="p_gender" id="p_gender_NA" value="NA">
+          <label for="p_gender_NA">Prefiro não responder</label>
+        </p>
+        <p> Idade: <br>
+          <input type="number" name="p_age" min="1">
+        </p>
+        <p> Ocupação atual: <br>
+          <input type="text" name="p_ocupation" >
+        </p>
+        <p> Qual horário você se sente mais desperto: <br>
+          <input type="radio" name="p_active" id="p_active_morning" value="morning">
+          <label for="p_active_morning">Manhã</label>
+          <input type="radio" name="p_active" id="p_active_afternoon" value="afternoon">
+          <label for="p_active_afternoon">Tarde</label>
+          <input type="radio" name="p_active" id="p_active_night" value="night">
+          <label for="p_active_night">Noite</label>
+        </p>
+        <div class="bottom-fixed">
+          <button type="button" onclick="removeById('div-form-2');unremoveById('div-form-1')">Anterior</button>
+          <button type="button" onclick="removeById('div-form-2');unremoveById('div-form-3')">Próximo</button>
+        </div>
+      </div>
 
-    <div style="height: 100px;">
-      <button onclick="nextStage();prepMolecule(task_n);openFullscreen();
-      removeById('last-updated');">Próximo</button>
-    </div>
+      <!-- Forms: Formação -->
+      <div id="div-form-3" style="display:none">
+        <h3>Formação mais recente: </h3>
+        <br>
+        <label for="p_educ_grau">Grau:</label>
+        <input type="text" name="p_educ_grau" placeholder="Graduação"><br>
+        <br>
+        <label for="p_educ_field">Qual área/nome do curso:</label>
+        <input type="text" name="p_educ_field" placeholder="Química" ><br>
+        <br>
+        <label for="p_educ_year">Ano de início:</label>
+        <input type="number" name="p_educ_year" min="1900" ><br>
+        <br>
+        <label for="p_educ_duration">Duração do curso (anos):</label>
+        <input type="number" name="p_educ_duration" ><br>
+        <br>
+        Possui outras formações? 
+        <input type="radio" name="p_educ_prev" id="p_educ_prev_yes" value="Sim" 
+        onchange="unhideById('input-educ-txt')">
+        <label for="p_educ_prev_yes">Sim</label> |
+        <input type="radio" name="p_educ_prev" id="p_educ_prev_no" value="Não">
+        <label for="p_educ_prev_no">Não</label>
+        <div id="input-educ-txt" style="visibility:hidden" >
+          <label for="p_educ_prev_txt">
+            Descreva sucintamente, por favor:<br>
+             Grau / Área / Ano de início / Duração<br>
+          </label>
+          <textarea id="p_educ_prev_txt" name="p_educ_prev_txt" rows="5" cols="50"></textarea>
+        </div>
+        <div class="bottom-fixed">
+          <button type="button" onclick="removeById('div-form-3');unremoveById('div-form-2')">Anterior</button>
+          <button type="button" onclick="removeById('div-form-3');unremoveById('div-form-4')">Próximo</button>
+        </div>
+      </div>
+
+      <!-- Forms: Relações com matérias -->
+      <div id="div-form-4" style="display:none">
+        <table class="paddedTable">
+          <tr>
+            <th colspan="7" >Classifique as disciplinas abaixo quanto ao grau de dificuldade:</th>
+          </tr>
+          
+          <tr>
+            <td></td>
+            <td>5 <br>muito <br>difícil</td>
+            <td>4</td>
+            <td>3</td>
+            <td>2</td>
+            <td>1<br>muito<br>fácil</td>
+            <td>0<br>Não<br>Sei</td>
+          </tr>
+          <tr><td>Matemática</td>
+            <td><input type="radio" name="p_dif_disc_mat" value="5"></td>
+            <td><input type="radio" name="p_dif_disc_mat" value="4"></td>
+            <td><input type="radio" name="p_dif_disc_mat" value="3"></td>
+            <td><input type="radio" name="p_dif_disc_mat" value="2"></td>
+            <td><input type="radio" name="p_dif_disc_mat" value="1"></td>
+            <td><input type="radio" name="p_dif_disc_mat" value="0"></td>
+          </tr>
+          <tr><td>Química</td>
+            <td><input type="radio" name="p_dif_disc_chem" value="5"></td>
+            <td><input type="radio" name="p_dif_disc_chem" value="4"></td>
+            <td><input type="radio" name="p_dif_disc_chem" value="3"></td>
+            <td><input type="radio" name="p_dif_disc_chem" value="2"></td>
+            <td><input type="radio" name="p_dif_disc_chem" value="1"></td>
+            <td><input type="radio" name="p_dif_disc_chem" value="0"></td>
+          </tr>
+          <tr><td>Física</td>
+            <td><input type="radio" name="p_dif_disc_fis" value="5"></td>
+            <td><input type="radio" name="p_dif_disc_fis" value="4"></td>
+            <td><input type="radio" name="p_dif_disc_fis" value="3"></td>
+            <td><input type="radio" name="p_dif_disc_fis" value="2"></td>
+            <td><input type="radio" name="p_dif_disc_fis" value="1"></td>
+            <td><input type="radio" name="p_dif_disc_fis" value="0"></td>
+          </tr>
+          <tr><td>Biologia</td>
+            <td><input type="radio" name="p_dif_disc_bio" value="5"></td>
+            <td><input type="radio" name="p_dif_disc_bio" value="4"></td>
+            <td><input type="radio" name="p_dif_disc_bio" value="3"></td>
+            <td><input type="radio" name="p_dif_disc_bio" value="2"></td>
+            <td><input type="radio" name="p_dif_disc_bio" value="1"></td>
+            <td><input type="radio" name="p_dif_disc_bio" value="0"></td>
+          </tr>
+          <tr><td>Ciências Humanas</td>
+            <td><input type="radio" name="p_dif_disc_hum" value="5"></td>
+            <td><input type="radio" name="p_dif_disc_hum" value="4"></td>
+            <td><input type="radio" name="p_dif_disc_hum" value="3"></td>
+            <td><input type="radio" name="p_dif_disc_hum" value="2"></td>
+            <td><input type="radio" name="p_dif_disc_hum" value="1"></td>
+            <td><input type="radio" name="p_dif_disc_hum" value="0"></td>
+          </tr>
+          <tr><td>Artes</td>
+            <td><input type="radio" name="p_dif_disc_art" value="5"></td>
+            <td><input type="radio" name="p_dif_disc_art" value="4"></td>
+            <td><input type="radio" name="p_dif_disc_art" value="3"></td>
+            <td><input type="radio" name="p_dif_disc_art" value="2"></td>
+            <td><input type="radio" name="p_dif_disc_art" value="1"></td>
+            <td><input type="radio" name="p_dif_disc_art" value="0"></td>
+          </tr>
+        </table>
+        
+        <br>
+        <div class="bottom-fixed">
+          <button type="button" onclick="removeById('div-form-4');unremoveById('div-form-3')">Anterior</button>
+          <button type="button" onclick="removeById('div-form-4');unremoveById('div-form-5')">Próximo</button>
+        </div>
+      </div>
+
+      <!-- Forms: relações com matérias da química -->
+      <div id="div-form-5" style="display:none">
+        <table class="paddedTable">
+          <tr>
+            <th colspan="7" >Classifique os assuntos abaixo quanto ao grau de dificuldade:</th>
+          </tr>
+          <tr>
+            <td></td>
+            <td>5 <br>muito <br>difícil</td>
+            <td>4</td>
+            <td>3</td>
+            <td>2</td>
+            <td>1<br>muito<br>fácil</td>
+            <td>0<br>Não<br>Sei</td>
+          </tr>
+          <tr><td>Estrutura - isômeros</td>
+            <td><input type="radio" name="p_dif_q01" value="5"></td>
+            <td><input type="radio" name="p_dif_q01" value="4"></td>
+            <td><input type="radio" name="p_dif_q01" value="3"></td>
+            <td><input type="radio" name="p_dif_q01" value="2"></td>
+            <td><input type="radio" name="p_dif_q01" value="1"></td>
+            <td><input type="radio" name="p_dif_q01" value="0"></td>
+          </tr>
+          <tr><td>Grupos funcionais - estruturaopriedades</td>
+            <td><input type="radio" name="p_dif_q02" value="5"></td>
+            <td><input type="radio" name="p_dif_q02" value="4"></td>
+            <td><input type="radio" name="p_dif_q02" value="3"></td>
+            <td><input type="radio" name="p_dif_q02" value="2"></td>
+            <td><input type="radio" name="p_dif_q02" value="1"></td>
+            <td><input type="radio" name="p_dif_q02" value="0"></td>
+          </tr>
+          <tr><td>Geometria molecular</td>
+            <td><input type="radio" name="p_dif_q03" value="5"></td>
+            <td><input type="radio" name="p_dif_q03" value="4"></td>
+            <td><input type="radio" name="p_dif_q03" value="3"></td>
+            <td><input type="radio" name="p_dif_q03" value="2"></td>
+            <td><input type="radio" name="p_dif_q03" value="1"></td>
+            <td><input type="radio" name="p_dif_q03" value="0"></td>
+          </tr>
+          <tr><td>Mecanismo de reação</td>
+            <td><input type="radio" name="p_dif_q04" value="5"></td>
+            <td><input type="radio" name="p_dif_q04" value="4"></td>
+            <td><input type="radio" name="p_dif_q04" value="3"></td>
+            <td><input type="radio" name="p_dif_q04" value="2"></td>
+            <td><input type="radio" name="p_dif_q04" value="1"></td>
+            <td><input type="radio" name="p_dif_q04" value="0"></td>
+          </tr>
+          <tr><td>Estrutura - Orbitais</td>
+            <td><input type="radio" name="p_dif_q05" value="5"></td>
+            <td><input type="radio" name="p_dif_q05" value="4"></td>
+            <td><input type="radio" name="p_dif_q05" value="3"></td>
+            <td><input type="radio" name="p_dif_q05" value="2"></td>
+            <td><input type="radio" name="p_dif_q05" value="1"></td>
+            <td><input type="radio" name="p_dif_q05" value="0"></td>
+          </tr>
+          <tr><td>Estrutura - Química quântica</td>
+            <td><input type="radio" name="p_dif_q06" value="5"></td>
+            <td><input type="radio" name="p_dif_q06" value="4"></td>
+            <td><input type="radio" name="p_dif_q06" value="3"></td>
+            <td><input type="radio" name="p_dif_q06" value="2"></td>
+            <td><input type="radio" name="p_dif_q06" value="1"></td>
+            <td><input type="radio" name="p_dif_q06" value="0"></td>
+          </tr>
+          <tr><td>Estrutura - Grupos de simetria</td>
+            <td><input type="radio" name="p_dif_q07" value="5"></td>
+            <td><input type="radio" name="p_dif_q07" value="4"></td>
+            <td><input type="radio" name="p_dif_q07" value="3"></td>
+            <td><input type="radio" name="p_dif_q07" value="2"></td>
+            <td><input type="radio" name="p_dif_q07" value="1"></td>
+            <td><input type="radio" name="p_dif_q07" value="0"></td>
+          </tr>
+          <tr><td>Estrutura cristalina</td>
+            <td><input type="radio" name="p_dif_q08" value="5"></td>
+            <td><input type="radio" name="p_dif_q08" value="4"></td>
+            <td><input type="radio" name="p_dif_q08" value="3"></td>
+            <td><input type="radio" name="p_dif_q08" value="2"></td>
+            <td><input type="radio" name="p_dif_q08" value="1"></td>
+            <td><input type="radio" name="p_dif_q08" value="0"></td>
+          </tr>
+          <tr><td>Momento de dipolo de moléculas</td>
+            <td><input type="radio" name="p_dif_q09" value="5"></td>
+            <td><input type="radio" name="p_dif_q09" value="4"></td>
+            <td><input type="radio" name="p_dif_q09" value="3"></td>
+            <td><input type="radio" name="p_dif_q09" value="2"></td>
+            <td><input type="radio" name="p_dif_q09" value="1"></td>
+            <td><input type="radio" name="p_dif_q09" value="0"></td>
+          </tr>
+          <tr><td>Estequiometria e balanceamento de reações</td>
+            <td><input type="radio" name="p_dif_q10" value="5"></td>
+            <td><input type="radio" name="p_dif_q10" value="4"></td>
+            <td><input type="radio" name="p_dif_q10" value="3"></td>
+            <td><input type="radio" name="p_dif_q10" value="2"></td>
+            <td><input type="radio" name="p_dif_q10" value="1"></td>
+            <td><input type="radio" name="p_dif_q10" value="0"></td>
+          </tr>
+          <tr><td>Cinética molecular</td>
+            <td><input type="radio" name="p_dif_q11" value="5"></td>
+            <td><input type="radio" name="p_dif_q11" value="4"></td>
+            <td><input type="radio" name="p_dif_q11" value="3"></td>
+            <td><input type="radio" name="p_dif_q11" value="2"></td>
+            <td><input type="radio" name="p_dif_q11" value="1"></td>
+            <td><input type="radio" name="p_dif_q11" value="0"></td>
+          </tr>
+          <tr><td>Interações intermoleculares</td>
+            <td><input type="radio" name="p_dif_q12" value="5"></td>
+            <td><input type="radio" name="p_dif_q12" value="4"></td>
+            <td><input type="radio" name="p_dif_q12" value="3"></td>
+            <td><input type="radio" name="p_dif_q12" value="2"></td>
+            <td><input type="radio" name="p_dif_q12" value="1"></td>
+            <td><input type="radio" name="p_dif_q12" value="0"></td>
+          </tr>
+          <tr><td>Ligação química</td>
+            <td><input type="radio" name="p_dif_q13" value="5"></td>
+            <td><input type="radio" name="p_dif_q13" value="4"></td>
+            <td><input type="radio" name="p_dif_q13" value="3"></td>
+            <td><input type="radio" name="p_dif_q13" value="2"></td>
+            <td><input type="radio" name="p_dif_q13" value="1"></td>
+            <td><input type="radio" name="p_dif_q13" value="0"></td>
+          </tr>
+          <tr><td>Estrutura cristalina</td>
+            <td><input type="radio" name="p_dif_q14" value="5"></td>
+            <td><input type="radio" name="p_dif_q14" value="4"></td>
+            <td><input type="radio" name="p_dif_q14" value="3"></td>
+            <td><input type="radio" name="p_dif_q14" value="2"></td>
+            <td><input type="radio" name="p_dif_q14" value="1"></td>
+            <td><input type="radio" name="p_dif_q14" value="0"></td>
+          </tr>
+        </table>
+        <br>
+        <div class="bottom-fixed">
+          <button type="button" onclick="removeById('div-form-5');unremoveById('div-form-4')">Anterior</button>
+          <button type="button" onclick="removeById('div-form-5');unremoveById('div-form-6')">Próximo</button>
+        </div>
+      </div>
+
+      <!-- Forms: tarefas mat e física -->
+      <div id="div-form-6" style="display:none">
+        <table class="paddedTable">
+          <tr>
+            <th colspan="7" >Classifique os assuntos abaixo quanto ao grau de dificuldade:</th>
+          </tr>
+          <tr>
+            <td></td>
+            <td>5 <br>muito <br>difícil</td>
+            <td>4</td>
+            <td>3</td>
+            <td>2</td>
+            <td>1<br>muito<br>fácil</td>
+            <td>0<br>Não<br>Sei</td>
+          </tr>
+          <tr><td>Vetores</td>
+            <td><input type="radio" name="p_dif_m01" value="5"></td>
+            <td><input type="radio" name="p_dif_m01" value="4"></td>
+            <td><input type="radio" name="p_dif_m01" value="3"></td>
+            <td><input type="radio" name="p_dif_m01" value="2"></td>
+            <td><input type="radio" name="p_dif_m01" value="1"></td>
+            <td><input type="radio" name="p_dif_m01" value="0"></td>
+          </tr>
+          <tr><td>Campo de força</td>
+            <td><input type="radio" name="p_dif_m02" value="5"></td>
+            <td><input type="radio" name="p_dif_m02" value="4"></td>
+            <td><input type="radio" name="p_dif_m02" value="3"></td>
+            <td><input type="radio" name="p_dif_m02" value="2"></td>
+            <td><input type="radio" name="p_dif_m02" value="1"></td>
+            <td><input type="radio" name="p_dif_m02" value="0"></td>
+          </tr>
+          <tr><td>Coordenadas polares</td>
+            <td><input type="radio" name="p_dif_m03" value="5"></td>
+            <td><input type="radio" name="p_dif_m03" value="4"></td>
+            <td><input type="radio" name="p_dif_m03" value="3"></td>
+            <td><input type="radio" name="p_dif_m03" value="2"></td>
+            <td><input type="radio" name="p_dif_m03" value="1"></td>
+            <td><input type="radio" name="p_dif_m03" value="0"></td>
+          </tr>
+          <tr><td>Sólidos: área e volume</td>
+            <td><input type="radio" name="p_dif_m04" value="5"></td>
+            <td><input type="radio" name="p_dif_m04" value="4"></td>
+            <td><input type="radio" name="p_dif_m04" value="3"></td>
+            <td><input type="radio" name="p_dif_m04" value="2"></td>
+            <td><input type="radio" name="p_dif_m04" value="1"></td>
+            <td><input type="radio" name="p_dif_m04" value="0"></td>
+          </tr>
+          <tr><td>Matrizes</td>
+            <td><input type="radio" name="p_dif_m05" value="5"></td>
+            <td><input type="radio" name="p_dif_m05" value="4"></td>
+            <td><input type="radio" name="p_dif_m05" value="3"></td>
+            <td><input type="radio" name="p_dif_m05" value="2"></td>
+            <td><input type="radio" name="p_dif_m05" value="1"></td>
+            <td><input type="radio" name="p_dif_m05" value="0"></td>
+          </tr>
+          <tr><td>Gradientes</td>
+            <td><input type="radio" name="p_dif_m06" value="5"></td>
+            <td><input type="radio" name="p_dif_m06" value="4"></td>
+            <td><input type="radio" name="p_dif_m06" value="3"></td>
+            <td><input type="radio" name="p_dif_m06" value="2"></td>
+            <td><input type="radio" name="p_dif_m06" value="1"></td>
+            <td><input type="radio" name="p_dif_m06" value="0"></td>
+          </tr>
+          <tr><td>Derivadas</td>
+            <td><input type="radio" name="p_dif_m07" value="5"></td>
+            <td><input type="radio" name="p_dif_m07" value="4"></td>
+            <td><input type="radio" name="p_dif_m07" value="3"></td>
+            <td><input type="radio" name="p_dif_m07" value="2"></td>
+            <td><input type="radio" name="p_dif_m07" value="1"></td>
+            <td><input type="radio" name="p_dif_m07" value="0"></td>
+          </tr>
+          <tr><td>Integrais</td>
+            <td><input type="radio" name="p_dif_m08" value="5"></td>
+            <td><input type="radio" name="p_dif_m08" value="4"></td>
+            <td><input type="radio" name="p_dif_m08" value="3"></td>
+            <td><input type="radio" name="p_dif_m08" value="2"></td>
+            <td><input type="radio" name="p_dif_m08" value="1"></td>
+            <td><input type="radio" name="p_dif_m08" value="0"></td>
+          </tr>
+          <tr><td>Geometria analítica</td>
+            <td><input type="radio" name="p_dif_m09" value="5"></td>
+            <td><input type="radio" name="p_dif_m09" value="4"></td>
+            <td><input type="radio" name="p_dif_m09" value="3"></td>
+            <td><input type="radio" name="p_dif_m09" value="2"></td>
+            <td><input type="radio" name="p_dif_m09" value="1"></td>
+            <td><input type="radio" name="p_dif_m09" value="0"></td>
+          </tr>
+          <tr><td>Trigonometria</td>
+            <td><input type="radio" name="p_dif_m10" value="5"></td>
+            <td><input type="radio" name="p_dif_m10" value="4"></td>
+            <td><input type="radio" name="p_dif_m10" value="3"></td>
+            <td><input type="radio" name="p_dif_m10" value="2"></td>
+            <td><input type="radio" name="p_dif_m10" value="1"></td>
+            <td><input type="radio" name="p_dif_m10" value="0"></td>
+          </tr>
+          <tr><td>Álgebra Linear</td>
+            <td><input type="radio" name="p_dif_m11" value="5"></td>
+            <td><input type="radio" name="p_dif_m11" value="4"></td>
+            <td><input type="radio" name="p_dif_m11" value="3"></td>
+            <td><input type="radio" name="p_dif_m11" value="2"></td>
+            <td><input type="radio" name="p_dif_m11" value="1"></td>
+            <td><input type="radio" name="p_dif_m11" value="0"></td>
+          </tr>
+        </table>
+        <br>
+        <div class="bottom-fixed">
+          <button type="button" onclick="removeById('div-form-6');unremoveById('div-form-5')">Anterior</button>
+          <button type="button" onclick="removeById('div-form-6');unremoveById('div-form-7')">Próximo</button>
+        </div>
+      </div>
+      
+      <!-- Forms: tarefas cotidianas -->
+      <div id="div-form-7" style="display:none">
+        <table class="paddedTable">
+          <tr>
+            <th colspan="7" >Classifique as tarefas abaixo quanto ao grau de dificuldade:</th>
+          </tr>
+          <tr>
+            <td></td>
+            <td>5 <br>muito <br>difícil</td>
+            <td>4</td>
+            <td>3</td>
+            <td>2</td>
+            <td>1<br>muito<br>fácil</td>
+            <td>0<br>Não<br>Sei</td>
+          </tr>
+          <tr><td>Caminhar em meio à multidão</td>
+            <td><input type="radio" name="p_dif_c01" value="5"></td>
+            <td><input type="radio" name="p_dif_c01" value="4"></td>
+            <td><input type="radio" name="p_dif_c01" value="3"></td>
+            <td><input type="radio" name="p_dif_c01" value="2"></td>
+            <td><input type="radio" name="p_dif_c01" value="1"></td>
+            <td><input type="radio" name="p_dif_c01" value="0"></td>
+          </tr>
+          <tr><td>Dirigir e estacionar um veículo</td>
+            <td><input type="radio" name="p_dif_c02" value="5"></td>
+            <td><input type="radio" name="p_dif_c02" value="4"></td>
+            <td><input type="radio" name="p_dif_c02" value="3"></td>
+            <td><input type="radio" name="p_dif_c02" value="2"></td>
+            <td><input type="radio" name="p_dif_c02" value="1"></td>
+            <td><input type="radio" name="p_dif_c02" value="0"></td>
+          </tr>
+          <tr><td>Evitar obstáculos</td>
+            <td><input type="radio" name="p_dif_c03" value="5"></td>
+            <td><input type="radio" name="p_dif_c03" value="4"></td>
+            <td><input type="radio" name="p_dif_c03" value="3"></td>
+            <td><input type="radio" name="p_dif_c03" value="2"></td>
+            <td><input type="radio" name="p_dif_c03" value="1"></td>
+            <td><input type="radio" name="p_dif_c03" value="0"></td>
+          </tr>
+          <tr><td>Escrever à mão</td>
+            <td><input type="radio" name="p_dif_c04" value="5"></td>
+            <td><input type="radio" name="p_dif_c04" value="4"></td>
+            <td><input type="radio" name="p_dif_c04" value="3"></td>
+            <td><input type="radio" name="p_dif_c04" value="2"></td>
+            <td><input type="radio" name="p_dif_c04" value="1"></td>
+            <td><input type="radio" name="p_dif_c04" value="0"></td>
+          </tr>
+          <tr><td>Desenhar e colorir</td>
+            <td><input type="radio" name="p_dif_c05" value="5"></td>
+            <td><input type="radio" name="p_dif_c05" value="4"></td>
+            <td><input type="radio" name="p_dif_c05" value="3"></td>
+            <td><input type="radio" name="p_dif_c05" value="2"></td>
+            <td><input type="radio" name="p_dif_c05" value="1"></td>
+            <td><input type="radio" name="p_dif_c05" value="0"></td>
+          </tr>
+          <tr><td>Ler um livro</td>
+            <td><input type="radio" name="p_dif_c06" value="5"></td>
+            <td><input type="radio" name="p_dif_c06" value="4"></td>
+            <td><input type="radio" name="p_dif_c06" value="3"></td>
+            <td><input type="radio" name="p_dif_c06" value="2"></td>
+            <td><input type="radio" name="p_dif_c06" value="1"></td>
+            <td><input type="radio" name="p_dif_c06" value="0"></td>
+          </tr>
+          <tr><td>Reconhecer rostos e expressões faciais</td>
+            <td><input type="radio" name="p_dif_c07" value="5"></td>
+            <td><input type="radio" name="p_dif_c07" value="4"></td>
+            <td><input type="radio" name="p_dif_c07" value="3"></td>
+            <td><input type="radio" name="p_dif_c07" value="2"></td>
+            <td><input type="radio" name="p_dif_c07" value="1"></td>
+            <td><input type="radio" name="p_dif_c07" value="0"></td>
+          </tr>
+          <tr><td>Fazer nós ou laços (corda, fita, gravata etc.)</td>
+            <td><input type="radio" name="p_dif_c08" value="5"></td>
+            <td><input type="radio" name="p_dif_c08" value="4"></td>
+            <td><input type="radio" name="p_dif_c08" value="3"></td>
+            <td><input type="radio" name="p_dif_c08" value="2"></td>
+            <td><input type="radio" name="p_dif_c08" value="1"></td>
+            <td><input type="radio" name="p_dif_c08" value="0"></td>
+          </tr>
+          <tr><td>Fazer dobraduras de papel</td>
+            <td><input type="radio" name="p_dif_c09" value="5"></td>
+            <td><input type="radio" name="p_dif_c09" value="4"></td>
+            <td><input type="radio" name="p_dif_c09" value="3"></td>
+            <td><input type="radio" name="p_dif_c09" value="2"></td>
+            <td><input type="radio" name="p_dif_c09" value="1"></td>
+            <td><input type="radio" name="p_dif_c09" value="0"></td>
+          </tr>
+          <tr><td>Arrumar uma mala para viagem</td>
+            <td><input type="radio" name="p_dif_c10" value="5"></td>
+            <td><input type="radio" name="p_dif_c10" value="4"></td>
+            <td><input type="radio" name="p_dif_c10" value="3"></td>
+            <td><input type="radio" name="p_dif_c10" value="2"></td>
+            <td><input type="radio" name="p_dif_c10" value="1"></td>
+            <td><input type="radio" name="p_dif_c10" value="0"></td>
+          </tr>
+          <tr><td>Organizar comida dentro do refrigerador</td>
+            <td><input type="radio" name="p_dif_c11" value="5"></td>
+            <td><input type="radio" name="p_dif_c11" value="4"></td>
+            <td><input type="radio" name="p_dif_c11" value="3"></td>
+            <td><input type="radio" name="p_dif_c11" value="2"></td>
+            <td><input type="radio" name="p_dif_c11" value="1"></td>
+            <td><input type="radio" name="p_dif_c11" value="0"></td>
+          </tr>
+          <tr><td>Fazer conta mentalmente</td>
+            <td><input type="radio" name="p_dif_c12" value="5"></td>
+            <td><input type="radio" name="p_dif_c12" value="4"></td>
+            <td><input type="radio" name="p_dif_c12" value="3"></td>
+            <td><input type="radio" name="p_dif_c12" value="2"></td>
+            <td><input type="radio" name="p_dif_c12" value="1"></td>
+            <td><input type="radio" name="p_dif_c12" value="0"></td>
+          </tr>
+          <tr><td>Montar algo a partir das peças</td>
+            <td><input type="radio" name="p_dif_c13" value="5"></td>
+            <td><input type="radio" name="p_dif_c13" value="4"></td>
+            <td><input type="radio" name="p_dif_c13" value="3"></td>
+            <td><input type="radio" name="p_dif_c13" value="2"></td>
+            <td><input type="radio" name="p_dif_c13" value="1"></td>
+            <td><input type="radio" name="p_dif_c13" value="0"></td>
+          </tr>
+          <tr><td>Praticar esportes físicos</td>
+            <td><input type="radio" name="p_dif_c14" value="5"></td>
+            <td><input type="radio" name="p_dif_c14" value="4"></td>
+            <td><input type="radio" name="p_dif_c14" value="3"></td>
+            <td><input type="radio" name="p_dif_c14" value="2"></td>
+            <td><input type="radio" name="p_dif_c14" value="1"></td>
+            <td><input type="radio" name="p_dif_c14" value="0"></td>
+          </tr>
+          <tr><td>Se localizar em um mapa sem ajuda do GPS</td>
+            <td><input type="radio" name="p_dif_c15" value="5"></td>
+            <td><input type="radio" name="p_dif_c15" value="4"></td>
+            <td><input type="radio" name="p_dif_c15" value="3"></td>
+            <td><input type="radio" name="p_dif_c15" value="2"></td>
+            <td><input type="radio" name="p_dif_c15" value="1"></td>
+            <td><input type="radio" name="p_dif_c15" value="0"></td>
+          </tr>
+          <tr><td>Jogos digitais</td>
+            <td><input type="radio" name="p_dif_c16" value="5"></td>
+            <td><input type="radio" name="p_dif_c16" value="4"></td>
+            <td><input type="radio" name="p_dif_c16" value="3"></td>
+            <td><input type="radio" name="p_dif_c16" value="2"></td>
+            <td><input type="radio" name="p_dif_c16" value="1"></td>
+            <td><input type="radio" name="p_dif_c16" value="0"></td>
+          </tr>
+          <tr><td>Resolver quebra-cabeça</td>
+            <td><input type="radio" name="p_dif_c17" value="5"></td>
+            <td><input type="radio" name="p_dif_c17" value="4"></td>
+            <td><input type="radio" name="p_dif_c17" value="3"></td>
+            <td><input type="radio" name="p_dif_c17" value="2"></td>
+            <td><input type="radio" name="p_dif_c17" value="1"></td>
+            <td><input type="radio" name="p_dif_c17" value="0"></td>
+          </tr>
+        </table>
+        <br>
+        <div class="bottom-fixed">
+          <button type="button" onclick="removeById('div-form-7');unremoveById('div-form-6')">Anterior</button>
+          <button type="button" onclick="nextStage();prepMolecule(task_n);openFullscreen();
+          removeById('last-updated');">Próximo</button>
+        </div>
+      </div>
+    </form>
   </section>
   
   <!-- chem.vis. test -->
@@ -455,7 +965,6 @@
     
   </section>
   
-
   <!-- final questions -->
   <section id="tab_fim" class="ContentStage" style="display:none"> <!-- Final words -->
     <h1>Últimas perguntas:</h1>
