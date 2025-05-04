@@ -528,6 +528,26 @@ function getTheNumbers() {
   // ctx.stroke();
 }
 
+// compile subject series of simple answers (ex: ans_01,ans_02,ans_03) to an array
+function compileAnswersToArray(p_ans_name, ans_amount, inputType='value') {
+  const answers = [];
+  for (let i = 1; i <= ans_amount; i++) {
+    //set name with counter "i"
+    const name = `${p_ans_name}${String(i).padStart(2, '0')}`;
+    //select element with answers
+    const selected = document.querySelector(`input[name="${name}"]:checked`);
+    if (valueType == 'value') {
+      answers.push(selected ? parseInt(selected.value) : null);
+    }
+    //if input was a checkbox, to check whether it was checked or not 
+    else if (inputType == 'checkbox') {
+      answers.push(selected ? (selected.checked) : false);
+    }
+  }
+  console.log(answers);
+  return answers;
+}
+
 //snip translate form in a gsheets line. scriptURL is located at this file's first lines.
 const form = document.forms['submit-to-google-sheet']
 form.addEventListener('submit', e => {
