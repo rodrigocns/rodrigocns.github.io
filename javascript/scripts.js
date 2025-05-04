@@ -561,22 +561,45 @@ form.addEventListener('submit', e => {
 function saveProfilingData () {
   //get forms links
   const gsForm = document.getElementById('gsForm');
-  const endForm = document.getElementById('endForm')
+  const endForm = document.getElementById('endForm');
+  const chemForm = document.getElementById('form-chem-test');
 
   const profileData = {
     sessionID: sessionID,
     name:     gsForm.fname.value,
     email:    gsForm.email.value,
-    returningSubject:   gsForm.p_repeat.value,
-    enrolledCourse:     gsForm.p_curso.value,
-    enrolledSemester:   gsForm.p_semester.value,
-    giftedStudent:      gsForm.p_gifted.value,
     sex:                gsForm.p_sex.value,
+    gender:             gsForm.p_gender.value,
     age:                gsForm.p_age.value,
-    ethnicity:          gsForm.p_ethnic.value,
+    ocupation:          gsForm.p_ocupation,
+    active:             gsForm.p_active.value,
     work:               gsForm.p_work.value,
 
-    models3DFrequency:  gsForm.p_3dmodels.value,
+    educGrau:           gsForm.p_educ_grau.value,
+    educField:          gsForm.p_educ_field.value,
+    educYear:           gsForm.p_educ_year.value,
+    educDuration:       gsForm.p_educ_duration.value,
+    educPrev:           gsForm.p_educ_prev.value,
+    educPrevTxt:        gsForm.p_educ_prev_txt.value,
+
+    difQui:             gsForm.p_dif_disc_qui.value,
+    difMat:             gsForm.p_dif_disc_mat.value,
+    difFis:             gsForm.p_dif_disc_fis.value,
+    difBio:             gsForm.p_dif_disc_bio.value,
+    difHum:             gsForm.p_dif_disc_hum.value,
+    difArt:             gsForm.p_dif_disc_art.value,
+
+    difQuiSubj:         compileAnswersToArray('p_dif_q', 14),
+    difMatSubj:         compileAnswersToArray('p_dif_m', 11),
+    difCotidSubj:       compileAnswersToArray('p_dif_c', 17),
+    
+    estrQuimA:          compileAnswersToArray('p_a_quim', 4, 'checkbox') ,
+    estrQuimAcertain:   chemForm.p_a_quim_cert.value,
+    estrQuimB:          compileAnswersToArray('p_b_quim', 4, 'checkbox') ,
+    estrQuimBcertain:   chemForm.p_b_quim_cert.value,
+    estrQuimC:          compileAnswersToArray('p_c_quim', 4, 'checkbox') ,
+    estrQuimCcertain:   chemForm.p_c_quim_cert.value,
+
 
     browser:            navigator.userAgent,
     pixelRatio:         window.devicePixelRatio,
