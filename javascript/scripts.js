@@ -573,6 +573,7 @@ function saveProfilingData () {
     corsiMouseX:        corsiMouseX,
     corsiMouseY:        corsiMouseY,
 
+    dificultyChem:      endForm.p_dific_chem.value,
     dificultyPaper:     endForm.p_dific_paper.value,
     dificultyCorsi:     endForm.p_dific_corsi.value,
     dificultyJsmol:     endForm.p_dific_jsmol.value,
