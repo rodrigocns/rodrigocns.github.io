@@ -682,7 +682,7 @@
     <h1>Teste química:</h1>
     <form id="form-chem-test" autocomplete="off" >
       
-      <table style="margin:auto" id="a_quim">
+      <table style="margin:auto" id="a-quim">
         <tr>
           <td colspan="4" style="padding:10px">
             <img height="300px" src="testequimica/a.3-etil-5-metil-heptano.png"></img>
@@ -705,17 +705,17 @@
         <tr >
           <td colspan="4" style="padding:10px" onclick="console.log('deu certo')">
             Qual o grau de certeza da sua resposta?<br>
-            <input type="radio" name="p_a_quim_cert" id="p_a_quim_cert_2" value="2">
+            <input type="radio" name="p_a_quim_cert" id="p_a_quim_cert_2" value="2" onchange="unhideById('button-chem-next-1')" >
             <label for="p_a_quim_cert_2">Estou muito certo</label>
-            <input type="radio" name="p_a_quim_cert" id="p_a_quim_cert_1" value="1">
+            <input type="radio" name="p_a_quim_cert" id="p_a_quim_cert_1" value="1" onchange="unhideById('button-chem-next-1')">
             <label for="p_a_quim_cert_1">Estou com alguma dúvida</label>
-            <input type="radio" name="p_a_quim_cert" id="p_a_quim_cert_0" value="0">
+            <input type="radio" name="p_a_quim_cert" id="p_a_quim_cert_0" value="0" onchange="unhideById('button-chem-next-1')">
             <label for="p_a_quim_cert_0">Chutei</label>
           </td>
         </tr>
         <tr >
           <td colspan="4" style="padding:10px">
-            <button id="button-chem-next" type="button"
+            <button id="button-chem-next-1" type="button" style="visibility:hidden"
               onclick="removeById('a-quim');unremoveById('b-quim','table')">
               Próximo
             </button>
@@ -746,17 +746,17 @@
         <tr>
           <td colspan="4" style="padding:10px">
             Qual o grau de certeza da sua resposta?<br>
-            <input type="radio" name="p_b_quim_cert" id="p_b_quim_cert_2" value="2">
+            <input type="radio" name="p_b_quim_cert" id="p_b_quim_cert_2" value="2" onchange="unhideById('button-chem-next-2')">
             <label for="p_b_quim_cert_2">Estou muito certo</label>
-            <input type="radio" name="p_b_quim_cert" id="p_b_quim_cert_1" value="1">
+            <input type="radio" name="p_b_quim_cert" id="p_b_quim_cert_1" value="1" onchange="unhideById('button-chem-next-2')">
             <label for="p_b_quim_cert_1">Estou com alguma dúvida</label>
-            <input type="radio" name="p_b_quim_cert" id="p_b_quim_cert_0" value="0">
+            <input type="radio" name="p_b_quim_cert" id="p_b_quim_cert_0" value="0" onchange="unhideById('button-chem-next-2')">
             <label for="p_b_quim_cert_0">Chutei</label>
           </td>
         </tr>
         <tr>
           <td colspan="4" style="padding:10px">
-            <button id="button-chem-next" type="button"
+            <button id="button-chem-next-2" type="button" style="visibility:hidden"
               onclick="removeById('b-quim');unremoveById('c-quim','table')">
               Próximo
             </button>
@@ -787,17 +787,17 @@
         <tr>
           <td colspan="4" style="padding:10px" >
             Qual o grau de certeza da sua resposta?<br>
-            <input type="radio" name="p_c_quim_cert" id="p_c_quim_cert_2" value="2">
+            <input type="radio" name="p_c_quim_cert" id="p_c_quim_cert_2" value="2" onchange="unhideById('button-chem-next-3')">
             <label for="p_c_quim_cert_2">Estou muito certo</label>
-            <input type="radio" name="p_c_quim_cert" id="p_c_quim_cert_1" value="1">
+            <input type="radio" name="p_c_quim_cert" id="p_c_quim_cert_1" value="1" onchange="unhideById('button-chem-next-3')">
             <label for="p_c_quim_cert_1">Estou com alguma dúvida</label>
-            <input type="radio" name="p_c_quim_cert" id="p_c_quim_cert_0" value="0">
+            <input type="radio" name="p_c_quim_cert" id="p_c_quim_cert_0" value="0" onchange="unhideById('button-chem-next-3')">
             <label for="p_c_quim_cert_0">Chutei</label>
           </td>
         </tr>
         <tr>
           <td colspan="4" style="padding:10px">
-            <button id="button-chem-next" type="button"
+            <button id="button-chem-next-3" type="button" style="visibility:hidden"
               onclick="removeById('c-quim');setTimeout(unhideById('button-chem-end'),1000)">
               Próximo
             </button>
