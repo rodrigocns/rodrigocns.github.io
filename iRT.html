@@ -126,13 +126,13 @@
       
       <!-- Forms: informações gerais -->
       <div id="div-form-2" style="display:none">
-        <p> Sexo Biológico: <br>
+        <p> Sexo Biológico: (ALINHAR A ESQUERDA COM DIV)
           <input type="radio" name="p_sex" id="p_sex_male" value="male">
           <label for="p_sex_male">Masculino</label>
           <input type="radio" name="p_sex" id="p_sex_female" value="female">
           <label for="p_sex_female">Feminino</label>
         </p>
-        <p> Gênero: <br>
+        <p> Gênero: 
           <input type="radio" name="p_gender" id="p_gender_male" value="male">
           <label for="p_gender_male">Masculino</label>
           <input type="radio" name="p_gender" id="p_gender_female" value="female">
@@ -142,13 +142,13 @@
           <input type="radio" name="p_gender" id="p_gender_NA" value="NA">
           <label for="p_gender_NA">Prefiro não responder</label>
         </p>
-        <p> Idade: <br>
+        <p> Idade:
           <input type="number" name="p_age" min="1">
         </p>
-        <p> Ocupação atual: <br>
+        <p> Qual sua ocupação atual (estuda? trabalha? ambos?):
           <input type="text" name="p_ocupation" >
         </p>
-        <p> Qual horário você se sente mais desperto: <br>
+        <p> Qual horário você se sente mais desperto: 
           <input type="radio" name="p_active" id="p_active_morning" value="morning">
           <label for="p_active_morning">Manhã</label>
           <input type="radio" name="p_active" id="p_active_afternoon" value="afternoon">
@@ -164,9 +164,9 @@
 
       <!-- Forms: Formação -->
       <div id="div-form-3" style="display:none">
-        <h3>Formação mais recente: </h3>
+        <h3>Formação mais recente (completa ou incompleta): </h3>
         <br>
-        <label for="p_educ_grau">Grau:</label>
+        <label for="p_educ_grau">Nível:(IMPLEMENTAR DROPDOWN)</label>
         <input type="text" name="p_educ_grau" placeholder="Graduação"><br>
         <br>
         <label for="p_educ_field">Qual área/nome do curso:</label>
@@ -187,7 +187,7 @@
         <div id="input-educ-txt" style="visibility:hidden" >
           <label for="p_educ_prev_txt">
             Descreva sucintamente, por favor:<br>
-             Grau / Área / Ano de início / Duração<br>
+             Nível / Área / Ano de início / Duração(anos)<br>
           </label>
           <textarea id="p_educ_prev_txt" name="p_educ_prev_txt" rows="5" cols="50"></textarea>
         </div>
@@ -201,16 +201,17 @@
       <div id="div-form-4" style="display:none">
         <table class="paddedTable">
           <tr>
-            <th colspan="7" >Classifique as disciplinas abaixo quanto ao grau de dificuldade:</th>
+            <th colspan="7">Pensando na sua experiência como estudante, classifique as disciplinas
+               abaixo quanto ao grau de dificuldade:</th>
           </tr>
           
           <tr>
             <td></td>
-            <td>5 <br>muito <br>difícil</td>
+            <td>5 <br>Muito<br>Difícil</td>
             <td>4</td>
             <td>3</td>
             <td>2</td>
-            <td>1<br>muito<br>fácil</td>
+            <td>1<br>Muito<br>Fácil</td>
             <td>0<br>Não<br>Sei</td>
           </tr>
           <tr><td>Química</td>
@@ -278,11 +279,11 @@
           </tr>
           <tr>
             <td></td>
-            <td>5 <br>muito <br>difícil</td>
+            <td>5 <br>Muito<br>Difícil</td>
             <td>4</td>
             <td>3</td>
             <td>2</td>
-            <td>1<br>muito<br>fácil</td>
+            <td>1<br>Muito<br>Fácil</td>
             <td>0<br>Não<br>Sei</td>
           </tr>
           <tr><td>Estrutura - isômeros</td>
@@ -317,7 +318,7 @@
             <td><input type="radio" name="p_dif_q04" value="1"></td>
             <td><input type="radio" name="p_dif_q04" value="0"></td>
           </tr>
-          <tr><td>Estrutura - Orbitais</td>
+          <tr><td>Orbitais Atômicos</td>
             <td><input type="radio" name="p_dif_q05" value="5"></td>
             <td><input type="radio" name="p_dif_q05" value="4"></td>
             <td><input type="radio" name="p_dif_q05" value="3"></td>
@@ -325,7 +326,7 @@
             <td><input type="radio" name="p_dif_q05" value="1"></td>
             <td><input type="radio" name="p_dif_q05" value="0"></td>
           </tr>
-          <tr><td>Estrutura - Química quântica</td>
+          <tr><td>Orbitais Moleculares</td>
             <td><input type="radio" name="p_dif_q06" value="5"></td>
             <td><input type="radio" name="p_dif_q06" value="4"></td>
             <td><input type="radio" name="p_dif_q06" value="3"></td>
@@ -357,7 +358,7 @@
             <td><input type="radio" name="p_dif_q09" value="1"></td>
             <td><input type="radio" name="p_dif_q09" value="0"></td>
           </tr>
-          <tr><td>Estequiometria e balanceamento de reações</td>
+          <tr><td>Estequiometria</td>
             <td><input type="radio" name="p_dif_q10" value="5"></td>
             <td><input type="radio" name="p_dif_q10" value="4"></td>
             <td><input type="radio" name="p_dif_q10" value="3"></td>
@@ -365,7 +366,7 @@
             <td><input type="radio" name="p_dif_q10" value="1"></td>
             <td><input type="radio" name="p_dif_q10" value="0"></td>
           </tr>
-          <tr><td>Cinética molecular</td>
+          <tr><td>Teoria cinética molecular</td>
             <td><input type="radio" name="p_dif_q11" value="5"></td>
             <td><input type="radio" name="p_dif_q11" value="4"></td>
             <td><input type="radio" name="p_dif_q11" value="3"></td>
@@ -389,7 +390,7 @@
             <td><input type="radio" name="p_dif_q13" value="1"></td>
             <td><input type="radio" name="p_dif_q13" value="0"></td>
           </tr>
-          <tr><td>Estrutura cristalina</td>
+          <tr><td>Estrutura de biomoléculas (proteína, DNA, etc.)</td>
             <td><input type="radio" name="p_dif_q14" value="5"></td>
             <td><input type="radio" name="p_dif_q14" value="4"></td>
             <td><input type="radio" name="p_dif_q14" value="3"></td>
@@ -413,11 +414,11 @@
           </tr>
           <tr>
             <td></td>
-            <td>5 <br>muito <br>difícil</td>
+            <td>5 <br>Muito<br>Difícil</td>
             <td>4</td>
             <td>3</td>
             <td>2</td>
-            <td>1<br>muito<br>fácil</td>
+            <td>1<br>Muito<br>Fácil</td>
             <td>0<br>Não<br>Sei</td>
           </tr>
           <tr><td>Vetores</td>
@@ -524,14 +525,14 @@
           </tr>
           <tr>
             <td></td>
-            <td>5 <br>muito <br>difícil</td>
+            <td>5 <br>Muito<br>Difícil</td>
             <td>4</td>
             <td>3</td>
             <td>2</td>
-            <td>1<br>muito<br>fácil</td>
+            <td>1<br>Muito<br>Fácil</td>
             <td>0<br>Não<br>Sei</td>
           </tr>
-          <tr><td>Caminhar em meio à multidão</td>
+          <tr><td>Desviar de obstáculos ao se movimentar</td>
             <td><input type="radio" name="p_dif_c01" value="5"></td>
             <td><input type="radio" name="p_dif_c01" value="4"></td>
             <td><input type="radio" name="p_dif_c01" value="3"></td>
@@ -539,7 +540,7 @@
             <td><input type="radio" name="p_dif_c01" value="1"></td>
             <td><input type="radio" name="p_dif_c01" value="0"></td>
           </tr>
-          <tr><td>Dirigir e estacionar um veículo</td>
+          <tr><td>Estacionar um automóvel fazendo baliza</td>
             <td><input type="radio" name="p_dif_c02" value="5"></td>
             <td><input type="radio" name="p_dif_c02" value="4"></td>
             <td><input type="radio" name="p_dif_c02" value="3"></td>
@@ -547,7 +548,7 @@
             <td><input type="radio" name="p_dif_c02" value="1"></td>
             <td><input type="radio" name="p_dif_c02" value="0"></td>
           </tr>
-          <tr><td>Evitar obstáculos</td>
+          <tr><td>Entender para que serve um objeto apenas ao observá-lo</td>
             <td><input type="radio" name="p_dif_c03" value="5"></td>
             <td><input type="radio" name="p_dif_c03" value="4"></td>
             <td><input type="radio" name="p_dif_c03" value="3"></td>
@@ -563,7 +564,7 @@
             <td><input type="radio" name="p_dif_c04" value="1"></td>
             <td><input type="radio" name="p_dif_c04" value="0"></td>
           </tr>
-          <tr><td>Desenhar e colorir</td>
+          <tr><td>Desenhar usando lápis e papel</td>
             <td><input type="radio" name="p_dif_c05" value="5"></td>
             <td><input type="radio" name="p_dif_c05" value="4"></td>
             <td><input type="radio" name="p_dif_c05" value="3"></td>
@@ -571,7 +572,7 @@
             <td><input type="radio" name="p_dif_c05" value="1"></td>
             <td><input type="radio" name="p_dif_c05" value="0"></td>
           </tr>
-          <tr><td>Ler um livro</td>
+          <tr><td>Ler um livro em papel</td>
             <td><input type="radio" name="p_dif_c06" value="5"></td>
             <td><input type="radio" name="p_dif_c06" value="4"></td>
             <td><input type="radio" name="p_dif_c06" value="3"></td>
@@ -579,7 +580,7 @@
             <td><input type="radio" name="p_dif_c06" value="1"></td>
             <td><input type="radio" name="p_dif_c06" value="0"></td>
           </tr>
-          <tr><td>Reconhecer rostos e expressões faciais</td>
+          <tr><td>Montar objetos a partir de suas partes, sem instruções</td>
             <td><input type="radio" name="p_dif_c07" value="5"></td>
             <td><input type="radio" name="p_dif_c07" value="4"></td>
             <td><input type="radio" name="p_dif_c07" value="3"></td>
@@ -587,7 +588,7 @@
             <td><input type="radio" name="p_dif_c07" value="1"></td>
             <td><input type="radio" name="p_dif_c07" value="0"></td>
           </tr>
-          <tr><td>Fazer nós ou laços (corda, fita, gravata etc.)</td>
+          <tr><td>Fazer contas de cabeça</td>
             <td><input type="radio" name="p_dif_c08" value="5"></td>
             <td><input type="radio" name="p_dif_c08" value="4"></td>
             <td><input type="radio" name="p_dif_c08" value="3"></td>
@@ -595,7 +596,7 @@
             <td><input type="radio" name="p_dif_c08" value="1"></td>
             <td><input type="radio" name="p_dif_c08" value="0"></td>
           </tr>
-          <tr><td>Fazer dobraduras de papel</td>
+          <tr><td>Montar e utilizar eletrodomésticos seguindo instruções em vídeo</td>
             <td><input type="radio" name="p_dif_c09" value="5"></td>
             <td><input type="radio" name="p_dif_c09" value="4"></td>
             <td><input type="radio" name="p_dif_c09" value="3"></td>
@@ -603,7 +604,7 @@
             <td><input type="radio" name="p_dif_c09" value="1"></td>
             <td><input type="radio" name="p_dif_c09" value="0"></td>
           </tr>
-          <tr><td>Arrumar uma mala para viagem</td>
+          <tr><td>Escolher uma mala do tamanho certo para sua viagem</td>
             <td><input type="radio" name="p_dif_c10" value="5"></td>
             <td><input type="radio" name="p_dif_c10" value="4"></td>
             <td><input type="radio" name="p_dif_c10" value="3"></td>
@@ -611,7 +612,7 @@
             <td><input type="radio" name="p_dif_c10" value="1"></td>
             <td><input type="radio" name="p_dif_c10" value="0"></td>
           </tr>
-          <tr><td>Organizar comida dentro do refrigerador</td>
+          <tr><td>Partindo apenas de imagens e medidas, comprar um sofá novo que cabe na sua sala</td>
             <td><input type="radio" name="p_dif_c11" value="5"></td>
             <td><input type="radio" name="p_dif_c11" value="4"></td>
             <td><input type="radio" name="p_dif_c11" value="3"></td>
@@ -619,7 +620,7 @@
             <td><input type="radio" name="p_dif_c11" value="1"></td>
             <td><input type="radio" name="p_dif_c11" value="0"></td>
           </tr>
-          <tr><td>Fazer conta mentalmente</td>
+          <tr><td>Montar e utilizar eletrodomésticos seguindo manual de instruções impresso</td>
             <td><input type="radio" name="p_dif_c12" value="5"></td>
             <td><input type="radio" name="p_dif_c12" value="4"></td>
             <td><input type="radio" name="p_dif_c12" value="3"></td>
@@ -627,7 +628,7 @@
             <td><input type="radio" name="p_dif_c12" value="1"></td>
             <td><input type="radio" name="p_dif_c12" value="0"></td>
           </tr>
-          <tr><td>Montar algo a partir das peças</td>
+          <tr><td>Fazer dobraduras como aviões e barcos de papel</td>
             <td><input type="radio" name="p_dif_c13" value="5"></td>
             <td><input type="radio" name="p_dif_c13" value="4"></td>
             <td><input type="radio" name="p_dif_c13" value="3"></td>
@@ -635,7 +636,7 @@
             <td><input type="radio" name="p_dif_c13" value="1"></td>
             <td><input type="radio" name="p_dif_c13" value="0"></td>
           </tr>
-          <tr><td>Praticar esportes físicos</td>
+          <tr><td>Jogar xadrez</td>
             <td><input type="radio" name="p_dif_c14" value="5"></td>
             <td><input type="radio" name="p_dif_c14" value="4"></td>
             <td><input type="radio" name="p_dif_c14" value="3"></td>
@@ -651,7 +652,7 @@
             <td><input type="radio" name="p_dif_c15" value="1"></td>
             <td><input type="radio" name="p_dif_c15" value="0"></td>
           </tr>
-          <tr><td>Jogos digitais</td>
+          <tr><td>Jogos eletrônicos 3D em primeira pessoa</td>
             <td><input type="radio" name="p_dif_c16" value="5"></td>
             <td><input type="radio" name="p_dif_c16" value="4"></td>
             <td><input type="radio" name="p_dif_c16" value="3"></td>
@@ -659,13 +660,29 @@
             <td><input type="radio" name="p_dif_c16" value="1"></td>
             <td><input type="radio" name="p_dif_c16" value="0"></td>
           </tr>
-          <tr><td>Resolver quebra-cabeça</td>
+          <tr><td>Fazer desenho no computador usando mouse</td>
             <td><input type="radio" name="p_dif_c17" value="5"></td>
             <td><input type="radio" name="p_dif_c17" value="4"></td>
             <td><input type="radio" name="p_dif_c17" value="3"></td>
             <td><input type="radio" name="p_dif_c17" value="2"></td>
             <td><input type="radio" name="p_dif_c17" value="1"></td>
             <td><input type="radio" name="p_dif_c17" value="0"></td>
+          </tr>
+          <tr><td>Montra quebra-cabeças de muitas peças</td>
+            <td><input type="radio" name="p_dif_c18" value="5"></td>
+            <td><input type="radio" name="p_dif_c18" value="4"></td>
+            <td><input type="radio" name="p_dif_c18" value="3"></td>
+            <td><input type="radio" name="p_dif_c18" value="2"></td>
+            <td><input type="radio" name="p_dif_c18" value="1"></td>
+            <td><input type="radio" name="p_dif_c18" value="0"></td>
+          </tr>
+          <tr><td>Chegar a um destino pedindo informações à pessoas na rua</td>
+            <td><input type="radio" name="p_dif_c19" value="5"></td>
+            <td><input type="radio" name="p_dif_c19" value="4"></td>
+            <td><input type="radio" name="p_dif_c19" value="3"></td>
+            <td><input type="radio" name="p_dif_c19" value="2"></td>
+            <td><input type="radio" name="p_dif_c19" value="1"></td>
+            <td><input type="radio" name="p_dif_c19" value="0"></td>
           </tr>
         </table>
         <br>

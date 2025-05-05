@@ -590,7 +590,7 @@ function saveProfilingData () {
 
     difQuiSubj:         compileAnswersToArray('p_dif_q', 14),
     difMatSubj:         compileAnswersToArray('p_dif_m', 11),
-    difCotidSubj:       compileAnswersToArray('p_dif_c', 17),
+    difCotidSubj:       compileAnswersToArray('p_dif_c', 19),
     
     estrQuimA:          compileAnswersToArray('p_a_quim', 4, 'checkbox') ,
     estrQuimAcertain:   chemForm.p_a_quim_cert.value,
