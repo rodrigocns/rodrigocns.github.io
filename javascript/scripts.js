@@ -174,13 +174,13 @@ function corsiStart() {
   getTheNumbers();       // records the data ONLY from the initial instant (t=0)
 }
 //functions to run when completing corsi trials.
-var corsiEpoch = [];
+var corsiMouseTime = [];
 var corsiMouseX = [];
 var corsiMouseY = [];
 function buttonCorsiSubmit(){ 
   //stop cronometer
   timerStop();  
-  corsiEpoch = arrayEpoch;
+  corsiMouseTime = arrayEpoch;
   corsiMouseX = arrayMouseX;
   corsiMouseY = arrayMouseY;
   console.log("Corsi data saved!");
@@ -360,7 +360,7 @@ function insertFormValues() {
   gsForm.corsiRt.value = corsi_rt_array;
   gsForm.corsiChoices.value = corsi_choice_array;
   gsForm.corsiTrialId.value = corsi_trial_id_array;
-  gsForm.corsiEpoch.value  = corsiEpoch ;
+  gsForm.corsiMouseTime.value  = corsiMouseTime ;
   gsForm.corsiMouseX.value = corsiMouseX;
   gsForm.corsiMouseY.value = corsiMouseY;
   //Inform ok status to console
@@ -536,7 +536,7 @@ function compileAnswersToArray(p_ans_name, ans_amount, inputType='value') {
     const name = `${p_ans_name}${String(i).padStart(2, '0')}`;
     //select element with answers
     const selected = document.querySelector(`input[name="${name}"]:checked`);
-    if (valueType == 'value') {
+    if (inputType == 'value') {
       answers.push(selected ? parseInt(selected.value) : null);
     }
     //if input was a checkbox, to check whether it was checked or not 
@@ -573,7 +573,6 @@ function saveProfilingData () {
     age:                gsForm.p_age.value,
     ocupation:          gsForm.p_ocupation,
     active:             gsForm.p_active.value,
-    work:               gsForm.p_work.value,
 
     educGrau:           gsForm.p_educ_grau.value,
     educField:          gsForm.p_educ_field.value,
@@ -612,7 +611,7 @@ function saveProfilingData () {
     corsiRt:            corsi_rt_array,
     corsiChoices:       corsi_choice_array,
     corsiTrialId:       corsi_trial_id_array,
-    corsiEpoch:         corsiEpoch,
+    corsiMouseTime:     corsiMouseTime,
     corsiMouseX:        corsiMouseX,
     corsiMouseY:        corsiMouseY,
 
@@ -674,7 +673,7 @@ function getLocalData() {
     'corsiRt'       + ';' +
     'corsiChoices'  + ';' +
     'corsiTrialId'  + ';' +
-    'corsiEpoch'    + ';' +
+    'corsiMouseTime'+ ';' +
     'corsiMouseX'   + ';' +
     'corsiMouseY'   + ';' +
     '\n' + 
@@ -686,7 +685,7 @@ function getLocalData() {
     time_initial                        + ';' +
     modelName                           + ';' +
     scrSizeX                            + ';' +
-    scrSizeX                            + ';' +
+    scrSizeY                           + ';' +
     gsForm.cvsRefTop.value              + ';' +
     gsForm.cvsRefRight.value            + ';' +
     gsForm.cvsRefBottom.value           + ';' +
@@ -703,7 +702,7 @@ function getLocalData() {
     gsForm.corsiRt.value                + ';' +
     gsForm.corsiChoices.value           + ';' +
     gsForm.corsiTrialId.value           + ';' +
-    gsForm.corsiEpoch.value             + ';' +
+    gsForm.corsiMouseTime.value             + ';' +
     gsForm.corsiMouseX.value            + ';' +
     gsForm.corsiMouseY.value            + ';' +
     
