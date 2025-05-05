@@ -2,12 +2,12 @@
 
 var instructionTextiRT =`
 <p> A próxima etapa consiste em 5 tarefas de rotação de objetos.
-<br> Ao clicar no botão “Começar!”, vão aparecer dois objetos 
+<br><br> Ao clicar no botão “Começar!”, vão aparecer dois objetos 
 em cantos opostos da tela. 
-<br> Rotacione o objeto da direita até que ele 
+<br><br> Rotacione o objeto da direita até que ele 
 fique o mais parecido possível com o objeto da esquerda.
-<br> Para girar o objeto, clique e arraste o cursor do mouse sobre ele. 
-<br> Ao concluir cada tarefa, clique no botão “Pronto!”.
+<br><br> Para girar o objeto, clique e arraste o cursor do mouse sobre ele. 
+<br><br> Ao concluir cada tarefa, clique no botão “Pronto!”.
 </p>
 `;
 

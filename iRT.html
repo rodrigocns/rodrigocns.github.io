@@ -126,22 +126,20 @@
       
       <!-- Forms: informações gerais -->
       <div id="div-form-2" style="display:none">
-        <p> Sexo Biológico: (ALINHAR A ESQUERDA COM DIV)
-          <input type="radio" name="p_sex" id="p_sex_male" value="male">
-          <label for="p_sex_male">Masculino</label>
-          <input type="radio" name="p_sex" id="p_sex_female" value="female">
-          <label for="p_sex_female">Feminino</label>
-        </p>
-        <p> Gênero: 
-          <input type="radio" name="p_gender" id="p_gender_male" value="male">
-          <label for="p_gender_male">Masculino</label>
-          <input type="radio" name="p_gender" id="p_gender_female" value="female">
-          <label for="p_gender_female">Feminino</label>
-          <input type="radio" name="p_gender" id="p_gender_other" value="other">
-          <label for="p_gender_other">Outros</label>
-          <input type="radio" name="p_gender" id="p_gender_NA" value="NA">
-          <label for="p_gender_NA">Prefiro não responder</label>
-        </p>
+        <br>  
+        <label for="p_sex">Sexo Biológico:</label>
+        <select name="p_sex">
+          <option value="male">Masculino</option>
+          <option value="female">Feminino</option>
+        </select><br>
+        <label for="p_gender">Gênero:</label>
+        <select name="p_gender">
+          <option value="male">Masculino</option>
+          <option value="female">Feminino</option>
+          <option value="other">Outros</option>
+          <option value="NA">Prefiro não responder</option>
+        </select>
+
         <p> Idade:
           <input type="number" name="p_age" min="1">
         </p>
@@ -201,18 +199,14 @@
       <div id="div-form-4" style="display:none">
         <table class="paddedTable">
           <tr>
-            <th colspan="7">Pensando na sua experiência como estudante, classifique as disciplinas
-               abaixo quanto ao grau de dificuldade:</th>
-          </tr>
-          
-          <tr>
-            <td></td>
-            <td>5 <br>Muito<br>Difícil</td>
-            <td>4</td>
-            <td>3</td>
-            <td>2</td>
-            <td>1<br>Muito<br>Fácil</td>
-            <td>0<br>Não<br>Sei</td>
+            <th>Pensando na sua experiência como estudante, classifique <br>
+              as disciplinas abaixo quanto ao grau de dificuldade:</th>
+            <th>5 <br>Muito<br>Difícil</th>
+            <th>4</th>
+            <th>3</th>
+            <th>2</th>
+            <th>1<br>Muito<br>Fácil</th>
+            <th>0<br>Não Sei<br>Dizer</th>
           </tr>
           <tr><td>Química</td>
             <td><input type="radio" name="p_dif_disc_qui" value="5"></td>
@@ -275,18 +269,16 @@
       <div id="div-form-5" style="display:none">
         <table class="paddedTable">
           <tr>
-            <th colspan="7" >Classifique os assuntos abaixo quanto ao grau de dificuldade:</th>
+            <th>Pensando na sua experiência como estudante, <br>
+              classifique os assuntos abaixo quanto ao grau de dificuldade:</th>
+            <th>5 <br>Muito<br>Difícil</th>
+            <th>4</th>
+            <th>3</th>
+            <th>2</th>
+            <th>1<br>Muito<br>Fácil</th>
+            <th>0<br>Não Sei<br>Dizer</th>
           </tr>
-          <tr>
-            <td></td>
-            <td>5 <br>Muito<br>Difícil</td>
-            <td>4</td>
-            <td>3</td>
-            <td>2</td>
-            <td>1<br>Muito<br>Fácil</td>
-            <td>0<br>Não<br>Sei</td>
-          </tr>
-          <tr><td>Estrutura - isômeros</td>
+          <tr><td>Isomeria</td>
             <td><input type="radio" name="p_dif_q01" value="5"></td>
             <td><input type="radio" name="p_dif_q01" value="4"></td>
             <td><input type="radio" name="p_dif_q01" value="3"></td>
@@ -294,7 +286,7 @@
             <td><input type="radio" name="p_dif_q01" value="1"></td>
             <td><input type="radio" name="p_dif_q01" value="0"></td>
           </tr>
-          <tr><td>Grupos funcionais - estruturaopriedades</td>
+          <tr><td>Grupos funcionais - estrutura e priedades</td>
             <td><input type="radio" name="p_dif_q02" value="5"></td>
             <td><input type="radio" name="p_dif_q02" value="4"></td>
             <td><input type="radio" name="p_dif_q02" value="3"></td>
@@ -334,7 +326,7 @@
             <td><input type="radio" name="p_dif_q06" value="1"></td>
             <td><input type="radio" name="p_dif_q06" value="0"></td>
           </tr>
-          <tr><td>Estrutura - Grupos de simetria</td>
+          <tr><td>Grupos de simetria</td>
             <td><input type="radio" name="p_dif_q07" value="5"></td>
             <td><input type="radio" name="p_dif_q07" value="4"></td>
             <td><input type="radio" name="p_dif_q07" value="3"></td>
@@ -410,16 +402,14 @@
       <div id="div-form-6" style="display:none">
         <table class="paddedTable">
           <tr>
-            <th colspan="7" >Classifique os assuntos abaixo quanto ao grau de dificuldade:</th>
-          </tr>
-          <tr>
-            <td></td>
-            <td>5 <br>Muito<br>Difícil</td>
-            <td>4</td>
-            <td>3</td>
-            <td>2</td>
-            <td>1<br>Muito<br>Fácil</td>
-            <td>0<br>Não<br>Sei</td>
+            <th>Pensando na sua experiência como estudante, <br>
+              classifique os assuntos abaixo quanto ao grau de dificuldade:</th>
+            <th>5 <br>Muito<br>Difícil</th>
+            <th>4</th>
+            <th>3</th>
+            <th>2</th>
+            <th>1<br>Muito<br>Fácil</th>
+            <th>0<br>Não Sei<br>Dizer</th>
           </tr>
           <tr><td>Vetores</td>
             <td><input type="radio" name="p_dif_m01" value="5"></td>
@@ -521,16 +511,14 @@
       <div id="div-form-7" style="display:none">
         <table class="paddedTable">
           <tr>
-            <th colspan="7" >Classifique as tarefas abaixo quanto ao grau de dificuldade:</th>
-          </tr>
-          <tr>
-            <td></td>
-            <td>5 <br>Muito<br>Difícil</td>
-            <td>4</td>
-            <td>3</td>
-            <td>2</td>
-            <td>1<br>Muito<br>Fácil</td>
-            <td>0<br>Não<br>Sei</td>
+            <th>Pensando na sua experiência, <br>
+               classifique as tarefas abaixo quanto ao grau de dificuldade:</th>
+            <th>5 <br>Muito<br>Difícil</th>
+            <th>4</th>
+            <th>3</th>
+            <th>2</th>
+            <th>1<br>Muito<br>Fácil</th>
+            <th>0<br>Não Sei<br>Dizer</th>
           </tr>
           <tr><td>Desviar de obstáculos ao se movimentar</td>
             <td><input type="radio" name="p_dif_c01" value="5"></td>
@@ -688,16 +676,23 @@
         <br>
         <div class="bottom-fixed">
           <button type="button" onclick="removeById('div-form-7');unremoveById('div-form-6')">Anterior</button>
-          <button type="button" onclick="nextStage();prepMolecule(task_n);
-          removeById('last-updated');">Próximo</button>
+          <button type="button" onclick="removeById('div-form-7');unremoveById('div-form-blank')">Próximo</button>
+        </div>
+      </div>
+
+      <!-- tela branca-->
+      <div id="div-form-blank" style="display:none">
+        <button type="button" onclick="nextStage();prepMolecule(task_n);
+        removeById('last-updated');">Próxima etapa</button>
+        <div class="bottom-fixed">
+          <button type="button" onclick="removeById('div-form-blank');unremoveById('div-form-7')">Anterior</button>
         </div>
       </div>
     </form>
   </section>
   
   <!-- chem.vis. test -->
-  <section id="tab_fim" class="ContentStage" style="display:none">
-    <h1>Teste química:</h1>
+  <section id="tab_fim" class="ContentStage" style="display:none; font-size:large">
     <form id="form-chem-test" autocomplete="off" >
       
       <table style="margin:auto" id="a-quim">
@@ -715,7 +710,7 @@
           <td><label for="a-quim03"><img src="testequimica/a.quimC.jpg" height="300px" ></label></td>
           <td><label for="a-quim04"><img src="testequimica/a.quimD.jpg" height="300px" ></label></td>
         </tr>
-        <tr >
+        <tr style="text-align:center">
           <td><input type="checkbox" id="a-quim01" name="p_a_quim01" value="A" ></td>
           <td><input type="checkbox" id="a-quim02" name="p_a_quim02" value="B" ></td>
           <td><input type="checkbox" id="a-quim03" name="p_a_quim03" value="C" ></td>
@@ -730,10 +725,7 @@
             <label for="p_a_quim_cert_1">Estou com alguma dúvida</label>
             <input type="radio" name="p_a_quim_cert" id="p_a_quim_cert_0" value="0" onchange="unhideById('button-chem-next-1')">
             <label for="p_a_quim_cert_0">Chutei</label>
-          </td>
-        </tr>
-        <tr >
-          <td colspan="4" style="padding:10px">
+            <br>
             <button id="button-chem-next-1" type="button" style="visibility:hidden"
               onclick="removeById('a-quim');unremoveById('b-quim','table')">
               Próximo
@@ -772,10 +764,7 @@
             <label for="p_b_quim_cert_1">Estou com alguma dúvida</label>
             <input type="radio" name="p_b_quim_cert" id="p_b_quim_cert_0" value="0" onchange="unhideById('button-chem-next-2')">
             <label for="p_b_quim_cert_0">Chutei</label>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="4" style="padding:10px">
+            <br>
             <button id="button-chem-next-2" type="button" style="visibility:hidden"
               onclick="removeById('b-quim');unremoveById('c-quim','table')">
               Próximo
@@ -814,10 +803,7 @@
             <label for="p_c_quim_cert_1">Estou com alguma dúvida</label>
             <input type="radio" name="p_c_quim_cert" id="p_c_quim_cert_0" value="0" onchange="unhideById('button-chem-next-3')">
             <label for="p_c_quim_cert_0">Chutei</label>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="4" style="padding:10px">
+            <br>
             <button id="button-chem-next-3" type="button" style="visibility:hidden"
               onclick="removeById('c-quim');setTimeout(unhideById('button-chem-end'),1000)">
               Próximo
@@ -997,28 +983,28 @@
           <td><img src="images/icon_chem.png"></img></td>
           <td style="padding:10px">
             Comparar estruturas químicas <br>
-            <input type="number" name="p_dific_chem" min="0" max="10" >
+            <input type="number" name="p_dific_chem" min="1" max="5" >
           </td>
         </tr>
         <tr>
           <td><img src="images/icon_paper.png"></img></td>
           <td style="padding:10px">
             Rotação mental de blocos <br>
-            <input type="number" name="p_dific_paper" min="0" max="10" >
+            <input type="number" name="p_dific_paper" min="1" max="5" >
           </td>
         </tr>
         <tr>
           <td><img src="images/icon_corsi.png"></img></td>
           <td style="padding:10px"> 
             Sequência de blocos piscando <br>
-            <input type="number" name="p_dific_corsi" min="0" max="10" >
+            <input type="number" name="p_dific_corsi" min="1" max="5" >
           </td>
         </tr>
         <tr>
           <td><img src="images/icon_jsmol.png"></img></td>
           <td style="padding:10px"> 
             Rotação interativa de objetos<br>
-            <input type="number" name="p_dific_jsmol" min="0" max="10" >
+            <input type="number" name="p_dific_jsmol" min="1" max="5" >
           </td>
         </tr>
       </table>

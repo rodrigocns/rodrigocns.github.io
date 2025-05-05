@@ -2,9 +2,10 @@
 
 /* .thing is for classes, #thing is for id's */
 
-* { /* applies to everything */
+/* applies to everything */
+/* { 
   text-align: center;
-}
+}*/
 
 body{
 	font-family:Verdana,sans-serif;
@@ -169,11 +170,11 @@ table {
 }
 th {
   border: 1px solid; /*these borders help with formatting, but can be removed*/
-  border-color: white;
+  border-color: #808080;
 }
 td {
   border: 1px solid; /*these borders help with formatting, but can be removed*/
-  border-color: white;
+  border-color: #808080;
 } 
 #table-iRT-canvas{
   width: 90%;
@@ -191,11 +192,22 @@ td {
   vertical-align:bottom; 
   /* height:15rem;  */
   width:100%;
+  text-align: left;
+  padding: 15px;
 }
 
-table.paddedTable td, th {
-  padding: 5px;
+table.paddedTable td {
+  padding: 8px;
   min-width: 80px;
+  border-left: none;
+  border-right: none;
+}
+table.paddedTable th {
+  padding: 15px;
+  min-width: 80px;
+}
+table.paddedTable td:nth-child(1){
+  text-align: right;
 }
 
 .flexElem{

@@ -1,0 +1,24 @@
+required nos campos das tabelas
+
+aumentar bolinhas Radio
+
+-2, -1, 1, 2
+
+A estrutura da direita representa a mesma substância representada na esquerda?
+
+É a mesma!
+Parece ser mesma...
+Parece ser diferente...
+É diferente!
+
+
+reduzir tamanho fonte da legenda
+aumentar o resto
+
+FIX bolinhas maiores e centralizadas
+inverter muito facil por muito difícil 
+
+Fim do profiling apareceu preencha campos abaixo. resolver
+
+Melhor descrição no corsi: 2 tentativas por trial
+resolução monitor 1440 x 900
