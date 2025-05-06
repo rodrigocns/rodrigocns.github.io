@@ -740,122 +740,49 @@
   <section id="tab_fim" class="ContentStage" style="display:none; font-size:large">
     <form id="form-chem-test" autocomplete="off" >
       
-      <table style="margin:auto" id="a-quim">
-        <tr>
-          <td colspan="4" style="padding:10px">
-            <img height="300px" src="testequimica/a.3-etil-5-metil-heptano.png">
-            <img height="300px" src="testequimica/legenda.png">
-            <br>
-            Marque as opções abaixo que possuem as moléculas iguais à estrutura acima.  
-          </td>
-        </tr>
-        <tr>
-          <td><label for="a-quim01"><img src="testequimica/a.quimA.jpg" height="300px" ></label></td>
-          <td><label for="a-quim02"><img src="testequimica/a.quimB.jpg" height="300px" ></label></td>
-          <td><label for="a-quim03"><img src="testequimica/a.quimC.jpg" height="300px" ></label></td>
-          <td><label for="a-quim04"><img src="testequimica/a.quimD.jpg" height="300px" ></label></td>
-        </tr>
-        <tr style="text-align:center">
-          <td><input type="checkbox" id="a-quim01" name="p_a_quim01" value="A" ></td>
-          <td><input type="checkbox" id="a-quim02" name="p_a_quim02" value="B" ></td>
-          <td><input type="checkbox" id="a-quim03" name="p_a_quim03" value="C" ></td>
-          <td><input type="checkbox" id="a-quim04" name="p_a_quim04" value="D" ></td>
-        </tr>
-        <tr >
-          <td colspan="4" style="padding:10px" onclick="console.log('deu certo')">
-            Qual o grau de certeza da sua resposta?<br>
-            <input type="radio" name="p_a_quim_cert" id="p_a_quim_cert_2" value="2" onchange="unhideById('button-chem-next-1')" >
-            <label for="p_a_quim_cert_2">Estou muito certo</label>
-            <input type="radio" name="p_a_quim_cert" id="p_a_quim_cert_1" value="1" onchange="unhideById('button-chem-next-1')">
-            <label for="p_a_quim_cert_1">Estou com alguma dúvida</label>
-            <input type="radio" name="p_a_quim_cert" id="p_a_quim_cert_0" value="0" onchange="unhideById('button-chem-next-1')">
-            <label for="p_a_quim_cert_0">Chutei</label>
-            <br>
-            <button id="button-chem-next-1" type="button" style="visibility:hidden"
-              onclick="removeById('a-quim');unremoveById('b-quim','table')">
-              Próximo
-            </button>
-          </td>
-        </tr>
-      </table>
 
-      <table style="margin:auto; display:none" id="b-quim">
+      <table style="margin:auto;text-align:center;">
         <tr>
-          <td colspan="4" style="padding:10px">
-            <img height="300px" src="testequimica/b.m-cloro-fenol.png"></img>
-            <img height="300px" src="testequimica/legenda.png">
+          <td colspan="4">
+            <img src="testequimica/headA.jpg" height="50">
+            <img src="testequimica/headB.jpg" height="50">
             <br>
-            Marque as opções abaixo que possuem as moléculas iguais à estrutura acima.  
+            <img id="img2DStruct" src="testequimica/structureA1.jpg" height="500">
+            <img id="img3DStruct" src="testequimica/structureA1B1.jpg" height="500">
+            <br>
+            <img                  src="testequimica/blankA.jpg" height="50">
+            <img id="img3DLegend" src="testequimica/legendB1.jpg" height="50">
           </td>
         </tr>
         <tr>
-          <td><label for="b-quim01"><img src="testequimica/b.quimA.jpg" height="300px" ></label></td>
-          <td><label for="b-quim02"><img src="testequimica/b.quimB.jpg" height="300px" ></label></td>
-          <td><label for="b-quim03"><img src="testequimica/b.quimC.jpg" height="300px" ></label></td>
-          <td><label for="b-quim04"><img src="testequimica/b.quimD.jpg" height="300px" ></label></td>
-        </tr>
-        <tr >
-          <td><input type="checkbox" id="b-quim01" name="p_b_quimA" value="A" ></td>
-          <td><input type="checkbox" id="b-quim02" name="p_b_quimB" value="B" ></td>
-          <td><input type="checkbox" id="b-quim03" name="p_b_quimC" value="C" ></td>
-          <td><input type="checkbox" id="b-quim04" name="p_b_quimD" value="D" ></td>
-        </tr>
-        <tr>
-          <td colspan="4" style="padding:10px">
-            Qual o grau de certeza da sua resposta?<br>
-            <input type="radio" name="p_b_quim_cert" id="p_b_quim_cert_2" value="2" onchange="unhideById('button-chem-next-2')">
-            <label for="p_b_quim_cert_2">Estou muito certo</label>
-            <input type="radio" name="p_b_quim_cert" id="p_b_quim_cert_1" value="1" onchange="unhideById('button-chem-next-2')">
-            <label for="p_b_quim_cert_1">Estou com alguma dúvida</label>
-            <input type="radio" name="p_b_quim_cert" id="p_b_quim_cert_0" value="0" onchange="unhideById('button-chem-next-2')">
-            <label for="p_b_quim_cert_0">Chutei</label>
-            <br>
-            <button id="button-chem-next-2" type="button" style="visibility:hidden"
-              onclick="removeById('b-quim');unremoveById('c-quim','table')">
-              Próximo
-            </button>
-          </td>
-        </tr>
-      </table>
-
-      <table style="margin:auto; display:none;" id="c-quim">
-        <tr>
-          <td colspan="4" style="padding:10px">
-            <img height="300px" src="testequimica/c.(Z)-4-cloropent-2-eno.png">
-            <img height="300px" src="testequimica/legenda.png">
-            <br>
-            Marque as opções abaixo que possuem as moléculas iguais à estrutura acima.  
+          <td colspan="4" style="padding:20px">
+            As estruturas A e B representam a mesma molécula?
           </td>
         </tr>
         <tr>
-          <td><label for="c-quim01"><img src="testequimica/c.quimA.jpg" height="300px" ></label></td>
-          <td><label for="c-quim02"><img src="testequimica/c.quimB.jpg" height="300px" ></label></td>
-          <td><label for="c-quim03"><img src="testequimica/c.quimC.jpg" height="300px" ></label></td>
-          <td><label for="c-quim04"><img src="testequimica/c.quimD.jpg" height="300px" ></label></td>
-        </tr>
-        <tr >
-          <td><input type="checkbox" id="c-quim01" name="p_c_quimA" value="A" ></td>
-          <td><input type="checkbox" id="c-quim02" name="p_c_quimB" value="B" ></td>
-          <td><input type="checkbox" id="c-quim03" name="p_c_quimC" value="C" ></td>
-          <td><input type="checkbox" id="c-quim04" name="p_c_quimD" value="D" ></td>
-        </tr>
-        <tr>
-          <td colspan="4" style="padding:10px" >
-            Qual o grau de certeza da sua resposta?<br>
-            <input type="radio" name="p_c_quim_cert" id="p_c_quim_cert_2" value="2" onchange="unhideById('button-chem-next-3')">
-            <label for="p_c_quim_cert_2">Estou muito certo</label>
-            <input type="radio" name="p_c_quim_cert" id="p_c_quim_cert_1" value="1" onchange="unhideById('button-chem-next-3')">
-            <label for="p_c_quim_cert_1">Estou com alguma dúvida</label>
-            <input type="radio" name="p_c_quim_cert" id="p_c_quim_cert_0" value="0" onchange="unhideById('button-chem-next-3')">
-            <label for="p_c_quim_cert_0">Chutei</label>
-            <br>
-            <button id="button-chem-next-3" type="button" style="visibility:hidden"
-              onclick="removeById('c-quim');setTimeout(unhideById('button-chem-end'),1000)">
-              Próximo
-            </button>
+          <td width="25%" style="padding:20px">
+            <label for="p_quim_cert-2">É a mesma!</label><br>
+            <input type="radio" name="p_quim_cert" id="p_quim_cert-2" 
+            value="-2" >
+          </td>
+          <td width="25%" style="padding:20px">
+            <label for="p_quim_cert-1">Parece ser mesma...</label><br>
+            <input type="radio" name="p_quim_cert" id="p_quim_cert-1" 
+            value="-1" >
+          </td>
+          <td width="25%" style="padding:20px">
+            <label for="p_quim_cert_1">Parece ser diferente...</label><br>
+            <input type="radio" name="p_quim_cert" id="p_quim_cert_1" 
+            value=" 1" >
+          </td>
+          <td width="25%" style="padding:20px">
+            <label for="p_quim_cert_2">É diferente!</label><br>
+            <input type="radio" name="p_quim_cert" id="p_quim_cert_2" 
+            value=" 2" >
           </td>
         </tr>
       </table>
+      <button type="button" onclick="nextChemStructure()">Próximo</button>
     </form>
 
     <button id="button-chem-end" style="visibility:hidden"

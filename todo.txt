@@ -1,24 +1,19 @@
 required nos campos das tabelas
 
-aumentar bolinhas Radio
-
--2, -1, 1, 2
-
-A estrutura da direita representa a mesma substância representada na esquerda?
-
-É a mesma!
-Parece ser mesma...
-Parece ser diferente...
-É diferente!
-
-
-reduzir tamanho fonte da legenda
 aumentar o resto
 
-FIX bolinhas maiores e centralizadas
-inverter muito facil por muito difícil 
-
-Fim do profiling apareceu preencha campos abaixo. resolver
+Eduardo achou estranho as duas:
+Montar e utilizar eletrodomésticos seguindo instruções em vídeo
+Montar e utilizar eletrodomésticos seguindo manual de instruções impresso
 
 Melhor descrição no corsi: 2 tentativas por trial
 resolução monitor 1440 x 900
+
+trocar nomes de cores por átomos/bolas com a cor
+ legenda em baixo das imagens
+
+Mexer na A3B4 no shading , cloro está estranho.
+
+mudar estrutura de dados para o teste de química (as variáveis mudaram de nome)
+
+Fix alinhamento das imagens

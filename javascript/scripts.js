@@ -59,6 +59,27 @@ function debug() {
   // alert(debug_elements.length);
 }
 
+var img2Dindex = 1;
+var img3Dindex = 1;
+var structureArray = [];
+const img2DStruct = document.getElementById('img2DStruct');
+const img3DStruct = document.getElementById('img3DStruct');
+const img3DLegend = document.getElementById('img3DLegend');
+// index passa por 3 3struturas 2d, cada uma com 4 estruturas 3d 
+function nextChemStructure() {
+  //jmol script for images: select all; wireframe 0.10; spacefill 20%; select hydrogens; spacefill 15%
+  //next image counter
+  img3Dindex = img3Dindex + 1;
+  // se 3D index maior que 4, 2D index aumenta e 3d index volta a 1
+  if (img3Dindex > 4 ) {
+    img2Dindex = img2Dindex +1;
+    img3Dindex = 1;
+  }
+  img2DStruct.src = `testequimica/structureA${img2Dindex}.jpg`;
+  img3DStruct.src = `testequimica/structureA${img2Dindex}B${img3Dindex}.jpg`;
+  img3DLegend.src = `testequimica/legendB${img2Dindex}.jpg`;
+}
+
 /* hide document element */
 function visibilityById (idNameAsString) {
   //check is argument is a name, a string
