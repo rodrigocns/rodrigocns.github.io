@@ -196,6 +196,12 @@ td {
   padding: 15px;
 }
 
+input[type="radio"] {
+  transform: scale(1.5); /* Adjust the scale factor as needed */
+  -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Chrome, Safari, and Opera */
+}
+
 table.paddedTable td {
   padding: 8px;
   min-width: 80px;
@@ -205,13 +211,14 @@ table.paddedTable td {
 table.paddedTable th {
   padding: 15px;
   min-width: 80px;
+  vertical-align: top;
 }
 table.paddedTable td:nth-child(1){
   text-align: right;
 }
-
-.flexElem{
-  display:flex;
+/* 2nd column and onward */
+table.bulletTable td:nth-child(n + 2) {
+  text-align: center;
 }
 
 .jsmol-canvas {
@@ -223,7 +230,7 @@ table.paddedTable td:nth-child(1){
 .bottom-fixed {
   position: fixed;
   text-align: center;
-  bottom: 0;
+  bottom: 10px;
   left: 50%;
   transform: translateX(-50%); /*shift left by half its length*/
   width: 25%;
