@@ -56,7 +56,7 @@
   <!-- Forms -->
   <section id="tab_form" class="ContentStage ContentStage-now" style="display:block"> 
     <form name="submit-to-google-sheet" id="gsForm" autocomplete="off">
-      <h1>Preencha os campos abaixo:</h1>
+      <h1 id="profiling-h1">Preencha os campos abaixo:</h1>
       <hr>
       <!-- Forms: hidden forms -->
       <div id="div-form-0">
@@ -718,7 +718,8 @@
         <br>
         <div class="bottom-fixed">
           <button type="button" onclick="removeById('div-form-7');unremoveById('div-form-6')">Anterior</button>
-          <button type="button" onclick="removeById('div-form-7');unremoveById('div-form-blank')">Próximo</button>
+          <button type="button" onclick="removeById('div-form-7');
+          unremoveById('div-form-blank');hideById('profiling-h1')">Próximo</button>
         </div>
       </div>
 
@@ -727,7 +728,9 @@
         <button type="button" onclick="nextStage();prepMolecule(task_n);
         removeById('last-updated');">Próxima etapa</button>
         <div class="bottom-fixed">
-          <button type="button" onclick="removeById('div-form-blank');unremoveById('div-form-7')">Anterior</button>
+          <button type="button" onclick="removeById('div-form-blank');
+          unremoveById('div-form-7');unhideById('profiling-h1')">Anterior</button>
+          <button style="visibility:hidden">Próximo</button><!--dummy button to keep same positions-->
         </div>
       </div>
     </form>
