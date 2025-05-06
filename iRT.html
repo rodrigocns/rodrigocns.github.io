@@ -126,34 +126,54 @@
       
       <!-- Forms: informações gerais -->
       <div id="div-form-2" style="display:none">
-        <br>  
-        <label for="p_sex">Sexo Biológico:</label>
-        <select name="p_sex">
-          <option value="male">Masculino</option>
-          <option value="female">Feminino</option>
-        </select><br>
-        <label for="p_gender">Gênero:</label>
-        <select name="p_gender">
-          <option value="male">Masculino</option>
-          <option value="female">Feminino</option>
-          <option value="other">Outros</option>
-          <option value="NA">Prefiro não responder</option>
-        </select>
-
-        <p> Idade:
-          <input type="number" name="p_age" min="1">
-        </p>
-        <p> Qual sua ocupação atual (estuda? trabalha? ambos?):
-          <input type="text" name="p_ocupation" >
-        </p>
-        <p> Qual horário você se sente mais desperto: 
-          <input type="radio" name="p_active" id="p_active_morning" value="morning">
-          <label for="p_active_morning">Manhã</label>
-          <input type="radio" name="p_active" id="p_active_afternoon" value="afternoon">
-          <label for="p_active_afternoon">Tarde</label>
-          <input type="radio" name="p_active" id="p_active_night" value="night">
-          <label for="p_active_night">Noite</label>
-        </p>
+        <br>
+        <table class="paddedTable">
+          <tr>
+            <td><label for="p_sex">Sexo Biológico:</label></td>
+            <td>
+              <select name="p_sex" id="p_sex">
+                <option value="">-- ESCOLHA --</option>
+                <option value="male">Masculino</option>
+                <option value="female">Feminino</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td><label for="p_gender">Gênero:</label></td>
+            <td>
+              <select name="p_gender" id="p_gender">
+                <option value="">-- ESCOLHA --</option>
+                <option value="male">Masculino</option>
+                <option value="female">Feminino</option>
+                <option value="other">Outros</option>
+                <option value="NA">Prefiro não responder</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Idade:</td>
+            <td>
+              <input type="number" name="p_age" min="1">
+            </td>
+          </tr>
+          <tr>
+            <td>Qual sua ocupação atual: <br>(estuda e/ou trabalha com o quê?)</td>
+            <td>
+              <textarea type="text" name="p_ocupation" rows="2" cols="40"></textarea>
+            </td>
+          </tr>
+          <tr>
+            <td>Qual horário você se sente mais desperto:</td>
+            <td>
+              <input type="radio" name="p_active" id="p_active_morning" value="morning">
+              <label for="p_active_morning">Manhã</label> | 
+              <input type="radio" name="p_active" id="p_active_afternoon" value="afternoon">
+              <label for="p_active_afternoon">Tarde</label> | 
+              <input type="radio" name="p_active" id="p_active_night" value="night">
+              <label for="p_active_night">Noite</label>
+            </td>
+          </tr>
+        </table>
         <div class="bottom-fixed">
           <button type="button" onclick="removeById('div-form-2');unremoveById('div-form-1')">Anterior</button>
           <button type="button" onclick="removeById('div-form-2');unremoveById('div-form-3')">Próximo</button>
@@ -163,32 +183,54 @@
       <!-- Forms: Formação -->
       <div id="div-form-3" style="display:none">
         <h3>Formação mais recente (completa ou incompleta): </h3>
-        <br>
-        <label for="p_educ_grau">Nível:(IMPLEMENTAR DROPDOWN)</label>
-        <input type="text" name="p_educ_grau" placeholder="Graduação"><br>
-        <br>
-        <label for="p_educ_field">Qual área/nome do curso:</label>
-        <input type="text" name="p_educ_field" placeholder="Química" ><br>
-        <br>
-        <label for="p_educ_year">Ano de início:</label>
-        <input type="number" name="p_educ_year" min="1900" ><br>
-        <br>
-        <label for="p_educ_duration">Duração do curso (anos):</label>
-        <input type="number" name="p_educ_duration" ><br>
-        <br>
-        Possui outras formações? 
-        <input type="radio" name="p_educ_prev" id="p_educ_prev_yes" value="Sim" 
-        onchange="unhideById('input-educ-txt')">
-        <label for="p_educ_prev_yes">Sim</label> |
-        <input type="radio" name="p_educ_prev" id="p_educ_prev_no" value="Não">
-        <label for="p_educ_prev_no">Não</label>
-        <div id="input-educ-txt" style="visibility:hidden" >
-          <label for="p_educ_prev_txt">
-            Descreva sucintamente, por favor:<br>
-             Nível / Área / Ano de início / Duração(anos)<br>
-          </label>
-          <textarea id="p_educ_prev_txt" name="p_educ_prev_txt" rows="5" cols="50"></textarea>
-        </div>
+        <table class="paddedTable">
+          <tr>
+            <td><label for="p_educ_grau">Nível:</label></td>
+            <td>
+              <select name="p_educ_grau" id="p_educ_grau">
+                <option value="">-- ESCOLHA --</option>
+                <option value="Ensino Médio">Ensino Médio</option>
+                <option value="Ensino Técnico">Ensino Técnico</option>
+                <option value="Graduação">Graduação</option>
+                <option value="Mestrado">Mestrado</option>
+                <option value="Doutorado">Doutorado</option>
+                <option value="Pós-Doutorado">Pós-Doutorado</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td><label for="p_educ_field">Qual área do curso:<br>
+              Ex: Química, Bacharel/Licenciatura/Tecnólogo</label></td>
+            <td><input type="text" name="p_educ_field" id="p_educ_field"></td>
+          </tr>
+          <tr>
+            <td><label for="p_educ_year">Ano de início:</label></td>
+            <td><input type="number" name="p_educ_year" id="p_educ_year" min="1900"></td>
+          </tr>
+          <tr>
+            <td><label for="p_educ_duration">Duração do curso (anos):</label></td>
+            <td><input type="number" name="p_educ_duration" id="p_educ_duration"></td>
+          </tr>
+          <tr>
+            <td>Possui outras formações? </td>
+            <td>
+              <input type="radio" name="p_educ_prev" id="p_educ_prev_yes" value="Sim" 
+              onchange="unhideById('input-educ-txt')">
+              <label for="p_educ_prev_yes">Sim</label> |
+              <input type="radio" name="p_educ_prev" id="p_educ_prev_no" value="Não"
+              onchange="hideById('input-educ-txt')">
+              <label for="p_educ_prev_no">Não</label>
+            </td>
+          </tr>
+          <tr id="input-educ-txt" style="visibility:hidden">
+            <td>
+              <label for="p_educ_prev_txt">Descreva sucintamente, por favor:<br>
+               Nível / Área / Ano de início / Duração(anos)
+              </label>
+            </td>
+            <td><textarea id="p_educ_prev_txt" name="p_educ_prev_txt" rows="5" cols="60"></textarea></td>
+          </tr>
+        </table>
         <div class="bottom-fixed">
           <button type="button" onclick="removeById('div-form-3');unremoveById('div-form-2')">Anterior</button>
           <button type="button" onclick="removeById('div-form-3');unremoveById('div-form-4')">Próximo</button>
