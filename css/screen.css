@@ -227,6 +227,30 @@ table.bulletTable td:nth-child(n + 2) {
   width: auto;
 }
 
+.chem-container {
+  width: 1100px;
+  margin: 0 auto; /* Centers horizontally */
+  text-align: center;
+}
+.chem-options-row {
+  display: flex;
+  justify-content: space-between; /* Distributes 4 options equally */
+  margin-top: 20px; /* Space between text and options */
+  margin-bottom: 20px;
+}
+.chem-option {
+  flex: 1; /* Each option takes up equal width */
+  margin: 0 10px; /* Space between the divs */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+/* Add hover effect */
+.chem-option:hover {
+  background-color: #888;
+  border-color: #888;
+}
+
 .bottom-fixed {
   position: fixed;
   text-align: center;

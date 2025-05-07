@@ -741,19 +741,19 @@
     <form id="form-chem-test" autocomplete="off" >
       
 
-      <table style="margin:auto;text-align:center;">
+      <table style="margin:auto;text-align:center;"> 
         <tr>
-          <td colspan="4">
-            <img src="testequimica/headA.jpg" height="50" width="500">
+          <td colspan="4" style="line-height:0">
+            <img src="testequimica/headA.jpg" height="50" width="500" style="margin-right:50px">
             <img src="testequimica/headB.jpg" height="50" width="500">
             <br>
-            <img id="img2DStruct" src="testequimica/structureA1.jpg" height="500" width="500">
+            <img id="img2DStruct" src="testequimica/structureA1.jpg" height="500" width="500" style="margin-right:50px">
             <img id="img3DStruct" src="testequimica/structureA1B1.jpg" height="500" width="500">
             <br>
-            <img                  src="testequimica/blankA.jpg" height="50" width="500">
+            <img src="testequimica/blankA.jpg" height="50" width="500" style="margin-right:50px">
             <img id="img3DLegend" src="testequimica/legendB1.jpg" height="50" width="500">
           </td>
-        </tr>
+        </tr><!--
         <tr>
           <td colspan="4" style="padding:20px">
             As estruturas A e B representam a mesma molécula?
@@ -780,9 +780,32 @@
             <input type="radio" name="p_quim_cert" id="p_quim_cert_2" 
             value=" 2" >
           </td>
-        </tr>
+        </tr>-->
       </table>
-      <button type="button" onclick="nextChemStructure()">Próximo</button>
+
+      <div class="chem-container" >
+        <p>As estruturas A e B representam a mesma molécula?</p>
+        
+        <div class="chem-options-row">
+          <label class="chem-option" >
+            <input type="radio" name="p_quim_cert" value="2" >
+            <br>É a mesma!
+          </label>
+          <label class="chem-option">
+            <input type="radio" name="p_quim_cert" value="1" >
+            <br>Parece ser mesma...
+          </label>
+          <label class="chem-option">
+            <input type="radio" name="p_quim_cert" value="-1" >
+            <br>Parece ser diferente...
+          </label>
+          <label class="chem-option">
+            <input type="radio" name="p_quim_cert" value="-2" >
+            <br>É diferente!
+          </label>
+        </div>
+        <button type="button" onclick="nextChemStructure()">Próximo</button>
+      </div>
     </form>
 
     <button id="button-chem-end" style="visibility:hidden"
