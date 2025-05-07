@@ -59,7 +59,7 @@ var corsiSeq = [
 
 //initialize jsPsych. 
 var jsPsych = initJsPsych({
-//  display_element: 'corsi-task-container'
+  display_element: 'corsi-task-container'
 });
 
 //create timeline
@@ -69,12 +69,12 @@ var timeline = [];
 var corsiWelcome = {
   type: jsPsychHtmlButtonResponse,
   stimulus: introductionText,
-  choices: ['Próximo'],
+  choices: ['Começar'],
   post_trial_gap: 500,
   //function to hide the corsi block content on load
-  on_load: function(){
+  /*on_load: function(){
     removeById("jspsych-content");
-  },
+  },*/
   on_finish: function() {
     corsiStart();
   },
