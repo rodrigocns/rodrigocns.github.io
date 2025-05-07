@@ -74,11 +74,9 @@ nav li{
   position:relative;
   background:linear-gradient(#ccc,  #aaa);
 }
-
 nav li.selected{
 	background:linear-gradient(#e1e1e1,  #d1d1d1);
 }
-
 nav li a, nav li a:visited, nav li a:hover{
   list-style:none;
   display:block;
@@ -94,13 +92,8 @@ nav li a, nav li a:visited, nav li a:hover{
   text-shadow:#e8e8e8 0 1px 0;
   box-shadow:inset 0 1px 1px #888;
 } 
-
 nav li.selected a{
   box-shadow:none; 
-}
-
-.hide-cursor {
-  cursor: none;
 }
 
 .hidden-elem {
@@ -113,16 +106,6 @@ nav li.selected a{
   opacity: 1;
 }
 
-.div-psvt-answers {
-  position: absolute;
-  top: 540px;
-  left: 109px;
-  width: 770px;
-  height: 130px;
-  background-color: rgba(0,0,255,0); 
-  /* for fully transparent, leave (x,y,z,0) */
-}
-
 .fixed-footer {
   position: fixed;
   text-align: left;
@@ -130,14 +113,6 @@ nav li.selected a{
   left:   0;
   width: 40%;
   padding: 10px;
-}
-
-.paper-intro-choices {
-  position: absolute;
-  top: 0px;
-  width: 130px;
-  height: 100px;
-  font-weight: bold;
 }
 
 .dev-div{
@@ -195,13 +170,6 @@ td {
   text-align: left;
   padding: 15px;
 }
-
-input[type="radio"] {
-  transform: scale(1.5); /* Adjust the scale factor as needed */
-  -ms-transform: scale(1.5); /* IE 9 */
-  -webkit-transform: scale(1.5); /* Chrome, Safari, and Opera */
-}
-
 table.paddedTable td {
   padding: 8px;
   min-width: 80px;
@@ -219,6 +187,11 @@ table.paddedTable td:nth-child(1){
 /* 2nd column and onward */
 table.bulletTable td:nth-child(n + 2) {
   text-align: center;
+}
+input[type="radio"] {
+  transform: scale(1.5); /* Adjust the scale factor as needed */
+  -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Chrome, Safari, and Opera */
 }
 
 .jsmol-canvas {
