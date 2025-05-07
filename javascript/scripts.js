@@ -313,6 +313,7 @@ function imgAlternativeChosen(chosen_alternative) {
   }
   // else, blank screen for next trial
   else {
+    hideById("imgmap");
     unhideById("button-psvtr-end");
   }
 }
