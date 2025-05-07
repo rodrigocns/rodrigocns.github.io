@@ -815,8 +815,8 @@
     </button>
   </section>
 
-  <!-- paper-to-screen task intro-->
-  <section id="tab_paper_intro" class="ContentStage" style="display:none"> 
+  <!-- paper-to-screen task -->
+  <section id="tab_paper_task" class="ContentStage" style="display:none"> 
     <script>
       function choicePaperIntro(introNum){
         const introImage = document.getElementById(`imgmap-intro${introNum}`);
@@ -826,9 +826,8 @@
     </script>
     
     <!-- paper intro 1 -->
-<!--    <div id="div-psvt-intro1" class="centered" style="position: relative; display: block;">
--->    <div id="div-psvt-intro1" class="grid-center" >
-        <img id="imgmap-intro1" src="images/PSVT-R_Intro_ptbr_(1).jpg" usemap="#task_intro1_map" height="750"> 
+    <div id="div-psvt-intro1" class="grid-center" >
+      <img id="imgmap-intro1" src="images/PSVT-R_Intro_ptbr_(1).jpg" usemap="#task_intro1_map" height="750"> 
       <map name="task_intro1_map" style="cursor: pointer">
         <area shape="rect" coords=" 119,430, 247,570" alt="A" onclick="choicePaperIntro(1)">
         <area shape="rect" coords=" 273,430, 401,570" alt="B" onclick="choicePaperIntro(1)">
@@ -856,18 +855,13 @@
       </map>
       <br>
       <button id="button-next-paper-intro2" style="visibility:hidden ;" 
-        onclick='removeById("div-psvt-intro2"); nextStage();'>
+        onclick="removeById('div-psvt-intro2'); unremoveById('div-imgmap','grid')">
         Próximo
       </button>
     </div>
 
-
-  </section>
-
-  <!-- paper-to-screen task -->
-  <section id="tab_paper_task" class="ContentStage" style="display:none"> 
-
-    <div id="div-imgmap" class="grid-center">
+    <!-- paper task -->
+    <div id="div-imgmap" class="grid-center" style="display:none">
       <button id="button-paper-task-start" onclick='removeById("button-paper-task-start");unhideById("imgmap");tic();'>
         Começar!
       </button>
@@ -894,19 +888,19 @@
     </div> 
     <br>
     <!-- end paper task -->
-  </section>
-
-  <!-- corsi block tapping task from jsPsych -->
-  <section id="corsi-task-container" class="ContentStage" style="display:none"> 
-    <button id="button-corsi-start" 
-      onclick='unremoveById("jspsych-content");removeById("button-corsi-start")'>
-      Próximo
+    <button id="button-psvtr-end" onclick="unremoveById('jspsych-content', 'grid');
+    removeById('button-psvtr-end'); nextStage()">
+      Próxima etapa
     </button>
+
+  </section>
+  <!-- corsi block tapping task from jsPsych -->
+  <section id="corsi-task-container" class="ContentStage grid-center" style="display:none"> 
     <div id='corsi-result' style="display:none">
       <p>Aperte 'Próximo' para prosseguir
       </p>
       <button id="endOfCorsiButton"  onclick='nextStage();'>
-        Próximo
+        Próxima etapa
       </button>
     </div> 
   </section>

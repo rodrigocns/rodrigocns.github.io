@@ -1,16 +1,18 @@
 required nos campos das tabelas
 
-aumentar o resto
+aumentar o tamanho dos outros textos
+
+
 
 Eduardo achou estranho as duas:
 Montar e utilizar eletrodomésticos seguindo instruções em vídeo
 Montar e utilizar eletrodomésticos seguindo manual de instruções impresso
 
 Melhor descrição no corsi: 2 tentativas por trial
-resolução monitor 1440 x 900
+adicionar 3 samples de 3 blocos, para explicar as intruções para a pessoa
 
-trocar nomes de cores por átomos/bolas com a cor
- legenda em baixo das imagens
+
+resolução monitor 1440 x 900
 
 Mexer na A3B4 no shading , cloro está estranho.
 

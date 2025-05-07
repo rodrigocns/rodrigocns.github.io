@@ -313,8 +313,7 @@ function imgAlternativeChosen(chosen_alternative) {
   }
   // else, blank screen for next trial
   else {
-    nextStage();
-    unhideById("button-corsi-start");
+    unhideById("button-psvtr-end");
   }
 }
 //lock clicking inside map 
