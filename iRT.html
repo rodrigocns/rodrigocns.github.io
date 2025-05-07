@@ -740,7 +740,7 @@
   <section id="tab_fim" class="ContentStage" style="display:none; font-size:large">
     <form id="form-chem-test" autocomplete="off" >
       
-
+      <!--images table-->
       <table style="margin:auto;text-align:center;"> 
         <tr>
           <td colspan="4" style="line-height:0">
@@ -782,7 +782,8 @@
           </td>
         </tr>-->
       </table>
-
+      
+      <!--choices divs-->
       <div class="chem-container" >
         <p>As estruturas A e B representam a mesma molécula?</p>
         
@@ -825,8 +826,9 @@
     </script>
     
     <!-- paper intro 1 -->
-    <div id="div-psvt-intro1" style="position: relative; display: block;">
-      <img id="imgmap-intro1" src="images/PSVT-R_Intro_ptbr_(1).jpg" usemap="#task_intro1_map" height="750"> 
+<!--    <div id="div-psvt-intro1" class="centered" style="position: relative; display: block;">
+-->    <div id="div-psvt-intro1" class="grid-center" >
+        <img id="imgmap-intro1" src="images/PSVT-R_Intro_ptbr_(1).jpg" usemap="#task_intro1_map" height="750"> 
       <map name="task_intro1_map" style="cursor: pointer">
         <area shape="rect" coords=" 119,430, 247,570" alt="A" onclick="choicePaperIntro(1)">
         <area shape="rect" coords=" 273,430, 401,570" alt="B" onclick="choicePaperIntro(1)">
@@ -837,13 +839,13 @@
       <br>
       <!-- end of paper intro1 -->
       <button id="button-next-paper-intro1" style="visibility:hidden ;" 
-        onclick='removeById("div-psvt-intro1"); unremoveById("div-psvt-intro2")'>
+        onclick="removeById('div-psvt-intro1'); unremoveById('div-psvt-intro2', 'grid')">
         Próximo
       </button>
     </div>
 
     <!-- paper intro 2 -->
-    <div id="div-psvt-intro2" style="position: relative; display: none;">
+    <div id="div-psvt-intro2" class="grid-center" style="display:none">
       <img id="imgmap-intro2" src="images/PSVT-R_Intro_ptbr_(2).jpg" usemap="#task_intro2_map" height="750"> 
       <map name="task_intro2_map" style="cursor: pointer">
         <area shape="rect" coords=" 119,510, 247,650" alt="A" onclick="choicePaperIntro(2)">
@@ -865,7 +867,7 @@
   <!-- paper-to-screen task -->
   <section id="tab_paper_task" class="ContentStage" style="display:none"> 
 
-    <div id="div-imgmap" style="position: relative; display: inline-block;">
+    <div id="div-imgmap" class="grid-center">
       <button id="button-paper-task-start" onclick='removeById("button-paper-task-start");unhideById("imgmap");tic();'>
         Começar!
       </button>
