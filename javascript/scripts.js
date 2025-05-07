@@ -68,6 +68,9 @@ const img3DLegend = document.getElementById('img3DLegend');
 // index passa por 3 3struturas 2d, cada uma com 4 estruturas 3d 
 function chemStructureNext() {
   //jmol script for images: select all; wireframe 0.10; spacefill 20%; select hydrogens; spacefill 15%
+  //register current choice
+  const chemForm = document.getElementById('form-chem-test')
+  chemStructureArray.push(chemForm.p_chem_structure.value);
   //next image counter
   img3Dindex = img3Dindex + 1;
   // se 3D index maior que 4, 2D index aumenta e 3d index volta a 1
@@ -79,7 +82,6 @@ function chemStructureNext() {
   img2DStruct.src = `testequimica/structureA${img2Dindex}.jpg`;
   img3DStruct.src = `testequimica/structureA${img2Dindex}B${img3Dindex}.jpg`;
   img3DLegend.src = `testequimica/legendB${img2Dindex}.jpg`;
-  
 }
 
 /* hide document element */
@@ -615,13 +617,7 @@ function saveProfilingData () {
     difMatSubj:         compileAnswersToArray('p_dif_m', 11),
     difCotidSubj:       compileAnswersToArray('p_dif_c', 19),
     
-    estrQuimA:          compileAnswersToArray('p_a_quim', 4, 'checkbox') ,
-    estrQuimAcertain:   chemForm.p_a_quim_cert.value,
-    estrQuimB:          compileAnswersToArray('p_b_quim', 4, 'checkbox') ,
-    estrQuimBcertain:   chemForm.p_b_quim_cert.value,
-    estrQuimC:          compileAnswersToArray('p_c_quim', 4, 'checkbox') ,
-    estrQuimCcertain:   chemForm.p_c_quim_cert.value,
-
+    testeEstruturas:    chemStructureArray,
 
     browser:            navigator.userAgent,
     pixelRatio:         window.devicePixelRatio,
