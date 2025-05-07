@@ -68,9 +68,11 @@ const img3DLegend = document.getElementById('img3DLegend');
 // index passa por 3 3struturas 2d, cada uma com 4 estruturas 3d 
 function chemStructureNext() {
   //jmol script for images: select all; wireframe 0.10; spacefill 20%; select hydrogens; spacefill 15%
-  //register current choice
   const chemForm = document.getElementById('form-chem-test')
+  //register current choice
   chemStructureArray.push(chemForm.p_chem_structure.value);
+  //clean radio choice
+  document.querySelector('input[name="p_chem_structure"]:checked').checked = false;
   //next image counter
   img3Dindex = img3Dindex + 1;
   // se 3D index maior que 4, 2D index aumenta e 3d index volta a 1
@@ -82,6 +84,11 @@ function chemStructureNext() {
   img2DStruct.src = `testequimica/structureA${img2Dindex}.jpg`;
   img3DStruct.src = `testequimica/structureA${img2Dindex}B${img3Dindex}.jpg`;
   img3DLegend.src = `testequimica/legendB${img2Dindex}.jpg`;
+  //hide current section, prepare for next one
+  if (img2Dindex > 3) {
+    unhideById('button-chem-end');
+    removeById('form-chem-test');
+  }
 }
 
 /* hide document element */

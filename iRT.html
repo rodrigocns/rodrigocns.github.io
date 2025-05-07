@@ -787,29 +787,30 @@
         <p>As estruturas A e B representam a mesma molécula?</p>
         
         <div class="chem-options-row">
-          <label class="chem-option" >
+          <label class="chem-option" onclick="unhideById('button-chem-next')">
             <input type="radio" name="p_chem_structure" value="2" >
             <br>É a mesma!
           </label>
-          <label class="chem-option">
+          <label class="chem-option" onclick="unhideById('button-chem-next')">
             <input type="radio" name="p_chem_structure" value="1" >
             <br>Parece ser mesma...
           </label>
-          <label class="chem-option">
+          <label class="chem-option" onclick="unhideById('button-chem-next')">
             <input type="radio" name="p_chem_structure" value="-1" >
             <br>Parece ser diferente...
           </label>
-          <label class="chem-option">
+          <label class="chem-option" onclick="unhideById('button-chem-next')">
             <input type="radio" name="p_chem_structure" value="-2" >
             <br>É diferente!
           </label>
         </div>
-        <button type="button" onclick="chemStructureNext()">Próximo</button>
+        <button type="button" id="button-chem-next" style="visibility:hidden" 
+        onclick="chemStructureNext();this.style.visibility='hidden'">Próximo</button>
       </div>
     </form>
 
     <button id="button-chem-end" style="visibility:hidden"
-      onclick="nextStage()" >Próximo
+      onclick="nextStage()">Próxima etapa
     </button>
   </section>
 
