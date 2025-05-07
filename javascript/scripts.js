@@ -61,12 +61,12 @@ function debug() {
 
 var img2Dindex = 1;
 var img3Dindex = 1;
-var structureArray = [];
+var chemStructureArray = [];
 const img2DStruct = document.getElementById('img2DStruct');
 const img3DStruct = document.getElementById('img3DStruct');
 const img3DLegend = document.getElementById('img3DLegend');
 // index passa por 3 3struturas 2d, cada uma com 4 estruturas 3d 
-function nextChemStructure() {
+function chemStructureNext() {
   //jmol script for images: select all; wireframe 0.10; spacefill 20%; select hydrogens; spacefill 15%
   //next image counter
   img3Dindex = img3Dindex + 1;
@@ -75,9 +75,11 @@ function nextChemStructure() {
     img2Dindex = img2Dindex +1;
     img3Dindex = 1;
   }
+  //set (possible) new images
   img2DStruct.src = `testequimica/structureA${img2Dindex}.jpg`;
   img3DStruct.src = `testequimica/structureA${img2Dindex}B${img3Dindex}.jpg`;
   img3DLegend.src = `testequimica/legendB${img2Dindex}.jpg`;
+  
 }
 
 /* hide document element */
@@ -586,9 +588,9 @@ function saveProfilingData () {
   const chemForm = document.getElementById('form-chem-test');
 
   const profileData = {
-    sessionID: sessionID,
-    name:     gsForm.fname.value,
-    email:    gsForm.email.value,
+    sessionID:          sessionID,
+    name:               gsForm.fname.value,
+    email:              gsForm.email.value,
     sex:                gsForm.p_sex.value,
     gender:             gsForm.p_gender.value,
     age:                gsForm.p_age.value,
