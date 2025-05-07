@@ -19,3 +19,6 @@ Mexer na A3B4 no shading , cloro está estranho.
 mudar estrutura de dados para o teste de química (as variáveis mudaram de nome)
 
 Fix alinhamento das imagens
+
+
+Pxóxima etapa button ir para o meio (hor, vert)

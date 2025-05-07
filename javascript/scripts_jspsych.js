@@ -162,7 +162,7 @@ const corsiEnd = {
   on_finish: function() {
     console.log(`Corsi block task complete. Score:${corsi_score} 
       | Correct answers: ${corsi_trial_correct} of ${corsi_trial_count}`);
-    document.getElementById("corsi-result").style.display='block';
+    unremoveById("corsi-result",'grid');
   }
 };
 

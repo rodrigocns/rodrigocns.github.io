@@ -890,12 +890,13 @@
     <br>
 
   </section>
+  
   <!-- corsi block tapping task from jsPsych -->
   <section id="tab_corsi" class="ContentStage grid-center" style="display:none"> 
     <div id="corsi-task-container" class="grid-center">
 
     </div>
-    <div id='corsi-result' style="display:none">
+    <div id='corsi-result' class="grid-center" style="display:none">
       <p>Aperte 'Próximo' para prosseguir
       </p>
       <button id="endOfCorsiButton"  onclick='nextStage();'>
@@ -909,9 +910,14 @@
     <div class="debug" id="indicador_orientacao" style="background-color:gray">Test</div> <!-- orientation coordinates -->
 
     <table id="table-iRT-canvas"> 
+      
       <tr>
-        <button id="startButton" onclick="iRTStart();removeById('iRT-instructions')">Começar!</button>
-        <button id="submitButton" onclick="buttoniRTSubmit()" style="visibility:hidden" form="gsForm">Pronto!</button>
+        <th colspan="3">
+          <button id="startButton" onclick="iRTStart();removeById('iRT-instructions')">
+            Começar!</button>
+          <button id="submitButton" onclick="buttoniRTSubmit()" style="visibility:hidden" form="gsForm">
+            Pronto!</button>
+        </th>
       </tr>
       <tr>
         <td class="jsmol-canvas" id="cellLeft">
