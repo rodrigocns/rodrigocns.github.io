@@ -108,11 +108,6 @@ nav li.selected a{
   opacity: 0;
   transition: opacity 0.3s ease;
 }
-.smooth-vis {
-  transition: opacity 0.3s ease;
-  opacity: 1;
-  visibility: visible;
-}
 .unhider:hover .hidden-elem {
   visibility: visible;
   opacity: 1;
