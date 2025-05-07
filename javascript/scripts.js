@@ -106,11 +106,46 @@ function visibilityById (idNameAsString) {
   }
 }
 
-function hideById (idNameAsString) {
-  document.getElementById(idNameAsString).style.visibility="hidden";
+function hideById (idNameAsString, smooth = false) {
+  const elem = document.getElementById(idNameAsString);
+  if (!elem) return;
+  
+  if (smooth) {
+    //add transition class if not present
+    elem.classList.add('smooth-transition');
+    //start to fade out
+    elem.style.opacity = '0';
+
+    // After the transition ends, set visibility to hidden
+    elem.addEventListener('transitioned', function handler() {
+      elem.style.visibility = 'hidden';
+      elem.removeElentListener('transitionend', handler);
+    });
+  } else {
+    elem.style.visibility = 'hidden';
+    elem.style.opacity = '0';
+  }
 }
 function unhideById (idNameAsString) {
   document.getElementById(idNameAsString).style.visibility="visible";
+  const elem = document.getElementById(idNameAsString);
+  if (!elem) return;
+
+  if (smooth) {
+      // Add the transition class if not present
+      elem.classList.add('smooth-transition');
+
+      // First set visibility to visible
+      elem.style.visibility = 'visible';
+      
+      // Then trigger the fade-in
+      requestAnimationFrame(() => {
+          elem.style.opacity = '1';
+      });
+  } else {
+      elem.style.visibility = 'visible';
+      elem.style.opacity = '1'; 
+  }
 }
 
 function removeById (idNameAsString) {
