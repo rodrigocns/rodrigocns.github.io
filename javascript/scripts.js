@@ -117,11 +117,13 @@ function unhideById(idNameAsString) {
 }
 
 function removeById (idNameAsString) {
-  document.getElementById(idNameAsString).style.display="none";
+  const el = document.getElementById(idNameAsString);
+  el.style.display="none";
 }
 
 function unremoveById (idNameAsString, displayType="block") {
-  document.getElementById(idNameAsString).style.display = displayType;
+  const el = document.getElementById(idNameAsString);
+  el.style.display = displayType;
 }
 
 /* View in fullscreen */
