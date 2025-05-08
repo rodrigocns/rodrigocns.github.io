@@ -67,7 +67,6 @@ const img3DStruct = document.getElementById('img3DStruct');
 const img3DLegend = document.getElementById('img3DLegend');
 // index passa por 3 3struturas 2d, cada uma com 4 estruturas 3d 
 function chemStructureNext() {
-  //jmol script for images: select all; wireframe 0.10; spacefill 20%; select hydrogens; spacefill 15%
   const chemForm = document.getElementById('form-chem-test')
   //register current choice
   chemStructureArray.push(chemForm.p_chem_structure.value);
