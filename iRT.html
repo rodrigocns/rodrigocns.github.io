@@ -22,10 +22,9 @@
 </head>
 
 <body>
-  <!-- debug mode switch -->
-  <div style="text-align:right"><span id="debug_switch" style="color:#404040" onclick="debug()">Debug</span></div>
-  
   <!-- <section class="w3-container w3-center w3-animate-opacity"> -->
+  <!-- Debug mode switch -->
+  <div style="text-align:right"><span id="debug_switch" style="color:#404040" onclick="debug()">Debug</span></div>
   <section id="tab_navigation" class="debug">
     <div class="dev-div">
       You are in debug mode! If this was a mistake, please click again in the corner of the screen, or reload the page, and forget you saw this! ;D
@@ -119,7 +118,7 @@
           <input type="text" name="email" placeholder="Ex: rodrigo@gmail.com" size="30"></p>
         <br>
         <div class="bottom-fixed" style="bottom:200px">
-          <button type="button" onclick="removeById('div-form-1');unremoveById('div-form-2');openFullscreen()">
+          <button type="button" onclick="removeById('div-form-1');unremoveById('div-form-2','block');openFullscreen()">
             Próximo</button>
         </div>
       </div>
@@ -175,8 +174,8 @@
           </tr>
         </table>
         <div class="bottom-fixed">
-          <button type="button" onclick="removeById('div-form-2');unremoveById('div-form-1')">Anterior</button>
-          <button type="button" onclick="removeById('div-form-2');unremoveById('div-form-3')">Próximo</button>
+          <button type="button" onclick="removeById('div-form-2');unremoveById('div-form-1','block')">Anterior</button>
+          <button type="button" onclick="removeById('div-form-2');unremoveById('div-form-3','block')">Próximo</button>
         </div>
       </div>
 
@@ -201,7 +200,7 @@
           <tr>
             <td><label for="p_educ_field">Qual área do curso:<br>
               Ex: Química, Bacharel/Licenciatura/Tecnólogo</label></td>
-            <td><input type="text" name="p_educ_field" id="p_educ_field"></td>
+            <td><input type="text" name="p_educ_field" id="p_educ_field" size="40"></td>
           </tr>
           <tr>
             <td><label for="p_educ_year">Ano de início:</label></td>
@@ -232,8 +231,8 @@
           </tr>
         </table>
         <div class="bottom-fixed">
-          <button type="button" onclick="removeById('div-form-3');unremoveById('div-form-2')">Anterior</button>
-          <button type="button" onclick="removeById('div-form-3');unremoveById('div-form-4')">Próximo</button>
+          <button type="button" onclick="removeById('div-form-3');unremoveById('div-form-2','block')">Anterior</button>
+          <button type="button" onclick="removeById('div-form-3');unremoveById('div-form-4','block')">Próximo</button>
         </div>
       </div>
 
@@ -302,8 +301,8 @@
         
         <br>
         <div class="bottom-fixed">
-          <button type="button" onclick="removeById('div-form-4');unremoveById('div-form-3')">Anterior</button>
-          <button type="button" onclick="removeById('div-form-4');unremoveById('div-form-5')">Próximo</button>
+          <button type="button" onclick="removeById('div-form-4');unremoveById('div-form-3','block')">Anterior</button>
+          <button type="button" onclick="removeById('div-form-4');unremoveById('div-form-5','block')">Próximo</button>
         </div>
       </div>
 
@@ -435,8 +434,8 @@
         </table>
         <br>
         <div class="bottom-fixed">
-          <button type="button" onclick="removeById('div-form-5');unremoveById('div-form-4')">Anterior</button>
-          <button type="button" onclick="removeById('div-form-5');unremoveById('div-form-6')">Próximo</button>
+          <button type="button" onclick="removeById('div-form-5');unremoveById('div-form-4','block')">Anterior</button>
+          <button type="button" onclick="removeById('div-form-5');unremoveById('div-form-6','block')">Próximo</button>
         </div>
       </div>
 
@@ -544,8 +543,8 @@
         </table>
         <br>
         <div class="bottom-fixed">
-          <button type="button" onclick="removeById('div-form-6');unremoveById('div-form-5')">Anterior</button>
-          <button type="button" onclick="removeById('div-form-6');unremoveById('div-form-7')">Próximo</button>
+          <button type="button" onclick="removeById('div-form-6');unremoveById('div-form-5','block')">Anterior</button>
+          <button type="button" onclick="removeById('div-form-6');unremoveById('div-form-7','block')">Próximo</button>
         </div>
       </div>
       
@@ -716,20 +715,20 @@
           </tr>
         </table>
         <br><br><br>
-        <div class="bottom-fixed">
-          <button type="button" onclick="removeById('div-form-7');unremoveById('div-form-6')">Anterior</button>
-          <button type="button" onclick="removeById('div-form-7');
-          unremoveById('div-form-blank');hideById('profiling-h1')">Próximo</button>
+        <div class="bottom-fixed" style="position:relative">
+          <button type="button" onclick="removeById('div-form-7');unremoveById('div-form-6','block')">Anterior</button>
+          <button type="button" onclick="removeById('div-form-7');unremoveById('div-form-blank','grid');
+          hideById('profiling-h1')">Próximo</button>
         </div>
       </div>
 
       <!-- tela branca-->
-      <div id="div-form-blank" style="display:none">
-        <button type="button" onclick="nextStage();prepMolecule(task_n);
-        removeById('last-updated');">Próxima etapa</button>
+      <div id="div-form-blank" class="grid-center-whole" style="display:none">
+        <button type="button" onclick="nextStage();
+        removeById('last-updated');">Próxima etapa >></button>
         <div class="bottom-fixed">
           <button type="button" onclick="removeById('div-form-blank');
-          unremoveById('div-form-7');unhideById('profiling-h1')">Anterior</button>
+          unremoveById('div-form-7','block');unhideById('profiling-h1')">Anterior</button>
           <button style="visibility:hidden">Próximo</button><!--dummy button to keep same positions-->
         </div>
       </div>
@@ -811,31 +810,23 @@
         onclick="chemStructureNext();this.style.visibility='hidden'">Próximo</button>
       </div>
     </form>
-
-    <button id="button-chem-end" style="visibility:hidden"
-      onclick="nextStage()">Próxima etapa
-    </button>
+    <div id="div-chem-end" class="grid-center-whole" style="display:none">
+      <button onclick="nextStage()">Próxima etapa >></button>
+    </div>
   </section>
 
-  <!-- paper-to-screen task -->
+  <!-- psvtR task -->
   <section id="tab_paper_task" class="ContentStage" style="display:none"> 
-    <script>
-      function choicePaperIntro(introNum){
-        const introImage = document.getElementById(`imgmap-intro${introNum}`);
-        introImage.src = `images/PSVT-R_Intro_ptbr_(${introNum})ans.jpg`;
-        unhideById(`button-next-paper-intro${introNum}`);
-      };
-    </script>
     
     <!-- paper intro 1 -->
     <div id="div-psvt-intro1" class="grid-center" >
       <img id="imgmap-intro1" src="images/PSVT-R_Intro_ptbr_(1).jpg" usemap="#task_intro1_map" height="750"> 
       <map name="task_intro1_map" style="cursor: pointer">
-        <area shape="rect" coords=" 119,430, 247,570" alt="A" onclick="choicePaperIntro(1)">
-        <area shape="rect" coords=" 273,430, 401,570" alt="B" onclick="choicePaperIntro(1)">
-        <area shape="rect" coords=" 430,430, 558,570" alt="C" onclick="choicePaperIntro(1)">
-        <area shape="rect" coords=" 585,430, 713,570" alt="D" onclick="choicePaperIntro(1)">
-        <area shape="rect" coords=" 737,430, 865,570" alt="E" onclick="choicePaperIntro(1)">
+        <area shape="rect" coords=" 119,430, 247,570" alt="A" onclick="psvtrIntroChoice(1)">
+        <area shape="rect" coords=" 273,430, 401,570" alt="B" onclick="psvtrIntroChoice(1)">
+        <area shape="rect" coords=" 430,430, 558,570" alt="C" onclick="psvtrIntroChoice(1)">
+        <area shape="rect" coords=" 585,430, 713,570" alt="D" onclick="psvtrIntroChoice(1)">
+        <area shape="rect" coords=" 737,430, 865,570" alt="E" onclick="psvtrIntroChoice(1)">
       </map>
       <br>
       <!-- end of paper intro1 -->
@@ -849,47 +840,53 @@
     <div id="div-psvt-intro2" class="grid-center" style="display:none">
       <img id="imgmap-intro2" src="images/PSVT-R_Intro_ptbr_(2).jpg" usemap="#task_intro2_map" height="750"> 
       <map name="task_intro2_map" style="cursor: pointer">
-        <area shape="rect" coords=" 119,510, 247,650" alt="A" onclick="choicePaperIntro(2)">
-        <area shape="rect" coords=" 273,510, 401,650" alt="B" onclick="choicePaperIntro(2)">
-        <area shape="rect" coords=" 430,510, 558,650" alt="C" onclick="choicePaperIntro(2)">
-        <area shape="rect" coords=" 585,510, 713,650" alt="D" onclick="choicePaperIntro(2)">
-        <area shape="rect" coords=" 737,510, 865,650" alt="E" onclick="choicePaperIntro(2)">
+        <area shape="rect" coords=" 119,510, 247,650" alt="A" onclick="psvtrIntroChoice(2)">
+        <area shape="rect" coords=" 273,510, 401,650" alt="B" onclick="psvtrIntroChoice(2)">
+        <area shape="rect" coords=" 430,510, 558,650" alt="C" onclick="psvtrIntroChoice(2)">
+        <area shape="rect" coords=" 585,510, 713,650" alt="D" onclick="psvtrIntroChoice(2)">
+        <area shape="rect" coords=" 737,510, 865,650" alt="E" onclick="psvtrIntroChoice(2)">
       </map>
       <br>
       <button id="button-next-paper-intro2" style="visibility:hidden ;" 
-        onclick="removeById('div-psvt-intro2'); unremoveById('div-imgmap','grid')">
+        onclick="removeById('div-psvt-intro2'); unremoveById('div-psvtr-start','grid')">
         Próximo
       </button>
     </div>
 
-    <!-- paper task -->
-    <div id="div-imgmap" class="grid-center" style="display:none">
-      <button id="button-paper-task-start" onclick='removeById("button-paper-task-start");unhideById("imgmap");tic();'>
+    <!-- pre-task -->
+    <div id="div-psvtr-start" class="grid-center-whole" style="display:none">
+      <button onclick="removeById('div-psvtr-start');unremoveById('div-psvtr-task','grid');tic();">
         Começar!
       </button>
-      <br>
+    </div>
+    
+    <!-- paper task -->
+    <div id="div-psvtr-task" class="grid-center-whole" style="display:none">
       <!-- common height of notebooks is 768px.
         Image is 1625x1250, and was resized to 60% of its size in page -->
       <img id="imgmap" src="images/PSVT-R (1).jpg" usemap="#task_alternatives_map"
-      style="visibility:hidden;" height="750" >
+      height="750" >
       <script>
+        //trigger tic() function when loading new image, for reaction time data
         document.getElementById('imgmap').onload = function(){ tic(); };
       </script> 
       <map name="task_alternatives_map" style="cursor: pointer">
-        <area shape="rect" coords=" 119,480, 247,660" alt="A" onclick="imgAlternativeChosen('A')">
-        <area shape="rect" coords=" 273,480, 401,660" alt="B" onclick="imgAlternativeChosen('B')">
-        <area shape="rect" coords=" 430,480, 558,660" alt="C" onclick="imgAlternativeChosen('C')">
-        <area shape="rect" coords=" 585,480, 713,660" alt="D" onclick="imgAlternativeChosen('D')">
-        <area shape="rect" coords=" 737,480, 865,660" alt="E" onclick="imgAlternativeChosen('E')">
+        <area shape="rect" coords=" 119,480, 247,660" alt="A" onclick="psvtrTaskChoice('A')">
+        <area shape="rect" coords=" 273,480, 401,660" alt="B" onclick="psvtrTaskChoice('B')">
+        <area shape="rect" coords=" 430,480, 558,660" alt="C" onclick="psvtrTaskChoice('C')">
+        <area shape="rect" coords=" 585,480, 713,660" alt="D" onclick="psvtrTaskChoice('D')">
+        <area shape="rect" coords=" 737,480, 865,660" alt="E" onclick="psvtrTaskChoice('E')">
       </map>
 
-      <!-- paper task end -->
-      <button id="button-psvtr-end" onclick="unremoveById('jspsych-content', 'grid');
-      removeById('button-psvtr-end'); nextStage()" style="visibility:hidden">
-        Próxima etapa
+    </div>
+
+    <!-- psvtr task end -->
+    <div id="div-psvtr-end" class="grid-center-whole" style="display:none">
+      <button onclick="/*unremoveById('jspsych-content', 'grid');*/
+      removeById('div-psvtr-end'); nextStage()">
+        Próxima etapa >>
       </button>
     </div>
-    <br>
 
   </section>
   
@@ -902,7 +899,7 @@
       <p>Aperte 'Próximo' para prosseguir
       </p>
       <button id="endOfCorsiButton"  onclick='nextStage();'>
-        Próxima etapa
+        Próxima etapa >>
       </button>
     </div> 
   </section>
@@ -910,129 +907,156 @@
   <!-- iRT - interactive Rotation Tasks -->
   <section id="tab_iRT" class="ContentStage" style="display:none">  
     <div class="debug" id="indicador_orientacao" style="background-color:gray">Test</div> <!-- orientation coordinates -->
-
-    <table id="table-iRT-canvas"> 
-      
-      <tr>
-        <th colspan="3">
-          <button id="startButton" onclick="iRTStart();removeById('iRT-instructions')">
-            Começar!</button>
-          <button id="submitButton" onclick="buttoniRTSubmit()" style="visibility:hidden" form="gsForm">
-            Pronto!</button>
-        </th>
-      </tr>
-      <tr>
-        <td class="jsmol-canvas" id="cellLeft">
-          <script>
-            Jmol.getApplet("jsmolReferenceObject", Info_reference);
-          </script>
-        </td>
-        <td id="tdCenter">
-          <span id="iRT-instructions" ></span>
-          <script>document.getElementById('iRT-instructions').innerHTML=instructionTextiRT</script>
-          <br>
-          <div class="debug">Duration: <output id="timer_onscreen" ></output> s</div>
-          <br>
-          <button class="debug" onclick="getWindowSize()">scrSize</button>
-          <button class="debug" onclick="buttoniRTSubmit()">!POST</button>
-          <button class="debug" onclick="timerStop()">timerStop</button>
-          <button class="debug" onclick="saveFile()">Save Data Localy</button>
-          <button class="debug" onclick="pixelAngstromRatio(randXYZ(jsmolInteractiveObject),jsmolInteractiveObject,1)">px:Angst</button>
-          <button class="debug" onclick="Jmol.script(jsmolReferenceObject,'console')">consoleTgt</button>
-          <button class="debug" onclick="Jmol.script(jsmolInteractiveObject,'console')">consoleInt</button>
-          <br><br>
-          <button class="debug" onclick="buildLin(jsmolInteractiveObject)">linear</button>
-          <button class="debug" onclick="buildLinMirror(jsmolInteractiveObject)">linear m</button>
-          <button class="debug" onclick="buildSeg(jsmolInteractiveObject)">segment</button>
-          <button class="debug" onclick="buildSegMirror(jsmolInteractiveObject)">segment m</button>
-          <button class="debug" onclick="buildPer(jsmolInteractiveObject)">perimeter</button>
-          <button class="debug" onclick="buildPerMirror(jsmolInteractiveObject)">perimeter m</button>
-          <button class="debug" onclick="buildFac(jsmolInteractiveObject)">faces</button>
-          <button class="debug" onclick="buildFacMirror(jsmolInteractiveObject)">faces m</button>
-          <br><br>
-          <button class="debug" onclick="Jmol.script(jsmolInteractiveObject, 'select *; color gray;' )">gray</button>
-          <button class="debug" onclick="Jmol.script(jsmolInteractiveObject, 'select *; color cpk;' )">cpk</button>
-          <button class="debug" onclick="Jmol.script(jsmolInteractiveObject, 'moveTo 0 QUATERNION {0.6249 -0.0366 -0.6990 -0.3458}')">startPosStd</button>
-          <button class="debug" onclick="Jmol.script(jsmolInteractiveObject, 'moveTo 0 quaternion {0.7910  0.3605  0.4065  0.2812}')">startPosNew</button>
-          
-          <div>
-            <button id="endTasksButton" onclick="nextStage();" style="visibility:hidden">Próximo</button>
-          </div>
     
-        </td>
-        <td class="jsmol-canvas" id="cellRight"> 
-          <script>
-            Jmol.getApplet("jsmolInteractiveObject", Info_interactive);
-          </script>
-        </td>
-      </tr>
-    </table>
+    <div id="div-iRT-intro" class="grid-center-whole">
+      <span id="iRT-instructions" ></span>
+      <script>document.getElementById('iRT-instructions').innerHTML=instructionTextiRT</script>
+      <button type="button" onclick="prepMolecule(task_n);unremoveById('div-iRT-task');
+      removeById('div-iRT-intro','grid')">Próximo</button>
+    </div>
+    
+    <div id="div-iRT-task" class="grid-center-whole" style="display:none">
+      <table id="table-iRT-canvas"> 
+        
+        <tr>
+          <th colspan="3">
+            <button id="startButton" onclick="iRTStart();removeById('iRT-instructions')">
+              Começar!</button>
+              <button id="submitButton" onclick="buttoniRTSubmit()" style="visibility:hidden" form="gsForm">
+              Pronto!</button>
+          </th>
+        </tr>
+        <tr>
+          <td class="jsmol-canvas" id="cellLeft">
+            <script>
+              Jmol.getApplet("jsmolReferenceObject", Info_reference);
+            </script>
+          </td>
+          <td id="tdCenter">
+            <br>
+            <div class="debug">Duration: <output id="timer_onscreen" ></output> s</div>
+            <br>
+            <button class="debug" onclick="getWindowSize()">scrSize</button>
+            <button class="debug" onclick="buttoniRTSubmit()">!POST</button>
+            <button class="debug" onclick="timerStop()">timerStop</button>
+            <button class="debug" onclick="saveFile()">Save Data Localy</button>
+            <button class="debug" onclick="pixelAngstromRatio(randXYZ(jsmolInteractiveObject),jsmolInteractiveObject,1)">px:Angst</button>
+            <button class="debug" onclick="Jmol.script(jsmolReferenceObject,'console')">consoleTgt</button>
+            <button class="debug" onclick="Jmol.script(jsmolInteractiveObject,'console')">consoleInt</button>
+            <br><br>
+            <button class="debug" onclick="buildLin(jsmolInteractiveObject)">linear</button>
+            <button class="debug" onclick="buildLinMirror(jsmolInteractiveObject)">linear m</button>
+            <button class="debug" onclick="buildSeg(jsmolInteractiveObject)">segment</button>
+            <button class="debug" onclick="buildSegMirror(jsmolInteractiveObject)">segment m</button>
+            <button class="debug" onclick="buildPer(jsmolInteractiveObject)">perimeter</button>
+            <button class="debug" onclick="buildPerMirror(jsmolInteractiveObject)">perimeter m</button>
+            <button class="debug" onclick="buildFac(jsmolInteractiveObject)">faces</button>
+            <button class="debug" onclick="buildFacMirror(jsmolInteractiveObject)">faces m</button>
+            <br><br>
+            <button class="debug" onclick="Jmol.script(jsmolInteractiveObject, 'select *; color gray;' )">gray</button>
+            <button class="debug" onclick="Jmol.script(jsmolInteractiveObject, 'select *; color cpk;' )">cpk</button>
+            <button class="debug" onclick="Jmol.script(jsmolInteractiveObject, 'moveTo 0 QUATERNION {0.6249 -0.0366 -0.6990 -0.3458}')">startPosStd</button>
+            <button class="debug" onclick="Jmol.script(jsmolInteractiveObject, 'moveTo 0 quaternion {0.7910  0.3605  0.4065  0.2812}')">startPosNew</button>
+            
+            <div>
+              <button id="endTasksButton" onclick="nextStage();" style="visibility:hidden">
+                Próxima Etapa >>
+              </button>
+            </div>
+      
+          </td>
+          <td class="jsmol-canvas" id="cellRight"> 
+            <script>
+              Jmol.getApplet("jsmolInteractiveObject", Info_interactive);
+            </script>
+          </td>
+        </tr>
+      </table>
+    </div>
     <div id=jsmol_molecula_console class="debug">Console (wip)</div>
     
   </section>
   
   <!-- final questions -->
-  <section id="tab_final_question" class="ContentStage" style="display:none"> <!-- Final words -->
-    <h1>Últimas perguntas:</h1>
-    <form id="endForm" autocomplete="off">
-      Em uma escala de 1 a 5, sendo 5 muito difícil e 1 muito fácil,<br>
-        qual foi a sua dificuldade com os testes?
-      <table style="margin:auto">
-        <tr>
-          <td><img src="images/icon_chem.png"></img></td>
-          <td style="padding:10px">
-            Comparar estruturas químicas <br>
-            <input type="number" name="p_dific_chem" min="1" max="5" >
-          </td>
-        </tr>
-        <tr>
-          <td><img src="images/icon_paper.png"></img></td>
-          <td style="padding:10px">
-            Rotação mental de blocos <br>
-            <input type="number" name="p_dific_paper" min="1" max="5" >
-          </td>
-        </tr>
-        <tr>
-          <td><img src="images/icon_corsi.png"></img></td>
-          <td style="padding:10px"> 
-            Sequência de blocos piscando <br>
-            <input type="number" name="p_dific_corsi" min="1" max="5" >
-          </td>
-        </tr>
-        <tr>
-          <td><img src="images/icon_jsmol.png"></img></td>
-          <td style="padding:10px"> 
-            Rotação interativa de objetos<br>
-            <input type="number" name="p_dific_jsmol" min="1" max="5" >
-          </td>
-        </tr>
-      </table>
-      <p>
-        Você percebeu alguma semelhança entre os objetos de rotação interativa? 
-        <input type="radio" name="p_likeness" id="p_likeness_sim" value="Sim" 
-        onchange="unhideById('input-likeness-txt')">
-        <label for="p_likeness_sim">Sim</label> |
-        <input type="radio" name="p_likeness" id="p_likeness_nao" value="Não"
-        onchange="unhideById('button-final-trial')">
-        <label for="p_likeness_nao">Não</label>
-      </p>
-      <div id="input-likeness-txt" style="visibility:hidden" >
-        <label for="p_likeness_txt">Descreva sucintamente, por favor:</label>
-        <br>
-        <textarea id="p_likeness_txt" name="p_likeness_txt" rows="5" cols="50"
-        oninput="unhideById('button-final-trial')"></textarea>
-      </div>
-    </form>
-    <button id="button-final-trial" style="visibility:hidden"
-    onclick="nextStage();closeFullscreen();saveProfilingData()" >Finalizar</button>
+  <section id="tab_final_question" class="ContentStage" style="display:none"> 
+    <!-- Final words -->
+    <div class="grid-center">
+      <h1>Últimas perguntas:</h1>
+      <form id="endForm" autocomplete="off">
+        <table style="margin:auto">
+          <tr>
+            <td colspan="2">
+              Em uma escala de 1 a 5, sendo 5 muito difícil e 1 muito fácil,<br>
+              qual foi a sua dificuldade com os testes?
+            </td>
+          </tr>
+          <tr>
+            <td width="125px" style="padding:0px"><img src="images/icon_chem.png"></img></td>
+            <td style="padding:10px">
+              Comparar estruturas químicas <br>
+              <input type="number" name="p_dific_chem" min="1" max="5" >
+            </td>
+          </tr>
+          <tr>
+            <td><img src="images/icon_paper.png"></img></td>
+            <td style="padding:10px">
+              Rotação mental de blocos <br>
+              <input type="number" name="p_dific_paper" min="1" max="5" >
+            </td>
+          </tr>
+          <tr>
+            <td><img src="images/icon_corsi.png"></img></td>
+            <td style="padding:10px"> 
+              Sequência de blocos piscando <br>
+              <input type="number" name="p_dific_corsi" min="1" max="5" >
+            </td>
+          </tr>
+          <tr>
+            <td><img src="images/icon_jsmol.png"></img></td>
+            <td style="padding:10px"> 
+              Rotação interativa de objetos<br>
+              <input type="number" name="p_dific_jsmol" min="1" max="5" >
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" style="padding:10px">
+              <p>
+                Você percebeu alguma semelhança entre os objetos de rotação interativa? 
+                <input type="radio" name="p_likeness" id="p_likeness_sim" value="Sim" 
+                onchange="unhideById('input-likeness-txt')">
+                <label for="p_likeness_sim">Sim</label> |
+                <input type="radio" name="p_likeness" id="p_likeness_nao" value="Não"
+                onchange="unhideById('button-final-trial')">
+                <label for="p_likeness_nao">Não</label>
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" style="padding:10px">
+              <div id="input-likeness-txt" style="visibility:hidden" >
+                <label for="p_likeness_txt">Descreva sucintamente, por favor:</label>
+                <br>
+                <textarea id="p_likeness_txt" name="p_likeness_txt" rows="5" cols="50"
+                oninput="unhideById('button-final-trial')"></textarea>
+              </div>
+            </td>
+          </tr>
+        </table>
+
+      </form>
+      <button id="button-final-trial" style="visibility:hidden"
+      onclick="nextStage();closeFullscreen();saveProfilingData()" >Finalizar</button>
+    </div>
   </section>
 
   <!-- End of trials: agradecimentos-->
   <section id="tab_acknowledgment" class="ContentStage" style="display:none"> <!-- Final words -->
-    <p>
-      "Muito obrigado por participar da nossa pesquisa!"<br>
-      "Thank you for taking part in our research!"<br>
-    </p>
+    <div class="grid-center">
+      <p>
+        "Muito obrigado por participar da nossa pesquisa!"<br>
+        "Thank you for taking part in our research!"<br>
+      </p>
+    </div>
   </section>
   
   <br>

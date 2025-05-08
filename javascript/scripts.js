@@ -85,7 +85,7 @@ function chemStructureNext() {
   img3DLegend.src = `testequimica/legendB${img2Dindex}.jpg`;
   //hide current section, prepare for next one
   if (img2Dindex > 3) {
-    unhideById('button-chem-end');
+    unremoveById('div-chem-end','grid');
     removeById('form-chem-test');
   }
 }
@@ -290,13 +290,18 @@ function randXYZ(jsmol_obj) {
   return xyz;
 }
 
+function psvtrIntroChoice(introNum) {
+  const introImage = document.getElementById(`imgmap-intro${introNum}`);
+  introImage.src = `images/PSVT-R_Intro_ptbr_(${introNum})ans.jpg`;
+  unhideById(`button-next-paper-intro${introNum}`);
+}
 // Pass chosen Paper task answers to forms
 //Each time an alternative is chosen, choice is pushed to 'paperAnswer' array, 
 // 'imgmap_n' increases and next image is loaded, until the image is the last one.
 var imgmap_n = 1; 
 var paperAnswer = "";
 var paperRt = [];
-function imgAlternativeChosen(chosen_alternative) {
+function psvtrTaskChoice(chosen_alternative) {
   paperRt = paperRt.concat(toc());
   //add chosen_alternative to forms
   paperAnswer = paperAnswer + chosen_alternative;
@@ -312,8 +317,8 @@ function imgAlternativeChosen(chosen_alternative) {
   }
   // else, blank screen for next trial
   else {
-    hideById("imgmap");
-    unhideById("button-psvtr-end");
+    removeById("div-psvtr-task");
+    unremoveById("div-psvtr-end",'grid');
   }
 }
 //lock clicking inside map 
