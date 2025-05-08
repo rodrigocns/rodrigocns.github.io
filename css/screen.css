@@ -1,13 +1,14 @@
-/* html,body{margin:2px;padding:1px;} */
-
-/* .thing is for classes, #thing is for id's */
+/* https://coolors.co/contrast-checker/112a46-acc8e5 */
 
 /* applies to everything */
-/* { 
+/* *{ 
   text-align: center;
 }*/
 
-body{
+/* ---------------------------------
+    I - Base Styles (applies to all elements of that type)
+----------------------------------*/
+body {
 	font-family:Verdana,sans-serif;
   font-size: 1rem;
 	line-height:1.5;
@@ -16,7 +17,7 @@ body{
   margin:0;
 }
 
-h1, h2, h3, h4, h5, h6{
+h1, h2, h3, h4, h5, h6 {
 	/*font:2.5em sans-serif;*/
   font-weight:normal;
 	margin:0;
@@ -25,15 +26,7 @@ h1, h2, h3, h4, h5, h6{
   background-color: #404040;
 }
 
-button,input,select,textarea,optgroup{
-  font:inherit;
-}
-/* optgroup{
-  font-weight:bold
-}  */
-
-
-header{
+header {
 	height: 32px;
 	overflow:hidden;
 	padding: 0 5px;
@@ -51,16 +44,46 @@ a {
 a:visited {
   color:mediumorchid;
 }
-/*
-a:link {
-  color:lightcyan;
+
+button,input,select,textarea,optgroup {
+  font:inherit;
 }
-a:hover {
-  color:palegreen;
-  font-weight:bold;
-}*/
+
+table {
+  border: 1px solid;
+  border-color: #606060;
+}
+th, td {
+  border: 1px solid; /*these borders help with formatting, but can be removed*/
+  border-color: #808080;
+} 
+
+/* ---------------------------------
+    II - Layout (containers, etc)
+----------------------------------*/
+
+.debug{
+  display:none;
+}
+.dev-div{
+  color:cornsilk;
+  background-color: #404070;
+}
+
+/* ---------------------------------
+    III - Components (elements, buttons, navigation stuff)
+----------------------------------*/
+
+
+a.dev-div{
+  color:gold;
+}
+a.dev-div:visited{
+  color:burlywood;
+}
 
 nav li{
+  position:relative;
   list-style:none; /* possible symbol for list of items */
   float:left; /*positioning inside container*/
   height:24px; 
@@ -71,7 +94,6 @@ nav li{
   margin:0 2px;
   width:200px;
   overflow:hidden;
-  position:relative;
   background:linear-gradient(#ccc,  #aaa);
 }
 nav li.selected{
@@ -96,6 +118,25 @@ nav li.selected a{
   box-shadow:none; 
 }
 
+table.paddedTable td {
+  padding: 8px;
+  min-width: 80px;
+  border-left: none;
+  border-right: none;
+}
+table.paddedTable th {
+  padding: 15px;
+  min-width: 80px;
+  vertical-align: top;
+}
+table.paddedTable td:nth-child(1){
+  text-align: right;
+}
+/* 2nd column and onward */
+table.bulletTable td:nth-child(n + 2) {
+  text-align: center;
+}
+
 .hidden-elem {
   visibility: hidden;
   opacity: 0;
@@ -105,7 +146,6 @@ nav li.selected a{
   visibility: visible;
   opacity: 1;
 }
-
 .fixed-footer {
   position: fixed;
   text-align: left;
@@ -115,42 +155,12 @@ nav li.selected a{
   padding: 10px;
 }
 
-.dev-div{
-  color:cornsilk;
-  background-color: #404070;
-}
-a.dev-div{
-  color:gold;
-}
-a.dev-div:visited{
-  color:burlywood;
-}
-
-/* https://coolors.co/contrast-checker/112a46-acc8e5 */
-
-
-.debug{
-  display:none;
-}
-
 #gsForm {
   padding: 10px 0;
   width:90%;
   margin:auto;
 }
 
-table {
-  border: 1px solid;
-  border-color: #606060;
-}
-th {
-  border: 1px solid; /*these borders help with formatting, but can be removed*/
-  border-color: #808080;
-}
-td {
-  border: 1px solid; /*these borders help with formatting, but can be removed*/
-  border-color: #808080;
-} 
 #table-iRT-canvas{
   width: 90%;
   margin: auto;
@@ -169,24 +179,6 @@ td {
   width:100%;
   text-align: left;
   padding: 15px;
-}
-table.paddedTable td {
-  padding: 8px;
-  min-width: 80px;
-  border-left: none;
-  border-right: none;
-}
-table.paddedTable th {
-  padding: 15px;
-  min-width: 80px;
-  vertical-align: top;
-}
-table.paddedTable td:nth-child(1){
-  text-align: right;
-}
-/* 2nd column and onward */
-table.bulletTable td:nth-child(n + 2) {
-  text-align: center;
 }
 input[type="radio"] {
   transform: scale(1.5); /* Adjust the scale factor as needed */
