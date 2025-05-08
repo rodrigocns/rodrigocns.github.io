@@ -599,7 +599,6 @@ function saveProfilingData () {
   //get forms links
   const gsForm = document.getElementById('gsForm');
   const endForm = document.getElementById('endForm');
-  const chemForm = document.getElementById('form-chem-test');
 
   const profileData = {
     sessionID:          sessionID,
