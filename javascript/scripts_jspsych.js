@@ -1,16 +1,14 @@
 // jsPsych functions and variables
 
 var introductionText = `
-<p>Blocos de Corsi
-</p>
-<p>
-Alguns quadrados vão piscar em uma determinada sequência na tela.
-<br>
-Quando a sequência terminar, clique nos quadrados na mesma ordem em que eles piscaram.
-<br>
-Em seguida, uma nova sequência vai começar a piscar. 
-<br>
-O tamanho das sequências aumentará gradualmente.
+<p>Alguns quadrados vão piscar amarelo em uma determinada sequência na tela.
+<br>Quando a sequência terminar, um sinal à esquerda vai aparecer, 
+<br>indicando para que clique nos quadrados na mesma ordem em que eles piscaram.
+<br>A cada clique, os quadrados piscam em verde se correto, ou vermelho se errado. 
+<br>Ao clicar em um quadrado errado ou ao concluir corretamente a sequência,
+<br> uma nova sequência vai começar a piscar.
+<br>O tamanho das sequências aumentará gradualmente.
+BUSCAR EXEMPLOS DE APLICAÇÃO DO CORSI
 </p>
 <div style='width: 700px;'></div>
 <p>Clique no botão "Próximo" para começar.</p>
