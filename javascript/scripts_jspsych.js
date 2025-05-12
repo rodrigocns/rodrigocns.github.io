@@ -160,7 +160,8 @@ const corsiEnd = {
   on_finish: function() {
     console.log(`Corsi block task complete. Score:${corsi_score} 
       | Correct answers: ${corsi_trial_correct} of ${corsi_trial_count}`);
-    unremoveById("corsi-result",'grid');
+    unremoveById("div-corsi-end",'grid');
+    removeById('corsi-task-container');
   }
 };
 
