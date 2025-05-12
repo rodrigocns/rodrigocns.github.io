@@ -310,7 +310,7 @@ function psvtrTaskChoice(chosen_alternative) {
   //lock clicking inside map for 1000 ms, to avoid misclicks
   lockMap("imgmap");
   // if there are more images, load next image in new image path (img.src)
-  if (imgmap_n <= 3 ) {
+  if (imgmap_n <= 30 ) {
     const img = document.getElementById("imgmap");
     img.src = "images/PSVT-R ("+imgmap_n+").jpg"; // Change to the new image path
     tic (); // img is loaded, 
