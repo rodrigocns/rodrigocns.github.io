@@ -1,16 +1,19 @@
 // jsPsych functions and variables
 
 var introductionText = `
-<p>Alguns quadrados vão piscar amarelo em uma determinada sequência na tela.
-<br>Quando a sequência terminar, um sinal à esquerda vai aparecer, 
-<br>indicando para que clique nos quadrados na mesma ordem em que eles piscaram.
-<br>A cada clique, os quadrados piscam em verde se correto, ou vermelho se errado. 
-<br>Ao clicar em um quadrado errado ou ao concluir corretamente a sequência,
-<br> uma nova sequência vai começar a piscar.
-<br>O tamanho das sequências aumentará gradualmente.
-BUSCAR EXEMPLOS DE APLICAÇÃO DO CORSI
+<p>  Alguns quadrados vão piscar amarelo em uma determinada sequência na tela.
+<br> Quando a sequência terminar, um sinal abaixo irá aparecer, indicando para 
+<br> que clique nos quadrados na mesma ordem em que eles piscaram.
+<br>
+<br> A cada clique, os quadrados piscam em verde se correto, ou vermelho se errado. 
+<br> Ao clicar em um quadrado errado ou ao concluir corretamente a sequência,
+<br> uma nova sequência começará a piscar.
+<br> Se ao menos uma de duas sequências de mesmo tamanho for corretamente clicada, 
+<br> o tamanho das próximas duas sequências será cada vez maior.
+<br>
+<br> Excepcionalmente, as próximas 3 sequências serão de 3 quadrados, para se
+<br> acostumar com a interface. 
 </p>
-<div style='width: 700px;'></div>
 <p>Clique no botão "Próximo" para começar.</p>
 `;
 
@@ -79,6 +82,39 @@ var corsiWelcome = {
 };
 timeline.push(corsiWelcome);
 
+//intro corsi
+var corsiIntro = {
+  type: jsPsychCorsiBlocks,
+  blocks: corsiBlocksCoordinates,
+  timeline: [
+    {sequence: [2,5], mode: 'display' },
+    {sequence: [2,5], mode: 'input', prompt:'Repita a sequência de treino' },
+    {sequence: [4,7], mode: 'display' },
+    {sequence: [4,7], mode: 'input', prompt:'Repita a sequência de treino' },
+    {sequence: [0,2], mode: 'display' },
+    {sequence: [0,2], mode: 'input', prompt:'Repita a sequência de treino' },
+  ],
+  display_width: '800px', 
+  display_height: '800px',
+  sequence_gap_duration:  1000, 
+  sequence_block_duration: 500,
+  block_color: "#777", 
+  highlight_color: "yellow",
+}
+timeline.push(corsiIntro);
+
+//pre task message trial
+var corsiPreTask = {
+  type: jsPsychHtmlButtonResponse,
+  stimulus: 'Pressione "Começar" para iniciar o teste <br>',
+  choices: ['Começar'],
+  post_trial_gap: 500,
+  on_finish: function() {
+    corsiStart();
+  },
+};
+timeline.push(corsiPreTask);
+
 //corsi
 let corsi_correct_trials_array = [];
 var corsi_rt_array = [];
@@ -92,21 +128,23 @@ var corsi_score = 1;
 function CorsiTrial(sequenceLength, nextTrial) {
   this.seqLength = sequenceLength;
   this.nextTrial = nextTrial;
+
   this.type = jsPsychCorsiBlocks,
   this.blocks = corsiBlocksCoordinates,
-  this.block_size = 12, // 12 default
+  //this.block_size = 12, // 12 default
   this.display_width = '800px', 
   this.display_height = '800px',
   this.sequence_gap_duration = 1000, //250 default
   this.sequence_block_duration = 500,//1000 default
-  this.pre_stim_duration = 500, //500 default
-  this.response_animation_duration = 500, //500 default
+  //this.pre_stim_duration = 500, //500 default
+  //this.response_animation_duration = 500, //500 default
   this.block_color = "#777",  //#555 default
   this.highlight_color = "yellow", //#f00 default
-  this.correct_colot = "#0f0" //#0f0 default
-  this.incorrect_color = "#f00" //#f00 default
+  //this.correct_colot = "#0f0" //#0f0 default
+  //this.incorrect_color = "#f00" //#f00 default
+  
   //timeline repetition: double pair (display/input/display/input) of 
-  // corsi trials for each length of the sequence (2, 3, 4 etc.) 
+  // corsi trials for each length of the sequence (2,2, 3,3, 4,4 etc.) 
   //IF OTHER TRIALS ARE ADDED BEFORE THIS, seqLength WILL BREAK ORDER
   this.timeline = [
     {sequence: corsiSeq[this.seqLength*2-4], mode: 'display', /*prompt: `${this.seqLength}a display`*/},
