@@ -17,6 +17,12 @@ var introductionText = `
 <p>Clique no botão "Próximo" para começar.</p>
 `;
 
+// Set test for #jspsych-corsi-prompt
+var promptText = `
+<span style="font-size:30px; color:paleturquoise">
+Repita a sequência de treino
+</span>
+`;
 
 // corsi block position and sequences taken from the e-corsi paper supplemental material. 
 
@@ -88,11 +94,11 @@ var corsiIntro = {
   blocks: corsiBlocksCoordinates,
   timeline: [
     {sequence: [2,7,3], mode: 'display' },
-    {sequence: [2,7,3], mode: 'input', prompt:'Repita a sequência de treino' },
+    {sequence: [2,7,3], mode: 'input', prompt: promptText },
     {sequence: [0,8,4], mode: 'display' },
-    {sequence: [0,8,4], mode: 'input', prompt:'Repita a sequência de treino' },
+    {sequence: [0,8,4], mode: 'input', prompt: promptText },
     {sequence: [5,1,6], mode: 'display' },
-    {sequence: [5,1,6], mode: 'input', prompt:'Repita a sequência de treino' },
+    {sequence: [5,1,6], mode: 'input', prompt: promptText },
   ],
   display_width: '800px', 
   display_height: '800px',
