@@ -164,9 +164,9 @@ function iRTStart() {
   Jmol.script(jsmolInteractiveObject,'refresh');
   timerStart ();         //starts time counting and periodic functions
   getTheNumbers();       // records the data ONLY from the initial instant (t=0)
-  hideById("startButton");
+  removeById("startButton");
   setTimeout(function() {
-    unhideById("submitButton")
+    unremoveById("submitButton")
     razaoPxAngst=pixelAngstromRatio(jsmolInteractiveObject);
     console.log(`razaoPxAngst: ${razaoPxAngst}}`);
   }, 1000);
@@ -185,7 +185,7 @@ function buttoniRTSubmit(){
     console.log("Error in forms data upload!\nSomething inside the function insertFormValues() went wrong!");
   }
   //hide submit button
-  hideById("submitButton");
+  removeById("submitButton");
   task_n +=1; //Progress to next task in task_list and prepMolecule()
   // if (task_n >= 6) {task_n = 0;} /*volta ao primeiro*/
   if (is_local_save == true) {
@@ -198,7 +198,7 @@ function buttoniRTSubmit(){
   } else {
     prepMolecule(task_n);
     setTimeout(function() {
-      unhideById("startButton");
+      unremoveById("startButton","block");
     }, 1000);
   }
 }
