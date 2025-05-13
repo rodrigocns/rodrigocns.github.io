@@ -14,15 +14,9 @@ Teste química:
 -Alterar uma coisa só do da target, para cada alternativa
 e justificar com qual dominio de propriedade química estaria sendo avaliado
 -mudar estrutura de dados para o teste de química (as variáveis mudaram de nome)
--testeEstruturas está com dados errados 
+-'testeEstruturas' está com dados errados 
+
+adicionar calculo simples da pontuação do psvtr e quimica
 
 Corsi
 Texto: Audio no sandbox
-mudar a fonte do aviso (repita a sequência) para 30px
-adicionar calculo simples da pontuação do corsi
-
-Fim do iRT : próxima etapa precisa ficar em uma tela única
-
-Questões dificuldades 
-Corsi tem dificuldade que varia
-
