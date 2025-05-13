@@ -1,42 +1,28 @@
+Notas fixas:
+resolução monitor 1440 x 900
+
+Try:
 required nos campos das tabelas
+Tabela Tampa header de mais fácil a mais difícil 
 
-aumentar o tamanho dos outros textos
-
-Eduardo achou estranho as duas:
+Feedback Eduardo:
 Montar e utilizar eletrodomésticos seguindo instruções em vídeo
 Montar e utilizar eletrodomésticos seguindo manual de instruções impresso
 
-Corsi: mudar a fonte do aviso (repita a sequência) para 30px
-
-mudar estrutura de dados para o teste de química (as variáveis mudaram de nome)
-
-Test química - aumentar distancia entre bullet e texto
-Fim do iRT : próxima etapa precisa ficar em uma tela única
-
-resolução monitor 1440 x 900
-
-adicionar calculo simples da pontuação do corsi
-
-Priedades > propriedades
-Pensando na sua experiência como estudante > pensando na sua experiência ao aprender
-Tabela Tampa header de mais fácil a mais difícil 
-
 Teste química:
-Alterar uma coisa do da target, para cada alternativa
-
-Psvtr: 
-Linha branca vertical nas imagens 
-Explicitar que não deve ser usada a mão 
+- aumentar distancia entre bullet e texto
+-Alterar uma coisa só do da target, para cada alternativa
+e justificar com qual dominio de propriedade química estaria sendo avaliado
+-mudar estrutura de dados para o teste de química (as variáveis mudaram de nome)
+-testeEstruturas está com dados errados 
 
 Corsi
-Intro 2 para 3 quadrados
-Audio : sandbox
+Texto: Audio no sandbox
+mudar a fonte do aviso (repita a sequência) para 30px
+adicionar calculo simples da pontuação do corsi
 
-Psvtr:
-Colocar os Botões pronto e começar no mesmo lugar (remove e não hide)
+Fim do iRT : próxima etapa precisa ficar em uma tela única
 
 Questões dificuldades 
 Corsi tem dificuldade que varia
 
-Dados: 
-Testeestruturas está com dados errados 
