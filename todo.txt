@@ -10,11 +10,8 @@ Montar e utilizar eletrodomésticos seguindo instruções em vídeo
 Montar e utilizar eletrodomésticos seguindo manual de instruções impresso
 
 Teste química:
-- aumentar distancia entre bullet e texto
 -Alterar uma coisa só do da target, para cada alternativa
 e justificar com qual dominio de propriedade química estaria sendo avaliado
--mudar estrutura de dados para o teste de química (as variáveis mudaram de nome)
--'testeEstruturas' está com dados errados 
 
 adicionar calculo simples da pontuação do psvtr e quimica
 

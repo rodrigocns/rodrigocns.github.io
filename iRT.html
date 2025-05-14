@@ -789,25 +789,29 @@
         <p>As estruturas A e B representam a mesma molécula?</p>
         
         <div class="chem-options-row">
-          <label class="chem-option" onclick="unhideById('button-chem-next')">
-            <input type="radio" name="p_chem_structure" value="2" >
+          <label class="chem-option" >
+            <input type="radio" name="p_chem_structure" value="2" 
+            onchange="unhideById('button-chem-next')">
             <br>É a mesma!
           </label>
-          <label class="chem-option" onclick="unhideById('button-chem-next')">
-            <input type="radio" name="p_chem_structure" value="1" >
+          <label class="chem-option" >
+            <input type="radio" name="p_chem_structure" value="1" 
+            onchange="unhideById('button-chem-next')">
             <br>Parece ser mesma...
           </label>
-          <label class="chem-option" onclick="unhideById('button-chem-next')">
-            <input type="radio" name="p_chem_structure" value="-1" >
+          <label class="chem-option" >
+            <input type="radio" name="p_chem_structure" value="-1" 
+            onchange="unhideById('button-chem-next')">
             <br>Parece ser diferente...
           </label>
-          <label class="chem-option" onclick="unhideById('button-chem-next')">
-            <input type="radio" name="p_chem_structure" value="-2" >
+          <label class="chem-option" >
+            <input type="radio" name="p_chem_structure" value="-2" 
+            onchange="unhideById('button-chem-next')">
             <br>É diferente!
           </label>
         </div>
         <button type="button" id="button-chem-next" style="visibility:hidden" 
-        onclick="chemStructureNext();this.style.visibility='hidden'">Próximo</button>
+        onclick="chemStructureNext(chemStructureArray);this.style.visibility='hidden'">Próximo</button>
       </div>
     </form>
     <div id="div-chem-end" class="grid-center-whole" style="display:none">

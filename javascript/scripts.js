@@ -66,10 +66,10 @@ const img2DStruct = document.getElementById('img2DStruct');
 const img3DStruct = document.getElementById('img3DStruct');
 const img3DLegend = document.getElementById('img3DLegend');
 // index passa por 3 3struturas 2d, cada uma com 4 estruturas 3d 
-function chemStructureNext() {
+function chemStructureNext(chemStructureArray) {
   const chemForm = document.getElementById('form-chem-test')
   //register current choice
-  chemStructureArray.push(chemForm.p_chem_structure.value);
+  chemStructureArray.push(Number(chemForm.p_chem_structure.value));
   //clean radio choice
   document.querySelector('input[name="p_chem_structure"]:checked').checked = false;
   //next image counter
