@@ -612,7 +612,7 @@ function saveProfilingData () {
     sex:                gsForm.p_sex.value,
     gender:             gsForm.p_gender.value,
     age:                gsForm.p_age.value,
-    ocupation:          gsForm.p_ocupation,
+    ocupation:          gsForm.p_ocupation.value,
     active:             gsForm.p_active.value,
 
     educGrau:           gsForm.p_educ_grau.value,

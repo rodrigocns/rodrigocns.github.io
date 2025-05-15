@@ -22,7 +22,7 @@
   "difQuiSubj": [3,0,3,0,2,0,2,3,0,1,0,0,3,0],
   "difMatSubj": [1,1,1,1,1,1,1,1,1,1,3],
   "difCotidSubj": [1,2,2,2,3,1,4,2,0,2,3,4,3,5,1,1,5,2,2],
-  "testeEstruturas": [\"-2\",\"2\",\"2\",\"-2\",\"-2\",\"-2\",\"2\",\"-1\",\"1\",\"1\",\"2\",\"1\"],
+  "testeEstruturas": [-2,2,2,-2,-2,-2,2,-1,1,1,2,1],
   "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:138.0) Gecko/20100101 Firefox/138.0",
   "pixelRatio": 1,
   "paperAnswer": "BAADBCEAABEEBDCEAABBADBCDCBECE",
