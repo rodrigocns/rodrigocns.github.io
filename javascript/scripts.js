@@ -656,6 +656,10 @@ function saveProfilingData () {
     dificultyJsmol:     endForm.p_dific_jsmol.value,
     jsmolLikeness:      endForm.p_likeness.value,
     jsmolLikenessText:  endForm.p_likeness_txt.value,
+    enjoy:              endForm.p_enjoy.value,
+    usability:          endForm.p_usability.value,
+    usabilityText:      endForm.p_tiring_txt.value,
+    feedback:           endForm.p_feedback_txt.value,
   };
   
   //make the data structure into json. 
