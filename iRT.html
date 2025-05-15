@@ -1075,9 +1075,28 @@
         onclick="unremoveById('div-usability'); removeById('div-dificulty')" >Finalizar</button>
       </div>
       <div id="div-usability" class="grid-center" style="display:none">
-        Na sua opinião, a interface estada clara e fácil de usar?
+        <br>Gostou de participar? 
+        <br>
+        <select name="p_usability_a">
+          <option value="">-- ESCOLHA --</option>
+          <option value="5">Detestei</option>
+          <option value="4">Não gostei</option>
+          <option value="3">Indiferente</option>
+          <option value="2">Gostei</option>
+          <option value="1">Adorei</option>
+        </select>
+        <br>Na sua opinião, interface estava clara e fácil de usar? 
+        <br>
+        <select name="p_usability_b">
+          <option value="">-- ESCOLHA --</option>
+          <option value="5">Muito difícil</option>
+          <option value="4">Difícil</option>
+          <option value="3">Nem fácil nem difícil</option>
+          <option value="2">Fácil</option>
+          <option value="1">Muito Fácil</option>
+        </select>
+        
         Participar desta pesquisa foi cansativo? Se sim, em quais momentos?
-        Gostou de participar?
         Comentários livres:
         (make button visible when interacting WIP)
         <button id="button-usability" style="visibility:hidden"
