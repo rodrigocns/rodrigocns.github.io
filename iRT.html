@@ -981,9 +981,10 @@
   
   <!-- final questions -->
   <section id="tab_final_question" class="ContentStage" style="display:none"> 
-    <div class="grid-center">
-      <h1>Últimas perguntas:</h1>
-      <form id="endForm" autocomplete="off">
+    <h1>Últimas perguntas:</h1>
+    <form id="endForm" autocomplete="off">
+      <div id="div-dificulty" class="grid-center">
+        <!-- table of preceived dificulty -->
         <table style="margin:auto">
           <tr>
             <td colspan="2" style="padding:10px">
@@ -1054,7 +1055,7 @@
                 onchange="unhideById('input-likeness-txt')">
                 <label for="p_likeness_sim">Sim</label> |
                 <input type="radio" name="p_likeness" id="p_likeness_nao" value="Não"
-                onchange="unhideById('button-final-trial')">
+                onchange="unhideById('button-dificulty')">
                 <label for="p_likeness_nao">Não</label>
               </p>
             </td>
@@ -1065,16 +1066,25 @@
                 <label for="p_likeness_txt">Descreva sucintamente, por favor:</label>
                 <br>
                 <textarea id="p_likeness_txt" name="p_likeness_txt" rows="5" cols="50"
-                oninput="unhideById('button-final-trial')"></textarea>
+                oninput="unhideById('button-dificulty')"></textarea>
               </div>
             </td>
           </tr>
         </table>
-
+        <button id="button-dificulty" style="visibility:hidden"
+        onclick="unremoveById('div-usability'); removeById('div-dificulty')" >Finalizar</button>
+      </div>
+      <div id="div-usability" class="grid-center" style="display:none">
+        Na sua opinião, a interface estada clara e fácil de usar?
+        Participar desta pesquisa foi cansativo? Se sim, em quais momentos?
+        Gostou de participar?
+        Comentários livres:
+        (make button visible when interacting WIP)
+        <button id="button-usability" style="visibility:hidden"
+        onclick="nextStage();closeFullscreen();saveProfilingData()" >Finalizar</button>
+      </div>
+  
       </form>
-      <button id="button-final-trial" style="visibility:hidden"
-      onclick="nextStage();closeFullscreen();saveProfilingData()" >Finalizar</button>
-    </div>
   </section>
 
   <!-- End of trials: agradecimentos-->
