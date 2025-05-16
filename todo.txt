@@ -1,19 +1,8 @@
 Notas fixas:
 resolução monitor 1440 x 900
 
-Try:
-required nos campos das tabelas
-Tabela Tampa header de mais fácil a mais difícil 
-
-Feedback Eduardo:
-Montar e utilizar eletrodomésticos seguindo instruções em vídeo
-Montar e utilizar eletrodomésticos seguindo manual de instruções impresso
-
 Teste química:
 -Alterar uma coisa só do da target, para cada alternativa
 e justificar com qual dominio de propriedade química estaria sendo avaliado
 
-adicionar calculo simples da pontuação do psvtr e quimica
 
-Corsi
-Texto: Audio no sandbox
