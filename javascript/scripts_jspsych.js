@@ -1,6 +1,26 @@
 // jsPsych functions and variables
 
 var introductionText = `
+<p>  Repita a sequência de quadrados!
+<br> 1. Uma sequência de quadrados irá piscar. Preste atenção.
+<br> 
+<br> 2. Quando a sequência acabar, um sinal na parte de baixo 
+<br> da tela irá aparecer.
+<br> 
+<br> 3. Sua vez: repita a sequência, clicando nos quadrados.
+<br> 
+<br> Quando você acerta, o quadrado pisca verde.
+<br> Quando você errar, o quadrado pisca vermelho.
+<br>
+<br> Um novo teste surgirá automaticamente por algumas vezes até parar. 
+<br> 
+<br> Vamos praticar? 
+<br> As próximas 3 sequências são para você treinar e se acostumar com o teste.
+</p>
+<p>Clique em "Próximo" para iniciar.</p>
+`;
+
+var oldIntroText = `
 <p>  Uma sequência de quadrados irá piscar em amarelo.
 <br> Quando a sequência terminar, um sinal irá aparecer abaixo, indicando para 
 <br> que repita a sequência na mesma ordem em que apareceram.
