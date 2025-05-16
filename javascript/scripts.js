@@ -302,7 +302,8 @@ function psvtrIntroChoice(introNum) {
 var imgmap_n = 1; 
 var paperAnswer = "";
 var paperRt = [];
-var psvtrKey = "BAADBCEEEDEEBDCEAABBADDCDCBECE"
+const psvtrKey = "BAADBCEEEDEEBDCEAABBADDCDCBECE"
+var psvtrResult = 0;
 function psvtrTaskChoice(chosen_alternative) {
   paperRt = paperRt.concat(toc());
   //add chosen_alternative to forms
@@ -319,7 +320,9 @@ function psvtrTaskChoice(chosen_alternative) {
   }
   // else if test has anded, blank screen for next trial
   else {
-    countMatches(paperAnswer,psvtrKey);
+    psvtResult = countMatches(paperAnswer,psvtrKey);
+    console.log(`PSVT:R task complete. 
+    Correct:${psvtrResult.matches} | Incorrect: ${psvtrResult.differences}`);
     removeById("div-psvtr-task");
     unremoveById("div-psvtr-end",'grid');
   }
