@@ -1,18 +1,18 @@
 // jsPsych functions and variables
 
 var introductionText = `
-<p>  Alguns quadrados vão piscar amarelo em uma determinada sequência na tela.
-<br> Quando a sequência terminar, um sinal abaixo irá aparecer, indicando para 
-<br> que clique nos quadrados na mesma ordem em que eles piscaram.
+<p>  Uma sequência de quadrados irá piscar em amarelo.
+<br> Quando a sequência terminar, um sinal irá aparecer abaixo, indicando para 
+<br> que repita a sequência na mesma ordem em que apareceram.
 <br>
-<br> A cada clique, os quadrados piscam em verde se correto, ou vermelho se errado. 
-<br> Ao clicar em um quadrado errado ou ao concluir corretamente a sequência,
+<br> Os quadrados piscam em verde a cada acerto, ou vermelho se errado. 
+<br> Ao errar ou ao concluir corretamente a sequência,
 <br> uma nova sequência começará a piscar.
-<br> Se ao menos uma de duas sequências de mesmo tamanho for corretamente clicada, 
-<br> o tamanho das próximas duas sequências será cada vez maior.
+<br> O tamanho da sequência irá aumentar a cada par de sequências (2,2,3,3,4,4 etc.).
+<br> Ao errar duas sequências de mesmo tamanho, o teste termina.
 <br>
-<br> Excepcionalmente, as próximas 3 sequências serão de 3 quadrados, para se
-<br> acostumar com a interface. 
+<br> Excepcionalmente, as próximas 3 sequências serão de 3 quadrados, 
+<br> para se acostumar com a interface. 
 </p>
 <p>Clique no botão "Próximo" para começar.</p>
 `;
