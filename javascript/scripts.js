@@ -302,6 +302,7 @@ function psvtrIntroChoice(introNum) {
 var imgmap_n = 1; 
 var paperAnswer = "";
 var paperRt = [];
+var psvtrKey = "BAADBCEEEDEEBDCEAABBADDCDCBECE"
 function psvtrTaskChoice(chosen_alternative) {
   paperRt = paperRt.concat(toc());
   //add chosen_alternative to forms
@@ -316,8 +317,9 @@ function psvtrTaskChoice(chosen_alternative) {
     img.src = "images/PSVT-R ("+imgmap_n+").jpg"; // Change to the new image path
     tic (); // img is loaded, 
   }
-  // else, blank screen for next trial
+  // else if test has anded, blank screen for next trial
   else {
+    countMatches(paperAnswer,psvtrKey);
     removeById("div-psvtr-task");
     unremoveById("div-psvtr-end",'grid');
   }
@@ -330,6 +332,19 @@ function lockMap(mapId, duration = 1000) {
   setTimeout(() => {
     map.style.pointerEvents = "auto";
   }, duration);
+}
+
+//count psvtr correct choices
+function countMatches(str1, str2) {
+  let matches = 0;
+  for (let i = 0; i < str1.length; i++) {
+    if (str1[i] === str2[i]) {
+      matches++;
+    }
+  }
+
+  const differences = str1.length - matches;
+  return { matches, differences };
 }
 
 
@@ -436,15 +451,22 @@ function elemPosition(elemID) {
 }
 
 //simple duration tracker 
-var startTime = 0;
-function tic () {
-  startTime = Date.now();
+const ticTocTimers = {};
+
+function tic(label = 'default') {
+  ticTocTimers[label] = Date.now();
 }
-function toc () {
-  const endTime = Date.now();
-  const rt = (endTime - startTime)/1000;
-  console.log (`Elapsed time: ${rt} seconds`);
-  return rt;
+
+function toc(label = 'default') {
+  const startTime = ticTocTimers[label];
+  if (startTime === undefined) {
+    console.warn(`No timer found for label: "${label}"`);
+    return null;
+  }
+
+  const elapsed = (Date.now() - startTime) / 1000;
+  console.log(`Elapsed time for "${label}": ${elapsed.toFixed(3)} seconds`);
+  return elapsed;
 }
 
 let arrayEpoch = [];  //system time (Date.now())
