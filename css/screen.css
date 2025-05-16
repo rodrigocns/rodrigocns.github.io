@@ -155,7 +155,7 @@ table.bulletTable td:nth-child(n + 2) {
   padding: 10px;
 }
 
-#gsForm {
+.form {
   padding: 10px 0;
   width:90%;
   margin:auto;

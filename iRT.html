@@ -54,7 +54,7 @@
 
   <!-- Forms -->
   <section id="tab_form" class="ContentStage ContentStage-now" style="display:block"> 
-    <form name="submit-to-google-sheet" id="gsForm" autocomplete="off">
+    <form name="submit-to-google-sheet" id="gsForm" class="form" autocomplete="off">
       <h1 id="profiling-h1">Preencha os campos abaixo:</h1>
       <hr>
       <!-- Forms: hidden forms -->
@@ -981,8 +981,8 @@
   
   <!-- final questions -->
   <section id="tab_final_question" class="ContentStage" style="display:none"> 
-    <h1>Últimas perguntas:</h1>
-    <form id="endForm" autocomplete="off">
+    <form id="endForm" class="form" autocomplete="off">
+      <h1>Últimas perguntas:</h1>
       <div id="div-dificulty" class="grid-center">
         <!-- table of preceived dificulty -->
         <table style="margin:auto">
@@ -1106,7 +1106,7 @@
           <br>
           <textarea id="p_feedback_txt" name="p_feedback_txt" rows="5" cols="50"></textarea>
           <br><br>
-          <button id="button-usability"
+          <button id="button-usability" type="button"
           onclick="nextStage();closeFullscreen();saveProfilingData()" >Finalizar</button>
         </p>
       </div>
