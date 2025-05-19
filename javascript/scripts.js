@@ -632,7 +632,35 @@ form.addEventListener('submit', e => {
     .catch(error => console.error('Error!', error.message))
 })
 
-//save profiling data
+const iRTData = [];
+function recordTrialIRT(modelName, razaoPxAngst, time_initial, scrSizeX, scrSizeY,
+   gsForm, arrayEpoch,refQuat,parametroD,parametro1,parametro2,parametro3,parametro4,
+  arrayMouseX, arrayMouseY) {
+  const trialIRT = {
+    taskID          :   task_list[task_n],       
+    modelName       :   modelName,
+    pxAngstRatio    :   Math.round((razaoPxAngst[0]+razaoPxAngst[1])*10E6/2)/10E6,
+    epochStart      :   time_initial,
+    scrSizeXY       :   [scrSizeX,scrSizeY],
+
+    cvsRefTRBL      :   [gsForm.cvsRefTop.value,gsForm.cvsRefRight.value,gsForm.cvsRefBottom.value,gsForm.cvsRefLeft.value],
+    cvsIntTRBL      :   [gsForm.cvsIntTop.value,gsForm.cvsIntRight.value,gsForm.cvsIntBottom.value,gsForm.cvsIntLeft.value],
+
+    arrayEpoch      :  arrayEpoch,
+    referenceQuat   :  refQuat,
+    duration        :  parametroD.at(-1),
+    fQi             :  parametro1,
+    fQj             :  parametro2,
+    fQk             :  parametro3,
+    fQr             :  parametro4,
+    mousePosX       :  arrayMouseX,
+    mousePosY       :  arrayMouseY,
+  };
+
+  iRTData.push(trialIRT);
+}
+
+//save profiling data in .JSON file
 function saveProfilingData () {
   //get forms links
   const gsForm = document.getElementById('gsForm');
@@ -683,6 +711,8 @@ function saveProfilingData () {
     corsiMouseX:        corsiMouseX,
     corsiMouseY:        corsiMouseY,
 
+    iRTData:            iRTData,
+
     dificultyChem:      endForm.p_dific_chem.value,
     dificultyPaper:     endForm.p_dific_paper.value,
     dificultyCorsi:     endForm.p_dific_corsi.value,
@@ -697,29 +727,29 @@ function saveProfilingData () {
     feedback:           endForm.p_feedback_txt.value,
   };
   
-  //make the data structure into json. 
-  //stringify(profileData) builds a compact .json
-  //stringify(profileData,null,2) builds a pretty, multi-line .json
   
-  function replacer(key,value){
-    if (Array.isArray(value)) {
-      return JSON.stringify(value); //compact arrays
-    }
-    return value; //other data formats
+let jsonString = JSON.stringify(profileData, null, 2);
+
+// Compact arrays of primitives (numbers or strings) onto a single line
+// leave the rest as it is
+jsonString = jsonString.replace(
+  /\[\s*((?:\s*-?\d+(?:\.\d+)?\s*,?)+)\s*\]/g,
+  (match, elements) => {
+    const compact = elements.trim().replace(/\s+/g, '').replace(/,+$/, '');
+    return `[${compact}]`;
   }
-
-  let jsonString = JSON.stringify(profileData, replacer, 2);
-
-  jsonString = jsonString.replace(/"(\[.*?\])"/g, (_, arrayStr) => arrayStr);
+);
 
   const blob = new Blob([jsonString], { type: "application/json" });
   const link = document.createElement("a");
+  
   //file naming
   const pad = (n) => String(n).padStart(2, '0');  // min 2 digits
   const today = new Date(); // get current date
   const day   = pad(today.getDate());
   const month = pad(today.getMonth() + 1); // goes from 0 to 11, add 1 to offset this
   const year  = today.getFullYear();
+  
   link.href = URL.createObjectURL(blob);
   link.download = `estudo02_${year}_${month}_${day}_${sessionID}.json`;
   link.click();

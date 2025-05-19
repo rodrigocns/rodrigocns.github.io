@@ -899,8 +899,10 @@
           <th colspan="3" style="text-align:center; height:2rem">
             <button id="button-irt-start" onclick="iRTStart();removeById('iRT-instructions')">
               Começar!</button>
-              <button id="button-irt-submit" onclick="buttoniRTSubmit()" form="gsForm"
-              style="display:none">
+              <button id="button-irt-submit" form="gsForm" style="display:none"
+              onclick="buttoniRTSubmit(); recordTrialIRT(modelName, razaoPxAngst, time_initial, 
+              scrSizeX, scrSizeY, gsForm, arrayEpoch,refQuat,parametroD,parametro1,parametro2,
+              parametro3,parametro4,arrayMouseX, arrayMouseY)">
               Pronto!</button>
           </th>
         </tr>
