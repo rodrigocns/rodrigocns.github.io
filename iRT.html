@@ -727,7 +727,7 @@
         <button type="button" onclick="nextStage();
         removeById('last-updated');">Próxima etapa >></button>
         <div class="bottom-fixed">
-          <button type="button" onclick="removeById('div-form-blank');
+          <button type="button" onclick="removeById('div-form-blank'); tic();
           unremoveById('div-form-7','block');unhideById('profiling-h1')">Anterior</button>
           <button style="visibility:hidden">Próximo</button><!--dummy button to keep same positions-->
         </div>
@@ -785,7 +785,8 @@
         </div>
         <!-- function call for test next value -->
         <button type="button" id="button-chem-next" style="visibility:hidden" 
-        onclick="chemStructureNext(chemStructureArray);this.style.visibility='hidden'">Próximo</button>
+        onclick="chemStructureNext(chemStructureArray,chemStructureRt);
+        this.style.visibility='hidden'">Próximo</button>
       </div>
     </form>
     <div id="div-chem-end" class="grid-center-whole" style="display:none">

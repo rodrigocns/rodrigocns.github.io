@@ -62,19 +62,21 @@ function debug() {
 var img2Dindex = 1;
 var img3Dindex = 1;
 var chemStructureArray = [];
+var chemStructureRt = [];
 const img2DStruct = document.getElementById('img2DStruct');
 const img3DStruct = document.getElementById('img3DStruct');
 const img3DLegend = document.getElementById('img3DLegend');
-// index passa por 3 3struturas 2d, cada uma com 4 estruturas 3d 
-function chemStructureNext(chemStructureArray) {
+// index passa por 3 estruturas 2D, cada uma com 4 estruturas 3D 
+function chemStructureNext(chemStructureArray,chemStructureRt) {
   const chemForm = document.getElementById('form-chem-test')
   //register current choice
   chemStructureArray.push(Number(chemForm.p_chem_structure.value));
+  chemStructureRt.push(toc());
   //clean radio choice
   document.querySelector('input[name="p_chem_structure"]:checked').checked = false;
   //next image counter
   img3Dindex = img3Dindex + 1;
-  // se 3D index maior que 4, 2D index aumenta e 3d index volta a 1
+  // se 3Dindex maior que 4, 2Dindex aumenta e 3Dindex volta a 1
   if (img3Dindex > 4 ) {
     img2Dindex = img2Dindex +1;
     img3Dindex = 1;
@@ -83,6 +85,7 @@ function chemStructureNext(chemStructureArray) {
   img2DStruct.src = `testequimica/structureA${img2Dindex}.jpg`;
   img3DStruct.src = `testequimica/structureA${img2Dindex}B${img3Dindex}.jpg`;
   img3DLegend.src = `testequimica/legendB${img2Dindex}.jpg`;
+  tic();
   //hide current section, prepare for next one
   if (img2Dindex > 3) {
     unremoveById('div-chem-end','grid');
@@ -468,7 +471,9 @@ function toc(label = 'default') {
   }
 
   const elapsed = (Date.now() - startTime) / 1000;
-  console.log(`Elapsed time for "${label}": ${elapsed.toFixed(3)} seconds`);
+  if (label == 'default') {
+    console.log(`Elapsed time : ${elapsed.toFixed(3)} seconds`);
+  }
   return elapsed;
 }
 
@@ -695,6 +700,7 @@ function saveProfilingData () {
     difCotidSubj:       compileAnswersToArray('p_dif_c', 19),
     
     testeEstruturas:    chemStructureArray,
+    testeEstruturasRt:  chemStructureRt,
 
     browser:            navigator.userAgent,
     pixelRatio:         window.devicePixelRatio,
@@ -728,11 +734,11 @@ function saveProfilingData () {
   };
   
   
-let jsonString = JSON.stringify(profileData, null, 2);
+  let jsonString = JSON.stringify(profileData, null, 2);
 
-// Compact arrays of primitives (numbers or strings) onto a single line
-// leave the rest as it is
-jsonString = jsonString.replace(
+  // Compact arrays of primitives (numbers or strings) onto a single line
+  // leave the rest as it is
+  jsonString = jsonString.replace(
   /\[\s*((?:\s*-?\d+(?:\.\d+)?\s*,?)+)\s*\]/g,
   (match, elements) => {
     const compact = elements.trim().replace(/\s+/g, '').replace(/,+$/, '');
