@@ -193,7 +193,7 @@ function buttoniRTSubmit(){
   }
   //if submitted task is/was last one, shows button for next stage instead of next task  
   if (task_n >= task_list.length) { 
-    unremoveById("div-irt-end");
+    unremoveById("div-irt-end", "grid");
     removeById("div-irt-task");
     return;
   } else {

@@ -896,10 +896,11 @@
       <table id="table-iRT-canvas"> 
         
         <tr>
-          <th colspan="3" style="text-align:center">
+          <th colspan="3" style="text-align:center; height:2rem">
             <button id="button-irt-start" onclick="iRTStart();removeById('iRT-instructions')">
               Começar!</button>
-              <button id="button-irt-submit" onclick="buttoniRTSubmit()" form="gsForm">
+              <button id="button-irt-submit" onclick="buttoniRTSubmit()" form="gsForm"
+              style="display:none">
               Pronto!</button>
           </th>
         </tr>
@@ -946,7 +947,7 @@
       </table>
     </div>
     <div id="div-irt-end" class="grid-center-whole" style="display:none">
-      <button id="button-end-irt" onclick="nextStage();" style="visibility:hidden">
+      <button id="button-end-irt" onclick="nextStage();">
         Próxima Etapa >>
       </button>
     </div>
