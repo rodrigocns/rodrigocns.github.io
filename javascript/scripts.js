@@ -714,17 +714,18 @@ function saveProfilingData () {
 
   const blob = new Blob([jsonString], { type: "application/json" });
   const link = document.createElement("a");
+  //file naming
   const pad = (n) => String(n).padStart(2, '0');  // min 2 digits
   const today = new Date(); // get current date
   const day   = pad(today.getDate());
   const month = pad(today.getMonth() + 1); // goes from 0 to 11, add 1 to offset this
   const year  = today.getFullYear();
   link.href = URL.createObjectURL(blob);
-  link.download = `,estudo02_${year}_${month}_${day}_${sessionID}.json`;
+  link.download = `estudo02_${year}_${month}_${day}_${sessionID}.json`;
   link.click();
 }
 
-//data used in local backup
+//data used in iRT local backup
 function getLocalData() {
   var localData =
     'sessionID'     + ';' +
@@ -734,6 +735,10 @@ function getLocalData() {
     'pxAngstRatio'  + ';' +
     'epochStart'    + ';' +
     'modelName'     + ';' +
+    'referenceQi'   + ';' +
+    'referenceQj'   + ';' +
+    'referenceQk'   + ';' +
+    'referenceQr'   + ';' +
     'scrSizeX'      + ';' +
     'scrSizeY'      + ';' +
     'cvsRefTop'     + ';' +
@@ -763,8 +768,12 @@ function getLocalData() {
     Math.round((razaoPxAngst[0]+razaoPxAngst[1])*10E6/2)/10E6 + ';' +
     time_initial                        + ';' +
     modelName                           + ';' +
+    refQuat[0]                          + ';' +
+    refQuat[1]                          + ';' +
+    refQuat[2]                          + ';' +
+    refQuat[3]                          + ';' +
     scrSizeX                            + ';' +
-    scrSizeY                           + ';' +
+    scrSizeY                            + ';' +
     gsForm.cvsRefTop.value              + ';' +
     gsForm.cvsRefRight.value            + ';' +
     gsForm.cvsRefBottom.value           + ';' +
@@ -781,7 +790,7 @@ function getLocalData() {
     gsForm.corsiRt.value                + ';' +
     gsForm.corsiChoices.value           + ';' +
     gsForm.corsiTrialId.value           + ';' +
-    gsForm.corsiMouseTime.value             + ';' +
+    gsForm.corsiMouseTime.value         + ';' +
     gsForm.corsiMouseX.value            + ';' +
     gsForm.corsiMouseY.value            + ';' +
     
