@@ -683,7 +683,9 @@ function saveProfilingData () {
     jsmolLikenessText:  endForm.p_likeness_txt.value,
     enjoy:              endForm.p_enjoy.value,
     usability:          endForm.p_usability.value,
-    usabilityText:      endForm.p_tiring_txt.value,
+    usabilityText:      endForm.p_usability_txt.value,
+    tiring:             endForm.p_tiring.value,
+    tiringText:         endForm.p_tiring_txt.value,
     feedback:           endForm.p_feedback_txt.value,
   };
   

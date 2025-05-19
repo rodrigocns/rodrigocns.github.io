@@ -1043,7 +1043,9 @@
         </button>
       </div>
       <div id="div-usability" style="display:none;margin:auto">
-        <br>Gostou de participar? 
+        
+        <br>
+        Gostou de participar? 
         <select name="p_enjoy">
           <option value="">-- ESCOLHA --</option>
           <option value="1">Detestei</option>
@@ -1052,17 +1054,25 @@
           <option value="4">Gostei</option>
           <option value="5">Adorei</option>
         </select>
-        <br>Na sua opinião, interface estava clara e fácil de usar? 
-        <select name="p_usability">
-          <option value="">-- ESCOLHA --</option>
-          <option value="5">Muito fácil</option>
-          <option value="4">Fácil</option>
-          <option value="3">Nem fácil nem difícil</option>
-          <option value="2">Difícil</option>
-          <option value="1">Muito difícil</option>
-        </select>
-        <p>
-          Você considerou cansativa a participação nesta pesquisa?
+        <br>
+
+        <br>
+        Na sua opinião, interface estava clara e fácil de usar? 
+        <input type="radio" name="p_usability" id="p_usability_sim" value="Sim"
+          onchange="unhideById('div-usability-txt')">
+        <label for="p_usability_good">Sim</label> |
+        <input type="radio" name="p_usability" id="p_usability_nao" value="Não"
+          onchange="hideById('div-usability-txt')">
+        <label for="p_usability_nao">Não</label>
+
+        <div id="div-usability-txt" style="visibility:hidden">
+          <label for="p_usability_txt"> Por favor, descreva o que causou cansaço, 
+          <br> para que possamos melhorar a qualidade do teste</label>
+          <br>
+          <textarea id="p_usability_txt" name="p_usability_txt" rows="2" cols="50"></textarea>
+        </div>
+
+        Você considerou cansativa a participação nesta pesquisa?
           <input type="radio" name="p_tiring" id="p_tiring_sim" value="Sim"
           onchange="unhideById('div-tiring-txt')">
           <label for="p_tiring_sim">Sim</label> |
@@ -1076,13 +1086,14 @@
             <br>
             <textarea id="p_tiring_txt" name="p_tiring_txt" rows="2" cols="50"></textarea>
           </div>
+
+          <br>
           Sinta-se à vontade para deixar quaisquer comentários adicionais que desejar:
           <br>
           <textarea id="p_feedback_txt" name="p_feedback_txt" rows="5" cols="50"></textarea>
           <br><br>
           <button id="button-usability" type="button"
           onclick="nextStage();closeFullscreen();saveProfilingData()" >Finalizar</button>
-        </p>
       </div>
   
     </form>
