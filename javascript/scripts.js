@@ -714,8 +714,13 @@ function saveProfilingData () {
 
   const blob = new Blob([jsonString], { type: "application/json" });
   const link = document.createElement("a");
+  const pad = (n) => String(n).padStart(2, '0');  // min 2 digits
+  const today = new Date(); // get current date
+  const day   = pad(today.getDate());
+  const month = pad(today.getMonth() + 1); // goes from 0 to 11, add 1 to offset this
+  const year  = today.getFullYear();
   link.href = URL.createObjectURL(blob);
-  link.download = `profile-data-${sessionID}.json`;
+  link.download = `,estudo02_${year}_${month}_${day}_${sessionID}.json`;
   link.click();
 }
 
