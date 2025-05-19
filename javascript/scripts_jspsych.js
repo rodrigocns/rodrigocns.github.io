@@ -132,7 +132,7 @@ timeline.push(corsiIntro);
 //pre task message trial
 var corsiPreTask = {
   type: jsPsychHtmlButtonResponse,
-  stimulus: 'Pressione "Começar" para iniciar o teste <br>',
+  stimulus: 'Pressione "Começar" para iniciar o teste <br><br>',
   choices: ['Começar'],
   post_trial_gap: 500,
   on_finish: function() {
