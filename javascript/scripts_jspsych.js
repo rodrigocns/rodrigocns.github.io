@@ -10,7 +10,7 @@ var introductionText = `
 <br> 3. Sua vez: repita a sequência, clicando nos quadrados.
 <br> 
 <br> Quando você acerta, o quadrado pisca verde.
-<br> Quando você errar, o quadrado pisca vermelho.
+<br> Quando você erra, o quadrado pisca vermelho.
 <br>
 <br> Um novo teste surgirá automaticamente por algumas vezes até parar. 
 <br> 
@@ -39,7 +39,7 @@ var oldIntroText = `
 
 // Set test for #jspsych-corsi-prompt
 var promptText = `
-<span style="font-size:30px; color:paleturquoise">
+<span style="font-size:24px; color:paleturquoise">
 Repita a sequência de treino
 </span>
 `;
@@ -121,6 +121,7 @@ var corsiIntro = {
   display_height: '800px',
   sequence_gap_duration:  1000, 
   sequence_block_duration: 500,
+  pre_stim_duration: 1500,
   block_color: "#777", 
   highlight_color: "yellow",
 }
@@ -159,7 +160,7 @@ function CorsiTrial(sequenceLength, nextTrial) {
   this.display_height = '800px',
   this.sequence_gap_duration = 1000, //250 default
   this.sequence_block_duration = 500,//1000 default
-  //this.pre_stim_duration = 500, //500 default
+  this.pre_stim_duration = 1500, //500 default
   //this.response_animation_duration = 500, //500 default
   this.block_color = "#777",  //#555 default
   this.highlight_color = "yellow", //#f00 default
@@ -171,9 +172,9 @@ function CorsiTrial(sequenceLength, nextTrial) {
   //IF OTHER TRIALS ARE ADDED BEFORE THIS, seqLength WILL BREAK ORDER
   this.timeline = [
     {sequence: corsiSeq[this.seqLength*2-4], mode: 'display', /*prompt: `${this.seqLength}a display`*/},
-    {sequence: corsiSeq[this.seqLength*2-4], mode: 'input'  , prompt: `Repita a sequência`  },
+    {sequence: corsiSeq[this.seqLength*2-4], mode: 'input'  , prompt: promptText  },
     {sequence: corsiSeq[this.seqLength*2-3], mode: 'display', /*prompt: `${this.seqLength}b display`*/},
-    {sequence: corsiSeq[this.seqLength*2-3], mode: 'input'  , prompt: `Repita a sequência`  },
+    {sequence: corsiSeq[this.seqLength*2-3], mode: 'input'  , prompt: promptText  },
   ],
   // check if any of last 2 answers were correct
   this.on_timeline_finish= function() {
