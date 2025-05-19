@@ -208,7 +208,7 @@ function buttoniRTSubmit(){
 function corsiStart() {  
   zerarContagem();
   timerStart ();         //starts time counting and periodic functions
-  getTheNumbers();       // records the data ONLY from the initial instant (t=0)
+  getTheTime();       // records the data ONLY from the initial instant (t=0)
 }
 //functions to run when completing corsi trials.
 var corsiMouseTime = [];
@@ -593,6 +593,14 @@ function getTheNumbers() {
   //cortei o grafico fora, depois eu reativo
   // ctx.lineTo( (30+(timer_onscreen.value*10)) , (250-(valorTempResult/10)) );
   // ctx.stroke();
+}
+
+function getTheTime() { 
+  
+  arrayEpoch.push(Date.now()-time_initial);
+  parametroD.push(time_elapsed.toFixed(1)); //adiciona na pilha dados de tempo percorrido, com 1 casa decimal {toFixed(1)}
+  arrayMouseX.push(mouseX);
+  arrayMouseY.push(mouseY);
 }
 
 // compile subject series of simple answers (ex: ans_01,ans_02,ans_03) to an array

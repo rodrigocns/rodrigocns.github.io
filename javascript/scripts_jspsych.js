@@ -102,9 +102,6 @@ var corsiWelcome = {
   /*on_load: function(){
     removeById("jspsych-content");
   },*/
-  on_finish: function() {
-    corsiStart();
-  },
 };
 timeline.push(corsiWelcome);
 
