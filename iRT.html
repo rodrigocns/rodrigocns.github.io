@@ -739,58 +739,75 @@
   <section id="tab_chem" class="ContentStage" style="display:none; font-size:large">
       <!-- jmol script for images: 
       frank off; select all; wireframe 0.10; spacefill 20%; select hydrogens; spacefill 15% -->
-    <form id="form-chem-test" autocomplete="off" >
-      
-      <!--chem. images table-->
-      <table style="margin:auto;text-align:center;"> 
-        <tr>
-          <td colspan="4" style="line-height:0">
-            <img src="testequimica/headA.jpg" height="50" width="500" style="margin-right:50px">
-            <img src="testequimica/headB.jpg" height="50" width="500">
-            <br>
-            <img id="img2DStruct" src="testequimica/structureA1.jpg" height="500" width="500" style="margin-right:50px">
-            <img id="img3DStruct" src="testequimica/structureA1B1.jpg" height="500" width="500">
-            <br>
-            <img src="testequimica/blankA.jpg" height="50" width="500" style="margin-right:50px">
-            <img id="img3DLegend" src="testequimica/legendB1.jpg" height="50" width="500">
-          </td>
-        </tr>
-      </table>
-      
-      <!--choices divs-->
-      <div class="chem-container" >
-        <p>As estruturas A e B representam a mesma molécula?</p>
+    
+    <div id="div-chem-intro" class="grid-center-whole">
+      <p> 
+      A próxima etapa consiste em 12 tarefas de comparar estruturas de moléculas.
+      <br><br> Em cada tarefa, vão aparecer duas representações de moléculas. 
+      <br><br>Compare se a molécula representada pela estrutura da direita é a 
+      <br>mesma ou diferente da representada pela estrutura da esquerda.
+      <br><br> Escolha a opção abaixo que mais condiz com o que você acha e seu
+      <br>de certeza da resposta. 
+      <br><br> Ao concluir cada tarefa, clique no botão “Próximo”.
+      </p>
+      <button type="button" onclick="unremoveById('div-chem-task','grid');
+      removeById('div-chem-intro')">Começar</button>
+    </div>
+    
+    <div id="div-chem-task" class="grid-center-whole" style="display:none">
+      <form id="form-chem-test" autocomplete="off" >
+        <!--chem. images table-->
+        <table style="margin:auto;text-align:center;"> 
+          <tr>
+            <td colspan="4" style="line-height:0">
+              <img src="testequimica/headA.jpg" height="50" width="500" style="margin-right:50px">
+              <img src="testequimica/headB.jpg" height="50" width="500">
+              <br>
+              <img id="img2DStruct" src="testequimica/structureA1.jpg" height="500" width="500" style="margin-right:50px">
+              <img id="img3DStruct" src="testequimica/structureA1B1.jpg" height="500" width="500">
+              <br>
+              <img src="testequimica/blankA.jpg" height="50" width="500" style="margin-right:50px">
+              <img id="img3DLegend" src="testequimica/legendB1.jpg" height="50" width="500">
+            </td>
+          </tr>
+        </table>
         
-        <div class="chem-options-row">
-          <label class="chem-option" >
-            <input type="radio" name="p_chem_structure" value="2" 
-            onchange="unhideById('button-chem-next')">
-            <br>É a mesma!
-          </label>
-          <label class="chem-option" >
-            <input type="radio" name="p_chem_structure" value="1" 
-            onchange="unhideById('button-chem-next')">
-            <br>Parece ser mesma...
-          </label>
-          <label class="chem-option" >
-            <input type="radio" name="p_chem_structure" value="-1" 
-            onchange="unhideById('button-chem-next')">
-            <br>Parece ser diferente...
-          </label>
-          <label class="chem-option" >
-            <input type="radio" name="p_chem_structure" value="-2" 
-            onchange="unhideById('button-chem-next')">
-            <br>É diferente!
-          </label>
+        <!--choices divs-->
+        <div class="chem-container" >
+          <p>As estruturas A e B representam a mesma molécula?</p>
+          
+          <div class="chem-options-row">
+            <label class="chem-option" >
+              <input type="radio" name="p_chem_structure" value="2" 
+              onchange="unhideById('button-chem-next')">
+              <br>É a mesma!
+            </label>
+            <label class="chem-option" >
+              <input type="radio" name="p_chem_structure" value="1" 
+              onchange="unhideById('button-chem-next')">
+              <br>Parece ser mesma...
+            </label>
+            <label class="chem-option" >
+              <input type="radio" name="p_chem_structure" value="-1" 
+              onchange="unhideById('button-chem-next')">
+              <br>Parece ser diferente...
+            </label>
+            <label class="chem-option" >
+              <input type="radio" name="p_chem_structure" value="-2" 
+              onchange="unhideById('button-chem-next')">
+              <br>É diferente!
+            </label>
+          </div>
+          <!-- function call for test next value -->
+          <button type="button" id="button-chem-next" style="visibility:hidden" 
+          onclick="chemStructureNext(chemStructureArray,chemStructureRt);
+          this.style.visibility='hidden'">Próximo</button>
         </div>
-        <!-- function call for test next value -->
-        <button type="button" id="button-chem-next" style="visibility:hidden" 
-        onclick="chemStructureNext(chemStructureArray,chemStructureRt);
-        this.style.visibility='hidden'">Próximo</button>
+      </form>
+      <div id="div-chem-end" class="grid-center-whole" style="display:none">
+        <button onclick="nextStage()">Próxima etapa >></button>
       </div>
-    </form>
-    <div id="div-chem-end" class="grid-center-whole" style="display:none">
-      <button onclick="nextStage()">Próxima etapa >></button>
+
     </div>
   </section>
 
