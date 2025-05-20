@@ -109,7 +109,8 @@
       <!-- Forms: info para retorno -->
       <div id="div-form-1">
         <p>
-          Se deseja receber uma cópia dos seus dados, deixe seu nome e email.
+          Se deseja receber uma cópia dos seus dados, deixe seu nome e email. 
+          <br>Estes campos <span style=font-weight:bold>não</span> serão armazenados no banco de dados. 
         </p>
         <p> Nome (opcional): 
           <input type="text" name="fname" placeholder="Ex: Rodrigo Alves" size="30" autofocus></p>
@@ -1068,40 +1069,42 @@
         <input type="radio" name="p_usability" id="p_usability_nao" value="Não"
           onchange="unhideById('div-usability-txt')">
         <label for="p_usability_nao">Não</label>
-
         <div id="div-usability-txt" style="visibility:hidden">
           <label for="p_usability_txt"> Por favor, descreva brevemente quais 
             partes da interface estavam confusas ou difíceis de usar.</label>
           <br>
           <textarea id="p_usability_txt" name="p_usability_txt" rows="2" cols="70"></textarea>
         </div>
+        <br><br>
 
         Você considerou cansativa a participação nesta pesquisa?
-          <input type="radio" name="p_tiring" id="p_tiring_sim" value="Sim"
-          onchange="unhideById('div-tiring-txt')">
-          <label for="p_tiring_sim">Sim</label> |
-          <input type="radio" name="p_tiring" id="p_tiring_nao" value="Não"
-          onchange="hideById('div-tiring-txt')">
-          <label for="p_tiring_nao">Não</label>
-
-          <div id="div-tiring-txt" style="visibility:hidden">
-            <label for="p_tiring_txt"> Por favor, descreva o que causou cansaço, 
-             para que possamos melhorar a qualidade do teste</label>
-            <br>
-            <textarea id="p_tiring_txt" name="p_tiring_txt" rows="2" cols="70"></textarea>
-          </div>
-          Deseja participar de mais pesquisas como esta no futuro?
-          <input type="radio" name="p_remake" id="p_remake_sim" value="Sim">
-          <label for="p_remake_sim">Sim</label> |
-          <input type="radio" name="p_remake" id="p_remake_nao" value="Não">
-          <label for="p_remake_nao">Não</label>
+        <input type="radio" name="p_tiring" id="p_tiring_sim" value="Sim"
+        onchange="unhideById('div-tiring-txt')">
+        <label for="p_tiring_sim">Sim</label> |
+        <input type="radio" name="p_tiring" id="p_tiring_nao" value="Não"
+        onchange="hideById('div-tiring-txt')">
+        <label for="p_tiring_nao">Não</label>
+        <div id="div-tiring-txt" style="visibility:hidden">
+          <label for="p_tiring_txt"> Por favor, descreva o que causou cansaço, 
+            para que possamos melhorar a qualidade do teste</label>
           <br>
-          Sinta-se à vontade para deixar quaisquer comentários adicionais que desejar:
-          <br>
-          <textarea id="p_feedback_txt" name="p_feedback_txt" rows="4" cols="70"></textarea>
-          <br><br>
-          <button id="button-usability" type="button"
-          onclick="nextStage();closeFullscreen();saveProfilingData()" >Finalizar</button>
+          <textarea id="p_tiring_txt" name="p_tiring_txt" rows="2" cols="70"></textarea>
+        </div>
+        <br><br>
+        
+        Deseja participar de mais pesquisas como esta no futuro?
+        <input type="radio" name="p_remake" id="p_remake_sim" value="Sim">
+        <label for="p_remake_sim">Sim</label> |
+        <input type="radio" name="p_remake" id="p_remake_nao" value="Não">
+        <label for="p_remake_nao">Não</label>
+        <br><br>
+        
+        Sinta-se à vontade para deixar quaisquer comentários adicionais que desejar:
+        <br>
+        <textarea id="p_feedback_txt" name="p_feedback_txt" rows="4" cols="70"></textarea>
+        <br><br>
+        <button id="button-usability" type="button"
+        onclick="nextStage();closeFullscreen();saveProfilingData()" >Finalizar</button>
       </div>
   
     </form>
