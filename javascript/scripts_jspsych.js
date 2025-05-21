@@ -96,7 +96,7 @@ var timeline = [];
 var corsiWelcome = {
   type: jsPsychHtmlButtonResponse,
   stimulus: introductionText,
-  choices: ['Começar'],
+  choices: ['Próximo'],
   post_trial_gap: 500,
   //function to hide the corsi block content on load
   /*on_load: function(){
@@ -130,7 +130,8 @@ timeline.push(corsiIntro);
 //pre task message trial
 var corsiPreTask = {
   type: jsPsychHtmlButtonResponse,
-  stimulus: 'Pressione "Começar" para iniciar o teste <br><br>',
+  stimulus: `Após calibrar o eye-tracker, <br>
+  pressione "Começar" para iniciar o teste <br><br>`,
   choices: ['Começar'],
   post_trial_gap: 500,
   on_finish: function() {
