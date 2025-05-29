@@ -644,9 +644,10 @@ function recordTrialIRT(modelName, razaoPxAngst, time_initial, scrSizeX, scrSize
   const trialIRT = {
     taskID          :   task_list[task_n],       
     modelName       :   modelName,
+
     pxAngstRatio    :   Math.round((razaoPxAngst[0]+razaoPxAngst[1])*10E6/2)/10E6,
     epochStart      :   time_initial,
-    scrSizeXY       :   [scrSizeX,scrSizeY],
+    scrSizeXY       :   getWindowSize(),
 
     cvsRefTRBL      :   [gsForm.cvsRefTop.value,gsForm.cvsRefRight.value,gsForm.cvsRefBottom.value,gsForm.cvsRefLeft.value],
     cvsIntTRBL      :   [gsForm.cvsIntTop.value,gsForm.cvsIntRight.value,gsForm.cvsIntBottom.value,gsForm.cvsIntLeft.value],
