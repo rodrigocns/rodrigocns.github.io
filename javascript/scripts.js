@@ -157,6 +157,13 @@ onmousemove = function(e) {
   mouseY=e.clientY;
 }
 
+var irtModelFileLocation = "";
+var irtModelName = "";
+function getIrtModelData (jsmolInteractiveObject) {
+  irtModelFileLocation = Jmol.getPropertyAsArray(jsmolInteractiveObject, 'fileName');
+  irtModelName = irtModelFileLocation.slice(irtModelFileLocation.lastIndexOf("/")+1);
+}
+
 //functions to run when starting an iRT trial ..
 let razaoPxAngst = [0,0];
 function iRTStart() {  
@@ -165,8 +172,11 @@ function iRTStart() {
   unhideById("cellRight");
   Jmol.script(jsmolReferenceObject,'refresh'); // refresh pixels of object window
   Jmol.script(jsmolInteractiveObject,'refresh');
+
   timerStart ();         //starts time counting and periodic functions
   getTheNumbers();       // records the data ONLY from the initial instant (t=0)
+  
+  getIrtModelData(jsmolInteractiveObject);
   removeById("button-irt-start");
   setTimeout(function() {
     unremoveById("button-irt-submit","inline-block");
@@ -189,11 +199,12 @@ function buttoniRTSubmit(){
   }
   //hide submit button
   removeById("button-irt-submit");
-  task_n +=1; //Progress to next task in task_list and prepMolecule()
-  // if (task_n >= 6) {task_n = 0;} /*volta ao primeiro*/
   if (is_local_save == true) {
     saveFile();
   }
+  
+  //Progress to next task in task_list and prepMolecule()
+  task_n +=1; 
   //if submitted task is/was last one, shows button for next stage instead of next task  
   if (task_n >= task_list.length) { 
     unremoveById("div-irt-end", "grid");
@@ -412,8 +423,8 @@ function insertFormValues() {
   // what browser was used
   browserInfo = Jmol.getPropertyAsArray(jsmolInteractiveObject, 'appletInfo.operatingSystem');
   gsForm.browser.value = browserInfo; 
-  modelFileLocation = Jmol.getPropertyAsArray(jsmolInteractiveObject, 'fileName');
   // fileName of 3D model used, after all '/' folder divisories
+  modelFileLocation = Jmol.getPropertyAsArray(jsmolInteractiveObject, 'fileName');
   modelName = modelFileLocation.slice(modelFileLocation.lastIndexOf("/")+1);
   gsForm.modelName.value = modelName; 
   gsForm.paperAnswer.value = paperAnswer;
@@ -638,12 +649,12 @@ form.addEventListener('submit', e => {
 })
 
 const iRTData = [];
-function recordTrialIRT(modelName, razaoPxAngst, time_initial, scrSizeX, scrSizeY,
-   gsForm, arrayEpoch,refQuat,parametroD,parametro1,parametro2,parametro3,parametro4,
-  arrayMouseX, arrayMouseY) {
+function recordTrialIRT(razaoPxAngst, time_initial,gsForm, arrayEpoch,refQuat,
+  parametroD,parametro1,parametro2,parametro3,parametro4, arrayMouseX, arrayMouseY) {
+
   const trialIRT = {
-    taskID          :   task_list[task_n],       
-    modelName       :   modelName,
+    taskID          :   task_list[task_n-1],       
+    modelName       :   irtModelName,
 
     pxAngstRatio    :   Math.round((razaoPxAngst[0]+razaoPxAngst[1])*10E6/2)/10E6,
     epochStart      :   time_initial,

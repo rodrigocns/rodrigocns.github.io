@@ -73,6 +73,7 @@ function prepMolecule(num) {
   // SE PULAR CASES VAI DAR ERRO! task_list.length e quantidade de cases precisa ser igual!
   jsmol_ref = jsmolReferenceObject; //janela esquerda
   jsmol_obj = jsmolInteractiveObject; //janela direita
+  
   //em cada case # estão as chamadas das funções de renderização dos objetos
   // suas orientações rotacionais e configs. específicos de cada tarefa (ex. modelo gray em cinza)
   switch (num){
@@ -110,7 +111,6 @@ function prepMolecule(num) {
       Jmol.script(jsmol_ref,'moveto 0 QUATERNION {-0.490257 -0.282533 -0.455394  0.687341}');
       Jmol.script(jsmol_obj,'moveto 0 QUATERNION { 0.624884 -0.036592 -0.699007 -0.345790}');
     break;
-
     //https://chemapps.stolaf.edu/jmol/docs/examples/bonds.htm  help on altering model rendering
   }
 }
