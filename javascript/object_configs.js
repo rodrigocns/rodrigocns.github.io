@@ -6,7 +6,7 @@ var instructionTextiRT =`
 em cantos opostos da tela. 
 <br><br> Rotacione o objeto da direita até que ele 
 fique o mais parecido possível com o objeto da esquerda.
-<br><br> Para girar o objeto, clique e arraste o cursor do mouse sobre ele. 
+<br><br> Para girar o objeto, clique e arraste o cursor do mouse sobre a janela. 
 <br><br> Ao concluir cada tarefa, clique no botão “Pronto!”.
 </p>
 `;
