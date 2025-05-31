@@ -472,6 +472,7 @@ const ticTocTimers = {};
 
 function tic(label = 'default') {
   ticTocTimers[label] = Date.now();
+  console.log(`Timer started for label: "${label}"`);
 }
 
 function toc(label = 'default') {
@@ -737,9 +738,10 @@ function saveProfilingData () {
     dificultyJsmol:     endForm.p_dific_jsmol.value,
     jsmolLikeness:      endForm.p_likeness.value,
     jsmolLikenessText:  endForm.p_likeness_txt.value,
+    researchRepeat:     endForm.p_repeat.value,
+    researchRepeatText: endForm.p_repeat_txt.value,
 
     enjoy:              endForm.p_enjoy.value,
-    ressearchRepeat:    endForm.p_research.value,
     usability:          endForm.p_usability.value,
     usabilityText:      endForm.p_usability_txt.value,
     tiring:             endForm.p_tiring.value,

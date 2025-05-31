@@ -1054,6 +1054,22 @@
           </tr>
         </table>
         <p>
+          Já realizou anteriormente algum dos testes aplicados hoje?
+          <input type="radio" name="p_repeat" id="p_repeat_sim" value="Sim"
+          onchange="unhideById('input-repeat-txt')">
+          <label for="p_repeat_sim">Sim</label> |
+          <input type="radio" name="p_repeat" id="p_repeat_nao" value="Não"
+          onchange="hideById('input-likeness-txt')">
+          <label for="p_repeat_nao">Não</label>
+          <div id="input-repeat-txt" style="visibility:hidden" >
+            <label for="p_repeat_txt"> Quais?</label>
+            <br>
+            <textarea id="p_repeat_txt" name="p_repeat_txt" rows="2" cols="70"></textarea>
+          </div>
+        </p>
+        <br><br>
+        
+        <p>
           Você percebeu alguma semelhança entre os objetos diferentes de rotação interativa? 
           <input type="radio" name="p_likeness" id="p_likeness_sim" value="Sim" 
           onchange="unhideById('input-likeness-txt')">
@@ -1065,7 +1081,7 @@
         <div id="input-likeness-txt" style="visibility:hidden" >
           <label for="p_likeness_txt">Descreva sucintamente, por favor:</label>
           <br>
-          <textarea id="p_likeness_txt" name="p_likeness_txt" rows="5" cols="50"
+          <textarea id="p_likeness_txt" name="p_likeness_txt" rows="3" cols="70"
           oninput="unhideById('button-dificulty')"></textarea>
         </div>
         <button type="button" id="button-dificulty" style="visibility:hidden"
@@ -1086,13 +1102,6 @@
           <option value="4">Gostei</option>
           <option value="5">Adorei</option>
         </select>
-        <br><br>
-
-        Já participou de pesquisas semelhantes a esta?
-        <input type="radio" name="p_research" id="p_research_sim" value="Sim">
-        <label for="p_research_sim">Sim</label> |
-        <input type="radio" name="p_research" id="p_research_nao" value="Não">
-        <label for="p_research_nao">Não</label>
         <br><br>
 
         Na sua opinião, a interface estava clara e fácil de usar? 
