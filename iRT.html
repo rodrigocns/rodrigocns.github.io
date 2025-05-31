@@ -862,7 +862,11 @@
       <p>Após calibrar o eye-tracker, pressione
       <br> "Começar" para iniciar o teste
       <br><br>
-      <button onclick="removeById('div-psvtr-start');unremoveById('div-psvtr-task','grid');tic();">
+      <button onclick="
+      removeById('div-psvtr-start');
+      unremoveById('div-psvtr-task','grid');
+      tic('psvtr-duration');
+      tic();">
         Começar!
       </button>
     </div>
