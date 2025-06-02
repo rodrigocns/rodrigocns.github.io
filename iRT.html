@@ -748,7 +748,15 @@
       <!-- jmol script for images: 
       frank off; select all; wireframe 0.10; spacefill 20%; select hydrogens; spacefill 15% -->
     
-    <div id="div-chem-intro" class="grid-center-whole">
+    <div id="div-first-eyetracker" class="grid-center-whole" >
+      <p> 
+      Verificar se o eye-tracker está calibrado!
+      </p>
+      <button type="button" onclick="unremoveById('div-chem-intro','grid');
+      removeById('div-first-eyetracker')">Próximo</button>
+    </div>
+
+    <div id="div-chem-intro" class="grid-center-whole" style="display:none">
       <p> 
       A próxima etapa consiste em 12 tarefas de comparar estruturas de moléculas.
       <br><br> Em cada tarefa, vão aparecer duas representações de moléculas. 
