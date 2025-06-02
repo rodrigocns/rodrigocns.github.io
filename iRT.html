@@ -996,12 +996,17 @@
       <div id="div-dificulty" class="grid-center">
         <table style="margin:auto">
           <tr>
-            <td colspan="2" style="padding:10px">
+            <td colspan="4" style="padding:10px">
               Na sua opinião, os testes foram difíceis?
             </td>
           </tr>
+          <tr style="text-align:center">
+            <td><img src="images/icon_chem.png"></img></td>
+            <td><img src="images/icon_paper.png"></img></td>
+            <td><img src="images/icon_corsi.png"></img></td>
+            <td><img src="images/icon_jsmol.png"></img></td>
+          </tr>
           <tr>
-            <td width="125px" style="padding:0px"><img src="images/icon_chem.png"></img></td>
             <td style="padding:10px">
               Comparar estruturas químicas <br>
               <select name="p_dific_chem">
@@ -1013,9 +1018,6 @@
                 <option value="1">Muito fácil</option>
               </select>
             </td>
-          </tr>
-          <tr>
-            <td><img src="images/icon_paper.png"></img></td>
             <td style="padding:10px">
               Rotação mental de blocos <br>
               <select name="p_dific_paper">
@@ -1027,9 +1029,6 @@
                 <option value="1">Muito fácil</option>
               </select>
             </td>
-          </tr>
-          <tr>
-            <td><img src="images/icon_corsi.png"></img></td>
             <td style="padding:10px"> 
               Sequência de blocos piscando <br>
               <select name="p_dific_corsi">
@@ -1041,9 +1040,6 @@
                 <option value="1">Muito fácil</option>
               </select>
             </td>
-          </tr>
-          <tr>
-            <td><img src="images/icon_jsmol.png"></img></td>
             <td style="padding:10px"> 
               Rotação interativa de objetos<br>
               <select name="p_dific_jsmol">
@@ -1057,20 +1053,20 @@
             </td>
           </tr>
         </table>
-        <p>
-          Já realizou anteriormente algum dos testes aplicados hoje?
-          <input type="radio" name="p_repeat" id="p_repeat_sim" value="Sim"
-          onchange="unhideById('input-repeat-txt')">
-          <label for="p_repeat_sim">Sim</label> |
-          <input type="radio" name="p_repeat" id="p_repeat_nao" value="Não"
-          onchange="hideById('input-repeat-txt')">
-          <label for="p_repeat_nao">Não</label>
-          <div id="input-repeat-txt" style="visibility:hidden" >
-            <label for="p_repeat_txt"> Quais?</label>
-            <br>
-            <textarea id="p_repeat_txt" name="p_repeat_txt" rows="2" cols="70"></textarea>
-          </div>
-        </p>
+          <p> 
+            Já realizou anteriormente algum dos testes aplicados hoje?
+            <input type="radio" name="p_repeat" id="p_repeat_sim" value="Sim"
+            onchange="unhideById('input-repeat-txt')">
+            <label for="p_repeat_sim">Sim</label> |
+            <input type="radio" name="p_repeat" id="p_repeat_nao" value="Não"
+            onchange="hideById('input-repeat-txt')">
+            <label for="p_repeat_nao">Não</label>
+            <div id="input-repeat-txt" style="visibility:hidden" >
+              <label for="p_repeat_txt"> Quais?</label>
+              <br>
+              <textarea id="p_repeat_txt" name="p_repeat_txt" rows="2" cols="70"></textarea>
+            </div>
+          </p>
         <br><br>
         
         <p>
@@ -1081,13 +1077,13 @@
           <input type="radio" name="p_likeness" id="p_likeness_nao" value="Não"
           onchange="unhideById('button-dificulty');hideById('input-likeness-txt')">
           <label for="p_likeness_nao">Não</label>
+          <div id="input-likeness-txt" style="visibility:hidden" >
+            <label for="p_likeness_txt">Descreva sucintamente, por favor:</label>
+            <br>
+            <textarea id="p_likeness_txt" name="p_likeness_txt" rows="3" cols="70"
+            oninput="unhideById('button-dificulty')"></textarea>
+          </div>
         </p>
-        <div id="input-likeness-txt" style="visibility:hidden" >
-          <label for="p_likeness_txt">Descreva sucintamente, por favor:</label>
-          <br>
-          <textarea id="p_likeness_txt" name="p_likeness_txt" rows="3" cols="70"
-          oninput="unhideById('button-dificulty')"></textarea>
-        </div>
         <button type="button" id="button-dificulty" style="visibility:hidden"
         onclick="unremoveById('div-usability','block'); removeById('div-dificulty')" >
           Próximo
