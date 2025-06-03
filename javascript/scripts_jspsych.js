@@ -40,7 +40,7 @@ var oldIntroText = `
 // Set test for #jspsych-corsi-prompt
 var promptText = `
 <span style="font-size:24px; color:paleturquoise">
-Repita a sequência de treino
+Repita a sequência
 </span>
 `;
 
