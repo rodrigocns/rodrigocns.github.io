@@ -69,23 +69,29 @@ const img3DLegend = document.getElementById('img3DLegend');
 // index passa por 3 estruturas 2D, cada uma com 4 estruturas 3D 
 function chemStructureNext(chemStructureArray,chemStructureRt) {
   const chemForm = document.getElementById('form-chem-test')
+  
   //register current choice
   chemStructureArray.push(Number(chemForm.p_chem_structure.value));
-  chemStructureRt.push(toc());
+  chemStructureRt.push(toc('tic-chem-struct'));
+  
   //clean radio choice
   document.querySelector('input[name="p_chem_structure"]:checked').checked = false;
+  
   //next image counter
   img3Dindex = img3Dindex + 1;
+  
   // se 3Dindex maior que 4, 2Dindex aumenta e 3Dindex volta a 1
   if (img3Dindex > 4 ) {
     img2Dindex = img2Dindex +1;
     img3Dindex = 1;
   }
-  //set (possible) new images
+  
+  //set (possible) new images and set new timer
   img2DStruct.src = `testequimica/structureA${img2Dindex}.jpg`;
   img3DStruct.src = `testequimica/structureA${img2Dindex}B${img3Dindex}.jpg`;
   img3DLegend.src = `testequimica/legendB${img2Dindex}.jpg`;
-  tic();
+  tic('tic-chem-struct');
+  
   //hide current section, prepare for next one
   if (img2Dindex > 3) {
     unremoveById('div-chem-end','grid');
