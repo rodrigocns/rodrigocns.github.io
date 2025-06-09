@@ -1,7 +1,7 @@
 //functions and scripts for Jmol objects in interactive tasks.
 
 var instructionTextiRT =`
-<p> A próxima etapa consiste em 5 tarefas de rotação de objetos.
+<p> A próxima etapa consiste em 5 tarefas de rotação interativa de objetos.
 <br><br> Ao clicar no botão “Começar!”, vão aparecer dois objetos 
 em cantos opostos da tela. 
 <br><br> Rotacione o objeto da direita até que ele 
